@@ -1,0 +1,14 @@
+theme = Catppuccin Mocha
+window-height=30
+window-width=110
+confirm-close-surface = false
+font-family = "CaskaydiaCove Nerd Font"
+cursor-style = block
+cursor-style-blink = true
+gtk-titlebar = false
+shell-integration-features = no-cursor
+#macos-titlebar-style = hidden
+#window-padding-x = 10
+#window-padding-y = 10
+term = xterm-256color
+#background-opacity = 0.9

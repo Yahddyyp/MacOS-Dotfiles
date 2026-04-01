@@ -1,0 +1,106 @@
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# Catppuccin Mocha palette
+# Base:    0xff1e1e2e
+# Mantle:  0xff181825
+# Surface: 0xff313244
+# Mauve:   0xffcba6f7
+# Text:    0xffcdd6f4
+# Subtext: 0xffa6adc8
+# Overlay: 0xff6c7086
+
+# General Bar Properties
+sketchybar --bar position=top \
+               height=43 \
+               blur_radius=30 \
+               color=0x00000000 \
+               display=main \
+               topmost=window \
+               margin_left=8 \
+               margin_right=8 
+
+# Item Defaults
+sketchybar --default \
+           padding_left=4 \
+           padding_right=4 \
+           icon.font="CaskaydiaCove Nerd Font:16.0" \
+           label.font="CaskaydiaCove Nerd Font:Bold:14.0" \
+           icon.color=0xffcba6f7 \
+           label.color=0xffcba6f7 \
+           icon.padding_left=10 \
+           icon.padding_right=4 \
+           label.padding_left=6 \
+           label.padding_right=10 \
+           background.color=0xcc1e1e2e \
+           background.border_color=0x44cba6f7 \
+           background.border_width=1 \
+           background.corner_radius=8 \
+           background.height=30 \
+           blur_radius=30
+
+# --- Items on the right ---
+# Date and time
+sketchybar --add item date right \
+           --set date icon=􀧞 \
+                      icon.color=0xffcba6f7 \
+                      label.color=0xffcdd6f4 \
+                       update_freq=5 \
+                      script="$PLUGIN_DIR/date.sh"
+
+# Battery level
+sketchybar --add item battery right \
+           --set battery icon.color=0xffcba6f7 \
+                         label.color=0xffcdd6f4 \
+                         update_freq=10 \
+                         script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+# Volume level
+sketchybar --add item volume right \
+           --set volume icon.color=0xffcba6f7 \
+                        label.color=0xffcdd6f4 \
+                        script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change
+
+# --- Items on the left ---
+# Space indicators
+SPACE_SIDS=(1 2 3 4 5 6 7 8 9 10)
+for sid in "${SPACE_SIDS[@]}"; do
+  sketchybar --add space space.$sid left \
+             --set space.$sid \
+                     space=$sid \
+                     icon=$sid \
+                     label.font="sketchybar-app-font:Regular:18.0" \
+                     label.padding_right=20 \
+                     label.y_offset=-2 \
+                     label.color=0xffcba6f7 \
+                     icon.color=0xffcba6f7 \
+                     background.color=0xcc1e1e2e \
+                     background.border_color=0x44cba6f7 \
+                     background.border_width=1 \
+                     script="$PLUGIN_DIR/space.sh"
+done
+
+sketchybar --add item space_watcher center \
+           --set space_watcher background.drawing=off \
+                                 script="$PLUGIN_DIR/space_windows.sh" \
+           --subscribe space_watcher space_windows_change
+
+# Front app
+sketchybar --add item front_app left \
+           --set front_app icon.font="sketchybar-app-font:Regular:18.0" \
+                           icon.color=0xffcba6f7 \
+                           label.color=0xffcdd6f4 \
+                           background.color=0xcc313244 \
+                           background.border_color=0x88cba6f7 \
+                           background.border_width=1 \
+                           script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+# Listen to yabai events for real-time updates
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
+yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
+
+sketchybar --update
