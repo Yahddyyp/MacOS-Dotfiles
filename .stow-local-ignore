@@ -19,3 +19,4 @@ CVS
 ^/Brewfile
 ^/Wallpaper.png
 ^/Images
+^/fish/.config/fish/conf.d

@@ -2,3 +2,4 @@
 *.local
 fish/**/fish_variables
 fish_variable
+fish/.config/fish/conf.d/
