@@ -62,6 +62,9 @@ sketchybar --add item volume right \
                         script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change
 
+# Media (Spotify/Music)
+source "$CONFIG_DIR/items/media.sh"
+
 # --- Items on the left ---
 # Space indicators
 SPACE_SIDS=(1 2 3 4 5 6 7 8 9 10)
