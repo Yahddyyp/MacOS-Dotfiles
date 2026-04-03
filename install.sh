@@ -30,6 +30,7 @@ phase_prerequisites() {
     warn "homebrew not found, installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
+    export PATH="/opt/homebrew/bin:$PATH"
     ok "homebrew installed"
   else
     ok "homebrew found"
@@ -117,6 +118,10 @@ phase_backup() {
 
 phase_brew_bundle() {
   info "installing tools via homebrew bundle..."
+  if [ ! -f "$DOTFILES_DIR/Brewfile" ]; then
+    err "Brewfile not found at $DOTFILES_DIR/Brewfile"
+    exit 1
+  fi
   brew bundle install --file="$DOTFILES_DIR/Brewfile"
   ok "all tools installed"
 }
@@ -127,6 +132,10 @@ phase_stow() {
   cd "$DOTFILES_DIR"
   for pkg in "${PACKAGES[@]}"; do
     if [ -d "$pkg" ]; then
+      if [ "$pkg" = "zsh" ] && [ -f "$HOME/.zshrc" ] && ! [ -L "$HOME/.zshrc" ]; then
+        info "removing oh-my-zsh generated .zshrc before stowing..."
+        rm "$HOME/.zshrc"
+      fi
       stow --restow "$pkg"
       ok "stowed: $pkg"
     else
@@ -158,7 +167,7 @@ phase_post_install() {
 
   info "removing dock autohide delay..."
   defaults write com.apple.dock autohide-delay -float 0
-  killall Dock
+  killall Dock || true
   ok "dock autohide delay removed"
 
   info "disabling VSCode press-and-hold..."
@@ -183,11 +192,11 @@ print_summary() {
 main() {
   phase_prerequisites
   echo ""
+  phase_backup
+  echo ""
   phase_ohmyzsh
   echo ""
   phase_clone
-  echo ""
-  phase_backup
   echo ""
   phase_brew_bundle
   echo ""
