@@ -3,11 +3,13 @@
 update() {
   APP=""
   for app in "Spotify" "Music"; do
-    STATE="$(osascript -e "tell application \"$app\" to player state" 2>/dev/null)"
-    if [ "$STATE" = "playing" ] || [ "$STATE" = "paused" ]; then
-      APP="$app"
-      PLAYER_STATE="$STATE"
-      break
+    if pgrep -x "$app" > /dev/null 2>&1; then
+      STATE="$(osascript -e "tell application \"$app\" to player state" 2>/dev/null)"
+      if [ "$STATE" = "playing" ] || [ "$STATE" = "paused" ]; then
+        APP="$app"
+        PLAYER_STATE="$STATE"
+        break
+      fi
     fi
   done
 
