@@ -35,6 +35,7 @@ brew "lazygit"
 brew "gh"
 brew "fastfetch"
 brew "opencode"
+brew "cbonsai"
 
 # Casks
 cask "kitty"
