@@ -68,6 +68,12 @@ return {
         "%.wasm$",
         "%.lock$",
       },
+      mappings = {
+        i = {
+          ["<C-k>"] = "move_selection_previous",
+          ["<C-j>"] = "move_selection_next",
+        },
+      },
     },
     pickers = {
       find_files = {
