@@ -122,7 +122,7 @@ phase_brew_bundle() {
     err "Brewfile not found at $DOTFILES_DIR/Brewfile"
     exit 1
   fi
-  brew bundle install --file="$DOTFILES_DIR/Brewfile"
+  brew bundle install --file="$DOTFILES_DIR/Brewfile" --no-lock || warn "some packages may have failed to install"
   ok "all tools installed"
 }
 

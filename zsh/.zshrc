@@ -38,7 +38,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude=.git --exclu
 
 eval "$(zoxide init zsh)"
 
-. "$HOME/.atuin/bin/env"
+# Atuin setup using Homebrew binary and dotfile config
+export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 eval "$(atuin init zsh)"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,9 +1,6 @@
 # Taps
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "FelixKratz/formulae"
 tap "koekeishiya/formulae"
-tap "homebrew/cask-fonts"
 
 # Core tools
 brew "fish"

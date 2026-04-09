@@ -28,6 +28,7 @@ fzf --fish | source
 zoxide init fish | source
 
 if status is-interactive
+    set -gx ATUIN_CONFIG_DIR "$HOME/.config/atuin"
     atuin init fish | source
 end
 
