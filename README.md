@@ -34,7 +34,7 @@
 | [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git |
 
 ### Apps
-- **[zed](https://zed.dev/)** / **[vscode](https://code.visualstudio.com/)** - Pretty good editors
+- **[zed](https://zed.dev/)** / **[vscodium](https://vscodium.com/)** - Pretty good editors
 - **[raycast](https://raycast.com/)** — Spotlight replacement
 - **[shottr](https://shottr.cc/)** — Screenshot tool
 - **[alt-tab](https://alt-tab-macos.netlify.app/)** — Windows-style alt-tab
@@ -79,7 +79,7 @@ stow */
 4. Clone – Clones the repo to ~/dotfiles (or pulls latest changes if already cloned)
 5. Brew Bundle – Installs all tools/apps from the Brewfile (zsh, nvim, tmux, kitty, starship, sketchybar, yabai, skhd, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Post-install – Installs tmux plugins, Spicetify marketplace, removes Dock autohide delay, disables VSCode press-and-hold
+7. Post-install – Installs tmux plugins, Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold
 
 Using the install.sh:
 

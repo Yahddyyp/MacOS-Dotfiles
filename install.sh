@@ -170,9 +170,9 @@ phase_post_install() {
   killall Dock || true
   ok "dock autohide delay removed"
 
-  info "disabling VSCode press-and-hold..."
-  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-  ok "VSCode press-and-hold disabled"
+  info "disabling VSCodium press-and-hold..."
+  defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
+  ok "VSCodium press-and-hold disabled"
 }
 
 print_summary() {
