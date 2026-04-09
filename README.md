@@ -40,6 +40,7 @@
 - **[alt-tab](https://alt-tab-macos.netlify.app/)** — Windows-style alt-tab
 - **[spotify](https://www.spotify.com/)** + **[spicetify](https://spicetify.app/)** — Themed Spotify
 - **[zen](https://zen-browser.app/)** — An arc-like browser
+- **[appcleaner](https://freemacsoft.net/appcleaner/)** — App uninstaller
 
 ![Terminal Setup](Images/Cli.png)
 
