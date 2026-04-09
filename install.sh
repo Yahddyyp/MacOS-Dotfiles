@@ -127,6 +127,7 @@ phase_brew_bundle() {
 }
 
 phase_stow() {
+  mkdir -p "$HOME/.config"
   info "linking dotfiles with stow..."
 
   cd "$DOTFILES_DIR"
@@ -136,7 +137,7 @@ phase_stow() {
         info "removing oh-my-zsh generated .zshrc before stowing..."
         rm "$HOME/.zshrc"
       fi
-      stow --restow "$pkg"
+      stow --restow --no-folding --verbose --target="$HOME" "$pkg"
       ok "stowed: $pkg"
     else
       warn "skipping missing package: $pkg"

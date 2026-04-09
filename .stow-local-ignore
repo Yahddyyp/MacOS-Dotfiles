@@ -14,9 +14,10 @@ CVS
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+install.sh
+Brewfile
+Wallpaper.png
+Images
+LICENSE
 \.DS_Store
-^/install.sh
-^/Brewfile
-^/Wallpaper.png
-^/Images
 ^/fish/.config/fish/conf.d
