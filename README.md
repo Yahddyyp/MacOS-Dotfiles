@@ -51,39 +51,7 @@ These are required for the icons and styling to appear correctly:
 - **[Cascadia Code Nerd Font](https://github.com/ryanoasis/nerd-fonts)** — Main terminal/coding font
 - **[Sketchybar App Font](https://github.com/kvndrsslr/sketchybar-app-font)** — Required for Sketchybar icons
 
-
 ![Terminal Setup](Images/Cli.png)
-
-## Repository Structure
-This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to manage symlinks. Each directory represents a "package":
-
-| Package | Purpose | Target Path |
-|---------|---------|-------------|
-| `zsh` | Zsh & Theme config | `~/.zshrc`, `~/.config/zsh` |
-| `nvim` | Neovim config | `~/.config/nvim` |
-| `tmux` | Tmux config | `~/.tmux.conf` |
-| `atuin` | History config | `~/.config/atuin` |
-| `skhd` | Keybindings | `~/.config/skhd` |
-| `yabai` | Window manager | `~/.config/yabai` |
-| `home` | Misc home files | `~/.hushlogin` |
-
-## Keybindings (Quick Start)
-The full config is in `skhdrc` and `tmux.conf`, but here are the essentials:
-
-### System & Windows (skhd)
-- `cmd + return` — Open Terminal (Ghostty)
-- `cmd + shift + return` — Open Browser (Zen)
-- `alt + h/j/k/l` — Change window focus
-- `ctrl + alt + h/j/k/l` — Swap window position
-- `ctrl + alt + return` — Toggle fullscreen (Zoom)
-- `alt + f / g` — Switch between Float and Tiling (BSP) layout
-
-### Terminal Multiplexer (tmux)
-- `ctrl + a` — Prefix
-- `prefix + m` — Split vertical
-- `prefix + u` — Split horizontal
-- `ctrl + h/j/k/l` — Smart pane switching (works with Vim/Atuin)
-- `prefix + I` — Install plugins
 
 ## Installation
 ### Without using install.sh (Recommended)
