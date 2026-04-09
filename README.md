@@ -34,7 +34,7 @@
 | [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git |
 | [gh](https://cli.github.com/) | GitHub CLI |
 | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Modern `neofetch` alternative |
-| [bun](https://bun.sh/) | Fast JavaScript runtime |
+| [bun](https://bun.sh/) | JavaScript runtime |
 
 ### Apps
 - **[zed](https://zed.dev/)** / **[vscodium](https://vscodium.com/)** - Pretty good editors
@@ -48,7 +48,7 @@
 
 ### Fonts
 These are required for the icons and styling to appear correctly:
-- **[Cascadia Code Nerd Font](https://github.com/ryanoasis/nerd-fonts)** — Main terminal/coding font
+- **[Cascadia Code Nerd Font](https://github.com/microsoft/cascadia-code)** — Main terminal/coding font
 - **[Sketchybar App Font](https://github.com/kvndrsslr/sketchybar-app-font)** — Required for Sketchybar icons
 
 ![Terminal Setup](Images/Cli.png)
