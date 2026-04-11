@@ -9,13 +9,22 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePrevItem",
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
+    }
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Editor && vim_mode == normal",
     "bindings": {
-      // "j k": "vim::NormalBefore"
-    },
-  },
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space e": "workspace::ToggleLeftDock",
+      "space b d": "pane::CloseActiveItem"
+    }
+  }
 ]
