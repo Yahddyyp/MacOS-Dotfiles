@@ -1,5 +1,6 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.ai.codeium",
     "lazyvim.plugins.extras.ai.copilot-chat"
   ],
   "install_version": 8,
