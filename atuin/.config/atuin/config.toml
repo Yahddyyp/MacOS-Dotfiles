@@ -14,6 +14,8 @@ enter_accept = true
 command_chaining = true
 show_numeric_shortcuts = true
 inline_height = 0
+keymap_mode = "vim-normal"
+keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = "steady-block" }
 
 [search]
 filters = ["global", "host", "session", "workspace", "directory"]
@@ -23,9 +25,6 @@ columns = ["duration", "time", "command"]
 
 [preview]
 strategy = "auto"
-
-keymap_mode = "vim-insert"
-keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = "steady-block" }
 
 [keys]
 scroll_exits = true
