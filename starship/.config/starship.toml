@@ -153,10 +153,10 @@ disabled = true
 disabled = false
 success_symbol = '[❯](bold fg:mauve)'
 error_symbol = '[❯](bold fg:mauve)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
-vimcmd_replace_symbol = '[❮](bold fg:lavender)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+vimcmd_symbol = '[❮](bold fg:mauve)'
+vimcmd_replace_one_symbol = '[❮](bold fg:mauve)'
+vimcmd_replace_symbol = '[❮](bold fg:mauve)'
+vimcmd_visual_symbol = '[❮](bold fg:mauve)'
 
 [cmd_duration]
 show_milliseconds = true
