@@ -1,6 +1,6 @@
 search_mode = "fuzzy"
 filter_mode = "global"
-filter_mode_shell_up_key_binding = "host"
+filter_mode_shell_up_key_binding = "global"
 search_mode_shell_up_key_binding = "fuzzy"
 workspaces = true
 style = "compact"
@@ -16,26 +16,17 @@ show_numeric_shortcuts = true
 inline_height = 0
 keymap_mode = "vim-normal"
 keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = "steady-block" }
-
-[search]
-filters = ["global", "host", "session", "workspace", "directory"]
-
-[ui]
-columns = ["duration", "time", "command"]
-
-[preview]
-strategy = "auto"
-
-[keys]
-scroll_exits = true
-"ctrl-j" = "history_list_next"
-"ctrl-k" = "history_list_prev"
-
 dialect = "uk"
 timezone = "local"
 secrets_filter = true
 exit_mode = "return-original"
 history_format = "{time}\t{command}\t{duration}"
+sync_frequency = "0"
+auto_sync = true
+update_check = true
+network_connect_timeout = 5
+network_timeout = 5
+local_timeout = 5
 
 history_filter = [
   "^secret-cmd",
@@ -53,6 +44,20 @@ history_filter = [
   "^exit$",
   "^y(\\s|$)"
 ]
+
+[search]
+filters = ["global", "host", "session", "workspace", "directory"]
+
+[ui]
+columns = ["duration", "time", "command"]
+
+[preview]
+strategy = "auto"
+
+[keys]
+scroll_exits = true
+"ctrl-j" = "history_list_next"
+"ctrl-k" = "history_list_prev"
 
 [stats]
 common_subcommands = [
@@ -85,10 +90,6 @@ ignored_commands = [
   "y",
 ]
 
-sync_frequency = "0"
-auto_sync = true
-update_check = true
-
 [sync]
 records = true
 
@@ -100,7 +101,3 @@ enabled = false
 
 [theme]
 name = "catppuccin-mocha-mauve"
-
-network_connect_timeout = 5
-network_timeout = 5
-local_timeout = 5
