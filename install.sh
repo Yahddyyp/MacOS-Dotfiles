@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -85,6 +85,7 @@ phase_backup() {
     ".config/spicetify"
     ".config/yazi"
     ".config/neofetch"
+    ".config/bat"
   )
 
   local found=0
@@ -164,6 +165,12 @@ phase_post_install() {
     info "applying spicetify..."
     spicetify backup apply 2>/dev/null || true
     ok "spicetify applied"
+  fi
+
+  if command -v bat &>/dev/null; then
+    info "rebuilding bat theme cache..."
+    bat cache --build 2>/dev/null || true
+    ok "bat cache rebuilt"
   fi
 
   info "removing dock autohide delay..."
