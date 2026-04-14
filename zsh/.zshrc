@@ -24,6 +24,7 @@ alias cd="z"
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
 
 #fzf
 source <(fzf --zsh)
