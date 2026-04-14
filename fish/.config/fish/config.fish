@@ -1,3 +1,6 @@
+# Homebrew PATH (must be before any Homebrew-installed tools)
+fish_add_path /opt/homebrew/bin
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -6,6 +9,7 @@ starship init fish | source
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 fish_add_path $HOME/.spicetify
 
@@ -30,6 +34,9 @@ zoxide init fish | source
 if status is-interactive
     set -gx ATUIN_CONFIG_DIR "$HOME/.config/atuin"
     atuin init fish | source
+
+    # Bind 'k' in vi normal mode to atuin history search
+    bind -M default k _atuin_bind_up
 end
 
 function y
