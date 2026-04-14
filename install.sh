@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat" "lazygit")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -86,6 +86,7 @@ phase_backup() {
     ".config/yazi"
     ".config/neofetch"
     ".config/bat"
+    ".config/lazygit"
   )
 
   local found=0
