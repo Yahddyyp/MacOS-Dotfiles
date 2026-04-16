@@ -42,7 +42,7 @@ shift + alt - return : yabai -m space --balance
 #open spotify
 #ctrl + alt - s : open -n -a "spotify"
 
-#open arc
+#open zen
 cmd + shift - return : open -n -a "zen"
 
 #resize window
