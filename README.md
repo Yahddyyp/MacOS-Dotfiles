@@ -105,7 +105,7 @@ curl -fsSL https://raw.githubusercontent.com/Yahddyyp/MacOS-Dotfiles/main/instal
 
 ## Post-Install 
 After installation, run these:
-1. tmux plugins — Open tmux and press <prefix> + I (Ctrl+A, then I)
+1. tmux plugins — Open tmux and press prefix + I (Ctrl+A, then I)
 2. Spicetify — Open Spotify once, then run `spicetify apply`
 3. Start services:
 
