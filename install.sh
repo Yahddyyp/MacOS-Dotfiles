@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat" "lazygit" "sesh")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -88,6 +88,7 @@ phase_backup() {
     ".config/bat"
     ".config/lazygit"
     ".config/sesh"
+    ".config/gh-dash"
   )
 
   local found=0
@@ -173,6 +174,12 @@ phase_post_install() {
     info "rebuilding bat theme cache..."
     bat cache --build 2>/dev/null || true
     ok "bat cache rebuilt"
+  fi
+
+  if command -v gh &>/dev/null; then
+    info "installing gh-dash extension..."
+    gh extension install dlvhdr/gh-dash 2>/dev/null || true
+    ok "gh-dash extension installed"
   fi
 
   info "removing dock autohide delay..."
