@@ -1,0 +1,44 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+blacklist = ["scratch"]
+
+[default_session]
+  dir_length = 1
+
+[[session]]
+  name = "dotfiles"
+  path = "~/dotfiles"
+  startup_command = "tmux new-window -d -c ~/dotfiles -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "nvim"
+  path = "~/.config/nvim"
+  startup_command = "tmux new-window -d -c ~/.config/nvim -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "fish"
+  path = "~/.config/fish"
+  startup_command = "tmux new-window -d -c ~/.config/fish -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "sketchybar"
+  path = "~/.config/sketchybar"
+  startup_command = "tmux new-window -d -c ~/.config/sketchybar -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "yabai"
+  path = "~/.config/yabai"
+  startup_command = "tmux new-window -d -c ~/.config/yabai -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "kitty"
+  path = "~/.config/kitty"
+  startup_command = "tmux new-window -d -c ~/.config/kitty -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "ghostty"
+  path = "~/.config/ghostty"
+  startup_command = "tmux new-window -d -c ~/.config/ghostty -n lazygit lazygit; nvim ."
+
+[[session]]
+  name = "home"
+  path = "~"
