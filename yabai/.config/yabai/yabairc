@@ -36,7 +36,7 @@ yabai -m rule --add app="^Whatsapp$" manage=off
 #yabai -m config normal_window_opacity 0.9
 
 #borders
-borders active_color=0xff7dc4e4 inactive_color=0xff7c69a2 width=6.0 hidpi=on &
+borders active_color=0xff7dc4e4 inactive_color=0xffcba6f7 width=6.0 hidpi=on &
 
 #sketchybar
 yabai -m config external_bar all:43:0
