@@ -1,38 +1,82 @@
 #!/usr/bin/env bash
 
-#  session name passed from tmux/fzf
+margin="--margin=40%,35%"
+width=$(tput cols)
+usable_width=$(( width * 30 / 100 ))
 session="$1"
 [ -z "$session" ] && exit 1
 
-# Colors (Catppuccin Mocha)
+# Clean up session name (strip icon + space if present, e.g. from sesh)
+# Only strip if it starts with a non-alphanumeric character followed by a space
+if echo "$session" | grep -qE '^[^a-zA-Z0-9] '; then
+    session=$(echo "$session" | sed -E 's/^[^a-zA-Z0-9]* //')
+fi
+
+# Change to your colorscheme (Matching sesh)
 bg="#1e1e2e"
+bg_plus="#313244"
 fg="#cdd6f4"
 mauve="#cba6f7"
 peach="#fab387"
 overlay0="#6c7086"
+header_red="#f38ba8"
 
-new_name=$(fzf < /dev/null \
-  --height=10 \
-  --layout=reverse \
-  --border=rounded \
-  --border-label=" 󰑕 RENAME SESSION " \
-  --border-label-pos=3 \
-  --info=hidden \
-  --no-separator \
-  --separator="" \
-  --margin=48%,25% \
-  --padding=0 \
-  --color="bg+:$bg,bg:$bg,spinner:$mauve,hl:$mauve,fg:$fg,header:$overlay0,info:$mauve,pointer:$bg,marker:$bg,prompt:$peach,hl+:$mauve,border:$mauve,label:$mauve,separator:$bg" \
-  --prompt="  New Name: " \
-  --print-query | head -n 1)
+wins=$(tmux list-windows -t "$session" 2>/dev/null | wc -l | tr -d ' ')
+panes=$(tmux list-panes -t "$session" 2>/dev/null | wc -l | tr -d ' ')
+path=$(tmux display-message -pt "$session" '#{pane_current_path}' 2>/dev/null)
+path=$(basename "${path:-\.}")
 
-exit_code=$?
-if [ $exit_code -ne 0 ]; then
-    exit 1
-fi
+content="󰓩 ${wins} • 󱂬 ${panes} • 󰉋 ${path}"
+# Calculate visual width (counting icons as 2 columns)
+visual_width=$(echo -n "$content" | sed 's/[^ -~]/XX/g' | wc -c | tr -d ' ')
+# Account for fzf's 30% width inside the 80% popup
+usable_width=$(( (width * 30 / 100) - 2 ))
+padding=$(( (usable_width - visual_width) / 2 ))
+[ $padding -lt 0 ] && padding=0
+info=$(printf "%${padding}s%s" "" "$content")
 
-if [ -n "$new_name" ] && [ "$new_name" != "$session" ]; then
-    tmux rename-session -t "$session" "$new_name" 2>/dev/null
-    exit 0
-fi
-exit 1
+error_msg=""
+while true; do
+  # Set colors
+  current_header="$overlay0"
+  current_label="$mauve"
+  current_border="$mauve"
+  [ -n "$error_msg" ] && current_label="#f38ba8" && current_border="#f38ba8"
+
+  input_result=$(fzf < /dev/null \
+    --height=4 \
+    --layout=reverse \
+    --border=rounded \
+    --border-label="${error_msg:-󰑕 RENAME SESSION}" \
+    --border-label-pos=2 \
+    --footer-label=" <Enter> Rename  <Esc> Cancel " \
+    --footer-label-pos=center \
+    --info=hidden \
+    --no-separator \
+    $margin \
+    --padding=0 \
+    --header="$info" \
+    --color="bg:-1,bg+:$bg_plus,fg:$fg,fg+:$fg,border:$current_border,label:$current_label,header:$current_header,prompt:#7dc4e4,pointer:$fg,marker:$fg,spinner:$fg,info:#7dc4e4" \
+    --prompt="󰊠  " \
+    --query="$session" \
+    --print-query | head -n1)
+
+  exit_code=$?
+  if [ $exit_code -ne 0 ] || [ -z "$input_result" ]; then
+      exit 0
+  fi
+
+  new_name=$(echo "$input_result" | xargs)
+  if [ "$new_name" = "$session" ] || [ -z "$new_name" ]; then
+      exit 0
+  fi
+
+  # Check if session already exists
+  if tmux has-session -t "$new_name" 2>/dev/null; then
+    error_msg="󰚌 ERROR: SESSION '$new_name' ALREADY EXISTS"
+    continue
+  fi
+
+  tmux rename-session -t "$session" "$new_name"
+  exit 0
+done
