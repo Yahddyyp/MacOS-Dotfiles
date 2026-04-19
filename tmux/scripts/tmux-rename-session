@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+#  session name passed from tmux/fzf
+session="$1"
+[ -z "$session" ] && exit 1
+
+# Colors (Catppuccin Mocha)
+bg="#1e1e2e"
+fg="#cdd6f4"
+mauve="#cba6f7"
+peach="#fab387"
+overlay0="#6c7086"
+
+new_name=$(fzf < /dev/null \
+  --height=10 \
+  --layout=reverse \
+  --border=rounded \
+  --border-label=" 󰑕 RENAME SESSION " \
+  --border-label-pos=3 \
+  --info=hidden \
+  --no-separator \
+  --separator="" \
+  --margin=48%,25% \
+  --padding=0 \
+  --color="bg+:$bg,bg:$bg,spinner:$mauve,hl:$mauve,fg:$fg,header:$overlay0,info:$mauve,pointer:$bg,marker:$bg,prompt:$peach,hl+:$mauve,border:$mauve,label:$mauve,separator:$bg" \
+  --prompt="  New Name: " \
+  --print-query | head -n 1)
+
+exit_code=$?
+if [ $exit_code -ne 0 ]; then
+    exit 1
+fi
+
+if [ -n "$new_name" ] && [ "$new_name" != "$session" ]; then
+    tmux rename-session -t "$session" "$new_name" 2>/dev/null
+    exit 0
+fi
+exit 1
