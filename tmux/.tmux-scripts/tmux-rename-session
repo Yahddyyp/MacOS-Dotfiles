@@ -6,13 +6,11 @@ usable_width=$(( width * 30 / 100 ))
 session="$1"
 [ -z "$session" ] && exit 1
 
-# Clean up session name (strip icon + space if present, e.g. from sesh)
-# Only strip if it starts with a non-alphanumeric character followed by a space
 if echo "$session" | grep -qE '^[^a-zA-Z0-9] '; then
     session=$(echo "$session" | sed -E 's/^[^a-zA-Z0-9]* //')
 fi
 
-# Change to your colorscheme (Matching sesh)
+# Change to your colorscheme
 bg="#1e1e2e"
 bg_plus="#313244"
 fg="#cdd6f4"
@@ -27,9 +25,7 @@ path=$(tmux display-message -pt "$session" '#{pane_current_path}' 2>/dev/null)
 path=$(basename "${path:-\.}")
 
 content="󰓩 ${wins} • 󱂬 ${panes} • 󰉋 ${path}"
-# Calculate visual width (counting icons as 2 columns)
 visual_width=$(echo -n "$content" | sed 's/[^ -~]/XX/g' | wc -c | tr -d ' ')
-# Account for fzf's 30% width inside the 80% popup
 usable_width=$(( (width * 30 / 100) - 2 ))
 padding=$(( (usable_width - visual_width) / 2 ))
 [ $padding -lt 0 ] && padding=0
@@ -37,7 +33,6 @@ info=$(printf "%${padding}s%s" "" "$content")
 
 error_msg=""
 while true; do
-  # Set colors
   current_header="$overlay0"
   current_label="$mauve"
   current_border="$mauve"
@@ -49,6 +44,7 @@ while true; do
     --border=rounded \
     --border-label="${error_msg:-󰑕 RENAME SESSION}" \
     --border-label-pos=2 \
+    --bind 'ctrl-e:abort' \
     --footer-label=" <Enter> Rename  <Esc> Cancel " \
     --footer-label-pos=center \
     --info=hidden \
@@ -71,7 +67,6 @@ while true; do
       exit 0
   fi
 
-  # Check if session already exists
   if tmux has-session -t "$new_name" 2>/dev/null; then
     error_msg="󰚌 ERROR: SESSION '$new_name' ALREADY EXISTS"
     continue
