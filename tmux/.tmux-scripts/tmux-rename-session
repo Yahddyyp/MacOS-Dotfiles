@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
-margin="--margin=40%,35%"
-width=$(tput cols)
-usable_width=$(( width * 30 / 100 ))
+# Colors
+accent_color="#cba6f7"
+secondary_color="#7dc4e4"
+text_color="#cdd6f4"
+bg_highlight="#313244"
+error_color="#f38ba8"
+gray_color="#6c7086"
+
 session="$1"
 [ -z "$session" ] && exit 1
 
 if echo "$session" | grep -qE '^[^a-zA-Z0-9] '; then
     session=$(echo "$session" | sed -E 's/^[^a-zA-Z0-9]* //')
 fi
-
-# Change to your colorscheme
-bg="#1e1e2e"
-bg_plus="#313244"
-fg="#cdd6f4"
-mauve="#cba6f7"
-peach="#fab387"
-overlay0="#6c7086"
-header_red="#f38ba8"
 
 wins=$(tmux list-windows -t "$session" 2>/dev/null | wc -l | tr -d ' ')
 panes=$(tmux list-panes -t "$session" 2>/dev/null | wc -l | tr -d ' ')
@@ -26,33 +22,42 @@ path=$(basename "${path:-\.}")
 
 content="󰓩 ${wins} • 󱂬 ${panes} • 󰉋 ${path}"
 visual_width=$(echo -n "$content" | sed 's/[^ -~]/XX/g' | wc -c | tr -d ' ')
-usable_width=$(( (width * 30 / 100) - 2 ))
+
+cols=$(tput cols)
+if [ "$cols" -gt 60 ]; then
+    margin="--margin=42%,35%"
+    fzf_height="--height=2"
+    usable_width=$(( cols * 30 / 100 ))
+else
+    margin=""
+    fzf_height="--height=100%"
+    usable_width=$(( cols - 2 ))
+fi
+
 padding=$(( (usable_width - visual_width) / 2 ))
 [ $padding -lt 0 ] && padding=0
 info=$(printf "%${padding}s%s" "" "$content")
 
 error_msg=""
 while true; do
-  current_header="$overlay0"
-  current_label="$mauve"
-  current_border="$mauve"
+  current_header="$gray_color"
+  current_label="$accent_color"
+  current_border="$accent_color"
   [ -n "$error_msg" ] && current_label="#f38ba8" && current_border="#f38ba8"
 
   input_result=$(fzf < /dev/null \
-    --height=4 \
+    $fzf_height \
     --layout=reverse \
     --border=rounded \
     --border-label="${error_msg:-󰑕 RENAME SESSION}" \
     --border-label-pos=2 \
-    --bind 'ctrl-e:abort' \
-    --footer-label=" <Enter> Rename  <Esc> Cancel " \
-    --footer-label-pos=center \
     --info=hidden \
     --no-separator \
-    $margin \
+    --no-scrollbar \
     --padding=0 \
+    $margin \
     --header="$info" \
-    --color="bg:-1,bg+:$bg_plus,fg:$fg,fg+:$fg,border:$current_border,label:$current_label,header:$current_header,prompt:#7dc4e4,pointer:$fg,marker:$fg,spinner:$fg,info:#7dc4e4" \
+    --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$current_border,label:$current_label,header:$current_header,prompt:$secondary_color,pointer:$text_color,marker:$text_color,spinner:$text_color,info:$secondary_color" \
     --prompt="󰊠  " \
     --query="$session" \
     --print-query | head -n1)

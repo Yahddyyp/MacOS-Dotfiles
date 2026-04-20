@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
 
-# Colors (Catppuccin Mocha)
-bg_plus="#313244"
-fg="#cdd6f4"
-mauve="#cba6f7"
-overlay0="#6c7086"
-sapphire="#7dc4e4"
+# Colors
+accent_color="#cba6f7"
+secondary_color="#7dc4e4"
+text_color="#cdd6f4"
+bg_highlight="#313244"
+gray_color="#6c7086"
 
 current_idx=$(tmux display-message -p '#I')
 all_wins=$(tmux list-windows -F '#I #W')
 current_win=$(echo "$all_wins" | grep "^$current_idx ")
 other_wins=$(echo "$all_wins" | grep -v "^$current_idx ")
+
+cols=$(tput cols)
+if [ "$cols" -gt 60 ]; then
+  margin="--margin=30%,35%"
+else
+  margin=""
+fi
 
 {
   echo "$current_win"
@@ -21,14 +28,14 @@ other_wins=$(echo "$all_wins" | grep -v "^$current_idx ")
   --border=rounded \
   --border-label="󰑕 RENAME WINDOWS" \
   --border-label-pos=2 \
-  --header=$'\n' \
   --phony \
-  --margin=30%,35% \
   --padding=0 \
+  $margin \
   --bind 'ctrl-j:down,ctrl-k:up,ctrl-w:abort' \
   --bind 'enter:execute(tmux rename-window -t $(echo {} | grep -o "[0-9]\+") {q})+clear-query+reload(tmux list-windows -F "#I #W" | sed "/^$/d" | sed "s/^\([0-9]*\) \(.*\)$/󰖲 \1  󰈚 \2/")' \
-  --color="bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,border:#cba6f7,label:#cba6f7,header:#6c7086,prompt:#7dc4e4,pointer:#cba6f7,marker:#cba6f7,spinner:#f5e0dc,info:#cba6f7" \
+  --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$accent_color,label:$accent_color,header:$gray_color,prompt:$secondary_color,pointer:$accent_color,marker:$accent_color,spinner:$text_color,info:$accent_color" \
   --prompt="󰊠  " \
   --pointer="▶" \
   --no-separator \
+  --no-scrollbar \
   --info=hidden || true
