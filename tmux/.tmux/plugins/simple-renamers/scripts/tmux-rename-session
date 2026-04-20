@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# Colors
-accent_color="#cba6f7"
-secondary_color="#7dc4e4"
-text_color="#cdd6f4"
-bg_highlight="#313244"
-error_color="#f38ba8"
-gray_color="#6c7086"
+get_tmux_option() {
+    local val=$(tmux show-option -gqv "$1")
+    [ -n "$val" ] && echo "$val" || echo "$2"
+}
+
+accent_color=$(get_tmux_option "@simple-renamers-accent" "#cba6f7")
+secondary_color=$(get_tmux_option "@simple-renamers-secondary" "#7dc4e4")
+text_color=$(get_tmux_option "@simple-renamers-text" "#cdd6f4")
+bg_highlight=$(get_tmux_option "@simple-renamers-bg-highlight" "#313244")
+error_color=$(get_tmux_option "@simple-renamers-error" "#f38ba8")
+gray_color=$(get_tmux_option "@simple-renamers-gray" "#6c7086")
 
 session="$1"
 [ -z "$session" ] && exit 1
@@ -43,7 +47,7 @@ while true; do
   current_header="$gray_color"
   current_label="$accent_color"
   current_border="$accent_color"
-  [ -n "$error_msg" ] && current_label="#f38ba8" && current_border="#f38ba8"
+  [ -n "$error_msg" ] && current_label="$error_color" && current_border="$error_color"
 
   input_result=$(fzf < /dev/null \
     $fzf_height \

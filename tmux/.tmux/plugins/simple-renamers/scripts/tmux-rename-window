@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
-# Colors
-accent_color="#cba6f7"
-secondary_color="#7dc4e4"
-text_color="#cdd6f4"
-bg_highlight="#313244"
-gray_color="#6c7086"
+get_tmux_option() {
+    local val=$(tmux show-option -gqv "$1")
+    [ -n "$val" ] && echo "$val" || echo "$2"
+}
+
+accent_color=$(get_tmux_option "@simple-renamers-accent" "#cba6f7")
+secondary_color=$(get_tmux_option "@simple-renamers-secondary" "#7dc4e4")
+text_color=$(get_tmux_option "@simple-renamers-text" "#cdd6f4")
+bg_highlight=$(get_tmux_option "@simple-renamers-bg-highlight" "#313244")
+gray_color=$(get_tmux_option "@simple-renamers-gray" "#6c7086")
 
 current_idx=$(tmux display-message -p '#I')
 all_wins=$(tmux list-windows -F '#I #W')
