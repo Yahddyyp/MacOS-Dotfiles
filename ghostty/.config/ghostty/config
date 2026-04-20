@@ -12,3 +12,4 @@ window-padding-x = 10
 window-padding-y = 10
 term = xterm-256color
 #background-opacity = 0.9
+font-size = 12
