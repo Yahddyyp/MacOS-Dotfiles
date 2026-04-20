@@ -17,6 +17,7 @@ abbr --add vim nvim
 abbr --add vi nvim
 abbr --add ff 'nvim $(fzf -m --preview="bat --color=always {}")'
 abbr --add cd z
+abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
 
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude=.git --exclude=Documents --exclude=wallpapers --exclude=Application'
 
