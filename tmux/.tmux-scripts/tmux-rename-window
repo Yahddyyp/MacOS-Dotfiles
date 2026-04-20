@@ -7,27 +7,28 @@ mauve="#cba6f7"
 overlay0="#6c7086"
 sapphire="#7dc4e4"
 
-# Get current window info
 current_idx=$(tmux display-message -p '#I')
 all_wins=$(tmux list-windows -F '#I #W')
 current_win=$(echo "$all_wins" | grep "^$current_idx ")
 other_wins=$(echo "$all_wins" | grep -v "^$current_idx ")
 
-# Combine: current window first, then others (filtering out empty lines)
-{ echo "$current_win"; echo "$other_wins"; } | sed '/^$/d' | sed 's/^\([0-9]*\) \(.*\)$/󰖲 \1  󰈚 \2/' | fzf \
-    --height=100% \
-    --layout=reverse \
-    --border=rounded \
-    --border-label="󰑕 RENAME WINDOWS" \
-    --border-label-pos=2 \
-    --header=$'\n' \
-    --phony \
-    --margin=30%,35% \
-    --padding=0 \
-    --bind 'ctrl-j:down,ctrl-k:up,ctrl-w:abort' \
-    --bind 'enter:execute(tmux rename-window -t $(echo {} | grep -o "[0-9]\+") {q})+clear-query+reload(tmux list-windows -F "#I #W" | sed "/^$/d" | sed "s/^\([0-9]*\) \(.*\)$/󰖲 \1  󰈚 \2/")' \
-    --color="bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,border:#cba6f7,label:#cba6f7,header:#6c7086,prompt:#7dc4e4,pointer:#cba6f7,marker:#cba6f7,spinner:#f5e0dc,info:#cba6f7" \
-    --prompt="󰊠  " \
-    --pointer="▶" \
-    --no-separator \
-    --info=hidden || true
+{
+  echo "$current_win"
+  echo "$other_wins"
+} | sed '/^$/d' | sed 's/^\([0-9]*\) \(.*\)$/󰖲 \1  󰈚 \2/' | fzf \
+  --height=100% \
+  --layout=reverse \
+  --border=rounded \
+  --border-label="󰑕 RENAME WINDOWS" \
+  --border-label-pos=2 \
+  --header=$'\n' \
+  --phony \
+  --margin=30%,35% \
+  --padding=0 \
+  --bind 'ctrl-j:down,ctrl-k:up,ctrl-w:abort' \
+  --bind 'enter:execute(tmux rename-window -t $(echo {} | grep -o "[0-9]\+") {q})+clear-query+reload(tmux list-windows -F "#I #W" | sed "/^$/d" | sed "s/^\([0-9]*\) \(.*\)$/󰖲 \1  󰈚 \2/")' \
+  --color="bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,border:#cba6f7,label:#cba6f7,header:#6c7086,prompt:#7dc4e4,pointer:#cba6f7,marker:#cba6f7,spinner:#f5e0dc,info:#cba6f7" \
+  --prompt="󰊠  " \
+  --pointer="▶" \
+  --no-separator \
+  --info=hidden || true
