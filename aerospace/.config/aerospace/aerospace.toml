@@ -1,0 +1,116 @@
+config-version = 2
+after-startup-command = [
+    'exec-and-forget borders active_color=0xff7dc4e4 inactive_color=0xffcba6f7 width=6.0 hidpi=on',
+    'exec-and-forget sketchybar',
+    'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
+]
+start-at-login = false
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = [
+    'move-mouse window-lazy-center',
+    'exec-and-forget /bin/bash -c "sketchybar --trigger front_app_switched INFO=$(aerospace list-windows --focused --format %{app-name})"',
+    'exec-and-forget /bin/bash -c "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)"',
+    'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
+]
+automatically-unhide-macos-hidden-apps = false
+
+persistent-workspaces = ["1", "2", "3", "4"]
+
+[key-mapping]
+    preset = 'qwerty'
+
+[gaps]
+    inner.horizontal = 9
+    inner.vertical =   9
+    outer.left =       9
+    outer.bottom =     9
+    outer.top =        50
+    outer.right =      9
+
+[mode.main.binding]
+    shift-alt-comma = 'layout tiles horizontal vertical'  
+    shift-alt-p = 'layout tiles horizontal vertical'
+    shift-alt-y = 'layout tiles vertical'
+    shift-alt-r = 'layout tiles horizontal'
+    alt-f = 'layout floating'
+    alt-g = 'layout tiles'
+    shift-alt-t = 'layout floating tiling'
+
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+
+    ctrl-alt-h = 'swap left'
+    ctrl-alt-j = 'swap down'
+    ctrl-alt-k = 'swap up'
+    ctrl-alt-l = 'swap right'
+
+    alt-shift-h = 'resize width -50'
+    alt-shift-j = 'resize height +50'
+    alt-shift-k = 'resize height -50'
+    alt-shift-l = 'resize width +50'
+
+    ctrl-alt-shift-cmd-1 = ['workspace 1', 'exec-and-forget sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=1']
+    ctrl-alt-shift-cmd-2 = ['workspace 2', 'exec-and-forget sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=2']
+    ctrl-alt-shift-cmd-3 = ['workspace 3', 'exec-and-forget sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=3']
+    ctrl-alt-shift-cmd-4 = ['workspace 4', 'exec-and-forget sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=4']
+
+    alt-shift-1 = ['move-node-to-workspace 1', 'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh']
+    alt-shift-2 = ['move-node-to-workspace 2', 'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh']
+    alt-shift-3 = ['move-node-to-workspace 3', 'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh']
+    alt-shift-4 = ['move-node-to-workspace 4', 'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh']
+
+    cmd-enter = 'exec-and-forget open -n -a Ghostty'
+    cmd-shift-enter = 'exec-and-forget open -n -a Zen'
+
+    shift-alt-enter = 'flatten-workspace-tree'        
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    alt-shift-semicolon = 'mode service'
+
+    ctrl-alt-enter = 'fullscreen'
+    shift-alt-f = 'macos-native-fullscreen'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.shottr.Shottr'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.protonvpn.mac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'WhatsApp'
+run = 'layout floating'
