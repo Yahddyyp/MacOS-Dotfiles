@@ -113,7 +113,6 @@ After installation, run these:
    brew services start sketchybar
    yabai --start-service
    skhd --start-service
-   brew services start aerospace
    ```
 
 ## Inspirations
