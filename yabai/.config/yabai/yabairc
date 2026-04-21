@@ -24,11 +24,10 @@ yabai -m config mouse_follows_focus on
 #disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Shottr$" manage=off
 yabai -m rule --add app="^ProtonVPN$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
-yabai -m rule --add app="^Whatsapp$" manage=off
+yabai -m rule --add app="^WhatsApp$" manage=off
 
 #window opacity
 #yabai -m config window_opacity on
