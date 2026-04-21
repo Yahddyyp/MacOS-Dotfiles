@@ -93,7 +93,7 @@ stow --verbose --restow --no-folding */
 2. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 3. Oh-My-Zsh – Installs oh-my-zsh (if missing)
 4. Clone – Clones the repo to ~/dotfiles (or pulls latest changes if already cloned)
-5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, etc.)
+5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
 7. Post-install – Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold and some other stuff
 
@@ -113,6 +113,7 @@ After installation, run these:
    brew services start sketchybar
    yabai --start-service
    skhd --start-service
+   brew services start aerospace
    ```
 
 ## Inspirations
