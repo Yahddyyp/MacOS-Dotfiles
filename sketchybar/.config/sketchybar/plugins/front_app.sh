@@ -8,3 +8,14 @@
 if [ "$SENDER" = "front_app_switched" ]; then
   sketchybar --animate tanh 10 --set "$NAME" label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
 fi
+
+# --- AeroSpace version (Commented out) ---
+# if [ "$SENDER" = "front_app_switched" ]; then
+#   # Remove potential quotes from the app name
+#   APP_NAME=$(echo "$INFO" | tr -d '"')
+#   # Fetch icon from the map
+#   ICON=$($HOME/.config/sketchybar/plugins/icon_map.sh "$APP_NAME")
+#   sketchybar --animate tanh 10 --set "$NAME" \
+#     label="$APP_NAME" \
+#     icon="$ICON"
+# fi

@@ -107,3 +107,15 @@ yabai -m signal --add event=window_created action="sketchybar --trigger window_f
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
 
 sketchybar --update
+
+# --- AeroSpace logic (Commented out) ---
+# sketchybar --add event aerospace_workspace_change
+# for sid in 1 2 3 4; do
+#   sketchybar --add item space.$sid left \
+#              --set space.$sid \
+#                      icon=$sid \
+#                      script="$PLUGIN_DIR/space.sh" \
+#                      click_script="aerospace workspace $sid" \
+#              --subscribe space.$sid aerospace_workspace_change
+# done
+# sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
