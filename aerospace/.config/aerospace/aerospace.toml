@@ -7,7 +7,7 @@ after-startup-command = [
 start-at-login = false
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-accordion-padding = 30
+accordion-padding = 10
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
@@ -33,12 +33,12 @@ persistent-workspaces = ["1", "2", "3", "4"]
     outer.right =      9
 
 [mode.main.binding]
-    shift-alt-comma = 'layout tiles horizontal vertical'  
     shift-alt-p = 'layout tiles horizontal vertical'
     shift-alt-y = 'layout tiles vertical'
     shift-alt-r = 'layout tiles horizontal'
-    alt-f = 'layout floating'
-    alt-g = 'layout tiles'
+    shift-alt-q = 'layout floating'
+    shift-alt-n = 'layout tiles'
+    shift-alt-a = 'layout accordion'
     shift-alt-t = 'layout floating tiling'
 
     alt-h = 'focus left'
