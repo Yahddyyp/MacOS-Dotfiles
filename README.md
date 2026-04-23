@@ -119,6 +119,7 @@ After installation, run these:
 * https://github.com/gloceansh/dotfiles
 * https://github.com/typecraft-dev/dotfiles
 * https://github.com/catppuccin
+* https://github.com/omerxx/dotfiles
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 
