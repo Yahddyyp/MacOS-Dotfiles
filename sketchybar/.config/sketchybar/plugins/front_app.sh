@@ -5,17 +5,23 @@
 # focused application in the $INFO variable:
 # https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
 
+# This script works with both yabai and aerospace as they both support
+# the front_app_switched event
+
+# --- Yabai version (Now active) ---
 if [ "$SENDER" = "front_app_switched" ]; then
   sketchybar --animate tanh 10 --set "$NAME" label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
 fi
 
-# --- AeroSpace version (Commented out) ---
+# --- Alternative AeroSpace version (Commented out) ---
 # if [ "$SENDER" = "front_app_switched" ]; then
-#   # Remove potential quotes from the app name
-#   APP_NAME=$(echo "$INFO" | tr -d '"')
-#   # Fetch icon from the map
-#   ICON=$($HOME/.config/sketchybar/plugins/icon_map.sh "$APP_NAME")
-#   sketchybar --animate tanh 10 --set "$NAME" \
-#     label="$APP_NAME" \
-#     icon="$ICON"
+#   APP_NAME="$INFO"
+#
+#   # Check if we have a valid app name (not empty)
+#   if [ -z "$APP_NAME" ] || [ "$APP_NAME" = "" ]; then
+#     # No windows open on this workspace - show Finder icon
+#     sketchybar --animate tanh 10 --set "$NAME" label="Finder" icon=":finder:"
+#   else
+#     sketchybar --animate tanh 10 --set "$NAME" label="$APP_NAME" icon="$($CONFIG_DIR/plugins/icon_map.sh "$APP_NAME")"
+#   fi
 # fi

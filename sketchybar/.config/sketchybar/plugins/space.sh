@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# --- Yabai version (Now active) ---
 if [ "$SELECTED" = true ]; then
   sketchybar --animate tanh 10 --set "$NAME" \
     background.drawing=on \
@@ -15,7 +16,12 @@ else
 fi
 
 # --- AeroSpace version (Commented out) ---
-# if [ "$FOCUSED_WORKSPACE" = "${NAME#*.}" ]; then
+# # Get the focused workspace - prefer the environment variable from trigger, otherwise query
+# FOCUSED_WORKSPACE="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused)}"
+# # Extract workspace number from NAME (e.g., "space.1" -> "1")
+# WORKSPACE_NUM="${NAME##*.}"
+# 
+# if [ "$FOCUSED_WORKSPACE" = "$WORKSPACE_NUM" ]; then
 #   sketchybar --animate tanh 10 --set "$NAME" \
 #     background.drawing=on \
 #     background.color=0xffcba6f7 \

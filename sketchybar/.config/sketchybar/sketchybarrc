@@ -66,7 +66,7 @@ sketchybar --add item volume right \
 source "$CONFIG_DIR/items/media.sh"
 
 # --- Items on the left ---
-# Space indicators
+# Space indicators (for yabai)
 SPACE_SIDS=(1 2 3 4 5 6 7 8 9 10)
 for sid in "${SPACE_SIDS[@]}"; do
   sketchybar --add space space.$sid left \
@@ -83,6 +83,25 @@ for sid in "${SPACE_SIDS[@]}"; do
                      background.border_width=1 \
                      script="$PLUGIN_DIR/space.sh"
 done
+
+# Space indicators (for aerospace)
+# SPACE_SIDS=(1 2 3 4)
+# for sid in "${SPACE_SIDS[@]}"; do
+#   sketchybar --add item space.$sid left \
+#              --set space.$sid \
+#                      icon=$sid \
+#                      label.font="sketchybar-app-font:Regular:18.0" \
+#                      label.padding_right=20 \
+#                      label.y_offset=-2 \
+#                      label.color=0xffcba6f7 \
+#                      icon.color=0xffcba6f7 \
+#                      background.color=0xcc1e1e2e \
+#                      background.border_color=0x44cba6f7 \
+#                      background.border_width=1 \
+#                      script="$PLUGIN_DIR/space.sh" \
+#                      click_script="aerospace workspace $sid" \
+#              --subscribe space.$sid aerospace_workspace_change front_app_switched
+# done
 
 sketchybar --add item space_watcher center \
            --set space_watcher background.drawing=off \

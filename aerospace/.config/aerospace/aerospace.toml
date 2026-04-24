@@ -14,7 +14,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = [
     'move-mouse window-lazy-center',
     'exec-and-forget /bin/bash -c "sketchybar --trigger front_app_switched INFO=$(aerospace list-windows --focused --format %{app-name})"',
-    'exec-and-forget /bin/bash -c "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)"',
+    'exec-and-forget /bin/bash -c "for sid in 1 2 3 4; do sketchybar --trigger aerospace_workspace_change NAME=space.$sid FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused); done"',
     'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
 ]
 automatically-unhide-macos-hidden-apps = false
