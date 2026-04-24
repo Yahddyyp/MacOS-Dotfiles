@@ -18,8 +18,8 @@ update() {
     ARTIST="$(osascript -e "tell application \"$APP\" to artist of current track" 2>/dev/null)"
 
     LABEL="$ARTIST - $TITLE"
-    if [ ${#LABEL} -gt 30 ]; then
-      LABEL="$(echo "$LABEL" | cut -c1-27)..."
+    if [ ${#LABEL} -gt 50 ]; then
+      LABEL="$(echo "$LABEL" | cut -c1-47)..."
     fi
 
     sketchybar --set media.cover drawing=on icon=􀑪 label="$LABEL"
