@@ -21,3 +21,11 @@ Images
 LICENSE
 \.DS_Store
 ^/fish/.config/fish/conf.d
+\.stow-local-ignore
+\.stowrc
+.*\.local
+\.env
+\.zcompdump.*
+\.zsh_history
+\.shada
+\.python_history
