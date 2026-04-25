@@ -1,5 +1,6 @@
 # Taps
 tap "FelixKratz/formulae"
+tap "joshmedeski/sesh"
 tap "koekeishiya/formulae"
 
 # Core tools
