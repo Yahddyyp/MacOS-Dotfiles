@@ -48,6 +48,4 @@ else
   LABEL="${PERCENTAGE}%"
 fi
 
-# The item invoking this script (name $NAME) will get its icon and label
-# updated with the current battery status
 sketchybar --animate tanh 10 --set "$NAME" icon="$ICON" label="$LABEL"
