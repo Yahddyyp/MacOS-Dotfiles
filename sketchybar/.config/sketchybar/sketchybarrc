@@ -56,11 +56,32 @@ sketchybar --add item battery right \
            --subscribe battery system_woke power_source_change mouse.clicked
 
 # Volume level
-sketchybar --add item volume right \
-           --set volume icon.color=0xffcba6f7 \
-                        label.color=0xffcdd6f4 \
-                        script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change
+sketchybar --add item volume_icon right \
+           --set volume_icon icon.color=0xffcba6f7 \
+                         label.color=0xffcdd6f4 \
+                         padding_left=10 \
+                         script="$PLUGIN_DIR/volume.sh" \
+                         popup.align=center \
+                         popup.background.color=0xcc1e1e2e \
+                         popup.background.border_color=0x44cba6f7 \
+                         popup.background.border_width=1 \
+                         popup.background.corner_radius=6 \
+                         popup.background.height=18 \
+                         popup.y_offset=-2 \
+           --subscribe volume_icon volume_change mouse.clicked \
+             --add slider volume_slider popup.volume_icon \
+             --set volume_slider slider.width=150 \
+                                 slider.background.height=4 \
+                                 slider.background.corner_radius=2 \
+                                 slider.background.color=0xff313244 \
+                                 slider.highlight_color=0xffcba6f7 \
+                                 slider.knob=􀀁 \
+                                 background.drawing=off \
+                                 background.height=2 \
+                                 padding_left=10 \
+                                 padding_right=10 \
+                                 script="$PLUGIN_DIR/volume.sh" \
+             --subscribe volume_slider volume_change mouse.clicked mouse.entered mouse.exited
 
 # Media (Spotify/Music)
 source "$CONFIG_DIR/items/media.sh"

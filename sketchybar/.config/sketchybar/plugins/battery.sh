@@ -37,7 +37,7 @@ if [ "$SENDER" = "mouse.clicked" ]; then
   fi
 fi
 
-if [ -f "$STATE_FILE" ]; then
+if [ -f "$STATE_FILE" ] && [ "$CHARGING" = "" ]; then
   TIME_REMAINING="$(pmset -g batt | grep -o '[0-9]\+:[0-9]\+')"
   if [ "$TIME_REMAINING" != "" ] && [ "$TIME_REMAINING" != "0:00" ]; then
     LABEL="$TIME_REMAINING"
