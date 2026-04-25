@@ -21,6 +21,7 @@ alias vim='nvim'
 alias vi='nvim'
 alias ff='nvim $(fzf -m --preview="bat --color=always {}")'
 alias cd="z"
+alias ls="eza"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
 alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 alias start-yabai='yabai --start-service && skhd --start-service && brew services start sketchybar'

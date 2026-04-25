@@ -17,6 +17,7 @@ abbr --add vim nvim
 abbr --add vi nvim
 abbr --add ff 'nvim $(fzf -m --preview="bat --color=always {}")'
 abbr --add cd z
+abbr --add ls eza
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
 abbr --add stop-yabai 'yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 abbr --add start-yabai 'yabai --start-service && skhd --start-service && brew services start sketchybar'
