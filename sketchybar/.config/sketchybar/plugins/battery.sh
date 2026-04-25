@@ -27,6 +27,27 @@ if [[ "$CHARGING" != "" ]]; then
   ICON="􀋦"
 fi
 
+STATE_FILE="/tmp/sketchybar_battery_state"
+
+if [ "$SENDER" = "mouse.clicked" ]; then
+  if [ -f "$STATE_FILE" ]; then
+    rm "$STATE_FILE"
+  else
+    touch "$STATE_FILE"
+  fi
+fi
+
+if [ -f "$STATE_FILE" ]; then
+  TIME_REMAINING="$(pmset -g batt | grep -o '[0-9]\+:[0-9]\+')"
+  if [ "$TIME_REMAINING" != "" ] && [ "$TIME_REMAINING" != "0:00" ]; then
+    LABEL="$TIME_REMAINING"
+  else
+    LABEL="${PERCENTAGE}%"
+  fi
+else
+  LABEL="${PERCENTAGE}%"
+fi
+
 # The item invoking this script (name $NAME) will get its icon and label
 # updated with the current battery status
-sketchybar --animate tanh 10 --set "$NAME" icon="$ICON" label="${PERCENTAGE}%"
+sketchybar --animate tanh 10 --set "$NAME" icon="$ICON" label="$LABEL"

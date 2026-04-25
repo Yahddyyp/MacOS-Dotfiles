@@ -53,7 +53,7 @@ sketchybar --add item battery right \
                          label.color=0xffcdd6f4 \
                          update_freq=10 \
                          script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
+           --subscribe battery system_woke power_source_change mouse.clicked
 
 # Volume level
 sketchybar --add item volume right \
