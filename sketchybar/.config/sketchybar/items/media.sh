@@ -12,7 +12,6 @@ media_cover=(
   label.color=0xffcdd6f4
   label.font="CaskaydiaCove Nerd Font:Bold:14.0"
   label.max_chars=50
-  scroll_texts=off
   drawing=off
   update_freq=3
   background.color=0xcc1e1e2e
@@ -24,4 +23,4 @@ media_cover=(
 
 sketchybar --add item media.cover right \
            --set media.cover "${media_cover[@]}" \
-           --subscribe media_cover media_change
+           --subscribe media.cover media_change
