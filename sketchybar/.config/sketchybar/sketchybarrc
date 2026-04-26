@@ -31,7 +31,7 @@ sketchybar --add item date right \
            --set date icon=􀧞 \
                       icon.color=0xffcba6f7 \
                       label.color=0xffcdd6f4 \
-                      update_freq=5 \
+                      update_freq=2 \
                       script="$PLUGIN_DIR/calendar.sh" \
                       popup.align=center \
                       popup.y_offset=-2 \
@@ -46,7 +46,15 @@ sketchybar --add item date right \
                            icon.padding_left=10 \
                            label.color=0xffcdd6f4 \
                            label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                           label.padding_right=15 \
+                           label.padding_right=30 \
+                           background.drawing=off \
+           --add item date.band popup.date \
+           --set date.band icon=󰖩 \
+                           icon.color=0xffcba6f7 \
+                           icon.padding_left=10 \
+                           label.color=0xffcdd6f4 \
+                           label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
+                           label.padding_right=30 \
                            background.drawing=off \
            --add item date.week_num popup.date \
            --set date.week_num icon=󰃮 \
@@ -54,7 +62,7 @@ sketchybar --add item date right \
                                icon.padding_left=10 \
                                label.color=0xffcdd6f4 \
                                label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                               label.padding_right=15 \
+                               label.padding_right=30 \
                                background.drawing=off \
            --add item date.day_of_year popup.date \
            --set date.day_of_year icon=󰃰 \
@@ -62,7 +70,7 @@ sketchybar --add item date right \
                                   icon.padding_left=10 \
                                   label.color=0xffcdd6f4 \
                                   label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                                  label.padding_right=15 \
+                                  label.padding_right=30 \
                                   background.drawing=off
 
 sketchybar --add item battery right \
