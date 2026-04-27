@@ -39,3 +39,9 @@ borders active_color=0xff7dc4e4 inactive_color=0xffcba6f7 width=6.0 hidpi=on &
 
 #sketchybar
 yabai -m config external_bar all:43:0
+
+# Sketchybar integration
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
