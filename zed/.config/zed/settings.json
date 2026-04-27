@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Catppuccin Mocha",
+  "icon_theme": "Zed (Default)",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -19,8 +19,8 @@
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
-    "mode": "system",
-    "light": "Ayu Light",
-    "dark": "Catppuccin Mocha",
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark",
   },
 }
