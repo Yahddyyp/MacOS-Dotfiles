@@ -25,8 +25,8 @@
       "space /": "pane::DeploySearch",
       "space e": "workspace::ToggleLeftDock",
       "space b d": "pane::CloseActiveItem",
-      "space w s": "editor::Save",
-      "space q q": "app::Quit",
+      "space w s": "workspace::Save",
+      "space q q": "workspace::Quit",
       "space t t": "workspace::ToggleBottomDock"
     }
   }
