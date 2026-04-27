@@ -24,7 +24,10 @@
       "space f f": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
       "space e": "workspace::ToggleLeftDock",
-      "space b d": "pane::CloseActiveItem"
+      "space b d": "pane::CloseActiveItem",
+      "space w s": "editor::Save",
+      "space q q": "app::Quit",
+      "space t t": "workspace::ToggleBottomDock"
     }
   }
 ]
