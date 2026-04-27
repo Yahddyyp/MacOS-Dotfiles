@@ -25,6 +25,8 @@
       "space /": "pane::DeploySearch",
       "space e": "workspace::ToggleLeftDock",
       "space b d": "pane::CloseActiveItem",
+      "space x": "pane::CloseActiveItem",
+      "space Tab": "pane::ActivateLastItem",
       "space t t": "workspace::ToggleBottomDock"
     }
   }
