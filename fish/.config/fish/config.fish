@@ -54,3 +54,20 @@ function y
 end
 
 set -g fish_key_bindings fish_vi_key_bindings
+
+abbr --add gc "git commit -m"
+abbr --add gca "git commit -a -m"
+abbr --add gp "git push origin HEAD"
+abbr --add gpu "git pull origin"
+abbr --add gst "git status"
+abbr --add glog "git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
+abbr --add gdiff "git diff"
+abbr --add gco "git checkout"
+abbr --add gb "git branch"
+abbr --add gba "git branch -a"
+abbr --add gadd "git add"
+abbr --add ga "git add -p"
+abbr --add gcoall "git checkout -- ."
+abbr --add gr "git remote"
+abbr --add gre "git reset"
+
