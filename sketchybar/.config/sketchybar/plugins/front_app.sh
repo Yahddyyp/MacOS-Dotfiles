@@ -11,10 +11,7 @@
 # --- Yabai version (Now active) ---
 if [ "$SENDER" = "front_app_switched" ]; then
   case "$INFO" in
-    "loginwindow" | "Dock" | "SystemUIServer")
-      sketchybar --set "$NAME" drawing=off
-      ;;
-    "")
+    "loginwindow" | "Dock" | "SystemUIServer" | "")
       sketchybar --set "$NAME" drawing=on label="Finder" icon="$($CONFIG_DIR/plugins/icon_map.sh "Finder")"
       ;;
     *)
