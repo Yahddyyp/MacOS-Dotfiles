@@ -10,7 +10,17 @@
 
 # --- Yabai version (Now active) ---
 if [ "$SENDER" = "front_app_switched" ]; then
-  sketchybar --animate tanh 10 --set "$NAME" label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
+  case "$INFO" in
+    "loginwindow" | "Dock" | "SystemUIServer")
+      sketchybar --set "$NAME" drawing=off
+      ;;
+    "")
+      sketchybar --set "$NAME" drawing=on label="Finder" icon="$($CONFIG_DIR/plugins/icon_map.sh "Finder")"
+      ;;
+    *)
+      sketchybar --animate tanh 10 --set "$NAME" drawing=on label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
+      ;;
+  esac
 fi
 
 # --- Alternative AeroSpace version (Commented out) ---
