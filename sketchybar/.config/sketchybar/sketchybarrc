@@ -163,7 +163,7 @@ sketchybar --add item front_app left \
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
 yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger space_windows_change"
 
 sketchybar --update
 
