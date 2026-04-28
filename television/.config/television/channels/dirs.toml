@@ -1,0 +1,2 @@
+[source]
+command = "fd --type d --hidden --exclude Documents --exclude Public --exclude Music --exclude Movies --exclude Applications --exclude Library --exclude .cache --exclude .local --exclude .oh-my-zsh --exclude .zsh_sessions --exclude .vscode/extensions --exclude .vscode-oss --exclude .DS_Store --exclude .cargo/registry --exclude .config/opencode/node_modules --exclude .ssh --exclude atuin --exclude target/debug --exclude .config/raycast --exclude .git"
