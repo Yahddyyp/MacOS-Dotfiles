@@ -2,6 +2,7 @@
 tap "FelixKratz/formulae"
 tap "joshmedeski/sesh"
 tap "koekeishiya/formulae"
+tap "nikitabobko/tap"
 
 # Core tools
 brew "fish"
@@ -50,5 +51,5 @@ cask "spotify"
 cask "vscodium"
 cask "sketchybar-app-font"
 cask "obsidian"
-cask "nikitabobko/tap/aerospace"
+cask "aerospace"
 cask "kindavim"
