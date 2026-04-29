@@ -17,5 +17,11 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clip
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 vim.keymap.set("n", "x", '"_x', { desc = "Delete character without copying" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste without overwriting registry" })
-vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
+vim.keymap.set(
+  "n",
+  "<leader>S",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace word under cursor" }
+)
 vim.keymap.set("n", "<leader>fX", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
+vim.keymap.set("t", "jj", "<C-\\><C-n>", { noremap = true })
