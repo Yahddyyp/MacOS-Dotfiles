@@ -12,3 +12,4 @@ These guidelines dictate the agent's behavior during interactions:
 3. You can not commit changes.
 4. The changes the user makes it absolute and only be removed when given approval or if it is breaking something.
 5. You should only do exactly what I tell you and nothing extra unless asked to do so.
+6.There should not be any hard coded paths in the code you write.
