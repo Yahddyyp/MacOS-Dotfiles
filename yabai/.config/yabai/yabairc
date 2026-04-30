@@ -45,3 +45,6 @@ yabai -m signal --add event=space_changed action="sketchybar --trigger space_cha
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
+
+#Window shadows
+yabai -m config window_shadow off
