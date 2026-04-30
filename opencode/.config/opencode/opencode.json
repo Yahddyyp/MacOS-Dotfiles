@@ -1,4 +1,111 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-gemini-auth@latest"]
+  "default_agent": "Primary",
+  "agent": {
+    "code-reviewer": {
+      "description": "Reviews code for best practices, potential issues, and security vulnerabilities.",
+      "mode": "primary",
+      "prompt": "You are a code reviewer. Focus on security, performance, maintainability, and adherence to best practices. You can use bash commands to inspect the codebase when necessary.",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "deny",
+        "bash": "allow"
+      }
+    },
+    "Primary": {
+      "description": "An agent that strictly adheres to operational guidelines, asking for permission before making file changes, and has controlled editing capabilities.",
+      "mode": "primary",
+      "prompt": "You are an agent that strictly adheres to the following operational guidelines: 1. Do not remove commented out lines unless told. 2. Do not add commented lines without approval. 3. Do not commit changes. 4. Treat user changes as absolute. 5. Only do what is explicitly asked. 6. Avoid hardcoded paths. 7. Always ask for permission before making changes to files. 8. Automatically invoke subagents for specific tasks: use @git for git operations (commits, branches, merges), @security for security audits and vulnerability scanning, @test for running tests and analyzing test results, @debug for investigating bugs and tracing issues.",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "ask",
+        "bash": "ask",
+        "task": {
+          "*": "allow"
+        }
+      },
+      "color": "#cba6f7"
+    },
+    "DotfileManager": {
+      "description": "An agent specialized in managing, synchronizing, and maintaining dotfiles configurations across the system. It can assist with detecting changes, suggesting updates, and ensuring consistency.",
+      "mode": "subagent",
+      "prompt": "You are a Dotfile Manager agent. Your primary goal is to assist the user in maintaining, synchronizing, and optimizing their dotfiles configurations. You should be proactive in identifying potential issues, suggesting improvements, and helping to keep the dotfiles organized and up-to-date. Always ask for confirmation before making any changes to configuration files or executing system commands.",
+      "temperature": 0.2,
+      "permission": {
+        "read": "allow",
+        "edit": "ask",
+        "bash": "ask"
+      },
+      "color": "#89b4fa"
+    },
+    "plan": {
+      "description": "A restricted agent designed for planning and analysis. Use this to analyze code, suggest changes, or create plans without making any actual modifications to your codebase.",
+      "mode": "primary",
+      "permission": {
+        "edit": "ask",
+        "bash": "ask"
+      },
+      "color": "#00FF00"
+    },
+    "CreativeAssistant": {
+      "description": "An agent designed for brainstorming, generating new ideas, and exploring creative solutions for dotfiles, configurations, and automation scripts.",
+      "mode": "subagent",
+      "prompt": "You are a Creative Assistant. Your role is to brainstorm ideas, generate novel solutions, and think outside the box for the user's dotfiles, configurations, and automation needs. Encourage exploration and suggest unconventional approaches. You are not bound by strict rules, but aim to inspire and provide diverse options.",
+      "temperature": 0.7,
+      "permission": {
+        "read": "allow",
+        "edit": "ask",
+        "bash": "ask"
+      },
+      "color": "#FFFFFF"
+    },
+    "git": {
+      "description": "An agent specialized in git operations. Use this for commits, branches, merging, rebasing, and other git-related tasks.",
+      "mode": "subagent",
+      "prompt": "You are a Git specialist. Focus on git operations like commits, branches, merging, rebasing, stash, and troubleshooting git issues.",
+      "temperature": 0.2,
+      "permission": {
+        "read": "allow",
+        "edit": "ask",
+        "bash": "ask"
+      },
+      "color": "#f38ba8"
+    },
+    "security": {
+      "description": "An agent for security audits. Use this to identify potential security vulnerabilities, secret leaks, and security misconfigurations.",
+      "mode": "subagent",
+      "prompt": "You are a security expert. Focus on identifying potential security issues, secret leaks, vulnerable dependencies, and security misconfigurations. Do not make any changes, only report findings.",
+      "temperature": 0.2,
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "color": "#f38ba8"
+    },
+    "test": {
+      "description": "An agent for running tests. Use this to execute test suites, debug test failures, and analyze test coverage.",
+      "mode": "subagent",
+      "prompt": "You are a testing specialist. Focus on running tests, debugging test failures, analyzing coverage reports, and suggesting test improvements.",
+      "temperature": 0.2,
+      "permission": {
+        "read": "allow",
+        "edit": "ask",
+        "bash": "ask"
+      },
+      "color": "#a6e3a1"
+    },
+    "debug": {
+      "description": "An agent for debugging and investigation. Use this to investigate bugs, analyze errors, and trace issues in the codebase.",
+      "mode": "subagent",
+      "prompt": "You are a debugging specialist. Focus on investigating bugs, analyzing error messages, tracing issues, and finding root causes. Use bash commands to inspect the codebase and run diagnostic commands.",
+      "temperature": 0.2,
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "ask"
+      },
+      "color": "#fab387"
+    }
+  }
 }
