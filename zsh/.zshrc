@@ -11,6 +11,9 @@ plugins=(git zsh-autosuggestions zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
+# Unset LS_COLORS so eza uses its own theme.yml
+unset LS_COLORS
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -22,7 +25,11 @@ alias vi='nvim'
 alias ff='nvim $(fzf -m --preview="bat --color=always {}")'
 alias tvf='nvim $(tv files)'
 alias cd="z"
-alias ls="eza"
+alias ls="eza --icons --group-directories-first"
+alias l="eza --icons --long --group-directories-first --header --git"
+alias ll="eza --icons --long --group-directories-first --header --git --inode --blocksize"
+alias la="eza --icons --long --group-directories-first --header --git --inode --blocksize --all"
+alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
 alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 alias start-yabai='yabai --start-service && skhd --start-service && brew services start sketchybar'
@@ -47,6 +54,9 @@ alias gre='git reset'
 export EDITOR='nvim'
 export VISUAL='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# eza config directory
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 #fzf
 source <(fzf --zsh)

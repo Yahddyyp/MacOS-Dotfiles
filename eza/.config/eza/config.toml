@@ -1,0 +1,24 @@
+# eza configuration file
+# This file references the Catppuccin Mocha theme
+
+[theme]
+config = "theme.yml"
+
+# General settings
+[general]
+# Enable colourful output
+colourful = true
+# Group directories first
+group-directories-first = true
+# Show git status
+git = true
+# Show header
+header = true
+# Use icons
+icons = true
+# Show inode
+inode = true
+# Show blocks
+blocks = true
+# Show header
+header = true

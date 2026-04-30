@@ -11,6 +11,9 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
+# Unset LS_COLORS so eza uses its own theme.yml
+set -e LS_COLORS
+
 fish_add_path $HOME/.spicetify
 
 abbr --add vim nvim
@@ -18,7 +21,11 @@ abbr --add vi nvim
 abbr --add ff 'nvim (fzf -m --preview="bat --color=always {}")'
 abbr --add tvf 'nvim (tv files)'
 abbr --add cd z
-abbr --add ls eza
+abbr --add ls "eza --icons --group-directories-first"
+abbr --add l "eza --icons --long --group-directories-first --header --git"
+abbr --add ll "eza --icons --long --group-directories-first --header --git --inode --blocksize"
+abbr --add la "eza --icons --long --group-directories-first --header --git --inode --blocksize --all"
+abbr --add lt "eza --icons --tree --group-directories-first"
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
 abbr --add stop-yabai 'yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 abbr --add start-yabai 'yabai --start-service && skhd --start-service && brew services start sketchybar'

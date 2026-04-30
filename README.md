@@ -36,6 +36,7 @@
 | [gh-dash](https://github.com/dlvhdr/gh-dash) | Beautiful CLI dashboard for GitHub |
 | [gh](https://cli.github.com/) | GitHub CLI |
 | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Modern `neofetch` alternative |
+| [eza](https://github.com/eza-community/eza) | Modern `ls` replacement |
 | [bun](https://bun.sh/) | JavaScript runtime |
 
 ### Apps

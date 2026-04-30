@@ -1200,12 +1200,11 @@ function __icon_map() {
    "Zulip")
         icon_result=":zulip:"
         ;;
-    *)
+*)
         icon_result=":default:"
         ;;
     esac
 }
-### END-OF-ICON-MAP
 
 __icon_map "$1"
 

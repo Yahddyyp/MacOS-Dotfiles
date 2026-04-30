@@ -37,6 +37,7 @@ brew "fastfetch"
 brew "opencode"
 brew "cbonsai"
 brew "eza"
+brew "tree"
 
 # Casks
 cask "appcleaner"

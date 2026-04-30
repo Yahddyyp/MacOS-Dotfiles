@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode" "eza")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -66,34 +66,35 @@ phase_ohmyzsh() {
 phase_backup() {
   info "checking for existing dotfiles to backup..."
 
-  local targets=(
-    ".zshrc"
-    ".tmux.conf"
-    ".p10k.zsh"
-    ".hushlogin"
-    ".config/fish"
-    ".config/nvim"
-    ".config/kitty"
-    ".config/ghostty"
-    ".config/starship.toml"
-    ".config/sketchybar"
-    ".config/yabai"
-    ".config/skhd"
-    ".config/zed"
-    ".config/atuin"
-    ".config/btop"
-    ".config/spicetify"
-    ".config/yazi"
-    ".config/neofetch"
-    ".config/bat"
-    ".config/lazygit"
-    ".config/sesh"
-    ".config/gh-dash"
-    ".config/aerospace"
-    ".config/borders"
-    ".config/television"
-    ".config/opencode"
-  )
+   local targets=(
+     ".zshrc"
+     ".tmux.conf"
+     ".p10k.zsh"
+     ".hushlogin"
+     ".config/fish"
+     ".config/nvim"
+     ".config/kitty"
+     ".config/ghostty"
+     ".config/starship.toml"
+     ".config/sketchybar"
+     ".config/yabai"
+     ".config/skhd"
+     ".config/zed"
+     ".config/atuin"
+     ".config/btop"
+     ".config/spicetify"
+     ".config/yazi"
+     ".config/neofetch"
+     ".config/bat"
+     ".config/lazygit"
+     ".config/sesh"
+     ".config/gh-dash"
+     ".config/aerospace"
+     ".config/borders"
+     ".config/television"
+     ".config/opencode"
+     ".config/eza"
+   )
 
   local found=0
   for target in "${targets[@]}"; do
