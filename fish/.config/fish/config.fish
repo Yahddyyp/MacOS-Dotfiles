@@ -25,8 +25,8 @@ abbr --add ls "eza --icons --group-directories-first"
 abbr --add l "eza --icons --long --group-directories-first --header --git"
 abbr --add ll "eza --icons --long --group-directories-first --header --git --inode --blocksize"
 abbr --add la "eza --icons --long --group-directories-first --header --git --inode --blocksize --all"
-abbr --add lt "eza --icons --tree --group-directories-first --all"
-abbr --add lT "eza --icons --tree --group-directories-first"
+abbr --add lT "eza --icons --tree --group-directories-first --all"
+abbr --add lt "eza --icons --tree --group-directories-first"
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
 abbr --add stop-yabai 'yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 abbr --add start-yabai 'yabai --start-service && skhd --start-service && brew services start sketchybar'
@@ -78,4 +78,3 @@ abbr --add ga "git add -p"
 abbr --add gcoall "git checkout -- ."
 abbr --add gr "git remote"
 abbr --add gre "git reset"
-
