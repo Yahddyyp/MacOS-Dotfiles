@@ -47,4 +47,4 @@ yabai -m signal --add event=window_created action="sketchybar --trigger window_f
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
 
 #Window shadows
-yabai -m config window_shadow off
+#yabai -m config window_shadow off
