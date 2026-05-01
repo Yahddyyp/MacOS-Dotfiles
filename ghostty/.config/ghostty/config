@@ -13,3 +13,5 @@ window-padding-y = 10
 term = xterm-256color
 #background-opacity = 0.9
 font-size = 12
+macos-option-as-alt = true
+mouse-hide-while-typing = true
