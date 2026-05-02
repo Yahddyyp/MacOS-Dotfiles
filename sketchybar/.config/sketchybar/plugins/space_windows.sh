@@ -1,21 +1,32 @@
 #!/bin/bash
 
-# --- Yabai version (Now active) ---
-if [ "$SENDER" = "space_windows_change" ]; then
-  space="$(echo "$INFO" | jq -r '.space')"
-  apps="$(echo "$INFO" | jq -r '.apps | keys[]')"
+sleep 0.2
 
+# --- Yabai version ---
+update_space() {
+  space=$1
+  apps=$(yabai -m query --windows --space $space | jq -r '.[].app')
   icon_strip=" "
-  if [ "${apps}" != "" ]; then
-    while read -r app
-    do
-      icon_strip+=" $($CONFIG_DIR/plugins/icon_map.sh "$app")"
-    done <<< "${apps}"
+  if [ "$apps" != "" ]; then
+    while read -r app; do
+      icon=$($CONFIG_DIR/plugins/icon_map.sh "$app")
+      case "$icon_strip" in
+      *"$icon"*) : ;;
+      *) icon_strip+="$icon " ;;
+      esac
+    done <<<"$apps"
   else
     icon_strip=" —"
   fi
-
   sketchybar --set space.$space label="$icon_strip"
+}
+
+if [ "$SENDER" = "space_windows_change" ]; then
+  for space in $(yabai -m query --spaces | jq '.[].index'); do
+    update_space $space
+  done
+elif [ "$SENDER" = "space_change" ] || [ "$SENDER" = "window_focus" ]; then
+  update_space $(yabai -m query --spaces --space | jq '.index')
 fi
 
 # --- AeroSpace version (Commented out) ---

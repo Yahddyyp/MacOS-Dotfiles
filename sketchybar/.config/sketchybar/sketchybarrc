@@ -148,7 +148,7 @@ done
 sketchybar --add item space_watcher center \
            --set space_watcher background.drawing=off \
                                  script="$PLUGIN_DIR/space_windows.sh" \
-           --subscribe space_watcher space_windows_change
+           --subscribe space_watcher space_windows_change window_focus space_change
 
 sketchybar --add item front_app left \
            --set front_app icon.font="sketchybar-app-font:Regular:18.0" \
