@@ -5,7 +5,7 @@ sleep 0.2
 # --- Yabai version ---
 update_space() {
   space=$1
-  apps=$(yabai -m query --windows --space $space | jq -r '.[] | select(."is-minimized" == false) | .app')
+  apps=$(yabai -m query --windows --space $space | jq -r '.[] | select(."is-minimized" == false and .role == "AXWindow") | .app')
   icon_strip=" "
   if [ "$apps" != "" ]; then
     while read -r app; do

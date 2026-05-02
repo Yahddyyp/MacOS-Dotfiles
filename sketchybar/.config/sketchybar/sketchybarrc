@@ -163,10 +163,10 @@ sketchybar --add item front_app left \
 
 yabai -m signal --add event=window_focused action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
+yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_minimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
-yabai -m signal --add event=window_deminimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
+yabai -m signal --add event=window_minimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
+yabai -m signal --add event=window_deminimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
 
 sketchybar --update
 
