@@ -5,7 +5,7 @@ sleep 0.2
 # --- Yabai version ---
 update_space() {
   space=$1
-  apps=$(yabai -m query --windows --space $space | jq -r '.[].app')
+  apps=$(yabai -m query --windows --space $space | jq -r '.[] | select(."is-minimized" == false) | .app')
   icon_strip=" "
   if [ "$apps" != "" ]; then
     while read -r app; do
@@ -25,7 +25,7 @@ if [ "$SENDER" = "space_windows_change" ]; then
   for space in $(yabai -m query --spaces | jq '.[].index'); do
     update_space $space
   done
-elif [ "$SENDER" = "space_change" ] || [ "$SENDER" = "window_focus" ]; then
+elif [ "$SENDER" = "space_change" ]; then
   update_space $(yabai -m query --spaces --space | jq '.index')
 fi
 

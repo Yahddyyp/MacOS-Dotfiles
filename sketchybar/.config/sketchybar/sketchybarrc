@@ -148,7 +148,7 @@ done
 sketchybar --add item space_watcher center \
            --set space_watcher background.drawing=off \
                                  script="$PLUGIN_DIR/space_windows.sh" \
-           --subscribe space_watcher space_windows_change window_focus space_change
+           --subscribe space_watcher space_windows_change space_change
 
 sketchybar --add item front_app left \
            --set front_app icon.font="sketchybar-app-font:Regular:18.0" \
@@ -160,10 +160,13 @@ sketchybar --add item front_app left \
                            script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+
+yabai -m signal --add event=window_focused action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger space_windows_change"
+yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
+yabai -m signal --add event=window_minimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
+yabai -m signal --add event=window_deminimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
 
 sketchybar --update
 

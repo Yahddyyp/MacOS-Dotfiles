@@ -1,23 +1,12 @@
 #!/bin/sh
 
-# Some events send additional information specific to the event in the $INFO
-# variable. E.g. the front_app_switched event sends the name of the newly
-# focused application in the $INFO variable:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
-
-# This script works with both yabai and aerospace as they both support
-# the front_app_switched event
-
-# --- Yabai version (Now active) ---
 if [ "$SENDER" = "front_app_switched" ]; then
-  case "$INFO" in
-    "loginwindow" | "Dock" | "SystemUIServer" | "")
-      sketchybar --set "$NAME" drawing=on label="Finder" icon="$($CONFIG_DIR/plugins/icon_map.sh "Finder")"
-      ;;
-    *)
-      sketchybar --animate tanh 10 --set "$NAME" drawing=on label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
-      ;;
-  esac
+  # Use Finder as default if INFO is empty
+  [ -z "$INFO" ] && INFO="Finder"
+
+  sketchybar --animate tanh 10 \
+             --set "$NAME" label="$INFO" \
+             icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
 fi
 
 # --- Alternative AeroSpace version (Commented out) ---
