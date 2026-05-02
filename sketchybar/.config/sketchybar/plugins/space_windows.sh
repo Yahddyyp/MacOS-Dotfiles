@@ -29,7 +29,7 @@ elif [ "$SENDER" = "space_change" ]; then
   update_space $(yabai -m query --spaces --space | jq '.index')
 fi
 
-# --- AeroSpace version (Commented out) ---
+# --- AeroSpace version ---
 # AEROSPACE_PATH=$(command -v aerospace)
 # ICON_MAP_PATH="$HOME/.config/sketchybar/plugins/icon_map.sh"
 # if [ -z "$AEROSPACE_PATH" ]; then

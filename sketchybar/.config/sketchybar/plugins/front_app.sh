@@ -9,7 +9,7 @@ if [ "$SENDER" = "front_app_switched" ]; then
              icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
 fi
 
-# --- Alternative AeroSpace version (Commented out) ---
+# --- Alternative AeroSpace version ---
 # if [ "$SENDER" = "front_app_switched" ]; then
 #   APP_NAME="$INFO"
 #

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# --- Yabai version (Now active) ---
+# --- Yabai version ---
+# [Yabai version] - Comment out this section and uncomment the AeroSpace version below to switch
 if [ "$SELECTED" = true ]; then
   sketchybar --animate tanh 10 --set "$NAME" \
     background.drawing=on \
@@ -15,7 +16,7 @@ else
     icon.color=0xffcba6f7
 fi
 
-# --- AeroSpace version (Commented out) ---
+# [AeroSpace version] 
 # # Get the focused workspace - prefer the environment variable from trigger, otherwise query
 # FOCUSED_WORKSPACE="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused)}"
 # # Extract workspace number from NAME (e.g., "space.1" -> "1")

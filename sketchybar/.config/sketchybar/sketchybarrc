@@ -109,6 +109,8 @@ sketchybar --add item volume_icon right \
 
 source "$CONFIG_DIR/items/media.sh"
 
+# --- Space Indicators ---
+# [Yabai version] - Uncomment this and comment out the AeroSpace version below to use with Yabai
 SPACE_SIDS=(1 2 3 4 5 6 7 8 9 10)
 for sid in "${SPACE_SIDS[@]}"; do
   sketchybar --add space space.$sid left \
@@ -161,6 +163,7 @@ sketchybar --add item front_app left \
            --subscribe front_app front_app_switched
 
 
+# --- Yabai signals ---
 yabai -m signal --add event=window_focused action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
 yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
@@ -170,6 +173,6 @@ yabai -m signal --add event=window_deminimized action="sketchybar --trigger fron
 
 sketchybar --update
 
-# --- AeroSpace logic (Commented out) ---
+# --- AeroSpace logic ---
 # sketchybar --add event aerospace_workspace_change
 # sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
