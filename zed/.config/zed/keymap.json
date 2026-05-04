@@ -18,6 +18,7 @@
       "space space": "file_finder::Toggle",
       "space f f": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
+      "space r n": "workspace::Rename",
       "space e": "workspace::ToggleLeftDock",
       "space b d": "pane::CloseActiveItem",
       "space x": "pane::CloseActiveItem",
