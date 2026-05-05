@@ -22,8 +22,9 @@
     "trust_all_worktrees": true
   },
   "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "buffer_font_family": "CaskaydiaCove",
+  "ui_font_size": 13,
+  "buffer_font_size": 12,
   "theme": {
     "mode": "dark",
     "light": "One Light",
