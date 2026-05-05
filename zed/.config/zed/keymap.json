@@ -7,8 +7,8 @@
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
-    }
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+    },
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -17,28 +17,38 @@
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "jj": "vim::NormalBefore",
       "space w": "workspace::Save",
       "space q": "pane::CloseActiveItem",
-      "space space": "file_finder::Toggle",
-      "space f f": "file_finder::Toggle",
-      "space /": "pane::DeploySearch",
+      "space f": "file_finder::Toggle",
       "space r n": "editor::Rename",
       "space e": "workspace::ToggleLeftDock",
       "space h": "zed::ShowWelcome",
       "space c": "buffer_search::Dismiss",
       "space p": "workspace::ToggleRightDock",
+      "space o c": "agent::Toggle",
       "space m": "pane::SplitVertical",
       "space u": "pane::SplitHorizontal",
       "space b d": "pane::CloseActiveItem",
       "space x": "pane::CloseActiveItem",
       "space Tab": "pane::ActivateLastItem",
-      "space t t": "workspace::ToggleBottomDock"
-    }
+      "ctrl-/": "terminal_panel::Toggle",
+      "space t": "debug_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "Tab": "pane::ActivateNextItem",
+      "shift-Tab": "pane::ActivatePreviousItem",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+    },
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j j": "vim::NormalBefore"
-    }
-  }
+      "j j": "vim::NormalBefore",
+    },
+  },
 ]
