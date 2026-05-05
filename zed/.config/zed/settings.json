@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "restore_on_startup": "none",
+  "restore_on_startup": "launchpad",
   "agent_servers": {
     "opencode": {
       "type": "registry",
