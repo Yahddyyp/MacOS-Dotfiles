@@ -34,11 +34,9 @@ history_filter = [
   "^ssh-add\\s",
   "password",
   "token",
-  "^cd(\\s|$)",
   "^ls(\\s|$)",
   "^la(\\s|$)",
   "^ll(\\s|$)",
-  "^z(\\s|$)",
   "^pwd$",
   "^clear$",
   "^exit$",
@@ -79,8 +77,7 @@ common_subcommands = [
 common_prefix = ["sudo"]
 
 ignored_commands = [
-  "cd",
-  "z",
+
   "ls",
   "la",
   "ll",
