@@ -8,6 +8,7 @@
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-e": "workspace::NewFile",
     },
   },
   {
@@ -22,7 +23,7 @@
       "space q": "pane::CloseActiveItem",
       "space f": "file_finder::Toggle",
       "space r n": "editor::Rename",
-      "space e": "workspace::ToggleLeftDock",
+      "space e": "project_panel::Toggle",
       "space h": "zed::ShowWelcome",
       "space c": "buffer_search::Dismiss",
       "space p": "workspace::ToggleRightDock",
