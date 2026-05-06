@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "disable_ai": false,
+  "proxy": "",
+  "ui_font_family": "CaskaydiaCove Nerd Font",
+  "agent_ui_font_size": 12.0,
+  "git_panel": {
+    "dock": "left"
+  },
   "restore_on_startup": "launchpad",
   "agent_servers": {
     "opencode": {
@@ -37,8 +44,8 @@
     "trust_all_worktrees": true,
   },
   "vim_mode": true,
-  "buffer_font_family": "CaskaydiaCove",
-  "ui_font_size": 13,
+  "buffer_font_family": "CaskaydiaCove Nerd Font",
+  "ui_font_size": 12.0,
   "buffer_font_size": 12,
   "terminal": {
     "font_family": "CaskaydiaCove Nerd Font",
