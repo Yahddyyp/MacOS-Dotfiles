@@ -46,10 +46,16 @@
       "space space": "file_finder::Toggle",
     },
   },
-  {
+{
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j j": "vim::NormalBefore",
-    },
+      "j j": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "a": "project_panel::NewFile"
+    }
   },
 ]
