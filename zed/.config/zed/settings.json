@@ -17,6 +17,9 @@
   "restore_on_startup": "launchpad",
   "agent_servers": {
     "opencode": {
+      "default_config_options": {
+        "mode": "Primary"
+      },
       "type": "registry",
     },
   },
