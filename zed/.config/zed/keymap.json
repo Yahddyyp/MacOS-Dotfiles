@@ -44,18 +44,28 @@
     "context": "Editor && vim_mode == normal && !menu",
     "bindings": {
       "space space": "file_finder::Toggle",
+      "U": "editor::Redo",
+      "ctrl-a": "vim::FirstNonWhitespace",
     },
   },
-{
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-d": "vim::EndOfLine",
+    },
+  },
+
+  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j j": "vim::NormalBefore"
-    }
+      "j j": "vim::NormalBefore",
+      "j k": "vim::NormalBefore",
+    },
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "a": "project_panel::NewFile"
-    }
+      "a": "project_panel::NewFile",
+    },
   },
 ]

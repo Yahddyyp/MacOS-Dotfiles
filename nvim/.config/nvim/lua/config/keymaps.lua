@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode" })
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape insert mode" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
@@ -30,3 +31,8 @@ vim.keymap.set("n", "<leader>h", function()
   require("snacks").dashboard()
 end, { desc = "Open dashboard" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
+
+-- Redo and line navigation alternatives
+vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
+vim.keymap.set("n", "<C-d>", "$", { desc = "Go to end of line" })
+vim.keymap.set("n", "<C-a>", "^", { desc = "Go to start of line" })
