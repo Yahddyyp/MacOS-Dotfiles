@@ -110,6 +110,11 @@ else
   elif echo "$UPTIME_OUTPUT" | grep -qE "min"; then
     MINS=$(echo "$UPTIME_OUTPUT" | awk '{print $3}' | tr -d ',')
     UPTIME_LABEL="Up: ${MINS}m"
+  elif echo "$UPTIME_OUTPUT" | grep -qE ":"; then
+    TIME_STR=$(echo "$UPTIME_OUTPUT" | awk '{print $3}' | tr -d ',')
+    HOURS=$(echo "$TIME_STR" | cut -d: -f1)
+    MINS=$(echo "$TIME_STR" | cut -d: -f2)
+    UPTIME_LABEL="Up: ${HOURS}h ${MINS}m"
   else
     UPTIME_LABEL="Up: <1m"
   fi

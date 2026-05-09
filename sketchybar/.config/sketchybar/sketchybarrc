@@ -69,7 +69,7 @@ popup.width=180 \
 label.padding_right=10 \
                              background.drawing=off \
              --add item date.uptime popup.date \
-             --set date.uptime icon=⏱ \
+             --set date.uptime icon=􀐫 \
                              icon.color=0xffcba6f7 \
                              icon.padding_left=10 \
                              label.color=0xffcdd6f4 \
