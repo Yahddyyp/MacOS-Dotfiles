@@ -96,7 +96,26 @@ else
     VPN_LABEL="Disconnected"
   fi
 
+  # Uptime
+  UPTIME_OUTPUT=$(uptime)
+  UPTIME_LABEL="Up: --"
+
+  # Parse uptime (format: "up X days, HH:MM" or "up MM mins")
+  if echo "$UPTIME_OUTPUT" | grep -qE "day"; then
+    DAYS=$(echo "$UPTIME_OUTPUT" | awk '{print $3}')
+    TIME_STR=$(echo "$UPTIME_OUTPUT" | awk '{print $5}' | tr -d ',')
+    HOURS=$(echo "$TIME_STR" | cut -d: -f1)
+    MINS=$(echo "$TIME_STR" | cut -d: -f2)
+    UPTIME_LABEL="Up: ${DAYS}d ${HOURS}h ${MINS}m"
+  elif echo "$UPTIME_OUTPUT" | grep -qE "min"; then
+    MINS=$(echo "$UPTIME_OUTPUT" | awk '{print $3}' | tr -d ',')
+    UPTIME_LABEL="Up: ${MINS}m"
+  else
+    UPTIME_LABEL="Up: <1m"
+  fi
+
   sketchybar --set date.wifi label="$WIFI_LABEL" \
              --set date.band label="$BAND_LABEL" \
-             --set date.vpn label="$VPN_LABEL"
+             --set date.vpn label="$VPN_LABEL" \
+             --set date.uptime label="$UPTIME_LABEL"
 fi
