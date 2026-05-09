@@ -88,7 +88,6 @@ sketchybar --add item battery right \
 sketchybar --add item volume_icon right \
            --set volume_icon icon.color=0xffcba6f7 \
                          label.color=0xffcdd6f4 \
-                         padding_left=10 \
                          script="$PLUGIN_DIR/volume.sh" \
                          popup.align=center \
                          popup.background.color=0xcc1e1e2e \
