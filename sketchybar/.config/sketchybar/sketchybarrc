@@ -31,7 +31,7 @@ sketchybar --add item date right \
             --set date icon=􀧞 \
                        icon.color=0xffcba6f7 \
                        label.color=0xffcdd6f4 \
-                       update_freq=2 \
+                        update_freq=5 \
                        script="$PLUGIN_DIR/calendar.sh" \
                        popup.align=center \
                        popup.y_offset=-2 \

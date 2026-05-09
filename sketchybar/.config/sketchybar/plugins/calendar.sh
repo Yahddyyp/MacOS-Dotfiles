@@ -71,7 +71,7 @@ else
     fi
     
     MOD_TIME=$(stat -f %m "$BAND_CACHE" 2>/dev/null || echo 0)
-    if [ $((CURRENT_TIME - MOD_TIME)) -gt 60 ]; then
+     if [ $((CURRENT_TIME - MOD_TIME)) -gt 300 ]; then
        (
          WIFI_INFO=$(system_profiler SPAirPortDataType 2>/dev/null)
          BAND=$(echo "$WIFI_INFO" | awk '/Current Network Information:/,/Other Local Wi-Fi Networks:/' | awk '/Channel:/ {match($0, /[25]GHz/); print substr($0, RSTART, RLENGTH)}' | head -1)
