@@ -15,7 +15,6 @@ Icon?
 .zcompdump*
 .zsh_history
 .python_history
-# Stow backups
 *.stow-bak
 node_modules/
 __pycache__/
