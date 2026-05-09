@@ -4,22 +4,32 @@ if [ "$SENDER" = "mouse.clicked" ]; then
   sketchybar --set $NAME popup.drawing=toggle
 else
   DATE_STR="$(date +'%a %d %b  -  %I:%M %p')"
-  
+
+  VPN_ACTIVE=0
+  DEFAULT_IFACE=$(route get default 2>/dev/null | awk '/interface:/ {print $2}')
+  if [[ "$DEFAULT_IFACE" == utun* ]]; then
+    VPN_ACTIVE=1
+  fi
+
   INTERFACE=$(route get default 2>/dev/null | awk '/interface:/ {print $2}')
   if [ -z "$INTERFACE" ]; then
     sketchybar --animate tanh 10 --set $NAME label="$DATE_STR" icon.color=0xfff38ba8
     WIFI_LABEL="Disconnected"
   else
+    if [ "$VPN_ACTIVE" -eq 1 ]; then
+      ICON_COLOR="0xffa6e3a1"
+    else
+      ICON_COLOR="0xffcba6f7"
+    fi
     CURRENT_BYTES=$(netstat -ib -I "$INTERFACE" | awk '/<Link#/ {print $7, $10}')
     CURRENT_IN=$(echo "$CURRENT_BYTES" | awk '{print $1}')
     CURRENT_OUT=$(echo "$CURRENT_BYTES" | awk '{print $2}')
     CURRENT_TIME=$(date +%s)
     
     CACHE_FILE="/tmp/sketchybar_network_speed_cache"
-    
+
     IN_FORMATTED="0 B/s"
     OUT_FORMATTED="0 B/s"
-    ICON_COLOR="0xffcba6f7"
     
     if [ -f "$CACHE_FILE" ]; then
       read -r PREV_TIME PREV_IN PREV_OUT < "$CACHE_FILE"
@@ -79,9 +89,14 @@ else
     
     WIFI_LABEL="⇣ $IN_FORMATTED  ⇡ $OUT_FORMATTED"
   fi
-  
+
+  if [ "$VPN_ACTIVE" -eq 1 ]; then
+    VPN_LABEL="Connected"
+  else
+    VPN_LABEL="Disconnected"
+  fi
+
   sketchybar --set date.wifi label="$WIFI_LABEL" \
              --set date.band label="$BAND_LABEL" \
-             --set date.week_num label="Week Number: $(date +'%V')" \
-             --set date.day_of_year label="Day of Year: $(date +'%j')"
+             --set date.vpn label="$VPN_LABEL"
 fi
