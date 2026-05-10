@@ -59,7 +59,7 @@ theme = "catppuccin"
 # Each feature can have its own configuration section
 [ui.input_bar]
 # Where to place the input bar in the UI (top or bottom)
-position = "bottom"
+position = "top"
 # The input prompt string (defaults to ">" if not specified)
 prompt = ">"
 # header = "{}"
