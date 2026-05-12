@@ -7,7 +7,7 @@ shift + alt - y : yabai -m space --mirror y-axis
 shift + alt - r :yabai -m space --mirror y-axis
 
 #toggle window float
-#shift + alt - t :yabai -m window --toggle float
+ctrl + alt - t :yabai -m window --toggle float
 shift + alt - t :yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 #focus
