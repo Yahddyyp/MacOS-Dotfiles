@@ -2,6 +2,7 @@
 #Yabai config
 #layout
 yabai -m config layout bsp
+yabai -m config auto-balance on
 
 #Window placement
 yabai -m config window_placement second_child
