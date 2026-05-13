@@ -62,10 +62,4 @@
       "j k": "vim::NormalBefore",
     },
   },
-  {
-    "context": "ProjectPanel",
-    "bindings": {
-      "a": "project_panel::NewFile",
-    },
-  },
 ]
