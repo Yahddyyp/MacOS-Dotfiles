@@ -38,7 +38,7 @@ phase_prerequisites() {
 
   if ! command -v stow &>/dev/null; then
     info "installing gnu stow..."
-    brew install stow
+    /opt/homebrew/bin/brew install stow
     ok "stow installed"
   else
     ok "stow found"
@@ -46,7 +46,7 @@ phase_prerequisites() {
 
   if ! command -v git &>/dev/null; then
     info "installing git..."
-    brew install git
+    /opt/homebrew/bin/brew install git
     ok "git installed"
   else
     ok "git found"
@@ -58,7 +58,7 @@ phase_ohmyzsh() {
     ok "oh-my-zsh already installed"
   else
     info "installing oh-my-zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     ok "oh-my-zsh installed"
   fi
 }
@@ -131,7 +131,7 @@ phase_brew_bundle() {
     err "Brewfile not found at $DOTFILES_DIR/Brewfile"
     exit 1
   fi
-  brew bundle install --file="$DOTFILES_DIR/Brewfile" --no-lock || warn "some packages may have failed to install"
+  /opt/homebrew/bin/brew bundle install --file="$DOTFILES_DIR/Brewfile" --no-lock || warn "some packages may have failed to install"
   ok "all tools installed"
 }
 
@@ -183,7 +183,7 @@ phase_post_install() {
 
   if command -v gh &>/dev/null; then
     info "installing gh-dash extension..."
-    gh extension install dlvhdr/gh-dash 2>/dev/null || true
+    gh extension install --force dlvhdr/gh-dash 2>/dev/null || true
     ok "gh-dash extension installed"
   fi
 
@@ -191,6 +191,11 @@ phase_post_install() {
   defaults write com.apple.dock autohide-delay -float 0
   killall Dock || true
   ok "dock autohide delay removed"
+
+  info "moving dock to the right..."
+  defaults write com.apple.dock orientation -string right
+  killall Dock || true
+  ok "dock moved to the right"
 
   info "disabling VSCodium press-and-hold..."
   defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
@@ -212,11 +217,11 @@ print_summary() {
 }
 
 main() {
+  phase_ohmyzsh
+  echo ""
   phase_prerequisites
   echo ""
   phase_backup
-  echo ""
-  phase_ohmyzsh
   echo ""
   phase_clone
   echo ""
