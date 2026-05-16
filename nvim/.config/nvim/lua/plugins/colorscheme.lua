@@ -1,26 +1,26 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-        pcall(vim.cmd, "LualineRefresh")
-    end,
-    desc = "Refresh lualine on colorscheme change",
+  callback = function()
+    pcall(vim.cmd, "LualineRefresh")
+  end,
+  desc = "Refresh lualine on colorscheme change",
 })
 
 return {
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "mauve",
-        },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "mauve",
     },
-    { "yahddyyp/mauve.nvim", lazy = false, priority = 1000 },
+  },
+  { "yahddyyp/mauve.nvim", lazy = false, priority = 1000 },
 
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            flavour = "mocha",
-        },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
     },
+  },
 }
