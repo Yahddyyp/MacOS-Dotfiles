@@ -217,13 +217,13 @@ print_summary() {
 }
 
 main() {
-  phase_ohmyzsh
-  echo ""
   phase_prerequisites
   echo ""
-  phase_backup
-  echo ""
   phase_clone
+  echo ""
+  phase_ohmyzsh
+  echo ""
+  phase_backup
   echo ""
   phase_brew_bundle
   echo ""
