@@ -87,13 +87,13 @@ stow --verbose --restow --no-folding */
 ```
 
 ### Using install.sh
-**Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine.
+**Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine. This also only works on apple silicon macs.
 
 **What it does (in order)**
-1. Oh-My-Zsh – Installs oh-my-zsh (if missing)
-2. Prerequisites – Installs Homebrew (if missing), stow, and git
-3. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
-4. Clone – Clones the repo to ~/dotfiles (or pulls latest changes if already cloned)
+1. Prerequisites – Installs Homebrew (if missing), stow, and git
+2. Clone – Clones the repo to ~/dotfiles (or pulls latest changes if already cloned)
+3. Oh-My-Zsh – Installs oh-my-zsh (if missing)
+4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
 7. Post-install – Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold and some other stuff
