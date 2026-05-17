@@ -25,7 +25,7 @@ vim.keymap.set(
   { desc = "Replace word under cursor" }
 )
 vim.keymap.set("n", "<leader>fX", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
-vim.keymap.set("t", "jj", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set("n", "<leader>h", function()
   vim.cmd("enew")
   require("snacks").dashboard()
