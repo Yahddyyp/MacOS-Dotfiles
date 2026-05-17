@@ -1,10 +1,3 @@
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function()
-    pcall(vim.cmd, "LualineRefresh")
-  end,
-  desc = "Refresh lualine on colorscheme change",
-})
-
 return {
   {
     "LazyVim/LazyVim",
