@@ -10,7 +10,7 @@
       "temperature": 0.2,
       "permission": {
         "read": "allow",
-        "edit": "allow",
+        "edit": "ask",
         "bash": "ask",
         "task": {
           "*": "allow"
