@@ -37,7 +37,7 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 vim.keymap.set("n", "<C-d>", "$", { desc = "Go to end of line" })
 vim.keymap.set("n", "<C-a>", "^", { desc = "Go to start of line" })
 
-vim.keymap.set("n", "<C-q>", "<cmd>bdelete<CR>", { desc = "Close current tab" }) -- shift+Quit to close current tab
+vim.keymap.set("n", "<C-q>", "<cmd>bdelete<CR>", { desc = "Close current tab" })
 vim.keymap.set("n", "g1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Go to buffer 1" })
 vim.keymap.set("n", "g2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Go to buffer 2" })
 vim.keymap.set("n", "g3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Go to buffer 3" })
@@ -48,32 +48,7 @@ vim.keymap.set("n", "g7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Go to buf
 vim.keymap.set("n", "g8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Go to buffer 8" })
 vim.keymap.set("n", "g9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Go to buffer 9" })
 vim.keymap.set("n", "g0", "<cmd>BufferLineGoToBuffer 10<CR>", { desc = "Go to buffer 10" })
-vim.keymap.set("n", "<M-j>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Move to left buffer" }) -- Alt+j to move to left
-vim.keymap.set("n", "<M-k>", "<cmd>BufferLineCycleNext<CR>", { desc = "Move to right buffer" }) -- Alt+k to move to right
-vim.keymap.set("n", "<M-J>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer to the left" }) -- Alt+Shift+j grab to with you to left
-vim.keymap.set("n", "<M-K>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer to the right" }) -- Alt+Shift+k grab to with you to right
-
-vim.keymap.set("n", "<leader>si", function()
-  require("telescope.builtin").find_files({
-    attach_mappings = function(prompt_bufnr, map)
-      map("i", "<CR>", function()
-        local selection = require("telescope.actions.state").get_selected_entry()
-        require("telescope.actions").close(prompt_bufnr)
-        vim.cmd("split " .. selection.value)
-      end)
-      return true
-    end,
-  })
-end, { desc = "Split horizontal with Telescope" })
-vim.keymap.set("n", "<leader>sv", function()
-  require("telescope.builtin").find_files({
-    attach_mappings = function(prompt_bufnr, map)
-      map("i", "<CR>", function()
-        local selection = require("telescope.actions.state").get_selected_entry()
-        require("telescope.actions").close(prompt_bufnr)
-        vim.cmd("vsplit " .. selection.value)
-      end)
-      return true
-    end,
-  })
-end, { desc = "Split vertical with Telescope" })
+vim.keymap.set("n", "<M-j>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Move to left buffer" })
+vim.keymap.set("n", "<M-k>", "<cmd>BufferLineCycleNext<CR>", { desc = "Move to right buffer" })
+vim.keymap.set("n", "<M-J>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer to the left" })
+vim.keymap.set("n", "<M-K>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer to the right" })
