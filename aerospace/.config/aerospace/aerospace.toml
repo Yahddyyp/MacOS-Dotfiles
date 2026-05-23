@@ -1,6 +1,6 @@
 config-version = 2
 after-startup-command = [
-    'exec-and-forget borders active_color=0xff7dc4e4 inactive_color=0xffcba6f7 width=6.0 hidpi=on',
+    'exec-and-forget borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on',
     'exec-and-forget sketchybar',
     'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
 ]
