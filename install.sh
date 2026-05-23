@@ -8,7 +8,7 @@ PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
 warn() { echo "[warn] $1"; }
-err()  { echo "[error] $1"; }
+err() { echo "[error] $1"; }
 
 phase_clone() {
   if [ -d "$DOTFILES_DIR/.git" ]; then
@@ -66,35 +66,35 @@ phase_ohmyzsh() {
 phase_backup() {
   info "checking for existing dotfiles to backup..."
 
-   local targets=(
-     ".zshrc"
-     ".tmux.conf"
-     ".p10k.zsh"
-     ".hushlogin"
-     ".config/fish"
-     ".config/nvim"
-     ".config/kitty"
-     ".config/ghostty"
-     ".config/starship.toml"
-     ".config/sketchybar"
-     ".config/yabai"
-     ".config/skhd"
-     ".config/zed"
-     ".config/atuin"
-     ".config/btop"
-     ".config/spicetify"
-     ".config/yazi"
-     ".config/neofetch"
-     ".config/bat"
-     ".config/lazygit"
-     ".config/sesh"
-     ".config/gh-dash"
-     ".config/aerospace"
-     ".config/borders"
-     ".config/television"
-     ".config/opencode"
-     ".config/eza"
-   )
+  local targets=(
+    ".zshrc"
+    ".tmux.conf"
+    ".p10k.zsh"
+    ".hushlogin"
+    ".config/fish"
+    ".config/nvim"
+    ".config/kitty"
+    ".config/ghostty"
+    ".config/starship.toml"
+    ".config/sketchybar"
+    ".config/yabai"
+    ".config/skhd"
+    ".config/zed"
+    ".config/atuin"
+    ".config/btop"
+    ".config/spicetify"
+    ".config/yazi"
+    ".config/neofetch"
+    ".config/bat"
+    ".config/lazygit"
+    ".config/sesh"
+    ".config/gh-dash"
+    ".config/aerospace"
+    ".config/borders"
+    ".config/television"
+    ".config/opencode"
+    ".config/eza"
+  )
 
   local found=0
   for target in "${targets[@]}"; do
@@ -207,12 +207,15 @@ print_summary() {
   echo "done."
   echo ""
   echo "next steps:"
-  echo "  - restart your terminal"
-  echo "  - open a new tmux session and press prefix + I to install tpm plugins"
-  echo "  - run: spicetify apply (after opening spotify once)"
-  echo "  - start sketchybar: brew services start sketchybar"
-  echo "  - start yabai: yabai --start-service"
-  echo "  - start skhd: skhd --start-service"
+  echo "  1. If not done already, disable SIP and set the nvram boot-arg (see README)"
+  echo "  2. Restart your terminal"
+  echo "  3. Load the scripting addon: sudo yabai --load-sa"
+  echo "  4. Open a new tmux session and press prefix + I to install tpm plugins"
+  echo "  5. Run: spicetify apply (after opening spotify once)"
+  echo "  6. Start services:"
+  echo "     - sketchybar: brew services start sketchybar"
+  echo "     - yabai: yabai --start-service"
+  echo "     - skhd: skhd --start-service"
   echo ""
 }
 

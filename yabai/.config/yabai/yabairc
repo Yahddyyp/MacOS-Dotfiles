@@ -2,7 +2,6 @@
 #Yabai config
 #layout
 yabai -m config layout bsp
-yabai -m config auto-balance on
 
 #Window placement
 yabai -m config window_placement second_child
@@ -32,8 +31,8 @@ yabai -m rule --add app="^WhatsApp$" manage=off
 
 #window opacity
 #yabai -m config window_opacity on
-#yabai -m config active_window_opacity 1.0
-#yabai -m config normal_window_opacity 0.9
+#yabai -m config active_window_opacity 0.9
+#yabai -m config normal_window_opacity 0.8
 
 #borders
 borders active_color=0xff7dc4e4 inactive_color=0xffcba6f7 width=6.0 hidpi=on &
@@ -48,4 +47,7 @@ yabai -m signal --add event=window_created action="sketchybar --trigger window_f
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
 
 #Window shadows
-#yabai -m config window_shadow off
+yabai -m config window_shadow off
+
+# Focus space by index
+yabai -m space --focus 1

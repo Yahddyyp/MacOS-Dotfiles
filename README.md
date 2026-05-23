@@ -108,7 +108,24 @@ curl -fsSL https://raw.githubusercontent.com/Yahddyyp/MacOS-Dotfiles/main/instal
 After installation, run these:
 1. Tmux plugins — Open tmux and press prefix + I (Ctrl+A, then I)
 2. Spicetify — Open Spotify once, then run `spicetify apply`
-3. Start services:
+3. Disable SIP for yabai (Apple Silicon only):
+   1. Reboot into recovery mode (hold power button while restarting)
+   2. Open terminal and run:
+      ```bash
+      csrutil enable --without fs --without debug --without nvram
+      ```
+   3. Enable non-Apple-signed arm64e binaries, then reboot:
+      ```bash
+      sudo nvram boot-args=-arm64e_preview_abi
+      ```
+
+4. Load the scripting addon:
+
+   ```bash 
+   sudo yabai --load-sa
+   ```
+
+5. Start services:
 
    ```bash
    brew services start sketchybar
