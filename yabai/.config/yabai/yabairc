@@ -51,3 +51,6 @@ yabai -m config window_shadow off
 
 # Focus space by index
 yabai -m space --focus 1
+
+# Scriptting addons
+yabai --load-sa
