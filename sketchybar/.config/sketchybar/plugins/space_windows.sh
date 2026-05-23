@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 0.2
-
 # --- Yabai version ---
 update_space() {
   space=$1

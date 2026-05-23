@@ -4,7 +4,11 @@ if [ "$SENDER" = "front_app_switched" ]; then
   # Use Finder as default if INFO is empty
   [ -z "$INFO" ] && INFO="Finder"
 
-  sketchybar --animate tanh 10 \
+  # Skip update if the app hasn't changed (prevents flicker)
+  CURRENT="$(sketchybar --query "$NAME" | jq -r '.label.value // ""')"
+  [ "$CURRENT" = "$INFO" ] && exit 0
+
+  sketchybar --animate tanh 5 \
              --set "$NAME" label="$INFO" \
              icon="$($CONFIG_DIR/plugins/icon_map.sh "$INFO")"
 fi

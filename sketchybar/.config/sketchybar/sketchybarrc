@@ -10,6 +10,7 @@ sketchybar --bar position=top \
                margin_right=8 
 
 sketchybar --default \
+           animator_duration=250 \
            padding_left=4 \
            padding_right=4 \
            icon.font="CaskaydiaCove Nerd Font:16.0" \
