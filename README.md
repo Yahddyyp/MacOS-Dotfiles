@@ -111,10 +111,12 @@ After installation, run these:
 3. Disable SIP for yabai (Apple Silicon only):
    1. Reboot into recovery mode (hold power button while restarting)
    2. Open terminal and run:
+
       ```bash
       csrutil enable --without fs --without debug --without nvram
       ```
    3. Enable non-Apple-signed arm64e binaries, then reboot:
+
       ```bash
       sudo nvram boot-args=-arm64e_preview_abi
       ```
