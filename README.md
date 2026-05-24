@@ -29,14 +29,14 @@
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter `cd` |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder |
 | [bat](https://github.com/sharkdp/bat) | `cat` with syntax highlighting |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast `grep` alternative |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | `grep` on steroids  |
 | [fd](https://github.com/sharkdp/fd) | Fast `find` alternative |
 | [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git |
-| [sesh](https://github.com/joshmedeski/sesh) | terminal session manager |
-| [gh-dash](https://github.com/dlvhdr/gh-dash) | Beautiful CLI dashboard for GitHub |
+| [sesh](https://github.com/joshmedeski/sesh) | tmux session manager |
+| [gh-dash](https://github.com/dlvhdr/gh-dash) | CLI dashboard for GitHub |
 | [gh](https://cli.github.com/) | GitHub CLI |
-| [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Modern `neofetch` alternative |
-| [eza](https://github.com/eza-community/eza) | Modern `ls` replacement |
+| [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Better `neofetch` |
+| [eza](https://github.com/eza-community/eza) | Cooler `ls` |
 | [bun](https://bun.sh/) | JavaScript runtime |
 
 ### Apps
