@@ -17,6 +17,9 @@ fi
 # if [ "$SENDER" = "front_app_switched" ]; then
 #   APP_NAME="$INFO"
 #
+#   # Fix abbreviated app names from AeroSpace
+#   [ "$APP_NAME" = "System" ] && APP_NAME="System Settings"
+#
 #   # Check if we have a valid app name (not empty)
 #   if [ -z "$APP_NAME" ] || [ "$APP_NAME" = "" ]; then
 #     # No windows open on this workspace - show Finder icon
