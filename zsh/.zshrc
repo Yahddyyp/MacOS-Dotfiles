@@ -32,7 +32,7 @@ alias la="eza --icons --long --group-directories-first --header --git --inode --
 alias lT="eza --icons --tree --group-directories-first --all"
 alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
-alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
+alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar && pkill borders && pkill sketchybar'
 alias start-yabai='yabai --start-service && skhd --start-service && brew services start sketchybar'
 
 alias gc="git commit -m"
