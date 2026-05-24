@@ -127,6 +127,8 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
+   > **Tip:** To load the scripting addon automatically on boot, create a LaunchDaemon at `/Library/LaunchDaemons/com.asmvik.yabai-sa.plist` that runs `yabai --load-sa` at startup.
+
 5. Start services:
 
    ```bash

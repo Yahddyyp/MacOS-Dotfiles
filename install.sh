@@ -210,6 +210,7 @@ print_summary() {
   echo "  1. If not done already, disable SIP and set the nvram boot-arg (see README)"
   echo "  2. Restart your terminal"
   echo "  3. Load the scripting addon: sudo yabai --load-sa"
+  echo "     Tip: Create a LaunchDaemon at /Library/LaunchDaemons/com.asmvik.yabai-sa.plist to load it automatically on boot"
   echo "  4. Open a new tmux session and press prefix + I to install tpm plugins"
   echo "  5. Run: spicetify apply (after opening spotify once)"
   echo "  6. Start services:"
