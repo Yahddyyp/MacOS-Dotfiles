@@ -200,6 +200,11 @@ phase_post_install() {
   info "disabling VSCodium press-and-hold..."
   defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
   ok "VSCodium press-and-hold disabled"
+
+  info "setting up yabai scripting addition LaunchDaemon..."
+  sudo cp "$DOTFILES_DIR/yabai/.config/yabai/com.asmvik.yabai-sa.plist" /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
+  sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
+  ok "yabai scripting addition LaunchDaemon installed"
 }
 
 print_summary() {
@@ -209,8 +214,7 @@ print_summary() {
   echo "next steps:"
   echo "  1. If not done already, disable SIP and set the nvram boot-arg (see README)"
   echo "  2. Restart your terminal"
-  echo "  3. Load the scripting addon: sudo yabai --load-sa"
-  echo "     Tip: Create a LaunchDaemon at /Library/LaunchDaemons/com.asmvik.yabai-sa.plist to load it automatically on boot"
+  echo "  3. Load the scripting addon now (the LaunchDaemon will load it automatically on future boots): sudo yabai --load-sa"
   echo "  4. Open a new tmux session and press prefix + I to install tpm plugins"
   echo "  5. Run: spicetify apply (after opening spotify once)"
   echo "  6. Start services:"

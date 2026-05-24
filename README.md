@@ -96,7 +96,7 @@ stow --verbose --restow --no-folding */
 4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Post-install – Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold and some other stuff
+7. Post-install – Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
 
 Using the install.sh:
 
@@ -127,7 +127,7 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
-   > **Tip:** To load the scripting addon automatically on boot, create a LaunchDaemon at `/Library/LaunchDaemons/com.asmvik.yabai-sa.plist` that runs `yabai --load-sa` at startup.
+   > **Tip:** A LaunchDaemon plist is included in the `yabai dir`  to load the scripting addon automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`.
 
 5. Start services:
 
