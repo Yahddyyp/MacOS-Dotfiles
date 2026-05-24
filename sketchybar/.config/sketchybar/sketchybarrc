@@ -129,8 +129,9 @@ for sid in "${SPACE_SIDS[@]}"; do
                       icon.color=0xffcba6f7 \
                       background.color=0xcc1e1e2e \
                       background.border_color=0x44cba6f7 \
-                      background.border_width=1 \
-                      script="$PLUGIN_DIR/space.sh"
+                       background.border_width=1 \
+                       click_script="yabai -m space --focus $sid" \
+                       script="$PLUGIN_DIR/space.sh"
 done
 
 # Space indicators (for aerospace)
