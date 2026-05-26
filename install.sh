@@ -203,6 +203,7 @@ phase_post_install() {
 
   info "setting up yabai scripting addition LaunchDaemon..."
   sudo cp "$DOTFILES_DIR/yabai/.config/yabai/com.asmvik.yabai-sa.plist" /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
+  sudo launchctl unload /Library/LaunchDaemons/com.asmvik.yabai-sa.plist 2>/dev/null || true
   sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
   ok "yabai scripting addition LaunchDaemon installed"
 }
