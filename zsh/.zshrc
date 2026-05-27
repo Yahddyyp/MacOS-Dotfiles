@@ -34,6 +34,7 @@ alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
 alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar && pkill borders && pkill sketchybar'
 alias start-yabai='yabai --start-service && skhd --start-service && brew services start sketchybar'
+alias oc="opencode"
 
 alias gc="git commit -m"
 alias gca="git commit -a -m"
