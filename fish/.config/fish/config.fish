@@ -30,6 +30,7 @@ abbr --add lt "eza --icons --tree --group-directories-first"
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
 abbr --add stop-yabai 'yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
 abbr --add start-yabai 'yabai --start-service && skhd --start-service && brew services start sketchybar'
+abbr --add oc opencode
 
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude=.git --exclude=Documents --exclude=wallpapers --exclude=Application'
 
