@@ -29,7 +29,7 @@ persistent-workspaces = ["1", "2", "3", "4"]
     inner.vertical =   9
     outer.left =       9
     outer.bottom =     9
-    outer.top =        50
+    outer.top =        48
     outer.right =      9
 
 [mode.main.binding]
