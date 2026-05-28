@@ -16,4 +16,8 @@ return {
       flavour = "mocha",
     },
   },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
 }
