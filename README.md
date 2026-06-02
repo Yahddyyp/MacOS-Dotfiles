@@ -87,7 +87,7 @@ stow --verbose --restow --no-folding */
 ```
 
 ### Using install.sh
-**Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine. This also only works on apple silicon macs.
+**Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine. This also only works on apple silicon macs and requies sudo (for yabai scripting addon).
 
 **What it does (in order)**
 1. Prerequisites – Installs Homebrew (if missing), stow, and git
