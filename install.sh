@@ -12,13 +12,15 @@ err() { echo "[error] $1"; }
 
 phase_clone() {
   if [ -d "$DOTFILES_DIR/.git" ]; then
-    info "dotfiles already cloned, pulling latest changes..."
+    info "dotfiles already cloned, pulling..."
     cd "$DOTFILES_DIR"
     git pull --rebase --autostash
-    ok "dotfiles up to date"
+  elif [ -d "$DOTFILES_DIR" ]; then
+    mv "$DOTFILES_DIR" "$DOTFILES_DIR-backup-$(date +%Y%m%d)"
+    git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git "$DOTFILES_DIR"
   else
     info "cloning dotfiles repo..."
-    git clone https://github.com/Yahddyyp/MacOS-Dotfiles "$DOTFILES_DIR"
+    git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git "$DOTFILES_DIR"
     ok "dotfiles cloned"
   fi
 }
@@ -128,8 +130,8 @@ phase_backup() {
 phase_brew_bundle() {
   info "installing tools via homebrew bundle..."
   if [ ! -f "$DOTFILES_DIR/Brewfile" ]; then
-    err "Brewfile not found at $DOTFILES_DIR/Brewfile"
-    exit 1
+    warn "Brewfile not found at $DOTFILES_DIR/Brewfile, skipping."
+    return
   fi
   /opt/homebrew/bin/brew bundle install --file="$DOTFILES_DIR/Brewfile" --no-lock || warn "some packages may have failed to install"
   ok "all tools installed"
@@ -146,8 +148,14 @@ phase_stow() {
         info "removing oh-my-zsh generated .zshrc before stowing..."
         rm "$HOME/.zshrc"
       fi
-      stow --restow --no-folding --verbose --target="$HOME" "$pkg"
-      ok "stowed: $pkg"
+      local stow_err
+      stow_err="$(mktemp)"
+      if ! stow --restow --no-folding --target="$HOME" "$pkg" 2>"$stow_err"; then
+        warn "stow failed for $pkg: $(cat "$stow_err")"
+      else
+        ok "stowed: $pkg"
+      fi
+      rm -f "$stow_err"
     else
       warn "skipping missing package: $pkg"
     fi
@@ -158,6 +166,10 @@ phase_stow() {
 
 phase_post_install() {
   info "running post-install tasks..."
+  sudo -v || {
+    err "sudo authentication failed"
+    return 1
+  }
 
   if [ -d "$HOME/.tmux/plugins/tpm" ]; then
     info "initializing tpm plugins..."
@@ -167,7 +179,7 @@ phase_post_install() {
 
   if command -v spicetify &>/dev/null; then
     info "installing spicetify marketplace..."
-    curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh 2>/dev/null || true
+    curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh
     ok "spicetify marketplace installed"
 
     info "applying spicetify..."
@@ -189,17 +201,11 @@ phase_post_install() {
 
   info "removing dock autohide delay..."
   defaults write com.apple.dock autohide-delay -float 0
-  killall Dock || true
-  ok "dock autohide delay removed"
-
   info "moving dock to the right..."
   defaults write com.apple.dock orientation -string right
   killall Dock || true
+  ok "dock autohide delay removed"
   ok "dock moved to the right"
-
-  info "disabling VSCodium press-and-hold..."
-  defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
-  ok "VSCodium press-and-hold disabled"
 
   info "setting up yabai scripting addition LaunchDaemon..."
   sudo cp "$DOTFILES_DIR/yabai/.config/yabai/com.asmvik.yabai-sa.plist" /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
