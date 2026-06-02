@@ -22,7 +22,7 @@
 ### CLI Tools
 | Tool | Purpose |
 |------|---------|
-| [neovim](https://neovim.io/) | TUI-based Text editor |
+| [neovim](https://neovim.io/) | The best text editor that has ever lived |
 | [yazi](https://yazi-rs.github.io/) | Terminal file manager |
 | [btop](https://github.com/aristocratos/btop) | System monitor |
 | [atuin](https://atuin.sh/) | Shell history replacement |
@@ -40,7 +40,7 @@
 | [bun](https://bun.sh/) | JavaScript runtime |
 
 ### Apps
-- **[zed](https://zed.dev/)** / **[vscodium](https://vscodium.com/)** - Pretty good editors
+- **[zed](https://zed.dev/)** - Pretty good editor
 - **[raycast](https://raycast.com/)** — Spotlight replacement
 - **[shottr](https://shottr.cc/)** — Screenshot tool
 - **[alt-tab](https://alt-tab-macos.netlify.app/)** — Windows-style alt-tab
@@ -96,7 +96,7 @@ stow --verbose --restow --no-folding */
 4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Post-install – Spicetify marketplace, removes Dock autohide delay, disables VSCodium press-and-hold, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
+7. Post-install – Spicetify marketplace, removes Dock autohide delay, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
 
 Using the install.sh:
 
