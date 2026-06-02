@@ -38,6 +38,7 @@ brew "opencode"
 brew "cbonsai"
 brew "eza"
 brew "tree"
+brew "clop"
 
 # Casks
 cask "appcleaner"
