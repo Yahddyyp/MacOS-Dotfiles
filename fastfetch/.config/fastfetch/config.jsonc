@@ -56,6 +56,11 @@
       "format": "{pretty-name}"
     },
     {
+      "type": "terminalfont",
+      "key": "fn",
+      "keyColor": "#F5C2E7"
+    },
+    {
       "type": "command",
       "key": "wm",
       "keyColor": "#89DCEB",
