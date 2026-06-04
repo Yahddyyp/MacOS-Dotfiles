@@ -1,0 +1,104 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "display": {
+    "key": {
+      "width": 10
+    },
+    "size": {
+      "binaryPrefix": "jedec"
+    },
+    "separator": ""
+  },
+  "logo": {
+    "type": "auto",
+    "source": "~/.config/fastfetch/logo/logo.png",
+    "width": 20,
+    "height": 14,
+    "padding": {
+      "top": 0,
+      "left": 1
+    }
+  },
+  "modules": [
+    "break",
+    {
+      "type": "host",
+      "key": "ho",
+      "keyColor": "#CBA6F7",
+      "format": "{name}"
+    },
+    {
+      "type": "os",
+      "key": "os",
+      "keyColor": "#94E2D5",
+      "format": "{name}"
+    },
+    {
+      "type": "kernel",
+      "key": "ker",
+      "keyColor": "#74C7EC"
+    },
+    {
+      "type": "packages",
+      "key": "pkgs",
+      "keyColor": "#F9E2AF"
+    },
+    {
+      "type": "shell",
+      "key": "sh",
+      "keyColor": "#F5C2E7",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "terminal",
+      "key": "ter",
+      "keyColor": "#94E2D5",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "command",
+      "key": "wm",
+      "keyColor": "#89DCEB",
+      "text": "echo 'Quartz Compositor'",
+      "format": "{1}"
+    },
+    {
+      "type": "uptime",
+      "key": "up",
+      "keyColor": "#FAB387"
+    },
+    {
+      "type": "cpu",
+      "key": "cpu",
+      "keyColor": "#CBA6F7",
+      "format": "{name}"
+    },
+    {
+      "type": "memory",
+      "key": "ram",
+      "keyColor": "#94E2D5",
+      "format": "{used} / {total}"
+    },
+    {
+      "type": "disk",
+      "key": "disk",
+      "keyColor": "#74C7EC",
+      "folders": [
+        "/"
+      ],
+      "format": "{size-used} / {size-total}"
+    },
+    {
+      "type": "command",
+      "key": "bat",
+      "keyColor": "#A6E3A1",
+      "text": "pmset -g batt | tail -1 | sed -E 's/.*\\t//; s/; */ /g; s/ present.*//' | while read p s t r; do printf \"\\033[38;2;166;227;161m%s\\033[0m %s %s %s\" \"$p\" \"$s\" \"$t\" \"$r\"; done",
+      "format": "{}"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;249;226;175m󰮯\u001b[0m \u001b[38;2;203;166;247m󰊠\u001b[0m \u001b[38;2;116;199;236m󰊠\u001b[0m \u001b[38;2;245;194;231m󰊠\u001b[0m \u001b[38;2;250;179;135m󰊠\u001b[0m \u001b[38;2;166;227;161m󰊠\u001b[0m \u001b[38;2;148;226;213m󰊠\u001b[0m \u001b[38;2;180;190;254m󰊠\u001b[0m"
+    }
+  ]
+}
