@@ -97,6 +97,7 @@ phase_backup() {
     ".config/television"
     ".config/opencode"
     ".config/eza"
+    ".gitconfig"
   )
 
   local found=0
@@ -163,6 +164,65 @@ phase_stow() {
   done
 
   ok "all dotfiles linked"
+}
+
+phase_git_config() {
+  git config --global core.pager delta
+  git config --global interactive.diffFilter "delta --color-only"
+  git config --global delta.navigate true
+  git config --global delta.line-numbers true
+  git config --global delta.dark true
+  git config --global delta.syntax-theme "Catppuccin Mocha"
+  git config --global delta.blame-palette "#1e1e2e #181825 #11111b #313244 #45475a"
+  git config --global delta.commit-decoration-style '"#6c7086" bold box ul'
+  git config --global delta.file-style '"#cdd6f4"'
+  git config --global delta.file-decoration-style '"#6c7086"'
+  git config --global delta.hunk-header-decoration-style '"#6c7086" box ul'
+  git config --global delta.hunk-header-file-style bold
+  git config --global delta.hunk-header-line-number-style 'bold "#a6adc8"'
+  git config --global delta.hunk-header-style "file line-number syntax"
+  git config --global delta.line-numbers-left-style '"#6c7086"'
+  git config --global delta.line-numbers-minus-style 'bold "#f38ba8"'
+  git config --global delta.line-numbers-plus-style 'bold "#a6e3a1"'
+  git config --global delta.line-numbers-right-style '"#6c7086"'
+  git config --global delta.line-numbers-zero-style '"#6c7086"'
+  git config --global delta.minus-emph-style 'bold syntax "#694559"'
+  git config --global delta.minus-style 'syntax "#493447"'
+  git config --global delta.plus-emph-style 'bold syntax "#4e6356"'
+  git config --global delta.plus-style 'syntax "#394545"'
+  git config --global delta.map-styles "bold purple => syntax \"#5b4e74\""
+  git config --global --add delta.map-styles "bold blue => syntax \"#445375\""
+  git config --global --add delta.map-styles "bold cyan => syntax \"#446170\""
+  git config --global --add delta.map-styles "bold yellow => syntax \"#6b635b\""
+  ok "delta configured in .gitconfig"
+
+  if git config user.name &>/dev/null && git config user.email &>/dev/null; then
+    ok "git user config found"
+    return
+  fi
+
+  local backup_file=""
+  for dir in "$HOME"/dotfiles-backup-*; do
+    if [ -f "$dir/.gitconfig" ]; then
+      backup_file="$dir/.gitconfig"
+      break
+    fi
+  done
+
+  if [ -n "$backup_file" ]; then
+    local git_name git_email
+    git_name=$(grep -A2 '\[user\]' "$backup_file" 2>/dev/null | grep 'name' | sed 's/.*= *//')
+    git_email=$(grep -A2 '\[user\]' "$backup_file" 2>/dev/null | grep 'email' | sed 's/.*= *//')
+    if [ -n "$git_name" ]; then
+      git config --global user.name "$git_name"
+    fi
+    if [ -n "$git_email" ]; then
+      git config --global user.email "$git_email"
+    fi
+    ok "restored git user from backup"
+  else
+    warn "git user.name and user.email not set - git will prompt you on first commit"
+  fi
 }
 
 phase_post_install() {
@@ -244,6 +304,8 @@ main() {
   phase_brew_bundle
   echo ""
   phase_stow
+  echo ""
+  phase_git_config
   echo ""
   phase_post_install
   echo ""
