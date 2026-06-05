@@ -83,7 +83,7 @@ And let stow create symlinks.
 mkdir -p ~/.config
 
 # Symlink all packages (using --restow to update and --no-folding to prevent directory issues)
-stow --verbose --restow --no-folding */
+stow --verbose --restow --no-folding --ignore=templates --ignore=Images */
 ```
 
 ### Using install.sh
@@ -96,7 +96,8 @@ stow --verbose --restow --no-folding */
 4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Post-install – Spicetify marketplace, removes Dock autohide delay, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
+7. Git Config – Configures delta as the git pager with Catppuccin Mocha theme via `git config --global`, and restores your git name/email from backup if needed
+8. Post-install – Spicetify marketplace, removes Dock autohide delay, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
 
 Using the install.sh:
 
