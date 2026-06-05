@@ -40,6 +40,8 @@ brew "pi-coding-agent"
 brew "opencode"
 brew "cbonsai"
 brew "eza"
+brew "ffmpeg"
+brew "sevenzip"
 brew "tree"
 
 # Casks
