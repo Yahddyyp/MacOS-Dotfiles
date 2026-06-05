@@ -1,3 +1,7 @@
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 theme:
   activeBorderColor:
     - '#cba6f7'
@@ -24,6 +28,5 @@ theme:
     - '#f38ba8'
   defaultFgColor:
     - '#cdd6f4'
-
 authorColors:
   '*': '#b4befe'
