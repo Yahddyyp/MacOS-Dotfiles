@@ -18,7 +18,7 @@ fish_add_path $HOME/.spicetify
 
 abbr --add vim nvim
 abbr --add vi nvim
-abbr --add ff 'nvim (fzf -m --preview="bat --color=always {}")'
+abbr --add ff fastfetch
 abbr --add tvf 'nvim (tv files)'
 abbr --add cd z
 abbr --add ls "eza --icons --group-directories-first"

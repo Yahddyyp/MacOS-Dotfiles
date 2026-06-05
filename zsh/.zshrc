@@ -22,7 +22,7 @@ export PATH=$PATH:$HOME/.spicetify
 
 alias vim='nvim'
 alias vi='nvim'
-alias ff='nvim $(fzf -m --preview="bat --color=always {}")'
+alias ff='fastfetch'
 alias tvf='nvim $(tv files)'
 alias cd="z"
 alias ls="eza --icons --group-directories-first"
