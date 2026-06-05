@@ -279,7 +279,7 @@ function __icon_map() {
    "DingTalk" | "钉钉" | "阿里钉")
         icon_result=":dingtalk:"
         ;;
-   "Discord" | "Discord Canary" | "Discord PTB")
+   "Discord" | "Discord Canary" | "Discord PTB" | "Vesktop")
         icon_result=":discord:"
         ;;
    "Docker" | "Docker Desktop")
