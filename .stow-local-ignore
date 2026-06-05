@@ -20,11 +20,11 @@ Wallpaper.png
 Images
 LICENSE
 \.DS_Store
+^templates
 ^/fish/.config/fish/conf.d
 \.stow-local-ignore
 \.stowrc
 .*\.local
-^templates
 \.env
 \.zcompdump.*
 \.zsh_history
