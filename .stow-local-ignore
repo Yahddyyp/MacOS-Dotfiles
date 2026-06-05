@@ -24,6 +24,7 @@ LICENSE
 \.stow-local-ignore
 \.stowrc
 .*\.local
+^templates
 \.env
 \.zcompdump.*
 \.zsh_history
