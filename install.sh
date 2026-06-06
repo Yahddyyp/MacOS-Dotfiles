@@ -171,29 +171,8 @@ phase_git_config() {
   git config --global interactive.diffFilter "delta --color-only"
   git config --global delta.navigate true
   git config --global delta.line-numbers true
-  git config --global delta.dark true
-  git config --global delta.syntax-theme "Catppuccin Mocha"
-  git config --global delta.blame-palette "#1e1e2e #181825 #11111b #313244 #45475a"
-  git config --global delta.commit-decoration-style '"#6c7086" bold box ul'
-  git config --global delta.file-style '"#cdd6f4"'
-  git config --global delta.file-decoration-style '"#6c7086"'
-  git config --global delta.hunk-header-decoration-style '"#6c7086" box ul'
-  git config --global delta.hunk-header-file-style bold
-  git config --global delta.hunk-header-line-number-style 'bold "#a6adc8"'
-  git config --global delta.hunk-header-style "file line-number syntax"
-  git config --global delta.line-numbers-left-style '"#6c7086"'
-  git config --global delta.line-numbers-minus-style 'bold "#f38ba8"'
-  git config --global delta.line-numbers-plus-style 'bold "#a6e3a1"'
-  git config --global delta.line-numbers-right-style '"#6c7086"'
-  git config --global delta.line-numbers-zero-style '"#6c7086"'
-  git config --global delta.minus-emph-style 'bold syntax "#694559"'
-  git config --global delta.minus-style 'syntax "#493447"'
-  git config --global delta.plus-emph-style 'bold syntax "#4e6356"'
-  git config --global delta.plus-style 'syntax "#394545"'
-  git config --global delta.map-styles "bold purple => syntax \"#5b4e74\""
-  git config --global --add delta.map-styles "bold blue => syntax \"#445375\""
-  git config --global --add delta.map-styles "bold cyan => syntax \"#446170\""
-  git config --global --add delta.map-styles "bold yellow => syntax \"#6b635b\""
+  git config --global delta.features "catppuccin-mocha"
+  git config --global include.path "$HOME/.config/lazygit/catppuccin-mocha-delta.gitconfig"
   ok "delta configured in .gitconfig"
 
   if git config user.name &>/dev/null && git config user.email &>/dev/null; then
@@ -227,10 +206,6 @@ phase_git_config() {
 
 phase_post_install() {
   info "running post-install tasks..."
-  sudo -v || {
-    err "sudo authentication failed"
-    return 1
-  }
 
   if [ -d "$HOME/.tmux/plugins/tpm" ]; then
     info "initializing tpm plugins..."
@@ -293,6 +268,11 @@ print_summary() {
 }
 
 main() {
+  info "this script requires sudo access for some steps (yabai, LaunchDaemon, etc.)"
+  sudo -v
+  # Keep sudo alive in the background
+  while true; do sudo -n true; sleep 60; kill -0 "$$" 2>/dev/null || exit; done 2>/dev/null &
+
   phase_prerequisites
   echo ""
   phase_clone
