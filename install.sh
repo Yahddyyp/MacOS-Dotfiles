@@ -244,6 +244,7 @@ phase_post_install() {
   ok "dock moved to the right"
 
   info "setting up yabai scripting addition LaunchDaemon..."
+  sudo -v || { err "sudo authentication failed"; return 1; }
   sudo cp "$DOTFILES_DIR/yabai/.config/yabai/com.asmvik.yabai-sa.plist" /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
   sudo launchctl unload /Library/LaunchDaemons/com.asmvik.yabai-sa.plist 2>/dev/null || true
   sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist
@@ -270,7 +271,6 @@ print_summary() {
 main() {
   info "this script requires sudo access for some steps (yabai, LaunchDaemon, etc.)"
   sudo -v
-  # Keep sudo alive in the background
   while true; do sudo -n true; sleep 60; kill -0 "$$" 2>/dev/null || exit; done 2>/dev/null &
 
   phase_prerequisites
