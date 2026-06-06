@@ -83,7 +83,7 @@ And let stow create symlinks.
 mkdir -p ~/.config
 
 # Symlink all packages (using --restow to update and --no-folding to prevent directory issues)
-stow --verbose --restow --no-folding --ignore=templates --ignore=Images */
+stow --verbose --restow --no-folding --ignore=Images */
 ```
 
 ### Using install.sh
@@ -96,7 +96,7 @@ stow --verbose --restow --no-folding --ignore=templates --ignore=Images */
 4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
 5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
 6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Git Config – Configures delta as the git pager with Catppuccin Mocha theme via `git config --global`, and restores your git name/email from backup if needed
+7. Git Config – Configures delta as the git pager with Catppuccin Mocha theme (via `include.path` + `delta.features`), and restores your git name/email from backup if needed
 8. Post-install – Spicetify marketplace, removes Dock autohide delay, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
 
 Using the install.sh:
@@ -128,7 +128,8 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
-   > **Tip:** A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`.
+   > [!TIP] 
+   > A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`.
 
 5. Start services:
 
