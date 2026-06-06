@@ -128,7 +128,7 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
-   > [!TIP] 
+   > [!HELP] 
    > A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`.
 
 5. Start services:
