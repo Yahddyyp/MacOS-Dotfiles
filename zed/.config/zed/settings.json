@@ -30,7 +30,7 @@
     "default_width": 150,
     "default_model": {
       "provider": "opencode",
-      "model": "minimax-m2.5-free",
+      "model": "free/big-pickle",
       "enable_thinking": false,
     },
     "sidebar_side": "right",
