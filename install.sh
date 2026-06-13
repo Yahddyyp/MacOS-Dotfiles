@@ -246,6 +246,15 @@ phase_post_install() {
     ok "pass-update already installed"
   fi
 
+  if command -v pinentry-mac &>/dev/null && ! grep -q "pinentry-program" "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null; then
+    info "configuring pinentry-mac for GPG..."
+    echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> "$HOME/.gnupg/gpg-agent.conf"
+    gpgconf --reload gpg-agent 2>/dev/null || true
+    ok "pinentry-mac configured"
+  elif grep -q "pinentry-program" "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null; then
+    ok "pinentry-mac already configured"
+  fi
+
   info "removing dock autohide delay..."
   defaults write com.apple.dock autohide-delay -float 0
   info "moving dock to the right..."
