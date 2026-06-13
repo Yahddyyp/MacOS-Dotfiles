@@ -112,5 +112,9 @@ if.app-id = 'com.raycast.macos'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.colliderli.iina'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'WhatsApp'
 run = 'layout floating'

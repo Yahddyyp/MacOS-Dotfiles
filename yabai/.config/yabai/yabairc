@@ -27,6 +27,7 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Shottr$" manage=off
 yabai -m rule --add app="^ProtonVPN$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^IINA$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
 
 #window opacity
