@@ -38,6 +38,9 @@
 | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Better `neofetch` |
 | [eza](https://github.com/eza-community/eza) | Cooler `ls` |
 | [bun](https://bun.sh/) | JavaScript runtime |
+| [pass](https://www.passwordstore.org/) | GPG-encrypted password manager |
+| [pass-otp](https://github.com/roddhjav/pass-otp) | OTP/two-factor codes for pass |
+| [pass-update](https://github.com/roddhjav/pass-update) | Easy password rotation for pass |
 
 ### Apps
 - **[zed](https://zed.dev/)** - Pretty good editor
