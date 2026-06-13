@@ -78,6 +78,8 @@ eval "$(zoxide init zsh)"
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 eval "$(atuin init zsh)"
 
+export GPG_TTY=$(tty)
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
