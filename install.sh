@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "fastfetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode" "eza")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "fastfetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode" "eza" "ohmyzsh")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -97,6 +97,7 @@ phase_backup() {
     ".config/television"
     ".config/opencode"
     ".config/eza"
+    ".oh-my-zsh/custom/plugins"
     ".gitconfig"
   )
 
@@ -233,6 +234,16 @@ phase_post_install() {
     info "installing gh-dash extension..."
     gh extension install --force dlvhdr/gh-dash 2>/dev/null || true
     ok "gh-dash extension installed"
+  fi
+
+  if command -v pass &>/dev/null && [ ! -f "/opt/homebrew/lib/password-store/extensions/update.bash" ]; then
+    info "installing pass-update extension..."
+    git clone https://github.com/roddhjav/pass-update.git /tmp/pass-update
+    cd /tmp/pass-update && sudo make install
+    rm -rf /tmp/pass-update
+    ok "pass-update installed"
+  elif [ -f "/opt/homebrew/lib/password-store/extensions/update.bash" ]; then
+    ok "pass-update already installed"
   fi
 
   info "removing dock autohide delay..."
