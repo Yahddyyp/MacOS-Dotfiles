@@ -22,3 +22,4 @@ __pycache__/
 .env
 *.key
 .gitconfig
+nix/secrets.nix
