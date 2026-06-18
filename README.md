@@ -89,14 +89,12 @@ stow --verbose --restow --no-folding --ignore=Images */
 
 ### Using nix
 **What it does**
-1. Installs packages — nix packages (fish, neovim, tmux, starship, lazygit, etc.) + brew packages (yabai, sketchybar, skhd, borders, etc.) + brew GUI apps (kitty, zed, obsidian, raycast, etc.) +
-    CaskaydiaCove Nerd Font + Sketchybar App Font
-2. Configures system — dock (autohide, position, size), finder (show hidden files, extensions, path bar), trackpad (tap to click), keyboard (fast repeat), dark mode, hot corner to lock screen,
-    scroll bar settings, disable quarantine warnings, accent color, battery percentage
+1. Installs packages — nix packages + brew packages + brew GUI apps + CaskaydiaCove Nerd Font + Sketchybar App Font
+2. Configures system — dock, finder, trackpad, keyboard, dark mode, hot corner to lock screen,scroll bar settings, disable quarantine warnings, accent color, battery percentage
 3. Sets up services — yabai scripting addition launchd, openssh
-4. Stows dotfiles — symlinks all config files (zsh, nvim, tmux, kitty, ghostty, sketchybar, yabai, skhd, etc.)
+4. Stows dotfiles — symlinks all config files 
 5. Configures git (makes a new .gitconfig) — delta pager, catppuccin-mocha theme, user identity from secrets
-6. Sets up GPG — pinentry-curses, cache TTL
+6. Sets up GPG (for pass) — pinentry-curses, cache TTL
 7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild
 8. Enables TouchID for sudo
 9. Power management — display sleep after 10 min
