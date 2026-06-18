@@ -30,3 +30,4 @@ LICENSE
 \.zsh_history
 \.shada
 \.python_history
+^nix
