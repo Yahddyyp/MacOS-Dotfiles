@@ -57,6 +57,7 @@ in {
     gh-dash
     television
     tailscale
+    gum
   ];
 
   #git config 
