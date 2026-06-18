@@ -18,7 +18,6 @@
 - **[starship](https://starship.rs/)** — Cross-shell prompt
 - **[kitty](https://sw.kovidgoyal.net/kitty/)** / **[ghostty](https://ghostty.org/)** — GPU-accelerated terminals
 - **[tmux](https://github.com/tmux/tmux)** — Terminal multiplexer
-
 ### CLI Tools
 | Tool | Purpose |
 |------|---------|
@@ -59,7 +58,7 @@ These are required for the icons and styling to appear correctly:
 ![Terminal Setup](Images/Cli.png)
 
 ## Installation
-### Without using install.sh (Recommended)
+### Drag and drop (Recommended)
 #### Prerequisites:
 * git
 * The tools in the Dotfiles (Duh)
@@ -88,7 +87,43 @@ mkdir -p ~/.config
 stow --verbose --restow --no-folding --ignore=Images */
 ```
 
-### Using install.sh
+### Using nix
+**What it does**
+1. Installs packages — nix packages (fish, neovim, tmux, starship, lazygit, etc.) + brew packages (yabai, sketchybar, skhd, borders, etc.) + brew GUI apps (kitty, zed, obsidian, raycast, etc.) +
+    CaskaydiaCove Nerd Font + Sketchybar App Font
+2. Configures system — dock (autohide, position, size), finder (show hidden files, extensions, path bar), trackpad (tap to click), keyboard (fast repeat), dark mode, hot corner to lock screen,
+    scroll bar settings, disable quarantine warnings, accent color, battery percentage
+3. Sets up services — yabai scripting addition launchd, openssh
+4. Stows dotfiles — symlinks all config files (zsh, nvim, tmux, kitty, ghostty, sketchybar, yabai, skhd, etc.)
+5. Configures git (makes a new .gitconfig) — delta pager, catppuccin-mocha theme, user identity from secrets
+6. Sets up GPG — pinentry-curses, cache TTL
+7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild
+8. Enables TouchID for sudo
+9. Power management — display sleep after 10 min
+
+#### Prerequisites:
+* Nix
+ ``` bash 
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+Clone the repo into a dir called dotfiles
+```bash 
+git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
+```
+
+Then setup the secrets.nix file (There is a example secrets.nix in the nix dir)
+```bash 
+cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
+# Edit secrets.nix — set your MacOS username, git name/email, and GPG key you use for signing (you can leave the git items blank)
+```
+
+Then just Build
+```bash 
+nix run nix-darwin -- switch --flake "path:$HOME/dotfiles/nix#$(whoami)"
+```
+
+### Using install.sh (discontinued and may break)
 **Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine. This also only works on apple silicon macs and requies sudo (for yabai scripting addon).
 
 **What it does (in order)**
@@ -131,7 +166,7 @@ After installation, run these:
    ```
 
 > [!TIP]
-> A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`.
+> A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`. (You don't have to do this if you used nix)
 
 5. Start services:
 
