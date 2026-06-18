@@ -21,7 +21,7 @@
 ### CLI Tools
 | Tool | Purpose |
 |------|---------|
-| [neovim](https://neovim.io/) | The best text editor that has ever lived |
+| [neovim](https://neovim.io/) | The greatest text editor that has ever lived |
 | [yazi](https://yazi-rs.github.io/) | Terminal file manager |
 | [btop](https://github.com/aristocratos/btop) | System monitor |
 | [atuin](https://atuin.sh/) | Shell history replacement |
