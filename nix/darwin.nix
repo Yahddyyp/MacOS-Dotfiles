@@ -227,7 +227,6 @@
       "latest"
       "protonvpn"
       "font-sketchybar-app-font"
-      "karabiner-elements"
     ];
   };
 
