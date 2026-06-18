@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/dotfiles-backup-$(date +%Y%m%d)"
-PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "fastfetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode" "eza" "ohmyzsh")
+PACKAGES=("zsh" "nvim" "tmux" "fish" "kitty" "ghostty" "starship" "sketchybar" "yabai" "skhd" "zed" "atuin" "btop" "yazi" "neofetch" "fastfetch" "p10k" "home" "bat" "lazygit" "sesh" "gh-dash" "aerospace" "borders" "television" "opencode" "eza" "karabiner" "ohmyzsh")
 
 info() { echo "[info] $1"; }
 ok() { echo "[ok] $1"; }
@@ -97,6 +97,7 @@ phase_backup() {
     ".config/television"
     ".config/opencode"
     ".config/eza"
+    ".config/karabiner"
     ".oh-my-zsh/custom/plugins"
     ".gitconfig"
   )
@@ -246,13 +247,17 @@ phase_post_install() {
     ok "pass-update already installed"
   fi
 
-  if command -v pinentry-mac &>/dev/null && ! grep -q "pinentry-program" "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null; then
-    info "configuring pinentry-mac for GPG..."
-    echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> "$HOME/.gnupg/gpg-agent.conf"
+  if command -v pinentry-curses &>/dev/null && ! grep -q "pinentry-program" "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null; then
+    info "configuring pinentry-curses for GPG..."
+    cat > "$HOME/.gnupg/gpg-agent.conf" << 'PINEOF'
+pinentry-program /opt/homebrew/bin/pinentry-curses
+default-cache-ttl 600
+max-cache-ttl 600
+PINEOF
     gpgconf --reload gpg-agent 2>/dev/null || true
-    ok "pinentry-mac configured"
+    ok "pinentry-curses configured"
   elif grep -q "pinentry-program" "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null; then
-    ok "pinentry-mac already configured"
+    ok "pinentry-curses already configured"
   fi
 
   info "removing dock autohide delay..."
