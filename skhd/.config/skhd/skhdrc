@@ -1,41 +1,41 @@
 ###skhd config
 ##Modifying the Layout
 #rotate layout along y axis
-shift + alt - y : yabai -m space --mirror y-axis
+shift + alt - y : /opt/homebrew/bin/yabai -m space --mirror y-axis
 
 #rotate layout along x axis
-shift + alt - r : yabai -m space --mirror x-axis
+shift + alt - r : /opt/homebrew/bin/yabai -m space --mirror x-axis
 
 #toggle window float
-ctrl + alt - t : yabai -m window --toggle float
-shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+ctrl + alt - t : /opt/homebrew/bin/yabai -m window --toggle float
+shift + alt - t : /opt/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 #focus
-alt - j : yabai -m window --focus south 
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west 
-alt - l : yabai -m window --focus east
+alt - j : /opt/homebrew/bin/yabai -m window --focus south 
+alt - k : /opt/homebrew/bin/yabai -m window --focus north
+alt - h : /opt/homebrew/bin/yabai -m window --focus west 
+alt - l : /opt/homebrew/bin/yabai -m window --focus east
 
 #open terminal
 cmd - return : open -n -a "Ghostty"
 #cmd - return : open -n -a "iterm2"
 
 # move window
-#ctrl + alt - h : yabai -m window --warp west
-#ctrl + alt - j : yabai -m window --warp south
-#ctrl + alt - k : yabai -m window --warp north
-#ctrl + alt - l : yabai -m window --warp east
-ctrl + alt - h : yabai -m window --swap west
-ctrl + alt - j : yabai -m window --swap south
-ctrl + alt - k : yabai -m window --swap north
-ctrl + alt - l : yabai -m window --swap east
-shift + alt - return : yabai -m space --balance
+#ctrl + alt - h : /opt/homebrew/bin/yabai -m window --warp west
+#ctrl + alt - j : /opt/homebrew/bin/yabai -m window --warp south
+#ctrl + alt - k : /opt/homebrew/bin/yabai -m window --warp north
+#ctrl + alt - l : /opt/homebrew/bin/yabai -m window --warp east
+ctrl + alt - h : /opt/homebrew/bin/yabai -m window --swap west
+ctrl + alt - j : /opt/homebrew/bin/yabai -m window --swap south
+ctrl + alt - k : /opt/homebrew/bin/yabai -m window --swap north
+ctrl + alt - l : /opt/homebrew/bin/yabai -m window --swap east
+shift + alt - return : /opt/homebrew/bin/yabai -m space --balance
 
 # send window to a space 
-shift + alt - 1 : yabai -m window --space 1
-shift + alt - 2 : yabai -m window --space 2
-shift + alt - 3 : yabai -m window --space 3
-shift + alt - 4 : yabai -m window --space 4
+shift + alt - 1 : /opt/homebrew/bin/yabai -m window --space 1
+shift + alt - 2 : /opt/homebrew/bin/yabai -m window --space 2
+shift + alt - 3 : /opt/homebrew/bin/yabai -m window --space 3
+shift + alt - 4 : /opt/homebrew/bin/yabai -m window --space 4
 
 #open finder
 #ctrl + alt - f : open -a "finder"
@@ -47,37 +47,38 @@ shift + alt - 4 : yabai -m window --space 4
 cmd + shift - return : open -n -a "zen"
 
 #resize window
-fn - h : yabai -m window --resize left:-50:0; \
-    yabai -m window --resize right:-50:0
-fn - j : yabai -m window --resize bottom:0:50; \
-    yabai -m window --resize top:0:50
-fn - k : yabai -m window --resize top:0:-50; \
-    yabai -m window --resize bottom:0:-50
-fn - l : yabai -m window --resize right:50:0; \
-    yabai -m window --resize left:50:0
+fn - h : /opt/homebrew/bin/yabai -m window --resize left:-50:0; \
+    /opt/homebrew/bin/yabai -m window --resize right:-50:0
+fn - j : /opt/homebrew/bin/yabai -m window --resize bottom:0:50; \
+    /opt/homebrew/bin/yabai -m window --resize top:0:50
+fn - k : /opt/homebrew/bin/yabai -m window --resize top:0:-50; \
+    /opt/homebrew/bin/yabai -m window --resize bottom:0:-50
+fn - l : /opt/homebrew/bin/yabai -m window --resize right:50:0; \
+    /opt/homebrew/bin/yabai -m window --resize left:50:0
 
 
 # Make window native fullscreen
-ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
-shift + alt - f : yabai -m window --toggle native-fullscreen
+ctrl + alt - return : /opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen
+shift + alt - f : /opt/homebrew/bin/yabai -m window --toggle native-fullscreen
 
 #rotate layout
-shift + alt - p : yabai -m space --rotate 270
-ctrl + alt - r : yabai -m space --rotate 90
+shift + alt - p : /opt/homebrew/bin/yabai -m space --rotate 270
+ctrl + alt - r : /opt/homebrew/bin/yabai -m space --rotate 90
 
 #layout 
-alt - f : yabai -m space --layout float
-alt - g : yabai -m space --layout bsp
+alt - f : /opt/homebrew/bin/yabai -m space --layout float
+alt - g : /opt/homebrew/bin/yabai -m space --layout bsp
 
 # Hyper + 1 2 3 4 to switch spaces
-ctrl + alt + shift + cmd - 1 : yabai -m space --focus 1
-ctrl + alt + shift + cmd - 2 : yabai -m space --focus 2
-ctrl + alt + shift + cmd - 3 : yabai -m space --focus 3
-ctrl + alt + shift + cmd - 4 : yabai -m space --focus 4
+ctrl + alt + shift + cmd - 1 : /opt/homebrew/bin/yabai -m space --focus 1
+ctrl + alt + shift + cmd - 2 : /opt/homebrew/bin/yabai -m space --focus 2
+ctrl + alt + shift + cmd - 3 : /opt/homebrew/bin/yabai -m space --focus 3
+ctrl + alt + shift + cmd - 4 : /opt/homebrew/bin/yabai -m space --focus 4
 
 # Layers
-ctrl + alt - o : yabai -m window --toggle layer
-ctrl + alt + shift - o : yabai -m window --layer below
+ctrl + alt - o : /opt/homebrew/bin/yabai -m window --toggle layer
+ctrl + alt + shift - o : /opt/homebrew/bin/yabai -m window --layer below
 
 # Toggle sticky
-ctrl + alt - s : yabai -m window --toggle sticky
+ctrl + alt - s : /opt/homebrew/bin/yabai -m window --toggle sticky
+# TEST: 4-modifier keybind
