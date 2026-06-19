@@ -56,6 +56,12 @@ if status is-interactive
     bind -M default k _atuin_bind_up
 end
 
+function darwin-rebuild
+    set user (whoami)
+    set flake_dir "$HOME/dotfiles/nix"
+    sudo /run/current-system/sw/bin/darwin-rebuild $argv --flake "path:$flake_dir#$user"
+end
+
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
     command yazi $argv --cwd-file="$tmp"

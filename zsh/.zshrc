@@ -98,6 +98,13 @@ eval "$(atuin init zsh)"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
+# darwin-rebuild
+darwin-rebuild() {
+  local user=$(whoami)
+  local flake_dir="$HOME/dotfiles/nix"
+  sudo /run/current-system/sw/bin/darwin-rebuild "$@" --flake "path:$flake_dir#$user"
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
