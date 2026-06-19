@@ -16,8 +16,13 @@
   };
 
   outputs = { nixpkgs, nix-darwin, home-manager, ... }: let
+    # Prefer SUDO_USER (set by sudo), fall back to USER, then secrets.nix
+    usernameFromEnv = let
+      su = builtins.getEnv "SUDO_USER";
+      u  = builtins.getEnv "USER";
+    in if su != "" then su else if u != "" then u else "";
     secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else { };
-    username = let u = builtins.getEnv "USER"; in if u != "" then u else secrets.username or "changeme";
+    username = if usernameFromEnv != "" then usernameFromEnv else secrets.username or "changeme";
     system = "aarch64-darwin";
     specialArgs = { inherit username; };
   in {

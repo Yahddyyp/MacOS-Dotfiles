@@ -234,11 +234,12 @@
   nix.gc = {
     automatic = true;
     interval = { Weekday = 0; };  # weekly (Sunday)
-    options = "--delete-generations";  # keep only the current generation, no history
+    options = "--delete-generations +2";  # keep the last 2 generations
   };
 
   nix.settings = {
     experimental-features = "nix-command flakes";
     builders-use-substitutes = true;
+    auto-optimise-store = true;
   };
 }
