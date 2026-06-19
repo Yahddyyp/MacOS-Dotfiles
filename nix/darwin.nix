@@ -231,6 +231,12 @@
   };
 
   #nix settings
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; };  # weekly (Sunday)
+    options = "--delete-generations";  # keep only the current generation, no history
+  };
+
   nix.settings = {
     experimental-features = "nix-command flakes";
     builders-use-substitutes = true;
