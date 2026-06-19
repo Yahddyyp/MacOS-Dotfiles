@@ -52,7 +52,7 @@
 
 ### Fonts
 These are required for the icons and styling to appear correctly:
-- **[Cascadia Code Nerd Font](https://github.com/microsoft/cascadia-code)** — Main terminal/coding font
+- **[CascadiaCove Nerd Font](https://github.com/eliheuer/caskaydia-cove)** — Main font
 - **[Sketchybar App Font](https://github.com/kvndrsslr/sketchybar-app-font)** — Required for Sketchybar icons
 
 ![Terminal Setup](Images/Cli.png)
