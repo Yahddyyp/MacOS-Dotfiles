@@ -71,7 +71,7 @@ in {
       };
       core = {
         editor = "nvim";
-        pager = "delta";
+        pager = "hunk pager";
       };
       credential.helper = "osxkeychain";
       interactive.diffFilter = "delta --color-only";
@@ -140,6 +140,17 @@ in {
         $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
       fi
     '';
+
+    installBabysitterForPi = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
+      if command -v pi &>/dev/null; then
+        if ! pi list 2>/dev/null | grep -q "babysitter-pi"; then
+          echo "Installing babysitter-pi for pi-coding-agent..."
+          $DRY_RUN_CMD pi install npm:@a5c-ai/babysitter-pi 2>/dev/null || true
+        fi
+      fi
+    '';
+
+
   };
 
   programs.home-manager.enable = true;

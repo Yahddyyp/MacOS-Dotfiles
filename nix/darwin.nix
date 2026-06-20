@@ -186,6 +186,7 @@
       "FelixKratz/formulae"
       "koekeishiya/formulae"
       "nikitabobko/tap"
+      "modem-dev/tap"
     ];
 
     brews = [
@@ -202,6 +203,7 @@
       "powerlevel10k"
       "tty-clock"
       "tree-sitter-cli"
+      "hunk"
     ];
 
     casks = [
