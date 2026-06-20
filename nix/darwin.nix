@@ -236,7 +236,7 @@
   nix.gc = {
     automatic = true;
     interval = { Weekday = 0; };  # weekly (Sunday)
-    options = "--delete-generations +2";  # keep the last 2 generations
+    options = "--delete-generations +3";  # keep the last 3 generations
   };
 
   nix.settings = {
