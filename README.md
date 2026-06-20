@@ -95,7 +95,7 @@ stow --verbose --restow --no-folding --ignore=Images */
 4. Stows dotfiles — symlinks all config files 
 5. Configures git (makes a new .gitconfig) — delta pager, catppuccin-mocha theme, user identity from secrets
 6. Sets up GPG (for pass) — pinentry-curses, cache TTL
-7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild
+7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild, installs babysitter for pi
 8. Enables TouchID for sudo
 9. Power management — display sleep after 10 min
 
