@@ -1,6 +1,0 @@
-require("items.spaces")
-require("items.front_app")
-require("items.calendar")
-require("items.battery")
-require("items.volume")
-require("items.nowplaying")
