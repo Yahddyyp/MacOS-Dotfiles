@@ -1,185 +1,21 @@
-PLUGIN_DIR="$CONFIG_DIR/plugins"
+#!/usr/bin/env lua
 
-sketchybar --bar position=top \
-               height=43 \
-               blur_radius=30 \
-               color=0x00000000 \
-               display=main \
-               topmost=window \
-               margin_left=8 \
-               margin_right=8 
+-- Add the config directory to Lua's module search path
+local config_dir = os.getenv("HOME") .. "/.config/sketchybar"
+package.path = package.path .. ";" .. config_dir .. "/?.lua;" .. config_dir .. "/?/init.lua"
 
-sketchybar --default \
-           animator_duration=250 \
-           padding_left=4 \
-           padding_right=4 \
-           icon.font="CaskaydiaCove Nerd Font:16.0" \
-           label.font="CaskaydiaCove Nerd Font:Bold:14.0" \
-           icon.color=0xffcba6f7 \
-           label.color=0xffcba6f7 \
-           icon.padding_left=10 \
-           icon.padding_right=4 \
-           label.padding_left=6 \
-           label.padding_right=10 \
-           background.color=0xcc1e1e2e \
-           background.border_color=0x44cba6f7 \
-           background.border_width=1 \
-           background.corner_radius=8 \
-           background.height=30 \
-           blur_radius=30
+-- Add the sketchybar module to the package cpath
+package.cpath = package.cpath .. ";"
+             .. os.getenv("HOME") .. "/.local/share/sketchybar_lua/?.so"
 
-sketchybar --add item date right \
-            --set date icon=􀧞 \
-                       icon.color=0xffcba6f7 \
-                       label.color=0xffcdd6f4 \
-                        update_freq=5 \
-                       script="$PLUGIN_DIR/calendar.sh" \
-                       popup.align=center \
-                       popup.y_offset=-2 \
-                       popup.background.color=0xcc1e1e2e \
-                       popup.background.border_color=0x44cba6f7 \
-                       popup.background.border_width=1 \
-                       popup.background.corner_radius=10 \
-popup.width=180 \
-             --subscribe date mouse.clicked \
-             --add item date.wifi popup.date \
-             --set date.wifi icon=󰤨 \
-                             icon.color=0xffcba6f7 \
-                             icon.padding_left=10 \
-                             label.color=0xffcdd6f4 \
-                             label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                             label.width=220 \
-                             label.padding_right=10 \
-                             background.drawing=off \
-             --add item date.band popup.date \
-            --set date.band icon=󰖩 \
-                            icon.color=0xffcba6f7 \
-                            icon.padding_left=10 \
-                            label.color=0xffcdd6f4 \
-                            label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                            label.width=220 \
-                            label.padding_right=10 \
-                            background.drawing=off \
-            --add item date.vpn popup.date \
-            --set date.vpn icon=󰒝 \
-                            icon.color=0xffcba6f7 \
-                            icon.padding_left=10 \
-                            label.color=0xffcdd6f4 \
-                            label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                            label.width=220 \
-label.padding_right=10 \
-                             background.drawing=off \
-             --add item date.uptime popup.date \
-             --set date.uptime icon=􀐫 \
-                             icon.color=0xffcba6f7 \
-                             icon.padding_left=10 \
-                             label.color=0xffcdd6f4 \
-                             label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
-                             label.width=220 \
-                             label.padding_right=10 \
-                             background.drawing=off \
+-- Require the sketchybar module
+sbar = require("sketchybar")
 
-sketchybar --add item battery right \
-           --set battery icon.color=0xffcba6f7 \
-                         label.color=0xffcdd6f4 \
-                         update_freq=10 \
-                         script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change mouse.clicked
+-- Bundle the entire initial configuration into a single IPC message
+sbar.begin_config()
+require("init")
+sbar.hotload(true)
+sbar.end_config()
 
-sketchybar --add item volume_icon right \
-           --set volume_icon icon.color=0xffcba6f7 \
-                         label.color=0xffcdd6f4 \
-                         script="$PLUGIN_DIR/volume.sh" \
-                         popup.align=center \
-                         popup.background.color=0xcc1e1e2e \
-                         popup.background.border_color=0x44cba6f7 \
-                         popup.background.border_width=1 \
-                         popup.background.corner_radius=6 \
-                         popup.background.height=18 \
-                         popup.y_offset=-2 \
-           --subscribe volume_icon volume_change mouse.clicked \
-             --add slider volume_slider popup.volume_icon \
-             --set volume_slider slider.width=150 \
-                                 slider.background.height=4 \
-                                 slider.background.corner_radius=2 \
-                                 slider.background.color=0xff313244 \
-                                 slider.highlight_color=0xffcba6f7 \
-                                 slider.knob=􀀁 \
-                                 background.drawing=off \
-                                 background.height=2 \
-                                 padding_left=10 \
-                                 padding_right=10 \
-                                 script="$PLUGIN_DIR/volume.sh" \
-             --subscribe volume_slider volume_change mouse.clicked mouse.entered mouse.exited
-
-source "$CONFIG_DIR/items/media.sh"
-
-# --- Space Indicators ---
-# [Yabai version] - Uncomment this and comment out the AeroSpace version below to use with Yabai
-SPACE_SIDS=(1 2 3 4 5 6 7 8 9 10)
-for sid in "${SPACE_SIDS[@]}"; do
-  sketchybar --add space space.$sid left \
-             --set space.$sid \
-                      space=$sid \
-                      icon=$sid \
-                      label.font="sketchybar-app-font:Regular:18.0" \
-                      label.padding_right=20 \
-                      label.y_offset=-2 \
-                      label.color=0xffcba6f7 \
-                      icon.color=0xffcba6f7 \
-                      background.color=0xcc1e1e2e \
-                      background.border_color=0x44cba6f7 \
-                       background.border_width=1 \
-                       click_script="yabai -m space --focus $sid" \
-                       script="$PLUGIN_DIR/space.sh"
-done
-
-# Space indicators (for aerospace)
-# SPACE_SIDS=(1 2 3 4)
-# for sid in "${SPACE_SIDS[@]}"; do
-#   sketchybar --add item space.$sid left \
-#              --set space.$sid \
-#                       icon=$sid \
-#                       label.font="sketchybar-app-font:Regular:18.0" \
-#                       label.padding_right=20 \
-#                       label.y_offset=-2 \
-#                       label.color=0xffcba6f7 \
-#                       icon.color=0xffcba6f7 \
-#                       background.color=0xcc1e1e2e \
-#                       background.border_color=0x44cba6f7 \
-#                       background.border_width=1 \
-#                       script="$PLUGIN_DIR/space.sh" \
-#                       click_script="aerospace workspace $sid" \
-#               --subscribe space.$sid aerospace_workspace_change front_app_switched
-# done
-
-sketchybar --add item space_watcher center \
-           --set space_watcher background.drawing=off \
-                                 update_freq=1 \
-                                 script="$PLUGIN_DIR/space_windows.sh" \
-           --subscribe space_watcher space_windows_change space_change
-
-sketchybar --add item front_app left \
-           --set front_app icon.font="sketchybar-app-font:Regular:18.0" \
-                           icon.color=0xffcba6f7 \
-                           label.color=0xffcdd6f4 \
-                           background.color=0xcc313244 \
-                           background.border_color=0x88cba6f7 \
-                           background.border_width=1 \
-                           script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
-
-
-# --- Yabai signals ---
-yabai -m signal --add event=window_focused action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_minimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_deminimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-
-sketchybar --update
-
-# --- AeroSpace logic ---
-# sketchybar --add event aerospace_workspace_change
-# sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
+-- Run the event loop (required for callbacks)
+sbar.event_loop()
