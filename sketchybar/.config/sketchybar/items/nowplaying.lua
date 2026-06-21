@@ -143,10 +143,15 @@ local function update_nowplaying()
 	end)
 end
 
--- Periodic check via sbar.delay (reliable, no update_freq dependency)
+local polling_active = false
+
 local function schedule_check()
-	sbar.delay(3, function()
+	if polling_active then return end
+	polling_active = true
+	local interval = (nowplaying.state ~= "stopped") and 1 or 10
+	sbar.delay(interval, function()
 		update_nowplaying()
+		polling_active = false
 		schedule_check()
 	end)
 end
@@ -163,6 +168,7 @@ local watcher = sbar.add("item", "media.watcher", {
 
 watcher:subscribe("media_change", function()
 	update_nowplaying()
+	schedule_check()
 end)
 
 update_nowplaying()

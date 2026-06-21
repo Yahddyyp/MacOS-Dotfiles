@@ -42,17 +42,6 @@ local function get_volume_icon(volume)
   return "􀊩"
 end
 
-local popup_timer = nil
-
-local function hide_popup()
-  if popup_timer then
-    sbar.delay(2000, function()
-      volume_icon:set({ popup = { drawing = false } })
-      volume_slider:set({ slider = { knob = { drawing = false } } })
-    end)
-  end
-end
-
 local function on_volume_change(env)
   local volume = tonumber(env.INFO) or 0
   local icon = get_volume_icon(volume)

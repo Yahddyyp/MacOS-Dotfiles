@@ -9,7 +9,7 @@ local date_item = sbar.add("item", "date", {
   label = {
     color = colors.text,
   },
-  update_freq = 2,
+	update_freq = 15,
   popup = {
     align = "center",
     y_offset = -2,

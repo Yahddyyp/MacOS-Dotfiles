@@ -107,8 +107,15 @@ local space_watcher = sbar.add("item", "space_watcher", {
   update_freq = 0,
 })
 
+local windows_update_pending = false
+
 space_watcher:subscribe("space_windows_change", function()
-  update_space_windows()
+  if windows_update_pending then return end
+  windows_update_pending = true
+  sbar.delay(0.3, function()
+    windows_update_pending = false
+    update_space_windows()
+  end)
 end)
 
 update_space_windows()
