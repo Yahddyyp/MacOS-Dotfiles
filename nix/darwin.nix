@@ -14,7 +14,12 @@
     HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
   };
 
-  # Ensure nix profile is in PATH for sketchybar's launchd service
+  # Symlink nix lua into homebrew's bin so sketchybar can find it via launchd PATH
+  system.activationScripts.lua-symlink = {
+    text = ''
+      ln -sf /etc/profiles/per-user/${username}/bin/lua /opt/homebrew/bin/lua
+    '';
+    deps = [];
   };
 
   users.users.${username} = {
