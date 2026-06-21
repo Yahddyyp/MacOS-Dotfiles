@@ -145,7 +145,7 @@ end
 
 -- Periodic check via sbar.delay (reliable, no update_freq dependency)
 local function schedule_check()
-	sbar.delay(2, function()
+	sbar.delay(3, function()
 		update_nowplaying()
 		schedule_check()
 	end)
