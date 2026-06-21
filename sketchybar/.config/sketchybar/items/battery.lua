@@ -8,7 +8,7 @@ local battery = sbar.add("item", "battery", {
 	label = {
 		color = colors.text,
 	},
-	update_freq = 0,
+	update_freq = 10,
 	popup = {
 		align = "center",
 		y_offset = -2,
@@ -103,6 +103,7 @@ local function update_battery()
 end
 
 battery:subscribe({ "system_woke", "power_source_change" }, update_battery)
+battery:subscribe("routine", update_battery)
 
 battery:subscribe("mouse.entered", function()
 	sbar.animate("tanh", 5, function()
