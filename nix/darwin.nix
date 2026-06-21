@@ -14,6 +14,9 @@
     HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
   };
 
+  # Ensure nix profile is in PATH for sketchybar's launchd service
+  };
+
   users.users.${username} = {
     shell = pkgs.zsh;
   };
@@ -204,6 +207,7 @@
       "tty-clock"
       "tree-sitter-cli"
       "hunk"
+      "nowplaying-cli"
     ];
 
     casks = [
