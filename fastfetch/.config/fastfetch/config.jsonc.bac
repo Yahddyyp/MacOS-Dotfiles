@@ -10,7 +10,7 @@
     "separator": ""
   },
   "logo": {
-    "type": "auto",
+    "type": "kitty-direct",
     "source": "~/.config/fastfetch/logo/logo.png",
     "width": 20,
     "height": 14,
@@ -61,11 +61,9 @@
       "keyColor": "#F5C2E7"
     },
     {
-      "type": "command",
+      "type": "wm",
       "key": "wm",
       "keyColor": "#89DCEB",
-      "text": "echo 'Quartz Compositor'",
-      "format": "{1}"
     },
     {
       "type": "uptime",

@@ -10,8 +10,8 @@
     "separator": ""
   },
   "logo": {
-    "type": "auto",
-    "source": "/Users/sanjayjain/.config/fastfetch/logo/emiilia 3 bg removed.png",
+    "type": "kitty-direct",
+    "source": "~/.config/fastfetch/logo/logo3.png",
     "width": 28,
     "height": 14,
     "padding": {
@@ -61,11 +61,9 @@
       "keyColor": "#F5C2E7"
     },
     {
-      "type": "command",
+      "type": "wm",
       "key": "wm",
       "keyColor": "#89DCEB",
-      "text": "echo 'Quartz Compositor'",
-      "format": "{1}"
     },
     {
       "type": "uptime",
