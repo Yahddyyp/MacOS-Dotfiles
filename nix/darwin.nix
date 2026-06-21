@@ -14,14 +14,6 @@
     HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
   };
 
-  # Symlink nix lua into homebrew's bin so sketchybar can find it via launchd PATH
-  system.activationScripts.lua-symlink = {
-    text = ''
-      ln -sf /etc/profiles/per-user/${username}/bin/lua /opt/homebrew/bin/lua
-    '';
-    deps = [];
-  };
-
   users.users.${username} = {
     shell = pkgs.zsh;
   };
@@ -212,7 +204,6 @@
       "tty-clock"
       "tree-sitter-cli"
       "hunk"
-      "nowplaying-cli"
     ];
 
     casks = [

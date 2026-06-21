@@ -52,8 +52,7 @@ in {
     opencode
     pi-coding-agent
     mole
-    lua5_5          
-    sbarlua         
+    lua
     spicetify-cli
     gh-dash
     television
@@ -83,11 +82,6 @@ in {
       };
       include.path = "$HOME/.config/lazygit/catppuccin-mocha-delta.gitconfig";
     };
-  };
-
-  # SbarLua: symlink the .so so sketchybarrc can find it 
-  home.file.".local/share/sketchybar_lua/sketchybar.so" = {
-    source = "${pkgs.sbarlua}/lib/lua/5.5/sketchybar.so";
   };
 
   #gpg agent config
