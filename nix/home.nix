@@ -13,7 +13,6 @@ in {
   home.packages = with pkgs; [
     fish
     tmux
-    kitty
     neovim
     starship
     bun
