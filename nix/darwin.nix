@@ -42,6 +42,7 @@
     _FXShowPosixPathInTitle = false;
     _FXSortFoldersFirst = true;
     CreateDesktop = true;
+    ShowHardDrivesOnDesktop = false;
     ShowExternalHardDrivesOnDesktop = false;
     FXEnableExtensionChangeWarning = false;
     FXRemoveOldTrashItems = true;
@@ -49,9 +50,10 @@
 
   #WM settings
   system.defaults.WindowManager = {
-    EnableStandardClickToShowDesktop = false;
-    GloballyEnabled = false;
-    StandardHideDesktopIcons = true;
+    EnableStandardClickToShowDesktop = false;  
+    GloballyEnabled = false;                     
+    StandardHideDesktopIcons = true;              
+    HideDesktop = true;                          
   };
 
   #Trackpad settings
@@ -62,7 +64,7 @@
     SecondClickThreshold = 2;
   };
 
-  #Some otheer settings
+  #Some other settings
   system.defaults.NSGlobalDomain = {
     KeyRepeat = 2;
     InitialKeyRepeat = 15;
@@ -97,8 +99,6 @@
         AppleScrollerPagingBehavior = true;
         AppleWidgetStyle = "automatic";
       };
-      # bottom-right hot corner: Hyper (⌃⌥⇧⌘) + corner -> Lock Screen
-      # modifier = 131072(shift) + 262144(ctrl) + 524288(alt) + 1048576(cmd) = 1966080
       "com.apple.dock" = {
         wvous-br-corner = 13;
         wvous-br-modifier = 1966080;
@@ -237,6 +237,15 @@
   system.activationScripts.defaultApps = {
     deps = [ "homebrew-install" ];
     text = ''
+    # Disable ⌘Space
+    for user_home in /Users/${username}; do
+      plist="$user_home/Library/Preferences/com.apple.symbolichotkeys.plist"
+      if [ -f "$plist" ]; then
+        /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" "$plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" "$plist"
+        /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:65:enabled false" "$plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:65:enabled bool false" "$plist"
+      fi
+    done
+
     # Default browser
     duti -s app.zen-browser.zen public.html all
     duti -s app.zen-browser.zen http all
