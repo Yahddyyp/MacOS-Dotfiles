@@ -205,6 +205,7 @@
       "tty-clock"
       "tree-sitter-cli"
       "hunk"
+      "duti"
     ];
 
     casks = [
@@ -231,6 +232,55 @@
       "protonvpn"
       "font-sketchybar-app-font"
     ];
+  };
+
+  system.activationScripts.defaultApps = {
+    deps = [ "homebrew-install" ];
+    text = ''
+    # Default browser
+    duti -s app.zen-browser.zen public.html all
+    duti -s app.zen-browser.zen http all
+    duti -s app.zen-browser.zen https all
+
+    # Default video player
+    duti -s com.colliderli.iina .mp4 all
+    duti -s com.colliderli.iina .mkv all
+    duti -s com.colliderli.iina .mov all
+    duti -s com.colliderli.iina .avi all
+    duti -s com.colliderli.iina .webm all
+    duti -s com.colliderli.iina .wmv all
+
+    # IINA
+    defaults write com.colliderli.iina resizeWindowTiming -int 0
+
+    # Default text editor
+    duti -s dev.zed.Zed .txt all
+    duti -s dev.zed.Zed .md all
+    duti -s dev.zed.Zed .json all
+    duti -s dev.zed.Zed .yaml all
+    duti -s dev.zed.Zed .yml all
+    duti -s dev.zed.Zed .toml all
+    duti -s dev.zed.Zed .xml all
+    duti -s dev.zed.Zed .csv all
+    duti -s dev.zed.Zed .env all
+    duti -s dev.zed.Zed .sh all
+    duti -s dev.zed.Zed .zsh all
+    duti -s dev.zed.Zed .fish all
+    duti -s dev.zed.Zed .py all
+    duti -s dev.zed.Zed .js all
+    duti -s dev.zed.Zed .ts all
+    duti -s dev.zed.Zed .jsx all
+    duti -s dev.zed.Zed .tsx all
+    duti -s dev.zed.Zed .css all
+    duti -s dev.zed.Zed .scss all
+    duti -s dev.zed.Zed .html all
+    duti -s dev.zed.Zed .nix all
+    duti -s dev.zed.Zed .lua all
+    duti -s dev.zed.Zed .rb all
+    duti -s dev.zed.Zed .rs all
+    duti -s dev.zed.Zed .go all
+    duti -s dev.zed.Zed .swift all
+  '';
   };
 
   #nix settings
