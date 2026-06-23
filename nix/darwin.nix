@@ -39,9 +39,10 @@
     ShowStatusBar = true;
     FXDefaultSearchScope = "SCcf";
     QuitMenuItem = true;
-    _FXShowPosixPathInTitle = true;
+    _FXShowPosixPathInTitle = false;
     _FXSortFoldersFirst = true;
     CreateDesktop = true;
+    ShowExternalHardDrivesOnDesktop = false;
     FXEnableExtensionChangeWarning = false;
     FXRemoveOldTrashItems = true;
   };
