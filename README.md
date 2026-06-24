@@ -84,7 +84,7 @@ And let stow create symlinks.
 mkdir -p ~/.config
 
 # Symlink all packages (using --restow to update and --no-folding to prevent directory issues)
-stow --verbose --restow --no-folding --ignore=Images */
+stow --verbose --restow --no-folding --ignore=Images --ignore=nix */
 ```
 
 ### Using nix
