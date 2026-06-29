@@ -246,6 +246,9 @@
       fi
     done
 
+    # Set accent highlight color 
+    defaults write NSGlobalDomain AppleHighlightColor -string "0.796078 0.650980 0.968627"
+
     # Default browser
     duti -s app.zen-browser.zen public.html all
     duti -s app.zen-browser.zen http all
