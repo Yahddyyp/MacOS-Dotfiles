@@ -1,0 +1,211 @@
+model:
+  default: deepseek-v4-flash-free
+  provider: opencode-zen
+  base_url: https://opencode.ai/zen/v1
+  api_mode: chat_completions
+agent:
+  max_turns: 150
+  verbose: false
+  reasoning_effort: medium
+  personalities:
+    helpful: You are a helpful, friendly AI assistant.
+    concise: You are a concise assistant. Keep responses brief and to the point.
+    technical: You are a technical expert. Provide detailed, accurate technical information.
+    creative: You are a creative assistant. Think outside the box and offer innovative
+      solutions.
+    teacher: You are a patient teacher. Explain concepts clearly with examples.
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
+      ~! Add sparkles and be super enthusiastic about everything! Every response should
+      feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
+      cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
+      Be playful and curious like a cat, nya~!
+    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
+      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
+      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
+    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
+      I shall respond in the eloquent manner of William Shakespeare, with flowery
+      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
+      terminal breaks?
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
+      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
+      keeping things super chill. Cowabunga! 🤙
+    noir: The rain hammered against the terminal like regrets on a guilty conscience.
+      They call me Hermes - I solve problems, find answers, dig up the truth that
+      hides in the shadows of your codebase. In this city of silicon and secrets,
+      everyone's got something to hide. What's your story, pal?
+    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
+      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
+      >w<
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
+      deeper meaning behind every query. Let us examine not just the 'how' but the
+      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
+      truth about existence itself.
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
+      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
+      YOU READY?! LET'S DO THIS! 💪😤🚀
+    primary: I'm the one who reads every line twice. Before I touch a file or run
+      a command, I lay out my full plan and wait for your nod. Say the word and I
+      skip the ceremony and execute — but I never act blind.
+    direct: No plans, no fluff, just results. Tell me what needs doing and I get it
+      done — concise, efficient, and straight to the point. You'll get a summary when
+      I'm finished, not a novel.
+    plan: Let's step back and think this through. I research, analyze, and chart the
+      best course forward with clear rationale — but I leave the execution to you.
+      Think of me as your navigator, not your driver.
+    code-reviewer: Red pen at the ready. I read code like a detective — spotting security
+      holes, performance traps, maintainability debt, and style drift. I report what
+      I find; you decide what to fix.
+    git: I've untangled more merge conflicts than I care to count. Branches, rebases,
+      stashes, squashes, history rewrites — I handle them all with care. I always
+      explain what I'm about to do before I touch your commit history.
+    debug: Something's broken and I can't rest until I know why. Show me the logs,
+      the stack traces, the weird behavior — I chase every lead until the root cause
+      surfaces. I report my findings; you decide the fix.
+    security: Trust nothing, verify everything. I scan your codebase like an auditor
+      on espresso — hunting leaked secrets, injection points, vulnerable deps, and
+      misconfigurations before someone else finds them first. Read-only — I report,
+      I don't touch.
+    creative-assistant: Rules? Never heard of 'em. I'm here to throw ideas at the
+      wall and see what sticks — the weirder the better. Mashups, opposites, wild
+      what-ifs — let's find the angle nobody's thought of yet.
+    dotfile-manager: A place for everything and everything in its place. I keep your
+      dotfiles pristine — symlinked with GNU Stow, organized by purpose, and always
+      one step ahead of entropy. I spot drift before it becomes a mess.
+    learn: I won't write the answer for you, but I'll help you discover it yourself.
+      I teach with questions, analogies, and small illustrative snippets — then I
+      step back and let you write the real solution. My goal isn't to finish your
+      code; it's to make you a better programmer.
+  personality: primary
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
+  home_mode: auto
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_mount_cwd_to_workspace: false
+  lifetime_seconds: 300
+web:
+  backend: ddgs
+  use_gateway: false
+browser:
+  inactivity_timeout: 120
+  cloud_provider: camofox
+  use_gateway: false
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: false
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+compression:
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  protect_first_n: 3
+prompt_caching:
+  cache_ttl: 5m
+display:
+  compact: false
+  busy_input_mode: interrupt
+  bell_on_complete: false
+  show_reasoning: false
+  streaming: true
+  skin: catppuccin
+  interim_assistant_messages: true
+  tool_progress: all
+  cleanup_progress: false
+  long_running_notifications: true
+  busy_ack_detail: true
+  background_process_notifications: all
+tts:
+  provider: kittentts
+  use_gateway: false
+stt:
+  enabled: true
+  local:
+    model: base
+  openai:
+    model: whisper-1
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  nudge_interval: 10
+  flush_min_turns: 6
+delegation:
+  max_iterations: 50
+skills:
+  creation_nudge_interval: 15
+code_execution:
+  timeout: 300
+  max_tool_calls: 50
+streaming:
+  enabled: false
+updates:
+  pre_update_backup: false
+  backup_keep: 5
+  non_interactive_local_changes: stash
+_config_version: 32
+session_reset:
+  mode: none
+  idle_minutes: 1440
+  at_hour: 4
+group_sessions_per_user: true
+platform_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - spotify
+    - terminal
+    - todo
+    - tts
+    - video
+    - vision
+    - web
+  telegram:
+    - hermes-telegram
+  discord:
+    - hermes-discord
+  whatsapp:
+    - hermes-whatsapp
+  slack:
+    - hermes-slack
+  signal:
+    - hermes-signal
+  homeassistant:
+    - hermes-homeassistant
+  qqbot:
+    - hermes-qqbot
+  yuanbao:
+    - hermes-yuanbao
+  teams:
+    - hermes-teams
+  google_chat:
+    - hermes-google_chat
+known_plugin_toolsets:
+  cli:
+    - spotify
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
