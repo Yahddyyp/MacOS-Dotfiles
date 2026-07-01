@@ -206,6 +206,7 @@
       "tree-sitter-cli"
       "hunk"
       "duti"
+      "mole"
     ];
 
     casks = [
