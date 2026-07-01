@@ -24,7 +24,7 @@ __pycache__/
 .gitconfig
 nix/secrets.nix
 
-hermes/.hermes/memories/
+**/memories/
 hermes/.hermes/sessions/
 hermes/.hermes/cron/
 hermes/.hermes/logs/
@@ -51,4 +51,6 @@ hermes/.hermes/pairing/
 hermes/.hermes/platforms/
 hermes/.hermes/gateway/
 hermes/.hermes/hermes-agent/
+**/MEMORY.md
+**/memory.md
 
