@@ -147,14 +147,6 @@ in {
         fi
       fi
     '';
-
-    installHermes = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
-      if ! command -v hermes &>/dev/null; then
-        echo "Installing Hermes Agent..."
-        $DRY_RUN_CMD bash -c "$(curl -fsSL https://hermes-agent.nousresearch.com/install.sh)"
-      fi
-    '';
-
   };
 
   programs.home-manager.enable = true;
