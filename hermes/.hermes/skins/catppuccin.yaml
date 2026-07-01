@@ -1,0 +1,125 @@
+# Catppuccin (Mocha) — soothing pastel theme inspired by the beloved Catppuccin
+# palette. Mauves, pinks, peaches and lavenders on a warm dark base, with a
+# little ASCII cat curled up in the banner. Requested via Discord.
+
+name: catppuccin
+description: Catppuccin Mocha — soothing pastels (mauve, pink, peach, lavender) on a warm dark base, with a little ASCII cat in the banner
+
+colors:
+  # Banner — mauve border, pink/peach accents on the warm Mocha base
+  banner_border: "#cba6f7"   # mauve
+  banner_title:  "#f5c2e7"   # pink
+  banner_accent: "#fab387"   # peach
+  banner_dim:    "#9399b2"   # overlay2
+  banner_text:   "#cdd6f4"   # text
+
+  # UI
+  ui_accent: "#cba6f7"       # mauve
+  ui_label:  "#89dceb"       # sky
+  ui_ok:     "#a6e3a1"       # green
+  ui_error:  "#f38ba8"       # red
+  ui_warn:   "#f9e2af"       # yellow
+
+  # Input / output
+  prompt:          "#cdd6f4" # text
+  input_rule:      "#45475a" # surface1
+  response_border: "#b4befe" # lavender
+
+  # Status bar (uses mantle as the bar bg)
+  status_bar_bg:       "#181825" # mantle
+  status_bar_text:     "#cdd6f4" # text
+  status_bar_strong:   "#f5c2e7" # pink
+  status_bar_dim:      "#7f849c" # overlay1
+  status_bar_good:     "#a6e3a1" # green
+  status_bar_warn:     "#f9e2af" # yellow
+  status_bar_bad:      "#fab387" # peach
+  status_bar_critical: "#f38ba8" # red
+
+  # Voice / completion menus
+  voice_status_bg:                "#181825" # mantle
+  completion_menu_bg:             "#1e1e2e" # base
+  completion_menu_current_bg:     "#45475a" # surface1
+  completion_menu_meta_bg:        "#181825" # mantle
+  completion_menu_meta_current_bg: "#585b70" # surface2
+
+  # Session
+  session_label:  "#f5c2e7" # pink
+  session_border: "#585b70" # surface2
+
+spinner:
+  waiting_faces:
+    - "(=^･ω･^=)"
+    - "(=^･ｪ･^=)"
+    - "(=ↀωↀ=)"
+    - "(=^‥^=)"
+    - "(=^･^=)"
+  thinking_faces:
+    - "(=⌒‿‿⌒=)"
+    - "(=^･ω･^=)"
+    - "(=^‥^=)"
+    - "(=ↀωↀ=)"
+    - "(=ＴェＴ=)"
+  thinking_verbs:
+    - "purring through it"
+    - "kneading the problem"
+    - "pouncing on tokens"
+    - "chasing the cursor"
+    - "napping on the warm bytes"
+    - "stretching"
+    - "watching the birds"
+    - "untangling yarn"
+  wings:
+    - ["⟪🐾", "🐾⟫"]
+    - ["⟪✦", "✦⟫"]
+    - ["⟪♡", "♡⟫"]
+    - ["⟪=^=", "=^=⟫"]
+
+branding:
+  agent_name: "Catppuccin Agent"
+  welcome: "[#f5c2e7]Mrrrp.[/] [#cdd6f4]The cat is awake.[/] [#9399b2]Type your message or[/] [#cba6f7]/help[/] [#9399b2]for commands.[/]"
+  goodbye: "The cat curls up and goes to sleep. Mrrr... zzz 🐾"
+  response_label: " 🐾 Catppuccin "
+  prompt_symbol: "🐾 ❯ "
+  help_header: "(=^･ω･^=) Available Commands"
+
+tool_prefix: "┊"
+
+tool_emojis:
+  terminal: "🐾"
+  web_search: "🔭"
+  web_fetch: "🐟"
+  read_file: "📖"
+  write_file: "✎"
+  patch: "🩹"
+  search_files: "🔍"
+  execute_code: "⚙"
+  browser_navigate: "🧭"
+  delegate_task: "🐈"
+  mixture_of_agents: "🐾"
+  memory: "🧶"
+  clarify: "?"
+  cronjob: "↻"
+  process: "⚙"
+  todo: "☐"
+  skill_view: "🐈‍⬛"
+  skills_list: "🧶"
+  text_to_speech: "🔔"
+  vision_analyze: "👁"
+
+banner_logo: |
+  [#cba6f7] ██████╗ █████╗ ████████╗██████╗ ██████╗ ██╗   ██╗ ██████╗ ██████╗██╗███╗   ██╗[/]
+  [#f5c2e7]██╔════╝██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██║   ██║██╔════╝██╔════╝██║████╗  ██║[/]
+  [#fab387]██║     ███████║   ██║   ██████╔╝██████╔╝██║   ██║██║     ██║     ██║██╔██╗ ██║[/]
+  [#f9e2af]██║     ██╔══██║   ██║   ██╔═══╝ ██╔═══╝ ██║   ██║██║     ██║     ██║██║╚██╗██║[/]
+  [#a6e3a1]╚██████╗██║  ██║   ██║   ██║     ██║     ╚██████╔╝╚██████╗╚██████╗██║██║ ╚████║[/]
+  [#94e2d5] ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝╚═╝╚═╝  ╚═══╝[/]
+  [#b4befe]                                   M O C H A                                    [/]
+  [bold #f5c2e7]                                🐾[/] [bold #cba6f7]A G E N T[/] [bold #f5c2e7]🐾                                 [/]
+
+banner_hero: |
+  [#cba6f7]       _._     _,-'""`-._    [/]
+  [#f5c2e7]      (,-.`._,'(       |\`-/|[/]
+  [#fab387]          `-.-' \ )-`( , o o)[/]
+  [#f9e2af]                `-    \`_`"'-[/]
+  [#9399b2]                             [/]
+  [bold #f5c2e7]🐾[/] [bold #cba6f7]C A T P P U C C I N[/] [bold #f5c2e7]🐾[/]
