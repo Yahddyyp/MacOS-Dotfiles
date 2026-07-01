@@ -112,8 +112,8 @@ git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 
 Then setup the secrets.nix file (There is a example secrets.nix in the nix dir)
 ```bash 
-cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
 # Edit secrets.nix — set your MacOS username, git name/email, and GPG key you use for signing (you can leave the git items blank)
+cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
 ```
 
 Then just Build
