@@ -37,7 +37,7 @@ in {
     dust
     gdu
     ouch
-    _7zz
+    _7zz          
     ffmpeg
     imagemagick
     jq
@@ -95,13 +95,13 @@ in {
   #Extra stuff
   home.activation = {
     restowDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      echo "Stowing dotfiles from ${dotfilesDir}..."
+      $DRY_RUN_CMD echo "Stowing dotfiles from ${dotfilesDir}..."
       $DRY_RUN_CMD bash -c 'cd ${dotfilesDir} && find . -maxdepth 1 -type d ! -name . ! -name Images ! -name nix -exec stow --restow --no-folding --target="$HOME" {} ;' 2>/dev/null || true
     '';
 
     installOhMyZsh = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if [ ! -d "$HOME/.oh-my-zsh" ]; then
-        echo "Installing oh-my-zsh..."
+        $DRY_RUN_CMD echo "Installing oh-my-zsh..."
         export CHSH=no RUNZSH=no
         $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       fi
@@ -116,7 +116,7 @@ in {
     installGhDash = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v gh &>/dev/null; then
         if ! gh extension list 2>/dev/null | grep -q "gh-dash"; then
-          echo "Installing gh-dash extension..."
+          $DRY_RUN_CMD echo "Installing gh-dash extension..."
           $DRY_RUN_CMD gh extension install dlvhdr/gh-dash
         fi
       fi
@@ -124,7 +124,7 @@ in {
 
     rebuildBatCache = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v bat &>/dev/null; then
-        echo "Rebuilding bat cache..."
+        $DRY_RUN_CMD echo "Rebuilding bat cache..."
         $DRY_RUN_CMD bat cache --build 2>/dev/null || true
       fi
     '';
@@ -132,7 +132,7 @@ in {
     installSpicetifyMarketplace = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v spicetify &>/dev/null; then
         if [ ! -f "$HOME/.config/spicetify/Marketplace" ]; then
-          echo "Installing spicetify marketplace..."
+          $DRY_RUN_CMD echo "Installing spicetify marketplace..."
           $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh)"
         fi
         $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
@@ -142,7 +142,7 @@ in {
     installBabysitterForPi = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v pi &>/dev/null; then
         if ! pi list 2>/dev/null | grep -q "babysitter-pi"; then
-          echo "Installing babysitter-pi for pi-coding-agent..."
+          $DRY_RUN_CMD echo "Installing babysitter-pi for pi-coding-agent..."
           $DRY_RUN_CMD pi install npm:@a5c-ai/babysitter-pi 2>/dev/null || true
         fi
       fi
