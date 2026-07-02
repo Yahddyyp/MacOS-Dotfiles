@@ -18,6 +18,7 @@ on-focus-changed = [
     'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
 ]
 automatically-unhide-macos-hidden-apps = false
+focus-follows-mouse.enabled = true
 
 persistent-workspaces = ["1", "2", "3", "4"]
 
