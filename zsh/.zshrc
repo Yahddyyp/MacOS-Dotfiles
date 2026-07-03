@@ -95,6 +95,10 @@ eval "$(zoxide init zsh)"
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 eval "$(atuin init zsh)"
 
+bindkey -M emacs '^R' atuin-search
+bindkey -M viins '^R' atuin-search-viins
+bindkey -M vicmd '^R' atuin-search-vicmd
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
