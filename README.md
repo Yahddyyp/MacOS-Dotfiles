@@ -116,7 +116,7 @@ Then setup the secrets.nix file (There is a example secrets.nix in the nix dir)
 cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
 ```
 
-Then just Build
+Apply the configuration
 ```bash 
 nix run nix-darwin -- switch --flake "path:$HOME/dotfiles/nix#$(whoami)"
 ```
