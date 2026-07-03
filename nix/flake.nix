@@ -16,7 +16,6 @@
   };
 
   outputs = { nixpkgs, nix-darwin, home-manager, ... }: let
-    # Prefer SUDO_USER (set by sudo), fall back to USER, then secrets.nix
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
