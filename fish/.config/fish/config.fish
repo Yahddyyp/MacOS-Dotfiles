@@ -1,6 +1,8 @@
 # Homebrew PATH (must be before any Homebrew-installed tools)
 fish_add_path /opt/homebrew/bin
 
+fish_config theme choose catppuccin-mocha --color-theme=dark
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
