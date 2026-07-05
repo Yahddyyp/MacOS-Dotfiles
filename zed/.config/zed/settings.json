@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "disable_ai": false,
+  "disable_ai": true,
   "proxy": "",
   "ui_font_family": "CaskaydiaCove Nerd Font",
   "agent_ui_font_size": 12.0,
@@ -16,9 +16,17 @@
   },
   "restore_on_startup": "launchpad",
   "agent_servers": {
+    "pi-acp": {
+      "default_config_options": {
+        "model": "opencode/big-pickle"
+      },
+      "type": "registry"
+    },
     "opencode": {
       "default_config_options": {
-        "mode": "Primary"
+        "effort": "high",
+        "model": "opencode/deepseek-v4-flash-free",
+        "mode": "direct"
       },
       "type": "registry",
     },
