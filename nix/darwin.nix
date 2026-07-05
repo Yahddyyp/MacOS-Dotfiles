@@ -207,6 +207,8 @@
       "hunk"
       "duti"
       "mole"
+      "tailscale"
+      "carapace"
     ];
 
     casks = [

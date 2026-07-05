@@ -54,8 +54,8 @@ in {
     spicetify-cli
     gh-dash
     television
-    tailscale
     gum
+    nushell
   ];
 
   #git config 
@@ -144,6 +144,19 @@ in {
         if ! pi list 2>/dev/null | grep -q "babysitter-pi"; then
           $DRY_RUN_CMD echo "Installing babysitter-pi for pi-coding-agent..."
           $DRY_RUN_CMD pi install npm:@a5c-ai/babysitter-pi 2>/dev/null || true
+        fi
+      fi
+    '';
+
+    installFisher = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
+      FISH="$HOME/.nix-profile/bin/fish"
+      if [ ! -x "$FISH" ]; then
+        FISH="/etc/profiles/per-user/$USER/bin/fish"
+      fi
+      if [ -x "$FISH" ]; then
+        if ! "$FISH" -c "type -q fisher" 2>/dev/null; then
+          $DRY_RUN_CMD echo "Installing fisher fish plugin manager..."
+          $DRY_RUN_CMD "$FISH" -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher" || true
         fi
       fi
     '';
