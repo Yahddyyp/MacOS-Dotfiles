@@ -86,25 +86,25 @@ tool_prefix: "┊"
 
 tool_emojis:
   terminal: "🐾"
-  web_search: "🔭"
-  web_fetch: "🐟"
-  read_file: "📖"
+  web_search: "◎"
+  web_fetch: "⇩"
+  read_file: "≡"
   write_file: "✎"
-  patch: "🩹"
-  search_files: "🔍"
-  execute_code: "⚙"
-  browser_navigate: "🧭"
-  delegate_task: "🐈"
+  patch: "✒"
+  search_files: "◎"
+  execute_code: "▶"
+  browser_navigate: "⛓"
+  delegate_task: "◌"
   mixture_of_agents: "🐾"
-  memory: "🧶"
-  clarify: "?"
-  cronjob: "↻"
-  process: "⚙"
+  memory: "◇"
+  clarify: "○"
+  cronjob: "◷"
+  process: "⬡"
   todo: "☐"
-  skill_view: "🐈‍⬛"
-  skills_list: "🧶"
-  text_to_speech: "🔔"
-  vision_analyze: "👁"
+  skill_view: "◈"
+  skills_list: "☰"
+  text_to_speech: "♫"
+  vision_analyze: "◉"
 
 banner_logo: |
   [#cba6f7] ██████╗ █████╗ ████████╗██████╗ ██████╗ ██╗   ██╗ ██████╗ ██████╗██╗███╗   ██╗[/]
@@ -117,9 +117,9 @@ banner_logo: |
   [bold #f5c2e7]                                🐾[/] [bold #cba6f7]A G E N T[/] [bold #f5c2e7]🐾                                 [/]
 
 banner_hero: |
-  [#cba6f7]       _._     _,-'""`-._    [/]
+  [#cba6f7]       _._     _,-'""`-._    [/]
   [#f5c2e7]      (,-.`._,'(       |\`-/|[/]
   [#fab387]          `-.-' \ )-`( , o o)[/]
   [#f9e2af]                `-    \`_`"'-[/]
-  [#9399b2]                             [/]
+  [#9399b2]                             [/]
   [bold #f5c2e7]🐾[/] [bold #cba6f7]C A T P P U C C I N[/] [bold #f5c2e7]🐾[/]
