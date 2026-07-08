@@ -184,4 +184,3 @@ After installation, run these:
 
 <p align="center">Made with 💜 by Yahddyyp</p>
 
-# E
