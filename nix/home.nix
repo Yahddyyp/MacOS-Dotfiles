@@ -142,14 +142,6 @@ in {
       fi
     '';
 
-    installBabysitterForPi = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
-      if command -v pi &>/dev/null; then
-        if ! pi list 2>/dev/null | grep -q "babysitter-pi"; then
-          $DRY_RUN_CMD pi install npm:@a5c-ai/babysitter-pi 2>/dev/null || true
-        fi
-      fi
-    '';
-
     installFisher = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       FISH="$HOME/.nix-profile/bin/fish"
       if [ ! -x "$FISH" ]; then
