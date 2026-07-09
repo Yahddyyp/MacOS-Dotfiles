@@ -57,37 +57,14 @@ These are required for the icons and styling to appear correctly:
 
 ![Terminal Setup](Images/Cli.png)
 
-## Installation
-### Drag and drop (Recommended)
-#### Prerequisites:
-* git
-* The tools in the Dotfiles (Duh)
-
-Clone the repo wherever you like.
-
-```bash
-git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git && cd MacOS-Dotfiles
+## Installation (Using nix)
+### Prerequisites:
+* Nix
+ ``` bash 
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-Now move them into their respective folders.
 
-But you can move them in using stow as well:
-
-**Install Stow** (With Homebrew)
-```bash 
-brew install stow 
-```
-
-And let stow create symlinks.
-```bash 
-# Ensure the target config directory exists
-mkdir -p ~/.config
-
-# Symlink all packages (using --restow to update and --no-folding to prevent directory issues)
-stow --verbose --restow --no-folding --ignore=Images --ignore=nix */
-```
-
-### Using nix
 **What it does**
 1. Installs packages — nix packages + brew packages + brew GUI apps + CaskaydiaCove Nerd Font + Sketchybar App Font
 2. Configures system — dock, finder, trackpad, keyboard, dark mode, hot corner to lock screen,scroll bar settings, disable quarantine warnings, accent color, battery percentage
@@ -99,11 +76,6 @@ stow --verbose --restow --no-folding --ignore=Images --ignore=nix */
 8. Enables TouchID for sudo
 9. Display sleep after 10 min
 
-#### Prerequisites:
-* Nix
- ``` bash 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-```
 
 Clone the repo into a dir called dotfiles
 ```bash 
@@ -119,25 +91,6 @@ cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
 Apply the configuration
 ```bash 
 nix run nix-darwin -- switch --flake "path:$HOME/dotfiles/nix#$(whoami)"
-```
-
-### Using install.sh (discontinued and may break)
-**Warning:** This installs more than what is in the Dotfiles and mostly serves as a mean to install my setup on a different machine. This also only works on apple silicon macs and requies sudo (for yabai scripting addon).
-
-**What it does (in order)**
-1. Prerequisites – Installs Homebrew (if missing), stow, and git
-2. Clone – Clones the repo to ~/dotfiles (or pulls latest changes if already cloned)
-3. Oh-My-Zsh – Installs oh-my-zsh (if missing)
-4. Backup – Moves any existing dotfiles (.zshrc, .tmux.conf, etc.) to ~/dotfiles-backup-<date>
-5. Brew Bundle – Installs all tools/apps from the Brewfile (nvim, tmux, kitty, starship, sketchybar, yabai, skhd, aerospace, etc.)
-6. Stow – Symlinks each package directory (zsh, tmux, nvim, etc.) into your $HOME
-7. Git Config – Configures delta as the git pager with Catppuccin Mocha theme (via `include.path` + `delta.features`), and restores your git name/email from backup if needed
-8. Post-install – Spicetify marketplace, removes Dock autohide delay, copies and loads the yabai scripting addition LaunchDaemon, and some other stuff
-
-Using the install.sh:
-
-```bash 
-curl -fsSL https://raw.githubusercontent.com/Yahddyyp/MacOS-Dotfiles/main/install.sh | bash
 ```
 
 ## Post-Install 
@@ -162,9 +115,6 @@ After installation, run these:
    ```bash 
    sudo yabai --load-sa
    ```
-
-> [!TIP]
-> A LaunchDaemon plist is included in the `yabai` directory to load the scripting addition automatically on boot. Copy it to `/Library/LaunchDaemons/` and run `sudo launchctl load -w /Library/LaunchDaemons/com.asmvik.yabai-sa.plist`. (You don't have to do this if you used nix)
 
 5. Start services:
 
