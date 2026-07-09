@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 if [ "$SENDER" = "front_app_switched" ]; then
   # Use Finder as default if INFO is empty
   [ -z "$INFO" ] && INFO="Finder"

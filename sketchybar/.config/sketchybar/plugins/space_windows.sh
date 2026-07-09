@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 # --- Yabai version ---
 update_space() {
   space=$1

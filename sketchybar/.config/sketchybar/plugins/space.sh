@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 # --- Yabai version ---
 # [Yabai version] - Comment out this section and uncomment the AeroSpace version below to switch
 if [ "$SELECTED" = true ]; then

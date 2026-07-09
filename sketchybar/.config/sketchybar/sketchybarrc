@@ -1,3 +1,5 @@
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 sketchybar --bar position=top \
@@ -130,7 +132,7 @@ for sid in "${SPACE_SIDS[@]}"; do
                       background.color=0xcc1e1e2e \
                       background.border_color=0x44cba6f7 \
                        background.border_width=1 \
-                       click_script="yabai -m space --focus $sid" \
+                       click_script="/run/current-system/sw/bin/yabai -m space --focus $sid" \
                        script="$PLUGIN_DIR/space.sh"
 done
 
@@ -171,12 +173,21 @@ sketchybar --add item front_app left \
 
 
 # --- Yabai signals ---
-yabai -m signal --add event=window_focused action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\""
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=window_created action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_minimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_deminimized action="sketchybar --trigger front_app_switched INFO=\"\$(yabai -m query --windows --window | jq -r '.app // \"Finder\"')\"; sketchybar --trigger space_windows_change"
+# Remove old signals first to prevent duplicates
+for idx in $(yabai -m signal --list 2>/dev/null | jq -r '.[].index'); do
+  yabai -m signal --remove $idx 2>/dev/null
+done
+
+YABAI_CMD="/run/current-system/sw/bin/yabai"
+SKETCH_CMD="/run/current-system/sw/bin/sketchybar"
+JQ_CMD="/usr/bin/jq"
+
+$YABAI_CMD -m signal --add event=window_focused action="$SKETCH_CMD --trigger front_app_switched INFO=\"\$($YABAI_CMD -m query --windows --window | $JQ_CMD -r '.app // \"Finder\"')\""
+$YABAI_CMD -m signal --add event=space_changed action="$SKETCH_CMD --trigger space_change"
+$YABAI_CMD -m signal --add event=window_created action="$SKETCH_CMD --trigger front_app_switched INFO=\"\$($YABAI_CMD -m query --windows --window | $JQ_CMD -r '.app // \"Finder\"')\"; $SKETCH_CMD --trigger space_windows_change"
+$YABAI_CMD -m signal --add event=window_destroyed action="$SKETCH_CMD --trigger front_app_switched INFO=\"\$($YABAI_CMD -m query --windows --window | $JQ_CMD -r '.app // \"Finder\"')\"; $SKETCH_CMD --trigger space_windows_change"
+$YABAI_CMD -m signal --add event=window_minimized action="$SKETCH_CMD --trigger front_app_switched INFO=\"\$($YABAI_CMD -m query --windows --window | $JQ_CMD -r '.app // \"Finder\"')\"; $SKETCH_CMD --trigger space_windows_change"
+$YABAI_CMD -m signal --add event=window_deminimized action="$SKETCH_CMD --trigger front_app_switched INFO=\"\$($YABAI_CMD -m query --windows --window | $JQ_CMD -r '.app // \"Finder\"')\"; $SKETCH_CMD --trigger space_windows_change"
 
 sketchybar --update
 

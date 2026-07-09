@@ -1,5 +1,6 @@
 #!/bin/bash
 #Yabai config
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
 #layout
 yabai -m config layout bsp
 
@@ -42,10 +43,10 @@ borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &
 yabai -m config external_bar all:40:0
 
 # Sketchybar integration
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_focus"
+yabai -m signal --add event=space_changed action="/run/current-system/sw/bin/sketchybar --trigger space_change"
+yabai -m signal --add event=window_focused action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
+yabai -m signal --add event=window_destroyed action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
 
 #Window shadows
 yabai -m config window_shadow off

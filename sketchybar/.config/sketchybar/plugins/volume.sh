@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 # This script handles volume updates and slider interactions.
 
 volume_change() {

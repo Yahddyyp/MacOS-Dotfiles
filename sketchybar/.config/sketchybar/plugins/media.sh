@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 # Ensure UTF-8 encoding for proper handling of international characters
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

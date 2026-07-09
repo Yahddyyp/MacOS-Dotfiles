@@ -1,6 +1,8 @@
 #!/bin/sh
 
-PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
+PERCENTAGE="$(pmset -g batt | grep -Eo "\\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 
 if [ "$PERCENTAGE" = "" ]; then

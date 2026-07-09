@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+
 if [ "$SENDER" = "mouse.clicked" ]; then
   sketchybar --set $NAME popup.drawing=toggle
 else
