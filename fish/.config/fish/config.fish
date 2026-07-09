@@ -32,8 +32,8 @@ abbr --add la "eza --icons --long --group-directories-first --header --git --ino
 abbr --add lT "eza --icons --tree --group-directories-first --all"
 abbr --add lt "eza --icons --tree --group-directories-first"
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
-abbr --add stop-yabai 'yabai --stop-service && skhd --stop-service && brew services stop sketchybar'
-abbr --add start-yabai 'yabai --start-service && skhd --start-service && brew services start sketchybar'
+abbr --add stop-yabai 'pkill yabai 2>/dev/null; pkill skhd 2>/dev/null; pkill sketchybar 2>/dev/null; pkill borders 2>/dev/null; pkill -f "yabai --load-sa" 2>/dev/null'
+abbr --add start-yabai 'yabai &; disown; skhd &; disown; sketchybar &; disown; borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &; disown'
 abbr --add oc opencode
 abbr --add cat bat
 
