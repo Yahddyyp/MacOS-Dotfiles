@@ -49,8 +49,14 @@ alias la="eza --icons --long --group-directories-first --header --git --inode --
 alias lT="eza --icons --tree --group-directories-first --all"
 alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
-alias stop-yabai='yabai --stop-service && skhd --stop-service && brew services stop sketchybar && pkill borders && pkill sketchybar'
-alias start-yabai='yabai --start-service && skhd --start-service && brew services start sketchybar'
+alias stop-yabai='pkill yabai 2>/dev/null; pkill skhd 2>/dev/null; pkill sketchybar 2>/dev/null; pkill borders 2>/dev/null; pkill -f "yabai --load-sa" 2>/dev/null'
+function start-yabai() {
+  yabai &!
+  skhd &!
+  sketchybar &!
+  borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &!
+}
+alias start-yabai='start-yabai'
 alias oc="opencode"
 alias cat="bat"
 
