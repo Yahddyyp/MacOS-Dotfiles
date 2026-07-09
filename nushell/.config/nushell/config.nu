@@ -52,15 +52,15 @@ def fix-tmux [] {
 }
 
 def stop-yabai [] {
-    ^yabai --stop-service
-    ^skhd --stop-service
-    ^brew services stop sketchybar
+    ^pkill yabai
+    ^pkill skhd
+    ^pkill sketchybar
+    ^pkill borders
+    ^pkill -f "yabai --load-sa"
 }
 
 def start-yabai [] {
-    ^yabai --start-service
-    ^skhd --start-service
-    ^brew services start sketchybar
+    bash -c 'yabai & skhd & sketchybar & borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &'
 }
 
 zoxide init nushell | save -f ~/.cache/zoxide.nu
