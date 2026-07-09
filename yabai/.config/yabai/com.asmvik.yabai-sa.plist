@@ -6,7 +6,7 @@
     <string>com.asmvik.yabai-sa</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/opt/homebrew/bin/yabai</string>
+        <string>/run/current-system/sw/bin/yabai</string>
         <string>--load-sa</string>
     </array>
     <key>RunAtLoad</key>
