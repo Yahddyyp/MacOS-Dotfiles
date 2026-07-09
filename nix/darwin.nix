@@ -1,4 +1,7 @@
-{ pkgs, lib, config, username, ... }: {
+{ pkgs, lib, config, username, ... }:
+let
+  wmAgentPath = "/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin";
+in {
   nixpkgs.config = {
     allowUnfree = true;
   };
@@ -162,13 +165,13 @@
     serviceConfig.StandardErrorPath = "/tmp/capslock-disable.err.log";
   };
 
-  # User agents for WM bar, window manager, and hotkeys
   launchd.agents.sketchybar = {
     command = "${pkgs.sketchybar}/bin/sketchybar";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = true;
     serviceConfig.ProcessType = "Interactive";
     serviceConfig.Nice = -20;
+    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
     serviceConfig.StandardOutPath = "/tmp/sketchybar.out.log";
     serviceConfig.StandardErrorPath = "/tmp/sketchybar.err.log";
   };
@@ -182,6 +185,7 @@
     };
     serviceConfig.ProcessType = "Interactive";
     serviceConfig.Nice = -20;
+    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
     serviceConfig.StandardOutPath = "/tmp/yabai.out.log";
     serviceConfig.StandardErrorPath = "/tmp/yabai.err.log";
   };
@@ -195,6 +199,7 @@
     };
     serviceConfig.ProcessType = "Interactive";
     serviceConfig.Nice = -20;
+    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
     serviceConfig.StandardOutPath = "/tmp/skhd.out.log";
     serviceConfig.StandardErrorPath = "/tmp/skhd.err.log";
   };
@@ -272,6 +277,15 @@
       "protonvpn"
       "font-sketchybar-app-font"
     ];
+  };
+
+  # Suppress launchctl LaunchAgent/root warnings during activation
+  system.activationScripts._launchd = {
+    deps = [ ];
+    text = ''
+      launchctl() { command launchctl "$@" 2>/dev/null; }
+      export -f launchctl
+    '';
   };
 
   system.activationScripts.defaultApps = {
