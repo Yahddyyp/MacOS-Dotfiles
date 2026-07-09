@@ -131,11 +131,20 @@ in {
 
     installSpicetifyMarketplace = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v spicetify &>/dev/null; then
-        if [ ! -f "$HOME/.config/spicetify/Marketplace" ]; then
+        if [ ! -f "$HOME/.config/spicetify/CustomApps/marketplace/manifest.json" ]; then
           $DRY_RUN_CMD echo "Installing spicetify marketplace..."
           $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh)"
         fi
         $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
+      fi
+    '';
+
+    installListeningStats = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
+      if command -v spicetify &>/dev/null; then
+        if [ ! -f "$HOME/.config/spicetify/CustomApps/listening-stats/manifest.json" ]; then
+          $DRY_RUN_CMD echo "Installing listening-stats..."
+          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/Xndr2/listening-stats/main/install.sh)"
+        fi
       fi
     '';
 
