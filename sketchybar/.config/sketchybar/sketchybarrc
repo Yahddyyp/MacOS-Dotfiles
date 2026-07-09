@@ -34,15 +34,15 @@ sketchybar --add item date right \
             --set date icon=􀧞 \
                        icon.color=0xffcba6f7 \
                        label.color=0xffcdd6f4 \
-                        update_freq=5 \
+                       update_freq=5 \
                        script="$PLUGIN_DIR/calendar.sh" \
                        popup.align=center \
                        popup.y_offset=-2 \
+                       popup.width=180 \
                        popup.background.color=0xcc1e1e2e \
                        popup.background.border_color=0x44cba6f7 \
                        popup.background.border_width=1 \
                        popup.background.corner_radius=10 \
-popup.width=180 \
              --subscribe date mouse.clicked \
              --add item date.wifi popup.date \
              --set date.wifi icon=󰤨 \
@@ -69,7 +69,7 @@ popup.width=180 \
                             label.color=0xffcdd6f4 \
                             label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
                             label.width=220 \
-label.padding_right=10 \
+                            label.padding_right=10 \
                              background.drawing=off \
              --add item date.uptime popup.date \
              --set date.uptime icon=􀐫 \

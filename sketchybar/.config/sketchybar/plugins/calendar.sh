@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/sbin:/usr/sbin:/usr/bin:/bin:$PATH"
 
 if [ "$SENDER" = "mouse.clicked" ]; then
   sketchybar --set $NAME popup.drawing=toggle
@@ -8,12 +8,12 @@ else
   DATE_STR="$(date +'%a %d %b  -  %I:%M %p')"
 
   VPN_ACTIVE=0
-  DEFAULT_IFACE=$(route get default 2>/dev/null | awk '/interface:/ {print $2}')
+  DEFAULT_IFACE=$(/sbin/route get default 2>/dev/null | awk '/interface:/ {print $2}')
   if [[ "$DEFAULT_IFACE" == utun* ]]; then
     VPN_ACTIVE=1
   fi
 
-  INTERFACE=$(route get default 2>/dev/null | awk '/interface:/ {print $2}')
+  INTERFACE=$(/sbin/route get default 2>/dev/null | awk '/interface:/ {print $2}')
   if [ -z "$INTERFACE" ]; then
     sketchybar --animate tanh 10 --set $NAME label="$DATE_STR" icon.color=0xfff38ba8
     WIFI_LABEL="Disconnected"
@@ -23,7 +23,7 @@ else
     else
       ICON_COLOR="0xffcba6f7"
     fi
-    CURRENT_BYTES=$(netstat -ib -I "$INTERFACE" | awk '/<Link#/ {print $7, $10}')
+    CURRENT_BYTES=$(/usr/sbin/netstat -ib -I "$INTERFACE" | awk '/<Link#/ {print $7, $10}')
     CURRENT_IN=$(echo "$CURRENT_BYTES" | awk '{print $1}')
     CURRENT_OUT=$(echo "$CURRENT_BYTES" | awk '{print $2}')
     CURRENT_TIME=$(date +%s)
@@ -75,7 +75,7 @@ else
     MOD_TIME=$(stat -f %m "$BAND_CACHE" 2>/dev/null || echo 0)
      if [ $((CURRENT_TIME - MOD_TIME)) -gt 300 ]; then
        (
-         WIFI_INFO=$(system_profiler SPAirPortDataType 2>/dev/null)
+         WIFI_INFO=$(/usr/sbin/system_profiler SPAirPortDataType 2>/dev/null)
          BAND=$(echo "$WIFI_INFO" | awk '/Current Network Information:/,/Other Local Wi-Fi Networks:/' | awk '/Channel:/ {match($0, /[25]GHz/); print substr($0, RSTART, RLENGTH)}' | head -1)
          if [ "$BAND" = "2GHz" ]; then BAND="2.4GHz"; fi
          echo "$BAND" > "$BAND_CACHE"
@@ -121,7 +121,7 @@ else
     UPTIME_LABEL="Up: <1m"
   fi
 
-  sketchybar --set date.wifi label="$WIFI_LABEL" \
+    sketchybar --set date.wifi label="$WIFI_LABEL" \
              --set date.band label="$BAND_LABEL" \
              --set date.vpn label="$VPN_LABEL" \
              --set date.uptime label="$UPTIME_LABEL"
