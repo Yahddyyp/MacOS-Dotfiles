@@ -52,15 +52,20 @@ def fix-tmux [] {
 }
 
 def stop-yabai [] {
-    ^pkill yabai
-    ^pkill skhd
-    ^pkill sketchybar
+    let uid = (id -u | str trim)
+    ^launchctl bootout $"gui/($uid)/org.nixos.yabai"
+    ^launchctl bootout $"gui/($uid)/org.nixos.skhd"
+    ^launchctl bootout $"gui/($uid)/org.nixos.sketchybar"
     ^pkill borders
-    ^pkill -f "yabai --load-sa"
 }
 
 def start-yabai [] {
-    bash -c 'yabai & skhd & sketchybar & borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &'
+    let uid = (id -u | str trim)
+    let home = $env.HOME
+    for f in [($home)/Library/LaunchAgents/org.nixos.yabai.plist ($home)/Library/LaunchAgents/org.nixos.skhd.plist ($home)/Library/LaunchAgents/org.nixos.sketchybar.plist] {
+        ^launchctl bootstrap $"gui/($uid)" $f
+    }
+    bash -c 'borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &'
 }
 
 zoxide init nushell | save -f ~/.cache/zoxide.nu
