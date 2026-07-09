@@ -95,15 +95,13 @@ in {
   #Extra stuff
   home.activation = {
     restowDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD echo "Stowing dotfiles from ${dotfilesDir}..."
       $DRY_RUN_CMD bash -c 'cd ${dotfilesDir} && find . -maxdepth 1 -type d ! -name . ! -name Images ! -name nix -exec stow --restow --no-folding --target="$HOME" {} ;' 2>/dev/null || true
     '';
 
     installOhMyZsh = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if [ ! -d "$HOME/.oh-my-zsh" ]; then
-        $DRY_RUN_CMD echo "Installing oh-my-zsh..."
         export CHSH=no RUNZSH=no
-        $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 2>/dev/null
       fi
     '';
 
@@ -116,15 +114,13 @@ in {
     installGhDash = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v gh &>/dev/null; then
         if ! gh extension list 2>/dev/null | grep -q "gh-dash"; then
-          $DRY_RUN_CMD echo "Installing gh-dash extension..."
-          $DRY_RUN_CMD gh extension install dlvhdr/gh-dash
+          $DRY_RUN_CMD gh extension install dlvhdr/gh-dash 2>/dev/null
         fi
       fi
     '';
 
     rebuildBatCache = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v bat &>/dev/null; then
-        $DRY_RUN_CMD echo "Rebuilding bat cache..."
         $DRY_RUN_CMD bat cache --build 2>/dev/null || true
       fi
     '';
@@ -132,8 +128,7 @@ in {
     installSpicetifyMarketplace = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v spicetify &>/dev/null; then
         if [ ! -f "$HOME/.config/spicetify/CustomApps/marketplace/manifest.json" ]; then
-          $DRY_RUN_CMD echo "Installing spicetify marketplace..."
-          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh)"
+          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh)" 2>/dev/null
         fi
         $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
       fi
@@ -142,8 +137,7 @@ in {
     installListeningStats = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v spicetify &>/dev/null; then
         if [ ! -f "$HOME/.config/spicetify/CustomApps/listening-stats/manifest.json" ]; then
-          $DRY_RUN_CMD echo "Installing listening-stats..."
-          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/Xndr2/listening-stats/main/install.sh)"
+          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/Xndr2/listening-stats/main/install.sh)" 2>/dev/null
         fi
       fi
     '';
@@ -151,7 +145,6 @@ in {
     installBabysitterForPi = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
       if command -v pi &>/dev/null; then
         if ! pi list 2>/dev/null | grep -q "babysitter-pi"; then
-          $DRY_RUN_CMD echo "Installing babysitter-pi for pi-coding-agent..."
           $DRY_RUN_CMD pi install npm:@a5c-ai/babysitter-pi 2>/dev/null || true
         fi
       fi
@@ -164,8 +157,7 @@ in {
       fi
       if [ -x "$FISH" ]; then
         if ! "$FISH" -c "type -q fisher" 2>/dev/null; then
-          $DRY_RUN_CMD echo "Installing fisher fish plugin manager..."
-          $DRY_RUN_CMD "$FISH" -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher" || true
+          $DRY_RUN_CMD "$FISH" -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher" 2>/dev/null || true
         fi
       fi
     '';

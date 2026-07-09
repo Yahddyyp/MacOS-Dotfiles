@@ -25,6 +25,7 @@
     system = "aarch64-darwin";
     specialArgs = { inherit username; };
   in {
+    packages.aarch64-darwin.default = nixpkgs.legacyPackages.aarch64-darwin.nix;
     darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [

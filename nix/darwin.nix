@@ -1,12 +1,18 @@
 { pkgs, lib, config, username, ... }: {
-  #Allow broken and free pkgs 
   nixpkgs.config = {
     allowUnfree = true;
-    allowBroken = true;
   };
   system.primaryUser = username;
 
   environment.systemPackages = with pkgs; [
+    sketchybar
+    yabai
+    skhd
+    (pass.withExtensions (exts: with exts; [ pass-otp ]))
+    gnupg
+    carapace
+    duti
+    switchaudio-osx
   ];
 
   # Homebrew trust
@@ -137,7 +143,7 @@
 
   #launchd daemon for yabai scripting addon
   launchd.daemons.yabai-sa = {
-    command = "/opt/homebrew/bin/yabai --load-sa";
+    command = "${pkgs.yabai}/bin/yabai --load-sa";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = {
       SuccessfulExit = false;
@@ -154,6 +160,43 @@
     serviceConfig.KeepAlive = false;
     serviceConfig.StandardOutPath = "/tmp/capslock-disable.log";
     serviceConfig.StandardErrorPath = "/tmp/capslock-disable.err.log";
+  };
+
+  # User agents for WM bar, window manager, and hotkeys
+  launchd.agents.sketchybar = {
+    command = "${pkgs.sketchybar}/bin/sketchybar";
+    serviceConfig.RunAtLoad = true;
+    serviceConfig.KeepAlive = true;
+    serviceConfig.ProcessType = "Interactive";
+    serviceConfig.Nice = -20;
+    serviceConfig.StandardOutPath = "/tmp/sketchybar.out.log";
+    serviceConfig.StandardErrorPath = "/tmp/sketchybar.err.log";
+  };
+
+  launchd.agents.yabai = {
+    command = "${pkgs.yabai}/bin/yabai";
+    serviceConfig.RunAtLoad = true;
+    serviceConfig.KeepAlive = {
+      SuccessfulExit = false;
+      Crashed = true;
+    };
+    serviceConfig.ProcessType = "Interactive";
+    serviceConfig.Nice = -20;
+    serviceConfig.StandardOutPath = "/tmp/yabai.out.log";
+    serviceConfig.StandardErrorPath = "/tmp/yabai.err.log";
+  };
+
+  launchd.agents.skhd = {
+    command = "${pkgs.skhd}/bin/skhd";
+    serviceConfig.RunAtLoad = true;
+    serviceConfig.KeepAlive = {
+      SuccessfulExit = false;
+      Crashed = true;
+    };
+    serviceConfig.ProcessType = "Interactive";
+    serviceConfig.Nice = -20;
+    serviceConfig.StandardOutPath = "/tmp/skhd.out.log";
+    serviceConfig.StandardErrorPath = "/tmp/skhd.err.log";
   };
 
   environment.loginShellInit = ''
@@ -178,6 +221,9 @@
   homebrew = {
     enable = true;
     onActivation = {
+      autoUpdate = false;
+      upgrade = false;
+      cleanup = "none";
       extraEnv = {
         HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
       };
@@ -192,23 +238,14 @@
 
     brews = [
       "borders"
-      "sketchybar"
-      "yabai"
-      "skhd"
-      "pass"
-      "pass-otp"
-      "gnupg"           
       "neofetch"
-      "switchaudio-osx"
-      "zsh-syntax-highlighting"
       "powerlevel10k"
-      "tty-clock"
-      "tree-sitter-cli"
       "hunk"
-      "duti"
       "mole"
       "tailscale"
-      "carapace"
+      "tty-clock"
+      "zsh-syntax-highlighting"
+      "tree-sitter-cli"
     ];
 
     casks = [
@@ -249,52 +286,24 @@
       fi
     done
 
-    # Set accent highlight color 
-    defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000"
+    # Set accent highlight color
+    defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null
 
-    # Default browser
-    duti -s app.zen-browser.zen public.html all
-    duti -s app.zen-browser.zen http all
-    duti -s app.zen-browser.zen https all
-
-    # Default video player
-    duti -s com.colliderli.iina .mp4 all
-    duti -s com.colliderli.iina .mkv all
-    duti -s com.colliderli.iina .mov all
-    duti -s com.colliderli.iina .avi all
-    duti -s com.colliderli.iina .webm all
-    duti -s com.colliderli.iina .wmv all
-
-    # IINA
-    defaults write com.colliderli.iina resizeWindowTiming -int 0
+    # Default apps
+    duti -s app.zen-browser.zen public.html all 2>/dev/null
+    duti -s app.zen-browser.zen http all 2>/dev/null
+    duti -s app.zen-browser.zen https all 2>/dev/null
+    duti -s com.colliderli.iina .mp4 all 2>/dev/null
+    duti -s com.colliderli.iina .mkv all 2>/dev/null
+    duti -s com.colliderli.iina .mov all 2>/dev/null
+    duti -s com.colliderli.iina .avi all 2>/dev/null
+    duti -s com.colliderli.iina .webm all 2>/dev/null
+    duti -s com.colliderli.iina .wmv all 2>/dev/null
 
     # Default text editor
-    duti -s dev.zed.Zed .txt all
-    duti -s dev.zed.Zed .md all
-    duti -s dev.zed.Zed .json all
-    duti -s dev.zed.Zed .yaml all
-    duti -s dev.zed.Zed .yml all
-    duti -s dev.zed.Zed .toml all
-    duti -s dev.zed.Zed .xml all
-    duti -s dev.zed.Zed .csv all
-    duti -s dev.zed.Zed .env all
-    duti -s dev.zed.Zed .sh all
-    duti -s dev.zed.Zed .zsh all
-    duti -s dev.zed.Zed .fish all
-    duti -s dev.zed.Zed .py all
-    duti -s dev.zed.Zed .js all
-    duti -s dev.zed.Zed .ts all
-    duti -s dev.zed.Zed .jsx all
-    duti -s dev.zed.Zed .tsx all
-    duti -s dev.zed.Zed .css all
-    duti -s dev.zed.Zed .scss all
-    duti -s dev.zed.Zed .html all
-    duti -s dev.zed.Zed .nix all
-    duti -s dev.zed.Zed .lua all
-    duti -s dev.zed.Zed .rb all
-    duti -s dev.zed.Zed .rs all
-    duti -s dev.zed.Zed .go all
-    duti -s dev.zed.Zed .swift all
+    for ext in txt md json yaml yml toml xml csv env sh zsh fish py js ts jsx tsx css scss html nix lua rb rs go swift; do
+      duti -s dev.zed.Zed .$ext all 2>/dev/null
+    done
   '';
   };
 
@@ -302,7 +311,7 @@
   nix.gc = {
     automatic = true;
     interval = { Weekday = 0; };  # weekly (Sunday)
-    options = "--delete-generations +3";  # keep the last 3 generations
+    options = "--delete-generations +3";  # keep last 3 generations
   };
 
   nix.settings = {
