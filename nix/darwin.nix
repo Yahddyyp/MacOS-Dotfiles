@@ -328,10 +328,12 @@ in {
   };
 
   #nix settings
-  nix.gc = {
-    automatic = true;
-    interval = { Weekday = 0; };  # weekly (Sunday)
-    options = "--delete-generations +3";  # keep last 3 generations
+  launchd.daemons.nix-gc-custom = {
+    command = "${pkgs.bash}/bin/bash /Users/${username}/dotfiles/nix/gc.sh";
+    serviceConfig.RunAtLoad = false;
+    serviceConfig.StartCalendarInterval = [{ Weekday = 0; }];  # Sunday
+    serviceConfig.StandardOutPath = "/tmp/nix-gc.log";
+    serviceConfig.StandardErrorPath = "/tmp/nix-gc.err.log";
   };
 
   nix.settings = {
