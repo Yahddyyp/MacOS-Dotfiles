@@ -32,19 +32,26 @@ abbr --add la "eza --icons --long --group-directories-first --header --git --ino
 abbr --add lT "eza --icons --tree --group-directories-first --all"
 abbr --add lt "eza --icons --tree --group-directories-first"
 abbr --add fix-tmux 'killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)'
+
 function stop-yabai
-  set uid (id -u)
-  launchctl bootout "gui/$uid/org.nixos.yabai" 2>/dev/null
-  launchctl bootout "gui/$uid/org.nixos.skhd" 2>/dev/null
-  launchctl bootout "gui/$uid/org.nixos.sketchybar" 2>/dev/null
-  pkill borders 2>/dev/null
+    set uid (id -u)
+    launchctl bootout "gui/$uid/org.nixos.yabai" 2>/dev/null
+    launchctl bootout "gui/$uid/org.nixos.skhd" 2>/dev/null
+    launchctl bootout "gui/$uid/org.nixos.sketchybar" 2>/dev/null
+    pkill borders 2>/dev/null
 end
+
 function start-yabai
-  set uid (id -u)
-  for f in ~/Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist
-    launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
-  end
-  borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &
+    set uid (id -u)
+    for label in org.nixos.{yabai,skhd,sketchybar}
+        launchctl bootout "gui/$uid/$label" 2>/dev/null
+    end
+    # Bootstrap from Nix-managed system plists
+    for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist
+        launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
+    end
+    borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &
+    disown
 end
 abbr --add oc opencode
 abbr --add cat bat

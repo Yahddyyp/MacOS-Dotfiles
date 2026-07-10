@@ -51,7 +51,10 @@ alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
 alias stop-yabai='launchctl bootout "gui/$UID/org.nixos.yabai" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.skhd" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.sketchybar" 2>/dev/null; pkill borders 2>/dev/null'
 function start-yabai() {
-  for f in ~/Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist; do
+  for label in org.nixos.{yabai,skhd,sketchybar}; do
+    launchctl bootout "gui/$UID/$label" 2>/dev/null
+  done
+  for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist; do
     launchctl bootstrap "gui/$UID" "$f" 2>/dev/null
   done
   borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &!

@@ -61,9 +61,11 @@ def stop-yabai [] {
 
 def start-yabai [] {
     let uid = (id -u | str trim)
-    let home = $env.HOME
-    for f in [($home)/Library/LaunchAgents/org.nixos.yabai.plist ($home)/Library/LaunchAgents/org.nixos.skhd.plist ($home)/Library/LaunchAgents/org.nixos.sketchybar.plist] {
-        ^launchctl bootstrap $"gui/($uid)" $f
+    for label in [org.nixos.yabai org.nixos.skhd org.nixos.sketchybar] {
+        ^launchctl bootout $"gui/($uid)/($label)" | ignore
+    }
+    for f in [/Library/LaunchAgents/org.nixos.yabai.plist /Library/LaunchAgents/org.nixos.skhd.plist /Library/LaunchAgents/org.nixos.sketchybar.plist] {
+        ^launchctl bootstrap $"gui/($uid)" $f | ignore
     }
     bash -c 'borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &'
 }
