@@ -51,8 +51,5 @@ yabai -m signal --add event=window_destroyed action="/run/current-system/sw/bin/
 #Window shadows
 yabai -m config window_shadow off
 
-# Focus space by index
-yabai -m space --focus 1
-
-# Scriptting addons
-# yabai --load-sa
+# Scripting additions are loaded by the system daemon (org.nixos.yabai-sa)
+# at /Library/LaunchDaemons/org.nixos.yabai-sa.plist

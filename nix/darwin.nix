@@ -152,6 +152,8 @@ in {
       SuccessfulExit = false;
       Crashed = true;
     };
+    serviceConfig.StandardOutPath = "/tmp/yabai-sa.out.log";
+    serviceConfig.StandardErrorPath = "/tmp/yabai-sa.err.log";
   };
 
   # Disable Caps Lock so Karabiner can intercept it
@@ -185,13 +187,16 @@ in {
     };
     serviceConfig.ProcessType = "Interactive";
     serviceConfig.Nice = -20;
-    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
+    serviceConfig.EnvironmentVariables = {
+      PATH = wmAgentPath;
+      YABAI_CONFIG = "/Users/${username}/.config/yabai/yabairc";
+    };
     serviceConfig.StandardOutPath = "/tmp/yabai.out.log";
     serviceConfig.StandardErrorPath = "/tmp/yabai.err.log";
   };
 
   launchd.agents.skhd = {
-    command = "${pkgs.skhd}/bin/skhd";
+    command = "${pkgs.skhd}/bin/skhd -c /Users/${username}/.config/skhd/skhdrc";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = {
       SuccessfulExit = false;
