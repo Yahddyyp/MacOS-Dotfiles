@@ -38,6 +38,7 @@ in {
     static-only = false;
     mineffect = "scale";
     tilesize = 42;
+    autohide-time-modifier = 0.0;
   };
 
   #finder settings
