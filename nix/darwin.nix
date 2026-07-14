@@ -33,6 +33,7 @@ in {
     orientation = "right";
     autohide-delay = 0.0;
     autohide = true;
+    mru-spaces = false;
     show-recents = false;
     static-only = false;
     mineffect = "scale";
@@ -59,10 +60,11 @@ in {
 
   #WM settings
   system.defaults.WindowManager = {
-    EnableStandardClickToShowDesktop = false;  
-    GloballyEnabled = false;                     
-    StandardHideDesktopIcons = true;              
-    HideDesktop = true;                          
+    EnableStandardClickToShowDesktop = false;
+    GloballyEnabled = false;                    
+    StandardHideDesktopIcons = true;
+    StandardHideWidgets = false;
+    HideDesktop = true;
   };
 
   #Trackpad settings
@@ -121,8 +123,17 @@ in {
       "com.apple.DesktopServices" = {
         DSDontShowBackgroundImage = false;
       };
+      "com.apple.loginwindow" = {
+        TALLogoutSavesState = false;
+        SHOWFULLNAME = true;
+      };
     };
   };
+
+  # Mute startup chime
+  system.activationScripts.startup-chime.text = ''
+    nvram StartupMute=%01 2>/dev/null || true
+  '';
 
   #keep ssh open
   services.openssh.enable = true;
