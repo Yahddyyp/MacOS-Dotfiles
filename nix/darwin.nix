@@ -355,4 +355,6 @@ in {
     auto-optimise-store = true;
     warn-dirty = false;
   };
+
+  nix.optimise.automatic = true;
 }
