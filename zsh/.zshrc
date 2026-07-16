@@ -1,5 +1,9 @@
 export GPG_TTY=$TTY
 
+autoload -Uz compinit
+compinit
+source <(carapace _carapace zsh)
+
 # Homebrew PATH
 if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
