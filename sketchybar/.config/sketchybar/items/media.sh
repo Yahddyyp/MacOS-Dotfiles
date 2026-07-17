@@ -3,14 +3,14 @@
 media_cover=(
   script="$PLUGIN_DIR/media.sh"
   icon=􀑪
-  icon.font="CaskaydiaCove Nerd Font:16.0"
+  icon.font="Maple Mono NF:16.0"
   icon.color=0xffcba6f7
   icon.padding_left=10
   icon.padding_right=4
   label.padding_left=6
   label.padding_right=10
   label.color=0xffcdd6f4
-  label.font="CaskaydiaCove Nerd Font:Bold:14.0"
+  label.font="Maple Mono NF:Bold:14.0"
   label.max_chars=50
   drawing=off
   update_freq=3

@@ -15,8 +15,8 @@ sketchybar --default \
            animator_duration=250 \
            padding_left=4 \
            padding_right=4 \
-           icon.font="CaskaydiaCove Nerd Font:16.0" \
-           label.font="CaskaydiaCove Nerd Font:Bold:14.0" \
+           icon.font="Maple Mono NF:16.0" \
+           label.font="Maple Mono NF:Bold:14.0" \
            icon.color=0xffcba6f7 \
            label.color=0xffcba6f7 \
            icon.padding_left=10 \
@@ -49,7 +49,7 @@ sketchybar --add item date right \
                              icon.color=0xffcba6f7 \
                              icon.padding_left=10 \
                              label.color=0xffcdd6f4 \
-                             label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
+                             label.font="Maple Mono NF:Bold:13.0" \
                              label.width=220 \
                              label.padding_right=10 \
                              background.drawing=off \
@@ -58,7 +58,7 @@ sketchybar --add item date right \
                             icon.color=0xffcba6f7 \
                             icon.padding_left=10 \
                             label.color=0xffcdd6f4 \
-                            label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
+                            label.font="Maple Mono NF:Bold:13.0" \
                             label.width=220 \
                             label.padding_right=10 \
                             background.drawing=off \
@@ -67,7 +67,7 @@ sketchybar --add item date right \
                             icon.color=0xffcba6f7 \
                             icon.padding_left=10 \
                             label.color=0xffcdd6f4 \
-                            label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
+                            label.font="Maple Mono NF:Bold:13.0" \
                             label.width=220 \
                             label.padding_right=10 \
                              background.drawing=off \
@@ -76,7 +76,7 @@ sketchybar --add item date right \
                              icon.color=0xffcba6f7 \
                              icon.padding_left=10 \
                              label.color=0xffcdd6f4 \
-                             label.font="CaskaydiaCove Nerd Font:Bold:13.0" \
+                             label.font="Maple Mono NF:Bold:13.0" \
                              label.width=220 \
                              label.padding_right=10 \
                              background.drawing=off \
