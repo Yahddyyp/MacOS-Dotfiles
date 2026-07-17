@@ -52,7 +52,7 @@
 
 ### Fonts
 These are required for the icons and styling to appear correctly:
-- **[CascadiaCove Nerd Font](https://github.com/eliheuer/caskaydia-cove)** — Main font
+- **[Maple Mono NF](https://github.com/subframe7536/maple-font)** — Main font
 - **[Sketchybar App Font](https://github.com/kvndrsslr/sketchybar-app-font)** — Required for Sketchybar icons
 
 ![Terminal Setup](Images/Cli.png)
@@ -66,7 +66,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 
 **What it does**
-1. Installs packages — nix packages + brew packages + brew GUI apps + CaskaydiaCove Nerd Font + Sketchybar App Font
+1. Installs packages — nix packages + brew packages + brew GUI apps + Maple Mono NF + Sketchybar App Font
 2. Configures system — dock, finder, trackpad, keyboard, dark mode, hot corner to lock screen,scroll bar settings, disable quarantine warnings, accent color, battery percentage
 3. Sets up services — yabai scripting addition launchd, openssh
 4. Stows dotfiles — symlinks all config files 
