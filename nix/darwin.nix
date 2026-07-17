@@ -154,7 +154,12 @@ in {
   };
 
   #font
-  fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove ];
+  fonts.packages = with pkgs; [ 
+    nerd-fonts.caskaydia-cove  
+    maple-mono.truetype
+    maple-mono.NF-unhinted
+    maple-mono.NF-CN-unhinted 
+  ];
 
   #launchd daemon for yabai scripting addon
   launchd.daemons.yabai-sa = {
