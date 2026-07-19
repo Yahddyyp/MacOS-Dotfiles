@@ -275,6 +275,8 @@ in {
       "tree-sitter-cli"
       "container"
       "podman"
+      "zig"
+      "rustup"
     ];
 
     casks = [
