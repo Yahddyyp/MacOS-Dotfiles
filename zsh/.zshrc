@@ -1,3 +1,5 @@
+export PASSWORD_STORE_EXTENSIONS_DIR="$HOME/.local/share/pass-extensions"
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export GPG_TTY=$TTY
 
 autoload -Uz compinit
@@ -8,6 +10,9 @@ source <(carapace _carapace zsh)
 if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# Rustup (keg-only Homebrew formula)
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
 # Nix package manager
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
@@ -34,7 +39,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Unset LS_COLORS so eza uses its own theme.yml
 unset LS_COLORS
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -82,7 +86,6 @@ alias ga='git add -p'
 alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
-
 
 export EDITOR='nvim'
 export VISUAL='nvim'
