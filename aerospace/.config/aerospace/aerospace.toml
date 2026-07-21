@@ -1,8 +1,7 @@
 config-version = 2
 after-startup-command = [
     'exec-and-forget borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on',
-    'exec-and-forget sketchybar',
-    'exec-and-forget ~/.config/sketchybar/plugins/space_windows.sh'
+    'exec-and-forget launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/org.nixos.sketchybar.plist 2>/dev/null',
 ]
 start-at-login = false
 enable-normalization-flatten-containers = true
