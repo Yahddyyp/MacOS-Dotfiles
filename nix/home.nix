@@ -95,7 +95,7 @@ in {
   #Extra stuff
   home.activation = {
     restowDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD bash -c 'cd ${dotfilesDir} && find . -maxdepth 1 -type d ! -name . ! -name Images ! -name nix -exec stow --restow --no-folding --target="$HOME" {} ;' 2>/dev/null || true
+      $DRY_RUN_CMD bash -c 'cd ${dotfilesDir} && find . -maxdepth 1 -type d ! -name . ! -name Images ! -name nix ! -name wallpapers -exec stow --restow --no-folding --target="$HOME" {} ;' 2>/dev/null || true
     '';
 
     installOhMyZsh = lib.hm.dag.entryAfter [ "restowDotfiles" ] ''
