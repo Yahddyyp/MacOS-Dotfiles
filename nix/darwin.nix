@@ -272,7 +272,6 @@ in {
       "tailscale"
       "tty-clock"
       "zsh-syntax-highlighting"
-      "tree-sitter-cli"
       "container"
       "podman"
       "zig"
