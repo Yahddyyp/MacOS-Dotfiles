@@ -158,7 +158,6 @@ in {
     nerd-fonts.caskaydia-cove  
     maple-mono.truetype
     maple-mono.NF-unhinted
-    maple-mono.NF-CN-unhinted 
   ];
 
   #launchd daemon for yabai scripting addon
