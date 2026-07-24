@@ -41,7 +41,8 @@
     {
       "type": "packages",
       "key": "pkgs",
-      "keyColor": "#F9E2AF"
+      "keyColor": "#F9E2AF",
+      "format": "{brew} (brew), {brew-cask} (brew-cask), {nix-system} (nix)"
     },
     {
       "type": "shell",
