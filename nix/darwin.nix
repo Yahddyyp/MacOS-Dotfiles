@@ -300,6 +300,7 @@ in {
       "latest"
       "protonvpn"
       "font-sketchybar-app-font"
+      "anki"
     ];
   };
 
