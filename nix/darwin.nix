@@ -350,7 +350,7 @@ in {
   launchd.daemons.nix-gc-custom = {
     command = "${pkgs.bash}/bin/bash /Users/${username}/dotfiles/nix/gc.sh";
     serviceConfig.RunAtLoad = false;
-    serviceConfig.StartCalendarInterval = [{ Weekday = 0; }];  # Sunday
+    serviceConfig.StartCalendarInterval = [{ Weekday = 0; Hour = 3; Minute = 0; }];  # Sunday 3:00 AM
     serviceConfig.StandardOutPath = "/tmp/nix-gc.log";
     serviceConfig.StandardErrorPath = "/tmp/nix-gc.err.log";
   };
