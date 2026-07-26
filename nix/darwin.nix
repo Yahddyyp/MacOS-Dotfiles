@@ -184,7 +184,7 @@ in {
   };
 
   launchd.agents.sketchybar = {
-    command = "${pkgs.sketchybar}/bin/sketchybar";
+    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/sketchybar && exec ${pkgs.sketchybar}/bin/sketchybar'";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = true;
     serviceConfig.ProcessType = "Interactive";
@@ -195,7 +195,7 @@ in {
   };
 
   launchd.agents.yabai = {
-    command = "${pkgs.yabai}/bin/yabai";
+    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/yabai && exec ${pkgs.yabai}/bin/yabai'";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = {
       SuccessfulExit = false;
@@ -212,7 +212,7 @@ in {
   };
 
   launchd.agents.skhd = {
-    command = "${pkgs.skhd}/bin/skhd -c /Users/${username}/.config/skhd/skhdrc";
+    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/skhd && exec ${pkgs.skhd}/bin/skhd -c /Users/${username}/.config/skhd/skhdrc'";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = {
       SuccessfulExit = false;

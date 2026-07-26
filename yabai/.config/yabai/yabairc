@@ -1,5 +1,11 @@
 #!/bin/bash
 #Yabai config
+
+for _ in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
+  [ -x /run/current-system/sw/bin/yabai ] && break
+  sleep 1
+done
+
 export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
 #layout
 yabai -m config layout bsp
@@ -50,6 +56,3 @@ yabai -m signal --add event=window_destroyed action="/run/current-system/sw/bin/
 
 #Window shadows
 yabai -m config window_shadow off
-
-# Scripting additions are loaded by the system daemon (org.nixos.yabai-sa)
-# at /Library/LaunchDaemons/org.nixos.yabai-sa.plist
