@@ -1,10 +1,5 @@
 export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
 
-for _ in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
-  [ -x /run/current-system/sw/bin/yabai ] && break
-  sleep 1
-done
-
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 sketchybar --bar position=top \
