@@ -301,6 +301,7 @@ in {
       "protonvpn"
       "font-sketchybar-app-font"
       "anki"
+      "osu"
     ];
   };
 
