@@ -1,0 +1,12 @@
+theme = "catppuccin-mocha"
+diff_view = "side-by-side"
+ignore_whitespace = false
+appearance = "system"
+mouse = true
+leader = ";"
+review_watch_interval_ms = 1000 
+
+[[comment_types]]
+id = "issue"
+color = "red"
+definition = "must fix before merge"
