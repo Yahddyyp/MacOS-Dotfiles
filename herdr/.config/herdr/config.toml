@@ -1,0 +1,61 @@
+onboarding = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[theme.custom]
+accent = "#cba6f7"
+
+[ui]
+accent = "#cba6f7"
+
+show_agent_labels_on_pane_borders = true
+[terminal]
+shell_mode = "auto"
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+a"
+
+reload_config      = "prefix+r"
+resize_mode        = "prefix+alt+r"       
+close_pane         = "prefix+x"
+split_horizontal   = "prefix+m"
+split_vertical     = "prefix+u"
+
+cycle_pane_next     = "prefix+tab"
+
+focus_pane_left  = "prefix+h"
+focus_pane_down  = "prefix+j"
+focus_pane_up    = "prefix+k"
+focus_pane_right = "prefix+l"
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+
+[ui.sound]
+enabled = false
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace"],
+  ["branch", "git_status"],
+]
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent", "state_text"],
+]
+
+[session]
+resume_agents_on_restore = true
+
+[experimental]
+reveal_hidden_cursor_for_cjk_ime = false
+switch_ascii_input_source_in_prefix = true
+
