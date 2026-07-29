@@ -261,6 +261,7 @@ in {
       "koekeishiya/formulae"
       "nikitabobko/tap"
       "modem-dev/tap"
+      "agavra/tap"
     ];
 
     brews = [
@@ -276,6 +277,7 @@ in {
       "podman"
       "zig"
       "rustup"
+      "tuicr"
     ];
 
     casks = [

@@ -56,6 +56,7 @@ in {
     television
     gum
     nushell
+    herdr
   ];
 
   #git config 
