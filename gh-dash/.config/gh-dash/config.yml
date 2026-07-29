@@ -76,7 +76,12 @@ defaults:
                 width: 20
                 hidden: true
     refetchIntervalMinutes: 30
-keybindings: {}
+keybindings:
+  prs:
+    - key: C
+      name: code review
+      command: >
+        tuicr pr {{.PrNumber}}
 repoPaths: {}
 theme:
   colors:
