@@ -17,7 +17,7 @@ alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
 
 #open terminal
-cmd - return : open -n -a "Ghostty"
+rcmd - return : open -n -a "Ghostty"
 #cmd - return : open -n -a "iterm2"
 
 # move window
