@@ -57,6 +57,7 @@ in {
     gum
     nushell
     herdr
+    nmap
   ];
 
   #git config 
