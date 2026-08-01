@@ -118,3 +118,7 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-name-regex-substring = 'WhatsApp'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.vorssaint.utils'
+run = 'layout floating'

@@ -121,6 +121,7 @@ in {
       };
       "com.apple.finder" = {
         FKAppearanceMode = 1;
+        FinderSpawnTab = false;
       };
       "com.apple.DesktopServices" = {
         DSDontShowBackgroundImage = false;
@@ -293,20 +294,15 @@ in {
       "ghostty"
       "raycast"
       "spotify"
-      "alt-tab"
-      "shottr"
       "clop"
-      "appcleaner"
       "zen"
       "kindavim"
       "vesktop"
-      "stats"
-      "finetune"
-      "latest"
       "protonvpn"
       "font-sketchybar-app-font"
       "anki"
       "osu"
+      "vorssaint"
     ];
   };
 

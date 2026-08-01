@@ -30,6 +30,7 @@ yabai -m rule --add app="^ProtonVPN$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^IINA$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
+yabai -m rule --add app="^Vorssaint$" manage=off
 
 #window opacity
 #yabai -m config window_opacity on
