@@ -57,7 +57,7 @@ in {
     nushell
     herdr
     nmap
-    pass-tomb-osx.packages.${pkgs.system}.default
+    pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   #git config 
