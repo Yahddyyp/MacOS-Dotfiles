@@ -101,10 +101,6 @@ The symlink above makes `/etc/nix-darwin` available immediately, so every build 
 sudo darwin-rebuild switch --flake "/etc/nix-darwin#CHANGEME" --impure
 ```
 
-Why `--impure`: the flake derives your config name from `SUDO_USER`/`USER` at build time (no username is hardcoded in the repo).
-Why `#CHANGEME`: without it darwin-rebuild defaults to your *hostname* for the config name; your configs are named by username, so it must be supplied explicitly.
-Why not `environment.etc`: it copies the config into the nix store (a snapshot); a manual symlink keeps it a live link to your repo.
-
 ## Post-Install 
 After installation, run these:
 1. Tmux plugins — Open tmux and press prefix + I (Ctrl+A, then I)
