@@ -112,12 +112,6 @@ $env.config = (
     )
 )
 
-def darwin-rebuild [...args] {
-    let user = (whoami)
-    let flake_dir = ($env.HOME | path join "dotfiles" "nix")
-    sudo /run/current-system/sw/bin/darwin-rebuild ...$args --flake $"path:($flake_dir)#($user)"
-}
-
 def --env y [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 	^yazi ...$args --cwd-file $tmp
