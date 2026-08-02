@@ -92,7 +92,7 @@ Symlink the config into place (live link to the repo — edit dotfiles and they'
 sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
-Apply the configuration:
+Apply the configuration
 Change `CHANGEME` for your macOS username.
 
 The symlink above makes `/etc/nix-darwin` available immediately, so every build (first and subsequent) is the same:
