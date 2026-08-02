@@ -1,4 +1,4 @@
-{ pkgs, lib, username, ... }:
+{ pkgs, lib, username, pass-tomb-osx, ... }:
 
 let
   dotfilesDir = builtins.toString ./..;
@@ -57,6 +57,7 @@ in {
     nushell
     herdr
     nmap
+    pass-tomb-osx.packages.${pkgs.system}.default
   ];
 
   #git config 
