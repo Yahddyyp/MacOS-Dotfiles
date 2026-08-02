@@ -11,12 +11,11 @@ in {
     sketchybar
     yabai
     skhd
-    (pass.withExtensions (exts: with exts; [ pass-otp ]))
+    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit ]))
     gnupg
     carapace
     duti
     switchaudio-osx
-    (pkgs.pass.withExtensions (ext: [ ext.pass-audit ]))
   ];
 
   # Homebrew trust
