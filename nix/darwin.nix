@@ -303,6 +303,7 @@ in {
       "anki"
       "osu"
       "vorssaint"
+      "shottr"
     ];
   };
 
