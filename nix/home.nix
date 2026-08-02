@@ -2,7 +2,6 @@
 
 let
   dotfilesDir = builtins.toString ./..;
-  secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else { };
 in {
   home.username = username;
   home.homeDirectory = lib.mkForce (builtins.toPath ("/Users/" + username));
@@ -65,9 +64,8 @@ in {
     enable = true;
     settings = {
       user = {
-        name = secrets.git.userName or "";
-        email = secrets.git.userEmail or "";
-        signingkey = secrets.git.signingKey or "";
+        name = "Yahddyyp";
+        email = "Yahddyyp@gmail.com";
       };
       core = {
         editor = "nvim";

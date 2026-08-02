@@ -19,9 +19,8 @@
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
-    in if su != "" then su else if u != "" then u else "";
-    secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else { };
-    username = if usernameFromEnv != "" then usernameFromEnv else secrets.username or "changeme";
+    in if su != "" then su else if u != "" then u else "nobody";
+    username = usernameFromEnv;
     system = "aarch64-darwin";
     specialArgs = { inherit username; };
   in {

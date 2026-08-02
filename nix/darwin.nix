@@ -16,6 +16,7 @@ in {
     carapace
     duti
     switchaudio-osx
+    (pkgs.pass.withExtensions (ext: [ ext.pass-audit ]))
   ];
 
   # Homebrew trust
