@@ -18,6 +18,7 @@
 - **[starship](https://starship.rs/)** — Cross-shell prompt
 - **[kitty](https://sw.kovidgoyal.net/kitty/)** / **[ghostty](https://ghostty.org/)** — GPU-accelerated terminals
 - **[tmux](https://github.com/tmux/tmux)** — Terminal multiplexer
+
 ### CLI Tools
 | Tool | Purpose |
 |------|---------|
@@ -70,28 +71,39 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 2. Configures system — dock, finder, trackpad, keyboard, dark mode, hot corner to lock screen,scroll bar settings, disable quarantine warnings, accent color, battery percentage
 3. Sets up services — yabai scripting addition launchd, openssh
 4. Stows dotfiles — symlinks all config files 
-5. Configures git (makes a new .gitconfig) — delta pager, catppuccin-mocha theme, user identity from secrets
+5. Configures git — delta pager and hunk as well 
 6. Sets up GPG (for pass) — pinentry-curses, cache TTL
-7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild, installs babysitter for pi, some more things
+7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild, some more things
 8. Enables TouchID for sudo
 9. Display sleep after 10 min
 
 
-Clone the repo into a dir called dotfiles
+Clone the repo into a dir called dotfiles:
 ```bash 
 git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 ```
 
-Then setup the secrets.nix file (There is a example secrets.nix in the nix dir)
-```bash 
-# Edit secrets.nix — set your MacOS username, git name/email, and GPG key you use for signing (you can leave the git items blank)
-cp ~/dotfiles/nix/secrets.nix.example ~/dotfiles/nix/secrets.nix
+>[!Note] 
+> git username/email are hardcoded in `nix/home.nix` (edit them there).
+
+Set up /etc/nix-darwin:
+Symlink the config into place (live link to the repo — edit dotfiles and they're instantly the current source):
+```bash
+sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
-Apply the configuration
-```bash 
-nix run nix-darwin -- switch --flake "path:$HOME/dotfiles/nix#$(whoami)"
+Apply the configuration:
+Change `CHANGEME` for your macOS username.
+
+The symlink above makes `/etc/nix-darwin` available immediately, so every build (first and subsequent) is the same:
+
+```bash
+sudo darwin-rebuild switch --flake "/etc/nix-darwin#CHANGEME" --impure
 ```
+
+Why `--impure`: the flake derives your config name from `SUDO_USER`/`USER` at build time (no username is hardcoded in the repo).
+Why `#CHANGEME`: without it darwin-rebuild defaults to your *hostname* for the config name; your configs are named by username, so it must be supplied explicitly.
+Why not `environment.etc`: it copies the config into the nix store (a snapshot); a manual symlink keeps it a live link to your repo.
 
 ## Post-Install 
 After installation, run these:
