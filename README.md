@@ -93,14 +93,10 @@ sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
 Apply the configuration
-Change `CHANGEME` for your macOS username.
-
 The symlink above makes `/etc/nix-darwin` available immediately, so every build is the same:
 
-Make sure to change the `CHANGEME`
-
 ```bash
-sudo darwin-rebuild switch --flake "/etc/nix-darwin#$(whoami)" --impure
+sudo darwin-rebuild switch --flake /etc/nix-darwin#$(whoami) --impure
 ```
 
 ## Post-Install 
