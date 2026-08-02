@@ -22,7 +22,6 @@ __pycache__/
 .env
 *.key
 .gitconfig
-nix/secrets.nix
 
 **/memories/
 hermes/.hermes/sessions/
