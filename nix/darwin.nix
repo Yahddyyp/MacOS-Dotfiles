@@ -11,7 +11,7 @@ in {
     sketchybar
     yabai
     skhd
-    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit ]))
+    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update ]))
     gnupg
     carapace
     duti
