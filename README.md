@@ -100,7 +100,7 @@ The symlink above makes `/etc/nix-darwin` available immediately, so every build 
 Make sure to change the `CHANGEME`
 
 ```bash
-sudo darwin-rebuild switch --flake "/etc/nix-darwin#CHANGEME" --impure
+sudo darwin-rebuild switch --flake "/etc/nix-darwin#$(whoami)" --impure
 ```
 
 ## Post-Install 
