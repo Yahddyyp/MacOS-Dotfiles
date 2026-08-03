@@ -12,6 +12,7 @@
     installTmuxPlugins = lib.hm.dag.entryAfter [ "installPackages" ] ''
       export PATH="$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
       if [ ! -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
+        $DRY_RUN_CMD rm -rf "$HOME/.tmux/plugins/tpm"
         mkdir -p "$HOME/.tmux/plugins"
         $DRY_RUN_CMD git clone --depth 1 --quiet https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" 2>/dev/null || true
       fi
