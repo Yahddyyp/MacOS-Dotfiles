@@ -41,8 +41,8 @@
       if command -v spicetify &>/dev/null; then
         if [ ! -f "$HOME/.config/spicetify/CustomApps/marketplace/manifest.json" ]; then
           $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh)" 2>/dev/null
+          $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
         fi
-        $DRY_RUN_CMD spicetify backup apply 2>/dev/null || true
       fi
     '';
 
