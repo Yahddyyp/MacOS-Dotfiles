@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
-HOME="${HOME:-/var/root}"
+if [ -n "${1:-}" ] && [ -d "$1" ]; then
+  USER_HOME="$1"
+else
+  USER_HOME="${HOME:-/var/root}"
+fi
 
 export PATH="/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/system/sw/bin:$PATH"
+
+if [ -n "${HOME:-}" ] && [ "$(stat -f '%u' "$HOME" 2>/dev/null || echo 0)" != "$(id -u)" ]; then
+  unset HOME
+fi
 
 PROFILES=()
 
@@ -18,30 +26,37 @@ for p in /nix/var/nix/profiles/per-user/*/channels; do
   [ -L "$p" ] && PROFILES+=("$p")
 done
 
-USER_PROFILES_DIR="$HOME/.local/state/nix/profiles"
+USER_PROFILES_DIR="$USER_HOME/.local/state/nix/profiles"
 if [ -d "$USER_PROFILES_DIR" ]; then
   for p in "$USER_PROFILES_DIR"/*; do
     [ -L "$p" ] && PROFILES+=("$p")
   done
 fi
 
-for p in "$HOME/.nix-profile" /nix/var/nix/profiles/default; do
+for p in "$USER_HOME/.nix-profile" /nix/var/nix/profiles/default; do
   [ -L "$p" ] && PROFILES+=("$p")
 done
 
-echo "=== Cleaning up old generations (keeping last 3) ==="
+echo "Cleaning up old generations (keeping last 3)"
+FAILED=0
 for profile in "${PROFILES[@]}"; do
-  # Deduplicate by resolving symlinks
   resolved=$(readlink -f "$profile" 2>/dev/null || readlink "$profile")
   if [ -n "$resolved" ]; then
     echo "  Profile: $profile -> $resolved"
-    nix-env --profile "$profile" --delete-generations +3 2>&1 | sed 's/^/    /'
+    if ! nix-env --profile "$profile" --delete-generations +3 2>&1 | sed 's/^/    /'; then
+      echo "    !! failed to clean profile $profile (continuing)" >&2
+      FAILED=1
+    fi
   fi
 done
 
 echo ""
-echo "=== Running garbage collection ==="
-nix-store --gc 2>&1 | sed 's/^/  /'
+echo "Running garbage collection"
+if ! nix-store --gc 2>&1 | sed 's/^/  /'; then
+  echo "!! nix-store --gc failed" >&2
+  exit 1
+fi
 
 echo ""
-echo "=== Done ==="
+echo "Done"
+exit "$FAILED"

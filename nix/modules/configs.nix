@@ -22,8 +22,6 @@
   xdg.configFile."sesh"       = { source = ../configs/sesh;        recursive = true; };
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
   xdg.configFile."skhd"       = { source = ../configs/skhd;        recursive = true; };
-  # spicetify: whole dir managed (config-xpui.ini included — note it's runtime-
-  # written by spicetify, so treat the deployed copy as the source of truth).
   xdg.configFile."spicetify"  = { source = ../configs/spicetify;    recursive = true; };
   xdg.configFile."starship.toml".source = ../configs/starship.toml;
   xdg.configFile."television" = { source = ../configs/television; recursive = true; };
