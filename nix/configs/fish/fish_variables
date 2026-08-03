@@ -1,0 +1,9 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcolor\x3dbg\x2b\x3a\x23313244\x2cbg\x3a\x231E1E2E\x2cspinner\x3a\x23F5E0DC\x2chl\x3a\x23F38BA8\x20\x2d\x2dcolor\x3dfg\x3a\x23CDD6F4\x2cheader\x3a\x23F38BA8\x2cinfo\x3a\x23CBA6F7\x2cpointer\x3a\x23F5E0DC\x20\x2d\x2dcolor\x3dmarker\x3a\x23B4BEFE\x2cfg\x2b\x3a\x23CDD6F4\x2cprompt\x3a\x23CBA6F7\x2chl\x2b\x3a\x23F38BA8\x20\x2d\x2dcolor\x3dselected\x2dbg\x3a\x2345475A\x20\x2d\x2dcolor\x3dborder\x3a\x236C7086\x2clabel\x3a\x23CDD6F4
+SETUVAR __fish_initialized:4300
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/catppuccin\x2dfrappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmacchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmocha\x2etheme\x1e\x7e/\x2econfig/fish/themes/static
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ecatppuccin/fish
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_user_paths:/opt/homebrew/bin\x1e\x24HOME/\x2espicetify\x1e/opt/homebrew/opt/fzf/bin

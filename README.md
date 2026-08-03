@@ -62,21 +62,19 @@ These are required for the icons and styling to appear correctly:
 ### Prerequisites:
 * Nix
  ``` bash 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+curl --proto '=https' --tlsv1.2 -sSfL https://nixos.org/nix/install | sh -s -- --daemon
 ```
-
 
 **What it does**
 1. Installs packages — nix packages + brew packages + brew GUI apps + Maple Mono NF + Sketchybar App Font
 2. Configures system — dock, finder, trackpad, keyboard, dark mode, hot corner to lock screen,scroll bar settings, disable quarantine warnings, accent color, battery percentage
 3. Sets up services — yabai scripting addition launchd, openssh
-4. Stows dotfiles — symlinks all config files 
+4. Deploys configs — config file trees in `nix/configs/` are wired into `~/.config` / `$HOME` via home-manager 
 5. Configures git — delta pager and hunk as well 
 6. Sets up GPG (for pass) — pinentry-curses, cache TTL
 7. Runs activation hooks — oh-my-zsh, tmux plugins, spicetify marketplace, gh-dash extension, bat cache rebuild, some more things
 8. Enables TouchID for sudo
 9. Display sleep after 10 min
-
 
 Clone the repo into a dir called dotfiles:
 ```bash 
@@ -84,7 +82,7 @@ git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 ```
 
 >[!Note] 
-> git username/email are hardcoded in `nix/home.nix` (edit them there).
+> git username/email are hardcoded in `nix/modules/git.nix` (edit them there).
 
 Set up /etc/nix-darwin:
 Symlink the config into place (live link to the repo — edit dotfiles and they're instantly the current source):

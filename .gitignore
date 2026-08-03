@@ -22,7 +22,7 @@ __pycache__/
 .env
 *.key
 .gitconfig
-
+nix/result
 **/memories/
 hermes/.hermes/sessions/
 hermes/.hermes/cron/
@@ -52,4 +52,3 @@ hermes/.hermes/gateway/
 hermes/.hermes/hermes-agent/
 **/MEMORY.md
 **/memory.md
-
