@@ -105,7 +105,7 @@
     };
   };
 
-  # Inactive time (System Settings > Battery, in minutes)
+  # Inactive time
   power = {
     sleep = {
       computer = 10;
@@ -123,34 +123,45 @@
   services.openssh.enable = true;
 
   system.activationScripts.postActivation.text = lib.mkAfter ''
+    user_home="/Users/${username}"
+    run_as_user() {
+      sudo -u "${username}" HOME="$user_home" "$@"
+    }
+
     # Mute startup chime
     nvram StartupMute=%01 2>/dev/null || true
 
     # Disable ⌘Space
-    user_home="/Users/${username}"
     plist="$user_home/Library/Preferences/com.apple.symbolichotkeys.plist"
     if [ -f "$plist" ]; then
-      /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" "$plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" "$plist"
-      /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:65:enabled false" "$plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:65:enabled bool false" "$plist"
+      run_as_user /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" "$plist" 2>/dev/null \
+        || run_as_user /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" "$plist"
+      run_as_user /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:65:enabled false" "$plist" 2>/dev/null \
+        || run_as_user /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:65:enabled bool false" "$plist"
     fi
 
     # Set accent highlight color
-    defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null
+    run_as_user defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null
 
     # Default apps
-    duti -s app.zen-browser.zen public.html all 2>/dev/null
-    duti -s app.zen-browser.zen http all 2>/dev/null
-    duti -s app.zen-browser.zen https all 2>/dev/null
-    duti -s com.colliderli.iina .mp4 all 2>/dev/null
-    duti -s com.colliderli.iina .mkv all 2>/dev/null
-    duti -s com.colliderli.iina .mov all 2>/dev/null
-    duti -s com.colliderli.iina .avi all 2>/dev/null
-    duti -s com.colliderli.iina .webm all 2>/dev/null
-    duti -s com.colliderli.iina .wmv all 2>/dev/null
+    for app in /Applications/Zen.app /Applications/IINA.app /Applications/Zed.app; do
+      [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null
+    done
+    run_as_user duti -s app.zen-browser.zen public.html all 2>/dev/null
+    run_as_user duti -s app.zen-browser.zen http all 2>/dev/null
+    run_as_user duti -s app.zen-browser.zen https all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .mp4 all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .mkv all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .mov all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .avi all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .webm all 2>/dev/null
+    run_as_user duti -s com.colliderli.iina .wmv all 2>/dev/null
 
     # Default text editor
     for ext in txt md json yaml yml toml xml csv env sh zsh fish py js ts jsx tsx css scss html nix lua rb rs go swift; do
-      duti -s dev.zed.Zed .$ext all 2>/dev/null
+      run_as_user duti -s dev.zed.Zed .$ext all 2>/dev/null
     done
+
+    run_as_user killall cfprefsd 2>/dev/null || true
   '';
 }
