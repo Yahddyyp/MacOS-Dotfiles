@@ -1,8 +1,8 @@
 # MacOS Dotfiles
 
-![Full Setup](Images/Desktop.jpeg)
+![Full Setup](assets/Desktop.jpeg)
 
-![Terminal Setup](Images/Cli.png)
+![Terminal Setup](assets/Cli.png)
 
 ## Installation (Using nix)
 ### Prerequisites:
