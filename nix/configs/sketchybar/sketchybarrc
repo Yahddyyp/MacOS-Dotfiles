@@ -44,15 +44,6 @@ sketchybar --add item date right \
                        popup.background.border_width=1 \
                        popup.background.corner_radius=10 \
              --subscribe date mouse.clicked \
-             --add item date.wifi popup.date \
-             --set date.wifi icon=󰤨 \
-                             icon.color=0xffcba6f7 \
-                             icon.padding_left=10 \
-                             label.color=0xffcdd6f4 \
-                             label.font="Maple Mono NF:Bold:13.0" \
-                             label.width=220 \
-                             label.padding_right=10 \
-                             background.drawing=off \
              --add item date.band popup.date \
             --set date.band icon=󰖩 \
                             icon.color=0xffcba6f7 \
