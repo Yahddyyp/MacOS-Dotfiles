@@ -112,7 +112,6 @@
       "anki"
       "osu"
       "vorssaint"
-      "shottr"
     ];
   };
 
