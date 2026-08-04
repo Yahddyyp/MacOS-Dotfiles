@@ -1,5 +1,7 @@
-{ ... }:
-{
+{ config, username, ... }:
+let
+  repoConfigsDir = "/Users/${username}/dotfiles/nix/configs";
+in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."atuin"      = { source = ../configs/atuin;      recursive = true; };
   xdg.configFile."bat"        = { source = ../configs/bat;          recursive = true; };
@@ -18,11 +20,13 @@
   xdg.configFile."neofetch"   = { source = ../configs/neofetch; recursive = true; };
   xdg.configFile."nushell"    = { source = ../configs/nushell;  recursive = true; };
   xdg.configFile."nvim"       = { source = ../configs/nvim;        recursive = true; };
+  xdg.configFile."nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/nvim-lazy-lock.json";
   xdg.configFile."opencode"   = { source = ../configs/opencode; recursive = true; };
   xdg.configFile."sesh"       = { source = ../configs/sesh;        recursive = true; };
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
   xdg.configFile."skhd"       = { source = ../configs/skhd;        recursive = true; };
   xdg.configFile."spicetify"  = { source = ../configs/spicetify;    recursive = true; };
+  xdg.configFile."spicetify/config-xpui.ini".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/spicetify-config-xpui.ini";
   xdg.configFile."starship.toml".source = ../configs/starship.toml;
   xdg.configFile."television" = { source = ../configs/television; recursive = true; };
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };

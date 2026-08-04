@@ -70,9 +70,9 @@ in {
     serviceConfig.StandardErrorPath = "/tmp/skhd.err.log";
   };
 
-  #nix gc daemon 
+  #nix gc daemon
   launchd.daemons.nix-gc-custom = {
-    command = "${pkgs.bash}/bin/bash /Users/${username}/dotfiles/nix/scripts/gc.sh /Users/${username}";
+    command = "${pkgs.bash}/bin/bash /etc/nix-darwin/scripts/gc.sh /Users/${username}";
     serviceConfig.RunAtLoad = true;
     serviceConfig.StartCalendarInterval = [{ Weekday = 0; Hour = 3; Minute = 0; }];
     serviceConfig.StandardOutPath = "/tmp/nix-gc.log";
