@@ -47,7 +47,6 @@
     jq
     just
     pinentry-curses
-    gh
     luarocks
     ngrok
     cbonsai
