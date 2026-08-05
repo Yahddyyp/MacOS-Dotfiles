@@ -1,7 +1,6 @@
 theme = "catppuccin-mocha"
 diff_view = "side-by-side"
 ignore_whitespace = false
-appearance = "system"
 mouse = true
 leader = ";"
 review_watch_interval_ms = 1000 
@@ -10,3 +9,33 @@ review_watch_interval_ms = 1000
 id = "issue"
 color = "red"
 definition = "must fix before merge"
+
+[[comment_types]]
+id = "suggestion"
+color = "blue"
+definition = "optional improvement"
+
+[[comment_types]]
+id = "nit"
+color = "cyan"
+definition = "minor style/cosmetic nitpick, non-blocking"
+
+[[comment_types]]
+id = "praise"
+color = "green"
+definition = "highlight something done well"
+
+[[comment_types]]
+id = "question"
+color = "yellow"
+definition = "clarification requested, not a change"
+
+[[comment_types]]
+id = "note"
+color = "gray"
+definition = "context or info for the author"
+
+[[comment_types]]
+id = "future"
+color = "magenta"
+definition = "follow-up work for a later PR"
