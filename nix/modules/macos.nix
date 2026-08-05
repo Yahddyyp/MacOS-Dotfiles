@@ -1,6 +1,6 @@
 { lib, username, ... }:
 {
-  #dock settings
+  # dock settings
   system.defaults.dock = {
     orientation = "right";
     autohide-delay = 0.0;
@@ -12,9 +12,10 @@
     tilesize = 42;
     autohide-time-modifier = 0.0;
     magnification = false;
+    showhidden = true;
   };
 
-  #finder settings
+  # finder settings
   system.defaults.finder = {
     AppleShowAllExtensions = true;
     AppleShowAllFiles = true;
@@ -28,11 +29,14 @@
     CreateDesktop = true;
     ShowHardDrivesOnDesktop = false;
     ShowExternalHardDrivesOnDesktop = false;
+    ShowRemovableMediaOnDesktop = false;
+    ShowMountedServersOnDesktop = false;
+    NewWindowTarget = "Home";
     FXEnableExtensionChangeWarning = false;
     FXRemoveOldTrashItems = true;
   };
 
-  #WM settings
+  # WM settings
   system.defaults.WindowManager = {
     EnableStandardClickToShowDesktop = false;
     GloballyEnabled = false;
@@ -41,38 +45,44 @@
     HideDesktop = true;
   };
 
-  #Trackpad settings
+  # Trackpad settings
   system.defaults.trackpad = {
     Clicking = true;
     TrackpadRightClick = true;
+    TrackpadThreeFingerDrag = true;
     FirstClickThreshold = 0;
     SecondClickThreshold = 2;
   };
 
-  #Some other settings
+  # Some other settings
   system.defaults.NSGlobalDomain = {
     KeyRepeat = 2;
     InitialKeyRepeat = 15;
     NSAutomaticCapitalizationEnabled = false;
     NSAutomaticSpellingCorrectionEnabled = false;
     NSAutomaticPeriodSubstitutionEnabled = false;
+    NSAutomaticDashSubstitutionEnabled = false;
+    NSAutomaticQuoteSubstitutionEnabled = false;
     NSDocumentSaveNewDocumentsToCloud = false;
+    AppleKeyboardUIMode = 3;
+    ApplePressAndHoldEnabled = false;
     "com.apple.trackpad.scaling" = 2.5;
     "com.apple.swipescrolldirection" = true;
     _HIHideMenuBar = true;
   };
 
-  #screencapture settings
+  # screencapture settings
   system.defaults.screencapture = {
     type = "jpg";
+    disable-shadow = true;
   };
 
-  #controlcenter settings
+  # controlcenter settings
   system.defaults.controlcenter = {
     BatteryShowPercentage = true;
   };
 
-  #system defaults
+  # system defaults
   system.defaults = {
     LaunchServices.LSQuarantine = false;
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
@@ -94,12 +104,31 @@
       "com.apple.finder" = {
         FKAppearanceMode = 1;
         FinderSpawnTab = false;
+        QLEnableTextSelection = true;
       };
-      "com.apple.DesktopServices" = {
+      "com.apple.desktopservices" = {
         DSDontShowBackgroundImage = false;
+        DSDontWriteUSBStores = true;
+        DSDontWriteNetworkStores = true;
+      };
+      "com.apple.frameworks.diskimages" = {
+        skip-verify = true;
+        skip-verify-locked = true;
+        skip-verify-remote = true;
+      };
+      "com.apple.CrashReporter" = {
+        DialogType = "none";
+      };
+      "com.apple.AdLib" = {
+        forceLimitAdTracking = true;
+        allowApplePersonalizedAdvertising = false;
+        allowIdentifierForAdvertising = false;
+      };
+      "com.apple.screensaver" = {
+        idleTime = 600;  # 10 min
       };
       "com.apple.loginwindow" = {
-        TALLogoutSavesState = false;
+        TALogoutSavesState = false;
         SHOWFULLNAME = true;
       };
     };
@@ -108,8 +137,8 @@
   # Inactive time
   power = {
     sleep = {
-      computer = 10;
-      display = 10;
+      computer = 20;
+      display = 20;
     };
   };
 
