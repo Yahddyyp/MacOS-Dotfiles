@@ -160,6 +160,9 @@
     # Mute startup chime
     nvram StartupMute=%01 2>/dev/null || true
 
+    # Display sleep 15 min on battery
+    /usr/bin/pmset -b displaysleep 15
+
     # Disable ⌘Space
     plist="$user_home/Library/Preferences/com.apple.symbolichotkeys.plist"
     if [ -f "$plist" ]; then
