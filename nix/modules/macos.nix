@@ -71,6 +71,9 @@
     _HIHideMenuBar = true;
   };
 
+  # Make Fn key do nothing
+  system.defaults.hitoolbox.AppleFnUsageType = "Do Nothing";
+
   # screencapture settings
   system.defaults.screencapture = {
     type = "jpg";
