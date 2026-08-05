@@ -1,6 +1,6 @@
 { config, username, ... }:
 let
-  repoConfigsDir = "/Users/${username}/dotfiles/nix/configs";
+  repoConfigsDir = "/etc/nix-darwin/configs";
 in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."atuin"      = { source = ../configs/atuin;      recursive = true; };
