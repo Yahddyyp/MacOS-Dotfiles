@@ -30,7 +30,7 @@
   };
   system.stateVersion = 5;
 
-  #font
+  # font
   fonts.packages = with pkgs; [ 
     nerd-fonts.caskaydia-cove  
     maple-mono.truetype
@@ -56,7 +56,7 @@
     fi
   '';
 
-  #Homebrew settings
+  # Homebrew settings
   homebrew = {
     enable = true;
     onActivation = {

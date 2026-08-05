@@ -13,7 +13,7 @@
 
   home.stateVersion = "24.11";
 
-  #home packages
+  # home packages
   home.packages = with pkgs; [
     fish
     tmux
