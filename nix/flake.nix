@@ -14,10 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     pass-tomb-osx.url = "github:Yahddyyp/pass-tomb-osx";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, pass-tomb-osx, ... }: let
+  outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, pass-tomb-osx, ... }: let
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
@@ -30,6 +31,7 @@
     darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
+        nix-homebrew.darwinModules.nix-homebrew
         ./darwin.nix
         home-manager.darwinModules.home-manager
         {

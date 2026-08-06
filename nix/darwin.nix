@@ -38,23 +38,24 @@
   ];
 
   environment.loginShellInit = ''
-    # Run path_helper to load system PATH (/etc/paths, /etc/paths.d/*)
+    # Run path_helper to load system PATH 
     if [ -x /usr/libexec/path_helper ]; then
       eval "$(/usr/libexec/path_helper -s)"
     fi
   '';
 
   system.activationScripts.preActivation.text = lib.mkAfter ''
-    # Suppress launchctl LaunchAgent/root warnings during activation
+    # Suppress launchctl LaunchAgent root warnings during activation
     launchctl() { command launchctl "$@" 2>/dev/null; }
     export -f launchctl
-
-    # Auto-install Homebrew if not present
-    if [ ! -f /opt/homebrew/bin/brew ]; then
-      echo "Homebrew not found. Installing Homebrew non-interactively..."
-      NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
   '';
+
+  # Homebrew installation manager
+  nix-homebrew = {
+    enable = true;
+    user = username;
+    autoMigrate = true;
+  };
 
   # Homebrew settings
   homebrew = {
