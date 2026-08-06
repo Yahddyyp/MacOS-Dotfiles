@@ -25,13 +25,13 @@ git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 > git username/email are hardcoded in `nix/modules/git.nix` (edit them there).
 
 Set up `/etc/nix-darwin`:
-Symlink the config into place (live link to the repo — edit dotfiles and they're instantly the current source):
+Symlink the config into place:
 ```bash
 sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
 Apply the configuration
-The symlink above makes `/etc/nix-darwin` available immediately. First build only (installs `darwin-rebuild`; Homebrew is auto-installed if missing):
+First build only:
 
 ```bash
 nix run nix-darwin -- switch --flake /etc/nix-darwin#$(whoami) --impure
@@ -66,8 +66,6 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
-   > Already loaded automatically at login by the `yabai-sa` launchd daemon — only needed to reload after stopping it.
-
 5. Start services:
 
    ```bash 
@@ -81,7 +79,7 @@ After installation, run these:
   gh auth login
   ```
 
-* Restore your GPG key and pass store (secret key export from your old machine):
+* Restore your GPG key and pass store:
   ```bash
   gpg --import <secret-key.asc>
   gpg --quick-set-ownertrust <KEYID> ultimate
