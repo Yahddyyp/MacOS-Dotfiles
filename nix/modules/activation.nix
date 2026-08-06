@@ -18,7 +18,7 @@ in {
         ${toolPath}
         if [ ! -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
           $DRY_RUN_CMD rm -rf "$HOME/.tmux/plugins/tpm"
-          mkdir -p "$HOME/.tmux/plugins"
+          $DRY_RUN_CMD mkdir -p "$HOME/.tmux/plugins"
           $DRY_RUN_CMD git clone --depth 1 --quiet https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" 2>/dev/null || true
         fi
         if [ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then

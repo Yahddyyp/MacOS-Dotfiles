@@ -13,6 +13,8 @@
     autohide-time-modifier = 0.0;
     magnification = false;
     showhidden = true;
+    launchanim = false;
+    expose-animation-duration = 0.0;
   };
 
   # finder settings
@@ -26,6 +28,7 @@
     QuitMenuItem = true;
     _FXShowPosixPathInTitle = false;
     _FXSortFoldersFirst = true;
+    _FXSortFoldersFirstOnDesktop = true;
     CreateDesktop = true;
     ShowHardDrivesOnDesktop = false;
     ShowExternalHardDrivesOnDesktop = false;
@@ -51,7 +54,14 @@
     TrackpadRightClick = true;
     TrackpadThreeFingerDrag = true;
     FirstClickThreshold = 0;
-    SecondClickThreshold = 2;
+    SecondClickThreshold = 0;
+    TrackpadMomentumScroll = true;
+    TrackpadTwoFingerDoubleTapGesture = true;
+    TrackpadPinch = true;
+    TrackpadRotate = true;
+    TrackpadFourFingerPinchGesture = 2;
+    TrackpadFourFingerHorizSwipeGesture = 2;
+    TrackpadFourFingerVertSwipeGesture = 2;
   };
 
   # Some other settings
@@ -67,12 +77,20 @@
     AppleKeyboardUIMode = 3;
     ApplePressAndHoldEnabled = false;
     "com.apple.trackpad.scaling" = 2.5;
+    "com.apple.trackpad.forceClick" = false;
     "com.apple.swipescrolldirection" = true;
+    NSWindowResizeTime = 0.001;
     _HIHideMenuBar = true;
   };
 
   # Make Fn key do nothing
   system.defaults.hitoolbox.AppleFnUsageType = "Do Nothing";
+
+  # Reduce motion and transparency
+  system.defaults.universalaccess = {
+    reduceMotion = true;
+    reduceTransparency = true;
+  };
 
   # screencapture settings
   system.defaults.screencapture = {
@@ -100,9 +118,6 @@
       "com.apple.dock" = {
         wvous-br-corner = 13;
         wvous-br-modifier = 1966080;
-      };
-      "com.apple.universalaccess" = {
-        reduceMotion = true;
       };
       "com.apple.finder" = {
         FKAppearanceMode = 1;
@@ -142,8 +157,12 @@
     sleep = {
       computer = 20;
       display = 20;
+      allowSleepByPowerButton = true;
     };
   };
+
+  # Mute startup chime
+  system.startup.chime = false;
 
   # Touch ID for sudo
   security.pam.services.sudo_local = {
@@ -159,9 +178,6 @@
     run_as_user() {
       sudo -u "${username}" HOME="$user_home" "$@"
     }
-
-    # Mute startup chime
-    nvram StartupMute=%01 2>/dev/null || true
 
     # Display sleep 15 min on battery
     /usr/bin/pmset -b displaysleep 15
