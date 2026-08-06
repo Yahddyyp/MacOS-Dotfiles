@@ -25,7 +25,6 @@ git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 > git username/email are hardcoded in `nix/modules/git.nix` (edit them there).
 
 Set up `/etc/nix-darwin`:
-Symlink the config into place:
 ```bash
 sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
