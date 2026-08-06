@@ -6,6 +6,11 @@ in {
     linkP10kTheme = lib.hm.dag.entryAfter [ "installPackages" ] ''
       (
         ${toolPath}
+        i=0
+        while [ ! -d /opt/homebrew/share/powerlevel10k ] && [ $i -lt 60 ]; do
+          sleep 2
+          i=$((i + 1))
+        done
         if [ -d /opt/homebrew/share/powerlevel10k ] && [ ! -e "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
           $DRY_RUN_CMD mkdir -p "$HOME/.oh-my-zsh/custom/themes"
           $DRY_RUN_CMD ln -s /opt/homebrew/share/powerlevel10k "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
