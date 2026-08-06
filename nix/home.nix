@@ -29,7 +29,6 @@
     eza
     fd
     ripgrep
-    bat
     tree
     zoxide
     fzf
@@ -41,7 +40,7 @@
     dust
     gdu
     ouch
-    _7zz          
+    _7zz
     ffmpeg
     imagemagick
     jq
@@ -65,4 +64,12 @@
   ];
 
   programs.home-manager.enable = true;
+
+  programs.zsh.oh-my-zsh = {
+    enable = true;
+  };
+
+  programs.bat = {
+    enable = true;
+  };
 }

@@ -3,12 +3,12 @@ let
   toolPath = ''export PATH="$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"'';
 in {
   home.activation = {
-    installOhMyZsh = lib.hm.dag.entryAfter [ "installPackages" ] ''
+    linkP10kTheme = lib.hm.dag.entryAfter [ "installPackages" ] ''
       (
         ${toolPath}
-        if [ ! -d "$HOME/.oh-my-zsh" ]; then
-          export CHSH=no RUNZSH=no
-          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 2>/dev/null || true
+        if [ -d /opt/homebrew/share/powerlevel10k ] && [ ! -e "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+          $DRY_RUN_CMD mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+          $DRY_RUN_CMD ln -s /opt/homebrew/share/powerlevel10k "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
         fi
       )
     '';
@@ -23,17 +23,6 @@ in {
         fi
         if [ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
           $DRY_RUN_CMD "$HOME/.tmux/plugins/tpm/bin/install_plugins" 2>/dev/null || true
-        fi
-      )
-    '';
-
-    installGhDash = lib.hm.dag.entryAfter [ "installPackages" ] ''
-      (
-        ${toolPath}
-        if command -v gh &>/dev/null; then
-          if ! gh extension list 2>/dev/null | grep -q "gh-dash"; then
-            $DRY_RUN_CMD gh extension install dlvhdr/gh-dash 2>/dev/null || true
-          fi
         fi
       )
     '';
