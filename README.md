@@ -6,13 +6,18 @@
 
 ## Installation (Using nix)
 ### Prerequisites:
+* Xcode Command Line Tools
+```bash
+xcode-select --install
+```
+
 * Nix
- ``` bash 
+```bash
 curl --proto '=https' --tlsv1.2 -sSfL https://nixos.org/nix/install | sh -s -- --daemon
 ```
 
 Clone the repo into a dir called dotfiles:
-```bash 
+```bash
 git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 ```
 
@@ -26,7 +31,13 @@ sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
 Apply the configuration
-The symlink above makes `/etc/nix-darwin` available immediately, so every build is the same:
+The symlink above makes `/etc/nix-darwin` available immediately. First build only (installs `darwin-rebuild`; Homebrew is auto-installed if missing):
+
+```bash
+nix run nix-darwin -- switch --flake /etc/nix-darwin#$(whoami) --impure
+```
+
+Every build after that is the same:
 
 ```bash
 sudo darwin-rebuild switch --flake /etc/nix-darwin#$(whoami) --impure
@@ -55,12 +66,26 @@ After installation, run these:
    sudo yabai --load-sa
    ```
 
+   > Already loaded automatically at login by the `yabai-sa` launchd daemon — only needed to reload after stopping it.
+
 5. Start services:
 
-   ```bash
+   ```bash 
    source ~/.zshrc
    start-yabai
    ```
+
+## First Login
+* Authenticate gh (git uses it as the credential helper):
+  ```bash
+  gh auth login
+  ```
+
+* Restore your GPG key and pass store (secret key export from your old machine):
+  ```bash
+  gpg --import <secret-key.asc>
+  gpg --quick-set-ownertrust <KEYID> ultimate
+  ```
 
 ## Inspirations
 * https://github.com/gloceansh/dotfiles
@@ -71,4 +96,3 @@ After installation, run these:
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 
 <p align="center">Made with 💜 by Yahddyyp</p>
-
