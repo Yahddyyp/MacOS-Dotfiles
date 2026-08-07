@@ -3,6 +3,19 @@ let
   toolPath = ''export PATH="$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"'';
 in {
   home.activation = {
+    installOhMyZsh = lib.hm.dag.entryAfter [ "installPackages" ] ''
+      (
+        ${toolPath}
+        if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+          TMPZSH=$(mktemp -d)
+          export CHSH=no RUNZSH=no ZSH="$TMPZSH"
+          $DRY_RUN_CMD sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 2>/dev/null || true
+          $DRY_RUN_CMD cp -R "$TMPZSH/." "$HOME/.oh-my-zsh/" 2>/dev/null || true
+          $DRY_RUN_CMD rm -rf "$TMPZSH"
+        fi
+      )
+    '';
+
     linkP10kTheme = lib.hm.dag.entryAfter [ "installPackages" ] ''
       (
         ${toolPath}

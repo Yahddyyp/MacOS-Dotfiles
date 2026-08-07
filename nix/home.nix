@@ -65,10 +65,6 @@
 
   programs.home-manager.enable = true;
 
-  programs.zsh.oh-my-zsh = {
-    enable = true;
-  };
-
   programs.bat = {
     enable = true;
   };
