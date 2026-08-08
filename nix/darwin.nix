@@ -82,6 +82,7 @@
       "nikitabobko/tap"
       "modem-dev/tap"
       "agavra/tap"
+      "chipmunk1101/mainspring"
     ];
 
     brews = [
@@ -120,6 +121,7 @@
       "anki"
       "osu"
       "vorssaint"
+      "mainspring"
     ];
   };
 
