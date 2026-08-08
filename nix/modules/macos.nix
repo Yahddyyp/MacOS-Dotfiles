@@ -9,12 +9,14 @@
     show-recents = false;
     static-only = false;
     mineffect = "scale";
+    minimize-to-application = true;
     tilesize = 42;
     autohide-time-modifier = 0.0;
     magnification = false;
     showhidden = true;
     launchanim = false;
     expose-animation-duration = 0.0;
+    expose-group-apps = true;
   };
 
   # finder settings
@@ -29,7 +31,7 @@
     _FXShowPosixPathInTitle = false;
     _FXSortFoldersFirst = true;
     _FXSortFoldersFirstOnDesktop = true;
-    CreateDesktop = true;
+    CreateDesktop = false;
     ShowHardDrivesOnDesktop = false;
     ShowExternalHardDrivesOnDesktop = false;
     ShowRemovableMediaOnDesktop = false;
@@ -81,6 +83,9 @@
     "com.apple.swipescrolldirection" = true;
     NSWindowResizeTime = 0.001;
     _HIHideMenuBar = true;
+    NSAutomaticWindowAnimationsEnabled = false;
+    NSNavPanelExpandedStateForSaveMode = true;
+    NSNavPanelExpandedStateForSaveMode2 = true;
   };
 
   # Make Fn key do nothing
@@ -96,11 +101,17 @@
   system.defaults.screencapture = {
     type = "jpg";
     disable-shadow = true;
+    include-date = false;
   };
 
   # controlcenter settings
   system.defaults.controlcenter = {
     BatteryShowPercentage = true;
+  };
+
+  # clock settings
+  system.defaults.menuExtraClock = {
+    ShowDayOfWeek = true;
   };
 
   # system defaults
@@ -118,6 +129,7 @@
       "com.apple.dock" = {
         wvous-br-corner = 13;
         wvous-br-modifier = 1966080;
+        size-immutable = true;
       };
       "com.apple.finder" = {
         FKAppearanceMode = 1;
@@ -176,7 +188,7 @@
   system.activationScripts.postActivation.text = lib.mkAfter ''
     user_home="/Users/${username}"
     run_as_user() {
-      sudo -u "${username}" HOME="$user_home" "$@"
+      sudo -u "${username}" HOME="$user_home" PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin" "$@"
     }
 
     # Display sleep 15 min on battery
@@ -192,25 +204,25 @@
     fi
 
     # Set accent highlight color
-    run_as_user defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null
+    run_as_user defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null || true
 
     # Default apps
     for app in /Applications/Zen.app /Applications/IINA.app /Applications/Zed.app; do
-      [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null
+      [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null || true
     done
-    run_as_user duti -s app.zen-browser.zen public.html all 2>/dev/null
-    run_as_user duti -s app.zen-browser.zen http all 2>/dev/null
-    run_as_user duti -s app.zen-browser.zen https all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .mp4 all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .mkv all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .mov all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .avi all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .webm all 2>/dev/null
-    run_as_user duti -s com.colliderli.iina .wmv all 2>/dev/null
+    run_as_user duti -s app.zen-browser.zen public.html all 2>/dev/null || true
+    run_as_user duti -s app.zen-browser.zen http all 2>/dev/null || true
+    run_as_user duti -s app.zen-browser.zen https all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .mp4 all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .mkv all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .mov all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .avi all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .webm all 2>/dev/null || true
+    run_as_user duti -s com.colliderli.iina .wmv all 2>/dev/null || true
 
     # Default text editor
     for ext in txt md json yaml yml toml xml csv env sh zsh fish py js ts jsx tsx css scss html nix lua rb rs go swift; do
-      run_as_user duti -s dev.zed.Zed .$ext all 2>/dev/null
+      run_as_user duti -s dev.zed.Zed .$ext all 2>/dev/null || true
     done
 
     run_as_user killall cfprefsd 2>/dev/null || true
