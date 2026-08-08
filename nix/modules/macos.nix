@@ -162,6 +162,9 @@
         TALLogoutSavesState = false;
         SHOWFULLNAME = true;
       };
+      "com.apple.TextEdit" = {
+        NSShowAppCentricOpenPanelInsteadOfUntitledFile = false;
+      };
     };
   };
 
