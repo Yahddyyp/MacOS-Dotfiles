@@ -125,6 +125,7 @@
         AppleShowScrollBars = "WhenScrolling";
         AppleScrollerPagingBehavior = true;
         AppleWidgetStyle = "automatic";
+        NSQuitAlwaysKeepsWindows = false;
       };
       "com.apple.dock" = {
         wvous-br-corner = 13;
@@ -158,7 +159,7 @@
         idleTime = 600;  # 10 min
       };
       "com.apple.loginwindow" = {
-        TALogoutSavesState = false;
+        TALLogoutSavesState = false;
         SHOWFULLNAME = true;
       };
     };
