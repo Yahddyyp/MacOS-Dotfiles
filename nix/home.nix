@@ -60,6 +60,7 @@
     nushell
     herdr
     nmap
+    ollama
     pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
