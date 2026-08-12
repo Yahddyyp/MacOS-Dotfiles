@@ -30,7 +30,6 @@ $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".spicetify"))
 alias vim = nvim
 alias vi = nvim
 alias ff = fastfetch
-alias oc = opencode
 alias cat = bat
 alias ls = eza --icons --group-directories-first
 alias l = eza --icons --long --group-directories-first --header --git

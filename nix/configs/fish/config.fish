@@ -53,7 +53,6 @@ function start-yabai
     borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &
     disown
 end
-abbr --add oc opencode
 abbr --add cat bat
 
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude=.git --exclude=Documents --exclude=wallpapers --exclude=Application'

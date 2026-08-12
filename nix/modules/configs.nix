@@ -21,7 +21,6 @@ in {
   xdg.configFile."nushell"    = { source = ../configs/nushell;  recursive = true; };
   xdg.configFile."nvim"       = { source = ../configs/nvim;        recursive = true; };
   xdg.configFile."nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/nvim-lazy-lock.json";
-  xdg.configFile."opencode"   = { source = ../configs/opencode; recursive = true; };
   xdg.configFile."sesh"       = { source = ../configs/sesh;        recursive = true; };
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
   xdg.configFile."skhd"       = { source = ../configs/skhd;        recursive = true; };

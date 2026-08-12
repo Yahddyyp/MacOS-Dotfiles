@@ -50,7 +50,6 @@
     ngrok
     cbonsai
     sesh
-    opencode
     pi-coding-agent
     lua
     spicetify-cli

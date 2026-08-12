@@ -68,7 +68,6 @@ function start-yabai() {
   borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &!
 }
 alias start-yabai='start-yabai'
-alias oc="opencode"
 alias cat="bat"
 
 alias gc="git commit -m"
