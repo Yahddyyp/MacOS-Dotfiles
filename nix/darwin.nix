@@ -120,6 +120,7 @@
       "anki"
       "osu"
       "vorssaint"
+      "steam"
     ];
   };
 
