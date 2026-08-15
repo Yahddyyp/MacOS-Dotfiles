@@ -91,10 +91,16 @@ ignored_commands = [
 records = true
 
 [daemon]
-enabled = false
+enabled = true
+autostart = true
 
 [tmux]
-enabled = false
+enabled = true
+width = "80%"
+height = "60%"
+
+[ai]
+enabled = true
 
 [theme]
 name = "catppuccin-mocha-mauve"

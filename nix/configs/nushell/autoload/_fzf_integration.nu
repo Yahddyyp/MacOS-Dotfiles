@@ -285,7 +285,7 @@ def __fzf_list_hosts [] {
     (
       # Process ssh config files
       $ssh_configs | append $ssh_configs_d | append $ssh_config_global
-                   | where {|it| ($it | str downcase | str starts-with 'host') or ($it | str downcase | str starts-with 'hostname') }
+                   | where {|it| ($it | str lowercase | str starts-with 'host') or ($it | str lowercase | str starts-with 'hostname') }
                    | parse --regex '^\s*host(?:name)?\s+(?<hosts>.+)' # Extract hosts after keyword
                    | default { hosts: null }                          # Handle lines that don't match regex
                    | get hosts
