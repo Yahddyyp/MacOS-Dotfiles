@@ -26,11 +26,10 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>fX", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode", noremap = true })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>h", function()
-  vim.cmd("enew")
   require("snacks").dashboard()
 end, { desc = "Open dashboard" })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 
 -- Redo and line navigation alternatives
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
