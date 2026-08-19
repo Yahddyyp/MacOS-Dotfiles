@@ -60,6 +60,7 @@
     herdr
     nmap
     pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default
+    zellij
   ];
 
   programs.home-manager.enable = true;

@@ -21,7 +21,7 @@ Clone the repo into a dir called dotfiles:
 git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 ```
 
->[!Note] 
+> [!NOTE] 
 > git username/email are hardcoded in `nix/modules/git.nix` (edit them there).
 
 Set up `/etc/nix-darwin`:
