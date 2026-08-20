@@ -84,6 +84,10 @@ After installation, run these:
   gpg --quick-set-ownertrust <KEYID> ultimate
   ```
 
+## macOS Settings
+
+These dotfiles configure macOS declaratively, but a lot of the system lives behind `defaults write` commands that never make it into a config file. For the GUI-toggle settings — Finder, Dock, keyboard, trackpad, privacy, screenshots — I use [Mainspring](https://trymainspring.com): a menu bar app that turns 90+ of them into labelled, reversible toggles, each with an undo, and keeps a record of what you changed. Handy alongside a nix-darwin setup for the bits that are awkward to declare.
+
 ## Inspirations
 * https://github.com/gloceansh/dotfiles
 * https://github.com/typecraft-dev/dotfiles
