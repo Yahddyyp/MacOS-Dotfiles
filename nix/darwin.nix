@@ -111,7 +111,6 @@
       "ghostty"
       "raycast"
       "spotify"
-      "clop"
       "zen"
       "kindavim"
       "vesktop"
