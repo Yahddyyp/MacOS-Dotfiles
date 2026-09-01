@@ -1,6 +1,6 @@
 # MacOS Dotfiles
 
-![Full Setup](assets/Desktop.jpeg)
+![Full Setup](assets/Desktop.png)
 
 ![Terminal Setup](assets/Cli.png)
 
