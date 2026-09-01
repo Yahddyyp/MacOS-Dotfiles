@@ -1,6 +1,6 @@
 #!/bin/bash
 borders \
-  active_color=0xff74c7ec \
-  inactive_color=0xffcba6f7 \
-  width=6.0 \
+  active_color=0xffcba6f7 \
+  inactive_color=0x00000000 \
+  width=4.0 \
   hidpi=on

@@ -1,6 +1,6 @@
 config-version = 2
 after-startup-command = [
-    'exec-and-forget borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on',
+    'exec-and-forget borders active_color=0xffcba6f7 inactive_color=0x00000000 width=4.0 hidpi=on &',
     'exec-and-forget launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/org.nixos.sketchybar.plist 2>/dev/null',
 ]
 start-at-login = false
