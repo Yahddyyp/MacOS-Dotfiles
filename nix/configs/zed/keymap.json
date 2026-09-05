@@ -27,7 +27,6 @@
       "space h": "zed::ShowWelcome",
       "space c": "buffer_search::Dismiss",
       "space p": "workspace::ToggleRightDock",
-      "space o c": "agent::Toggle",
       "space m": "pane::SplitVertical",
       "space u": "pane::SplitHorizontal",
       "space b d": "pane::CloseActiveItem",
@@ -36,8 +35,6 @@
       "ctrl-/": "terminal_panel::Toggle",
       "space t": "debug_panel::Toggle",
       "space g g": "git_panel::Toggle",
-      "Tab": "pane::ActivateNextItem",
-      "shift-Tab": "pane::ActivatePreviousItem",
     },
   },
   {

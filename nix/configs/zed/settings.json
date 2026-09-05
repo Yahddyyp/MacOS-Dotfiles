@@ -15,28 +15,8 @@
     "dock": "left",
   },
   "restore_on_startup": "launchpad",
-  "agent_servers": {
-    "opencode": {
-      "default_config_options": {
-        "mode": "Primary"
-      },
-      "type": "registry",
-    },
-  },
   "project_panel": {
     "dock": "left",
-  },
-  "agent": {
-    "default_width": 150,
-    "default_model": {
-      "provider": "opencode",
-      "model": "free/big-pickle",
-      "enable_thinking": false,
-    },
-    "sidebar_side": "right",
-    "dock": "right",
-    "favorite_models": [],
-    "model_parameters": [],
   },
   "icon_theme": "Catppuccin Mocha",
   "telemetry": {
@@ -63,4 +43,6 @@
     "scan_parents": true,
     "include_counts": true,
   },
+  "reduce_motion": "on",
+  "cursor_blink": false,
 }
