@@ -37,14 +37,14 @@
   system.stateVersion = 5;
 
   # font
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.caskaydia-cove  
+  fonts.packages = with pkgs; [
+    nerd-fonts.caskaydia-cove
     maple-mono.truetype
     maple-mono.NF-unhinted
   ];
 
   environment.loginShellInit = ''
-    # Run path_helper to load system PATH 
+    # Run path_helper to load system PATH
     if [ -x /usr/libexec/path_helper ]; then
       eval "$(/usr/libexec/path_helper -s)"
     fi
@@ -119,6 +119,7 @@
       "osu"
       "vorssaint"
       "steam"
+      "karabiner-elements"
     ];
   };
 
