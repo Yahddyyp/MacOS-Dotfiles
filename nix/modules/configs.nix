@@ -14,7 +14,6 @@ in {
   xdg.configFile."ghostty"    = { source = ../configs/ghostty;  recursive = true; };
   xdg.configFile."herdr"      = { source = ../configs/herdr;      recursive = true; };
   xdg.configFile."hunk"       = { source = ../configs/hunk;        recursive = true; };
-  xdg.configFile."karabiner"  = { source = ../configs/karabiner; recursive = true; };
   xdg.configFile."kitty"      = { source = ../configs/kitty;      recursive = true; };
   xdg.configFile."lazygit"    = { source = ../configs/lazygit;  recursive = true; };
   xdg.configFile."neofetch"   = { source = ../configs/neofetch; recursive = true; };

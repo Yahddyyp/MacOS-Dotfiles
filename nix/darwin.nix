@@ -107,7 +107,6 @@
       "obsidian"
       "iina"
       "localsend"
-      "karabiner-elements"
       "ghostty"
       "raycast"
       "spotify"
