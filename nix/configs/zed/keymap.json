@@ -31,10 +31,15 @@
       "space u": "pane::SplitHorizontal",
       "space b d": "pane::CloseActiveItem",
       "space x": "pane::CloseActiveItem",
-      "space Tab": "pane::ActivateLastItem",
       "ctrl-/": "terminal_panel::Toggle",
       "space t": "debug_panel::Toggle",
       "space g g": "git_panel::Toggle",
+      "Tab": "pane::ActivateNextItem",
+      "shift-Tab": "pane::ActivatePreviousItem",
+      "escape": ["workspace::SendKeystrokes", ": n o h enter"],
+      "n": ["workspace::SendKeystrokes", "n z z z v"],
+      "N": ["workspace::SendKeystrokes", "shift-n z z z v"],
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
     },
   },
   {
@@ -59,4 +64,26 @@
       "j k": "vim::NormalBefore",
     },
   },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"]
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "g 1": ["pane::ActivateItem", 0],
+      "g 2": ["pane::ActivateItem", 1],
+      "g 3": ["pane::ActivateItem", 2],
+      "g 4": ["pane::ActivateItem", 3],
+      "g 5": ["pane::ActivateItem", 4],
+      "g 6": ["pane::ActivateItem", 5],
+      "g 7": ["pane::ActivateItem", 6],
+      "g 8": ["pane::ActivateItem", 7],
+      "g 9": ["pane::ActivateItem", 8],
+      "g 0": ["pane::ActivateItem", 9]
+    }
+  }
 ]
