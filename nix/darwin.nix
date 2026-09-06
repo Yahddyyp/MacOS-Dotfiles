@@ -120,6 +120,7 @@
       "vorssaint"
       "steam"
       "karabiner-elements"
+      "helium-browser"
     ];
   };
 
