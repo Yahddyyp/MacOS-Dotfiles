@@ -121,6 +121,7 @@
       "steam"
       "karabiner-elements"
       "helium-browser"
+      "firefox"
     ];
   };
 
