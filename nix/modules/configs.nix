@@ -30,8 +30,8 @@ in {
   xdg.configFile."television" = { source = ../configs/television; recursive = true; };
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };
   xdg.configFile."yabai"      = { source = ../configs/yabai;      recursive = true; };
-  xdg.configFile."yazi"       = { source = ../configs/yazi;        recursive = true; };
-  xdg.configFile."zed"        = { source = ../configs/zed;          recursive = true; };
+  xdg.configFile."yazi"       = { source = ../configs/yazi;       recursive = true; };
+  xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
   xdg.configFile."zsh/zsh-syntax-highlighting/themes" = { source = ../configs/zsh/zsh-syntax-highlighting/themes; recursive = true; };
 
   home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };

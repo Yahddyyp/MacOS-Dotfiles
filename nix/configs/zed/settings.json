@@ -36,7 +36,7 @@
   },
   "theme": {
     "mode": "dark",
-    "light": "One Light",
+    "light": "Catppuccin Mocha",
     "dark": "Catppuccin Mocha",
   },
   "file_finder": {
