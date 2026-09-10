@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "format_on_save": "modifications_if_available",
   "disable_ai": true,
   "proxy": "",
   "ui_font_family": "Maple Mono NF",
