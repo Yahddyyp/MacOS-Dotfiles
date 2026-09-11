@@ -1,9 +1,11 @@
 #!/bin/sh
 
-export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
+export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/bin:/bin"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+SKETCHYBAR="/etc/profiles/per-user/sanjayjain/bin/sketchybar"
 
 APP=""
 
@@ -31,9 +33,9 @@ if [ -n "$APP" ]; then
     LABEL="$(printf '%s' "$LABEL" | cut -c1-47)..."
   fi
 
-  sketchybar --set media.cover \
+  "$SKETCHYBAR" --set media.cover \
     drawing=on \
     label="$LABEL"
 else
-  sketchybar --set media.cover drawing=off
+  "$SKETCHYBAR" --set media.cover drawing=off
 fi

@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 let
-  wmAgentPath = "/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/bin:/bin";
+  wmAgentPath = "/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/bin:/bin";
 in {
   # launchd daemon for yabai scripting addon
   launchd.daemons.yabai-sa = {
