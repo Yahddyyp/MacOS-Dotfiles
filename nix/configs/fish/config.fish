@@ -50,7 +50,7 @@ function start-yabai
     for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist
         launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
     end
-    borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &
+    borders active_color=0xffcba6f7 inactive_color=0x00000000 width=4.0 hidpi=on &
     disown
 end
 abbr --add cat bat

@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 let
-  wmAgentPath = "/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin";
+  wmAgentPath = "/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/bin:/bin";
 in {
   # launchd daemon for yabai scripting addon
   launchd.daemons.yabai-sa = {
@@ -27,12 +27,16 @@ in {
 
   # sketchybar plist
   launchd.agents.sketchybar = {
-    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/sketchybar && exec ${pkgs.sketchybar}/bin/sketchybar'";
+    command = "${pkgs.sketchybar}/bin/sketchybar";
     serviceConfig.RunAtLoad = true;
     serviceConfig.KeepAlive = true;
     serviceConfig.ProcessType = "Interactive";
     serviceConfig.Nice = -20;
-    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
+    serviceConfig.EnvironmentVariables = {
+      PATH = "${pkgs.lua5_5}/bin:${wmAgentPath}";
+      CONFIG_DIR = "/Users/${username}/.config/sketchybar";
+      LUA_CPATH = "${pkgs.sbarlua}/lib/lua/5.5/?.so;;";
+    };
     serviceConfig.StandardOutPath = "/tmp/sketchybar.out.log";
     serviceConfig.StandardErrorPath = "/tmp/sketchybar.err.log";
   };

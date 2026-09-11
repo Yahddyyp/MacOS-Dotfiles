@@ -14,7 +14,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    sketchybar
     yabai
     skhd
     (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update ]))

@@ -6,6 +6,7 @@
     ./modules/gpg.nix
     ./modules/activation.nix
     ./modules/configs.nix
+    ./modules/sketchybar.nix
   ];
 
   home.username = username;

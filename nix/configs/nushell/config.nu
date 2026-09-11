@@ -66,7 +66,7 @@ def start-yabai [] {
     for f in [/Library/LaunchAgents/org.nixos.yabai.plist /Library/LaunchAgents/org.nixos.skhd.plist /Library/LaunchAgents/org.nixos.sketchybar.plist] {
         ^launchctl bootstrap $"gui/($uid)" $f | ignore
     }
-    bash -c 'borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &'
+    bash -c 'borders active_color=0xffcba6f7 inactive_color=0x00000000 width=4.0 hidpi=on &'
 }
 
 zoxide init nushell | save -f ~/.cache/zoxide.nu
