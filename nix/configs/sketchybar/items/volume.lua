@@ -205,12 +205,4 @@ volume_slider:subscribe("mouse.exited", function()
 	})
 end)
 
-volume_icon:subscribe("mouse.exited.global", function()
-	hide_popup()
-end)
-
-volume_slider:subscribe("mouse.exited.global", function()
-	hide_popup()
-end)
-
 update_volume()
