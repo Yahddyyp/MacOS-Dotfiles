@@ -199,7 +199,7 @@ volume_slider:subscribe("mouse.exited", function()
 	volume_slider:set({
 		slider = {
 			knob = {
-				drawing = true,
+				drawing = false,
 			},
 		},
 	})

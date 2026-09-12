@@ -5,7 +5,7 @@ export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/b
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-SKETCHYBAR="/etc/profiles/per-user/sanjayjain/bin/sketchybar"
+SKETCHYBAR="/etc/profiles/per-user/$(whoami)/bin/sketchybar"
 
 APP=""
 

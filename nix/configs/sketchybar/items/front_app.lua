@@ -24,7 +24,7 @@ local front_app = sbar.add("item", "front_app", {
 	},
 })
 
-front_app:subscribe("front_app_switched", function(env)
+front_app:subscribe("window_focus", function(env)
 	local app = env.INFO
 
 	if app == nil or app == "" or app == "null" then
@@ -76,3 +76,15 @@ front_app:subscribe("mouse.exited", function()
 		})
 	end)
 end)
+
+current_app = "Finder"
+
+front_app:set({
+	label = {
+		string = "Finder",
+	},
+
+	icon = {
+		string = icons["Finder"],
+	},
+})

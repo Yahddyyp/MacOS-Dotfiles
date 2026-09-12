@@ -1,28 +1,28 @@
 #!/bin/bash
-#Yabai config
+# Yabai config
 export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"
-#layout
+# layout
 yabai -m config layout bsp
 
-#Window placement
+# Window placement
 yabai -m config window_placement second_child
 
-#padding
+# padding
 yabai -m config top_padding 8
 yabai -m config bottom_padding 8
 yabai -m config left_padding 8
 yabai -m config right_padding 8
 yabai -m config window_gap 8
 
-#mouse settings
+# mouse settings
 yabai -m config focus_follows_mouse autoraise
 yabai -m config mouse_modifier fn
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
-#yabai -m window --focus mouse
+# yabai -m window --focus mouse
 yabai -m config mouse_follows_focus on
 
-#disable specific apps
+# disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Shottr$" manage=off
@@ -32,10 +32,10 @@ yabai -m rule --add app="^IINA$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
 yabai -m rule --add app="^Vorssaint$" manage=off
 
-#window opacity
-#yabai -m config window_opacity on
-#yabai -m config active_window_opacity 0.9
-#yabai -m config normal_window_opacity 0.8
+# window opacity
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 0.9
+# yabai -m config normal_window_opacity 0.8
 
 #borders
 borders active_color=0xffcba6f7 inactive_color=0x00000000 width=4.0 hidpi=on &
@@ -44,10 +44,39 @@ borders active_color=0xffcba6f7 inactive_color=0x00000000 width=4.0 hidpi=on &
 yabai -m config external_bar all:40:0
 
 # Sketchybar integration
-yabai -m signal --add event=space_changed action="/run/current-system/sw/bin/sketchybar --trigger space_change"
-yabai -m signal --add event=window_focused action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
-yabai -m signal --add event=window_destroyed action="/run/current-system/sw/bin/sketchybar --trigger window_focus"
+SKETCHYBAR="/etc/profiles/per-user/$(whoami)/bin/sketchybar"
 
-#Window shadows
+# Front App
+yabai -m signal --add event=window_focused \
+  action="$SKETCHYBAR --trigger window_focus INFO=\"\$(yabai -m query --windows --window | jq -r '.app')\""
+
+yabai -m signal --add event=window_created \
+  action="$SKETCHYBAR --trigger window_focus INFO=\"\$(yabai -m query --windows --window | jq -r '.app')\""
+
+yabai -m signal --add event=window_destroyed \
+  action="$SKETCHYBAR --trigger window_focus INFO=\"\$(yabai -m query --windows --window | jq -r '.app')\""
+
+yabai -m signal --add event=window_minimized \
+  action="$SKETCHYBAR --trigger window_focus INFO=\"\$(yabai -m query --windows --window | jq -r '.app')\""
+
+yabai -m signal --add event=space_changed \
+  action="$SKETCHYBAR --trigger window_focus INFO=\"\$(yabai -m query --windows --space | jq -r 'map(select(.[\"has-focus\"] == true))[0].app // \"\"')\""
+
+# Space icons
+yabai -m signal --add event=space_changed \
+  action="$SKETCHYBAR --trigger space_change"
+
+yabai -m signal --add event=window_focused \
+  action="$SKETCHYBAR --trigger space_windows_change"
+
+yabai -m signal --add event=window_created \
+  action="$SKETCHYBAR --trigger space_windows_change"
+
+yabai -m signal --add event=window_destroyed \
+  action="$SKETCHYBAR --trigger space_windows_change"
+
+yabai -m signal --add event=window_minimized \
+  action="$SKETCHYBAR --trigger space_windows_change"
+
+# Window shadows
 yabai -m config window_shadow off

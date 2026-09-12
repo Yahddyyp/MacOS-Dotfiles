@@ -117,36 +117,40 @@ local function update_date()
 end
 
 local function update_uptime()
-	sbar.exec("uptime", function(up)
-		if not up or up == "" then
+	sbar.exec("sysctl -n kern.boottime", function(result)
+		if not result or result == "" then
 			return
 		end
 
-		local up_str = up:match("up%s+(.-),%s+%d+%s+user") or ""
+		local boot_time = result:match("sec = (%d+)")
 
-		up_str = up_str:gsub("^%s*(.-)%s*$", "%1")
+		if not boot_time then
+			return
+		end
 
-		local days = up_str:match("(%d+)%s+day")
-		local hours, minutes = up_str:match("(%d+):(%d+)")
+		boot_time = tonumber(boot_time)
+
+		if not boot_time then
+			return
+		end
+
+		local uptime_seconds = os.time() - boot_time
+
+		local days = math.floor(uptime_seconds / 86400)
+		local hours = math.floor((uptime_seconds % 86400) / 3600)
+		local minutes = math.floor((uptime_seconds % 3600) / 60)
 
 		local parts = {}
 
-		if days then
+		if days > 0 then
 			table.insert(parts, days .. "d")
 		end
 
-		if hours then
+		if hours > 0 or days > 0 then
 			table.insert(parts, hours .. "h")
 		end
 
-		if minutes then
-			table.insert(parts, minutes .. "m")
-		end
-
-		if #parts == 0 then
-			local mins = up_str:match("(%d+)%s+min")
-			table.insert(parts, (mins or "<1") .. "m")
-		end
+		table.insert(parts, minutes .. "m")
 
 		uptime_item:set({
 			label = {
