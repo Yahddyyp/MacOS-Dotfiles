@@ -6,6 +6,7 @@ local is_charging = false
 
 local battery = sbar.add("item", "battery", {
 	position = "right",
+	update_freq = 30,
 
 	icon = {
 		color = colors.mauve,
@@ -135,6 +136,7 @@ local function update_battery()
 	end)
 end
 
+battery:subscribe("routine", update_battery)
 battery:subscribe("system_woke", update_battery)
 battery:subscribe("power_source_change", update_battery)
 
