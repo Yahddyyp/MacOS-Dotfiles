@@ -65,7 +65,6 @@ function start-yabai() {
   for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist; do
     launchctl bootstrap "gui/$UID" "$f" 2>/dev/null
   done
-  borders active_color=0xff74c7ec inactive_color=0xffcba6f7 width=6.0 hidpi=on &!
 }
 alias start-yabai='start-yabai'
 alias cat="bat"
