@@ -55,7 +55,6 @@ def stop-yabai [] {
     ^launchctl bootout $"gui/($uid)/org.nixos.yabai"
     ^launchctl bootout $"gui/($uid)/org.nixos.skhd"
     ^launchctl bootout $"gui/($uid)/org.nixos.sketchybar"
-    ^pkill borders
 }
 
 def start-yabai [] {

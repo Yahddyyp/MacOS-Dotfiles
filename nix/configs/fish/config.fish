@@ -38,7 +38,6 @@ function stop-yabai
     launchctl bootout "gui/$uid/org.nixos.yabai" 2>/dev/null
     launchctl bootout "gui/$uid/org.nixos.skhd" 2>/dev/null
     launchctl bootout "gui/$uid/org.nixos.sketchybar" 2>/dev/null
-    pkill borders 2>/dev/null
 end
 
 function start-yabai
@@ -50,7 +49,6 @@ function start-yabai
     for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist
         launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
     end
-    disown
 end
 abbr --add cat bat
 

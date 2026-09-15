@@ -57,7 +57,7 @@ alias la="eza --icons --long --group-directories-first --header --git --inode --
 alias lT="eza --icons --tree --group-directories-first --all"
 alias lt="eza --icons --tree --group-directories-first"
 alias fix-tmux="killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)"
-alias stop-yabai='launchctl bootout "gui/$UID/org.nixos.yabai" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.skhd" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.sketchybar" 2>/dev/null; pkill borders 2>/dev/null'
+alias stop-yabai='launchctl bootout "gui/$UID/org.nixos.yabai" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.skhd" 2>/dev/null; launchctl bootout "gui/$UID/org.nixos.sketchybar" 2>/dev/null'
 function start-yabai() {
   for label in org.nixos.{yabai,skhd,sketchybar}; do
     launchctl bootout "gui/$UID/$label" 2>/dev/null
