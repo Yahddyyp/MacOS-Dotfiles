@@ -81,6 +81,7 @@
       "nikitabobko/tap"
       "modem-dev/tap"
       "agavra/tap"
+      "raine/workmux"
     ];
 
     brews = [
@@ -97,6 +98,7 @@
       "zig"
       "rustup"
       "tuicr"
+      "workmux"
     ];
 
     casks = [
