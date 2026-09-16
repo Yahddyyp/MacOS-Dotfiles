@@ -160,26 +160,6 @@ local function update_uptime()
 	end)
 end
 
-date_item:subscribe("mouse.entered", function()
-	sbar.animate("tanh", 5, function()
-		date_item:set({
-			background = {
-				border_color = colors.mauve,
-			},
-		})
-	end)
-end)
-
-date_item:subscribe("mouse.exited", function()
-	sbar.animate("tanh", 5, function()
-		date_item:set({
-			background = {
-				border_color = colors.surface_border,
-			},
-		})
-	end)
-end)
-
 date_item:subscribe("mouse.clicked", function()
 	update_network()
 	update_date()

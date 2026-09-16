@@ -27,18 +27,6 @@ local media_cover = sbar.add("item", "media.cover", {
 	},
 })
 
-media_cover:subscribe("mouse.entered", function()
-	sbar.animate("tanh", 3, function()
-		media_cover:set({ background = { border_color = 0xffcba6f7 } })
-	end)
-end)
-
-media_cover:subscribe("mouse.exited", function()
-	sbar.animate("tanh", 3, function()
-		media_cover:set({ background = { border_color = 0x44cba6f7 } })
-	end)
-end)
-
 local function update_media()
 	sbar.exec("~/.config/sketchybar/helpers/media.sh", function()
 		-- media.sh handles the sketchybar update itself

@@ -117,24 +117,6 @@ volume_icon:subscribe("volume_change", function(env)
 	end
 end)
 
-volume_icon:subscribe("mouse.entered", function()
-	volume_icon:set({
-		background = {
-			border_color = colors.mauve,
-			border_width = 1,
-		},
-	})
-end)
-
-volume_icon:subscribe("mouse.exited", function()
-	volume_icon:set({
-		background = {
-			border_color = colors.surface_border,
-			border_width = 1,
-		},
-	})
-end)
-
 volume_slider:subscribe("mouse.clicked", function(env)
 	local percentage = tonumber(env.PERCENTAGE)
 

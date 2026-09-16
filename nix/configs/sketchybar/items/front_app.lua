@@ -57,26 +57,6 @@ front_app:subscribe("window_focus", function(env)
 	end)
 end)
 
-front_app:subscribe("mouse.entered", function()
-	sbar.animate("tanh", 5, function()
-		front_app:set({
-			background = {
-				border_color = colors.mauve,
-			},
-		})
-	end)
-end)
-
-front_app:subscribe("mouse.exited", function()
-	sbar.animate("tanh", 5, function()
-		front_app:set({
-			background = {
-				border_color = colors.base_border,
-			},
-		})
-	end)
-end)
-
 current_app = "Finder"
 
 front_app:set({

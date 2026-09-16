@@ -37,31 +37,8 @@ for _, sid in ipairs(settings.space_sids) do
 
 	spaces[sid] = space
 
-	local is_focused = (sid == 1)
-
-	space:subscribe("mouse.entered", function()
-		sbar.animate("tanh", 3, function()
-			space:set({
-				background = {
-					border_color = colors.mauve,
-				},
-			})
-		end)
-	end)
-
-	space:subscribe("mouse.exited", function()
-		sbar.animate("tanh", 3, function()
-			space:set({
-				background = {
-					border_color = is_focused and dark_bg or colors.surface_border,
-				},
-			})
-		end)
-	end)
-
 	space:subscribe("space_change", function(env)
 		local selected = env.SELECTED == "true"
-		is_focused = selected
 
 		sbar.animate("tanh", 5, function()
 			space:set({

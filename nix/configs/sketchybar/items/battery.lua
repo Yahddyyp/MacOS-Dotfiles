@@ -140,26 +140,6 @@ battery:subscribe("routine", update_battery)
 battery:subscribe("system_woke", update_battery)
 battery:subscribe("power_source_change", update_battery)
 
-battery:subscribe("mouse.entered", function()
-	sbar.animate("tanh", 5, function()
-		battery:set({
-			background = {
-				border_color = colors.mauve,
-			},
-		})
-	end)
-end)
-
-battery:subscribe("mouse.exited", function()
-	sbar.animate("tanh", 5, function()
-		battery:set({
-			background = {
-				border_color = colors.surface_border,
-			},
-		})
-	end)
-end)
-
 battery:subscribe("mouse.clicked", function()
 	if is_charging then
 		return
