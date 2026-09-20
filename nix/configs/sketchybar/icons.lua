@@ -1,4 +1,4 @@
-return setmetatable({
+local icons = {
 	["1Password"] = ":one_password:",
 	["AFFiNE"] = ":affine:",
 	["Acrobat"] = ":acrobat:",
@@ -145,7 +145,6 @@ return setmetatable({
 	["Google Chat"] = ":google_chat:",
 	["Google Chrome"] = ":google_chrome:",
 	["Google Chrome Canary"] = ":google_chrome:",
-	["Gemini"] = ":gemini:",
 	["Google Gemini"] = ":gemini:",
 	["Google Maps"] = ":maps:",
 	["Google Meet"] = ":meet:",
@@ -170,6 +169,7 @@ return setmetatable({
 	["Instapaper"] = ":instapaper:",
 	["IntelliJ IDEA"] = ":idea:",
 	["Iris"] = ":iris:",
+	["iTerm2"] = ":iterm:",
 	["Jane Reader"] = ":jane_reader:",
 	["Jellyfin Media Player"] = ":jellyfin:",
 	["JetBrains Gateway"] = ":jetbrains_gateway:",
@@ -437,7 +437,6 @@ return setmetatable({
 	["Yandex"] = ":yandex_bower:",
 	["Yandex Browser"] = ":yandex_bower:",
 	["Yandex Music"] = ":yandex_music:",
-	["Yandex Music"] = ":yandex_music:",
 	["Yazi"] = ":yazi:",
 	["YouTube"] = ":youtube:",
 	["YouTube Music"] = ":youtube_music:",
@@ -480,10 +479,18 @@ return setmetatable({
 	["照片"] = ":photos:",
 	["爱奇艺"] = ":iqiyi:",
 	["音乐"] = ":music:",
-	["Kärnten"] = ":default:",
+	["Kärnten"] = ":default:",
 	["笔记"] = ":notes:",
-}, {
-	__index = function(_, _)
-		return ":default:"
+}
+
+local lowercase = {}
+
+for name, icon in pairs(icons) do
+	lowercase[string.lower(name)] = icon
+end
+
+return setmetatable(icons, {
+	__index = function(_, app)
+		return lowercase[string.lower(app)] or ":default:"
 	end,
 })
