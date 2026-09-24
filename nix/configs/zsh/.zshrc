@@ -107,11 +107,6 @@ eval "$(zoxide init zsh)"
 
 # Atuin setup using Homebrew binary and dotfile config
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
-zvm_after_init_commands+=(
-  'eval "$(atuin init zsh)"'
-  "bindkey -M viins '?' self-insert"
-  "bindkey -M vicmd '?' self-atuin-ai-question-mark"
-)
 
 bindkey -M emacs '^R' atuin-search
 bindkey -M viins '^R' atuin-search-viins
