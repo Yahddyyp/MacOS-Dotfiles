@@ -36,8 +36,6 @@ in {
 
   home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };
   home.file.".p10k.zsh"       = { source = ../configs/p10k/.p10k.zsh; };
-  home.file.".hermes/config.yaml" = { source = ../configs/hermes/.hermes/config.yaml; };
-  home.file.".hermes/skins"       = { source = ../configs/hermes/.hermes/skins; recursive = true; };
   home.file.".tmux.conf"      = { source = ../configs/tmux/.tmux.conf; };
   home.file.".zshrc"          = { source = ../configs/zsh/.zshrc; };
   home.file.".oh-my-zsh/custom" = { source = ../configs/ohmyzsh/.oh-my-zsh/custom; recursive = true; };
