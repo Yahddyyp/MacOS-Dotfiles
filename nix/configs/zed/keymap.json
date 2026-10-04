@@ -27,8 +27,6 @@
       "space h": "zed::ShowWelcome",
       "space c": "buffer_search::Dismiss",
       "space p": "workspace::ToggleRightDock",
-      "space m": "pane::SplitVertical",
-      "space u": "pane::SplitHorizontal",
       "space b d": "pane::CloseActiveItem",
       "space x": "pane::CloseActiveItem",
       "ctrl-/": "terminal_panel::Toggle",
@@ -117,4 +115,11 @@
       "p": "project_panel::Paste",
     },
   },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space o p": "markdown::OpenPreview",
+      "space o P": "markdown::OpenPreviewToTheSide",
+    },
+  }
 ]
