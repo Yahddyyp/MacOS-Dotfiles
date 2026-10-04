@@ -28,8 +28,8 @@ end, { desc = "Open dashboard" })
 
 -- Redo and line navigation alternatives
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
-vim.keymap.set("n", "<C-d>", "$", { desc = "Go to end of line" })
-vim.keymap.set("n", "<C-a>", "^", { desc = "Go to start of line" })
+vim.keymap.set({ "n", "o", "x" }, "L", "$", { desc = "Go to end of line" })
+vim.keymap.set({ "n", "o", "x" }, "H", "^", { desc = "Go to start of line" })
 
 vim.keymap.set("n", "<C-q>", "<cmd>bdelete<CR>", { desc = "Close current tab" })
 vim.keymap.set("n", "g1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Go to buffer 1" })
