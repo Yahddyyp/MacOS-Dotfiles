@@ -123,6 +123,7 @@
       "karabiner-elements"
       "helium-browser"
       "firefox"
+      "macpacker"
     ];
   };
 
