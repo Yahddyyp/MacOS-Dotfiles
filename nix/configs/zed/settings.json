@@ -7,10 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "colorize_brackets": true,
+  "relative_line_numbers": "enabled",
+  "indent_guides": { "enabled": true, "coloring": "indent_aware" },
+  "tabs": { "show_diagnostics": "errors" },
+  "colorize_brackets": false,
   "use_smartcase_search": false,
   "which_key": {
-    "enabled": true
+    "delay_ms": 500,
+    "enabled": true,
   },
   "format_on_save": "modifications_if_available",
   "disable_ai": true,
@@ -24,6 +28,8 @@
   "restore_on_startup": "launchpad",
   "project_panel": {
     "dock": "left",
+    "git_status": true,
+    "auto_fold_dirs": true,
   },
   "icon_theme": "Catppuccin Mocha",
   "telemetry": {
@@ -45,10 +51,6 @@
     "mode": "dark",
     "light": "Catppuccin Mocha",
     "dark": "Catppuccin Mocha",
-  },
-  "file_finder": {
-    "scan_parents": true,
-    "include_counts": true,
   },
   "reduce_motion": "on",
   "cursor_blink": false,

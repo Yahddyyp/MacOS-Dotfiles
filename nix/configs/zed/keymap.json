@@ -47,16 +47,8 @@
     "bindings": {
       "space space": "file_finder::Toggle",
       "U": "editor::Redo",
-      "ctrl-a": "vim::FirstNonWhitespace",
     },
   },
-  {
-    "context": "Editor && vim_mode == normal",
-    "bindings": {
-      "ctrl-d": "vim::EndOfLine",
-    },
-  },
-
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
@@ -84,6 +76,45 @@
       "g 8": ["pane::ActivateItem", 7],
       "g 9": ["pane::ActivateItem", 8],
       "g 0": ["pane::ActivateItem", 9],
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "tab": ["terminal::SendText", "\t"],
+      "shift-tab": ["terminal::SendText", "\u001b[Z"],
+    },
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space": null,
+      "space /": "pane::DeploySearch",
+      "space s g": "pane::DeploySearch",
+      "space s b": "buffer_search::Deploy",
+      "H": "vim::FirstNonWhitespace",
+      "L": "vim::EndOfLine",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space c a": "editor::ToggleCodeActions",
+      "space x x": "diagnostics::Deploy",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
     },
   },
 ]
