@@ -20,6 +20,9 @@ $env.EDITOR = "nvim"
 $env.VISUAL = "nvim"
 $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
 
+# Unset LS_COLORS so eza uses its own theme.yml
+hide-env -i LS_COLORS
+
 # Add spicetify to PATH
 $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".spicetify"))
 
@@ -29,6 +32,11 @@ alias vi = nvim
 alias ff = fastfetch
 alias cat = bat
 alias cd = z 
+alias lT = eza --icons --tree --group-directories-first --all
+alias lt = eza --icons --tree --group-directories-first
+alias l = eza --icons --long --group-directories-first --header --git
+alias ll = eza --icons --long --group-directories-first --header --git --inode --blocksize
+alias la = eza --icons --long --group-directories-first --header --git --inode --blocksize --all
 
 
 def tvf [] {
