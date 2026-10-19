@@ -34,7 +34,6 @@
     tree
     zoxide
     fzf
-    git
     lazygit
     stow
     delta
