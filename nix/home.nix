@@ -8,6 +8,7 @@
     ./modules/configs.nix
     ./modules/sketchybar.nix
     ./modules/bat.nix
+    ./modules/btop.nix
   ];
 
   home.username = username;
@@ -25,7 +26,6 @@
     nodejs
     atuin
     bandwhich
-    btop
     fastfetch
     yazi
     eza
