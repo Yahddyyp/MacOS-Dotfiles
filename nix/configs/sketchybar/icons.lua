@@ -272,6 +272,7 @@ local icons = {
 	["Numbers 表格"] = ":numbers:",
 	["Nvidia GeForce Now"] = ":nvidia_geforce_now:",
 	["OBS"] = ":obsstudio:",
+	["Obsidian"] = ":obsidian:",
 	["OmniFocus"] = ":omni_focus:",
 	["Open Video Downloader"] = ":open_video_downloader:",
 	["OpenVPN Connect"] = ":openvpn_connect:",
