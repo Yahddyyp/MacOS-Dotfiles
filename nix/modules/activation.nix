@@ -45,15 +45,6 @@ in {
       )
     '';
 
-    rebuildBatCache = lib.hm.dag.entryAfter [ "installPackages" ] ''
-      (
-        ${toolPath}
-        if command -v bat &>/dev/null; then
-          $DRY_RUN_CMD bat cache --build 2>/dev/null || true
-        fi
-      )
-    '';
-
     installSpicetifyMarketplace = lib.hm.dag.entryAfter [ "installPackages" ] ''
       (
         ${toolPath}
