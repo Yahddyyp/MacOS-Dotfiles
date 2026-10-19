@@ -211,7 +211,7 @@
     run_as_user defaults write NSGlobalDomain AppleHighlightColor -string "0.580000 0.530000 0.620000" 2>/dev/null || true
 
     # Default apps
-    for app in /Applications/Zen.app /Applications/IINA.app /Applications/Zed.app; do
+    for app in /Applications/Zen.app /Applications/IINA.app /Applications/Zed.app /Applications/MacPacker.app; do
       [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null || true
     done
     run_as_user duti -s app.zen-browser.zen public.html all 2>/dev/null || true
@@ -223,6 +223,7 @@
     run_as_user duti -s com.colliderli.iina .avi all 2>/dev/null || true
     run_as_user duti -s com.colliderli.iina .webm all 2>/dev/null || true
     run_as_user duti -s com.colliderli.iina .wmv all 2>/dev/null || true
+    run_as_user duti -s com.sarensx.MacPacker .zip all 2>/dev/null || true
 
     # Default text editor
     for ext in txt md json yaml yml toml xml csv env sh zsh fish py js ts jsx tsx css scss html nix lua rb rs go swift; do
