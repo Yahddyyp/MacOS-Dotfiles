@@ -9,6 +9,7 @@
     ./modules/sketchybar.nix
     ./modules/bat.nix
     ./modules/btop.nix
+    ./modules/eza.nix
   ];
 
   home.username = username;
@@ -28,7 +29,6 @@
     bandwhich
     fastfetch
     yazi
-    eza
     fd
     ripgrep
     tree

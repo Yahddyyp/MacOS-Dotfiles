@@ -5,7 +5,6 @@ in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."atuin"      = { source = ../configs/atuin;      recursive = true; };
   xdg.configFile."borders"    = { source = ../configs/borders;  recursive = true; };
-  xdg.configFile."eza"        = { source = ../configs/eza;          recursive = true; };
   xdg.configFile."fastfetch"  = { source = ../configs/fastfetch; recursive = true; };
   xdg.configFile."fish"       = { source = ../configs/fish;        recursive = true; };
   xdg.configFile."gh-dash"    = { source = ../configs/gh-dash;  recursive = true; };
