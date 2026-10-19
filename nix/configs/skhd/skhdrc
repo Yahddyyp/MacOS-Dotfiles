@@ -1,22 +1,22 @@
-###skhd config
-##Modifying the Layout
-#rotate layout along y axis
+### skhd config
+## Modifying the Layout
+# rotate layout along y axis
 shift + alt - y : yabai -m space --mirror y-axis
 
-#rotate layout along x axis
+# rotate layout along x axis
 shift + alt - r : yabai -m space --mirror x-axis
 
-#toggle window float
+# toggle window float
 ctrl + alt - t : yabai -m window --toggle float
 shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
-#focus
+# focus
 alt - j : yabai -m window --focus south 
 alt - k : yabai -m window --focus north
 alt - h : yabai -m window --focus west 
 alt - l : yabai -m window --focus east
 
-#open terminal
+# open terminal
 rcmd - return : open -n -a "Ghostty"
 #cmd - return : open -n -a "iterm2"
 
@@ -43,16 +43,16 @@ shift + alt - 8 : yabai -m window --space 8
 shift + alt - 9 : yabai -m window --space 9
 shift + alt - 0 : yabai -m window --space 0
 
-#open finder
+# open finder
 #ctrl + alt - f : open -a "finder"
 
-#open spotify
+# open spotify
 #ctrl + alt - s : open -n -a "spotify"
 
-#open zen
+# open zen
 cmd + shift - return : open -n -a "zen"
 
-#resize window
+# resize window
 fn - h : yabai -m window --resize left:-50:0; \
     yabai -m window --resize right:-50:0
 fn - j : yabai -m window --resize bottom:0:50; \
@@ -67,11 +67,11 @@ fn - l : yabai -m window --resize right:50:0; \
 ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
-#rotate layout
+# rotate layout
 shift + alt - p : yabai -m space --rotate 270
 ctrl + alt - r : yabai -m space --rotate 90
 
-#layout 
+# layout 
 alt - f : yabai -m space --layout float
 alt - g : yabai -m space --layout bsp
 
@@ -93,4 +93,3 @@ ctrl + alt + shift - o : yabai -m window --layer below
 
 # Toggle sticky
 ctrl + alt - s : yabai -m window --toggle sticky
-# TEST: 4-modifier keybind
