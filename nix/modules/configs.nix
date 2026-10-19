@@ -4,7 +4,6 @@ let
 in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."atuin"      = { source = ../configs/atuin;      recursive = true; };
-  xdg.configFile."bat"        = { source = ../configs/bat;          recursive = true; };
   xdg.configFile."borders"    = { source = ../configs/borders;  recursive = true; };
   xdg.configFile."btop"       = { source = ../configs/btop;        recursive = true; };
   xdg.configFile."eza"        = { source = ../configs/eza;          recursive = true; };

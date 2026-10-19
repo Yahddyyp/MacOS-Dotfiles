@@ -7,6 +7,7 @@
     ./modules/activation.nix
     ./modules/configs.nix
     ./modules/sketchybar.nix
+    ./modules/bat.nix
   ];
 
   home.username = username;
@@ -64,9 +65,10 @@
     superfile
   ];
 
-  programs.home-manager.enable = true;
-
-  programs.bat = {
+  catppuccin = {
     enable = true;
+    autoEnable = false;
   };
+
+  programs.home-manager.enable = true;
 }

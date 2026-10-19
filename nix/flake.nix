@@ -1,5 +1,5 @@
 {
-  description = "Nix Moment";
+  description = "Yahddyyp's nix darwin configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -15,10 +15,11 @@
     };
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    catppuccin.url = "github:catppuccin/nix";
     pass-tomb-osx.url = "github:Yahddyyp/pass-tomb-osx";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, pass-tomb-osx, ... }: let
+  outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, catppuccin, pass-tomb-osx, ... }: let
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
@@ -39,6 +40,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
+            sharedModules = [ catppuccin.homeModules.catppuccin ];
             users.${username} = import ./home.nix;
             extraSpecialArgs = specialArgs;
           };
