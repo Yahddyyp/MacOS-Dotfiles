@@ -2,6 +2,7 @@
 {
   programs.kitty = {
     enable = true;
+    package = null;
 
     font = {
       name = "Maple Mono NF";

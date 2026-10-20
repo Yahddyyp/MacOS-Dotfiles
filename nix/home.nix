@@ -11,6 +11,7 @@
     ./modules/btop.nix
     ./modules/eza.nix
     ./modules/kitty.nix
+    ./modules/ghostty.nix
   ];
 
   home.username = username;
