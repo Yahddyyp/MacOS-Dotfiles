@@ -10,6 +10,7 @@
     ./modules/bat.nix
     ./modules/btop.nix
     ./modules/eza.nix
+    ./modules/kitty.nix
   ];
 
   home.username = username;
