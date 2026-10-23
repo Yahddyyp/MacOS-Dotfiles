@@ -1,4 +1,4 @@
-{ lib, pkgs, username, ... }:
+{ lib, pkgs, username, pass-tomb-osx, ... }:
 {
   imports = [ ./modules/macos.nix ./modules/launchd.nix ];
 
@@ -16,7 +16,7 @@
   environment.systemPackages = with pkgs; [
     yabai
     skhd
-    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update ]))
+    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default ]))
     gnupg
     carapace
     duti

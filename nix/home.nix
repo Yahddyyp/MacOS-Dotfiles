@@ -1,4 +1,4 @@
-{ pkgs, lib, username, pass-tomb-osx, ... }:
+{ pkgs, lib, username, ... }:
 {
   imports = [
     ./modules/git.nix
@@ -62,7 +62,6 @@
     nushell
     herdr
     nmap
-    pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default
     superfile
   ];
 
