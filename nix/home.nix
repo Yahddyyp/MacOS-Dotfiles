@@ -12,6 +12,7 @@
     ./modules/eza.nix
     ./modules/kitty.nix
     ./modules/ghostty.nix
+    ./modules/atuin.nix
   ];
 
   home.username = username;
@@ -27,7 +28,6 @@
     starship
     bun
     nodejs
-    atuin
     bandwhich
     fastfetch
     yazi
