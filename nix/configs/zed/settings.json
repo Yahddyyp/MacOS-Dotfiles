@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
   "relative_line_numbers": "enabled",
   "indent_guides": { "enabled": true, "coloring": "indent_aware" },
   "tabs": { "show_diagnostics": "errors" },

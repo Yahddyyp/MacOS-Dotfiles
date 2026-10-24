@@ -79,8 +79,6 @@
       "FelixKratz/formulae"
       "koekeishiya/formulae"
       "nikitabobko/tap"
-      "modem-dev/tap"
-      "agavra/tap"
       "raine/workmux"
     ];
 
@@ -88,7 +86,6 @@
       "borders"
       "neofetch"
       "powerlevel10k"
-      "hunk"
       "mole"
       "tailscale"
       "tty-clock"
@@ -97,7 +94,6 @@
       "podman"
       "zig"
       "rustup"
-      "tuicr"
       "workmux"
     ];
 

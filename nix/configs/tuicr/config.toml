@@ -1,5 +1,5 @@
 theme = "catppuccin-mocha"
-diff_view = "side-by-side"
+diff_view = "unified"
 ignore_whitespace = false
 mouse = true
 leader = ";"

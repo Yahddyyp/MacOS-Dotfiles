@@ -1,6 +1,6 @@
 theme = "catppuccin-mocha" 
-mode = "auto"        
-vcs = "git"          
+mode = "stack"
+vcs = "git"
 watch = false
 exclude_untracked = false
 line_numbers = true

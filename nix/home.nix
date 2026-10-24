@@ -63,6 +63,8 @@
     herdr
     nmap
     superfile
+    tuicr
+    hunk
   ];
 
   catppuccin = {
