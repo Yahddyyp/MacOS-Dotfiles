@@ -13,6 +13,7 @@
     ./modules/kitty.nix
     ./modules/ghostty.nix
     ./modules/atuin.nix
+    ./modules/zsh.nix
   ];
 
   home.username = username;

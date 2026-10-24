@@ -26,11 +26,8 @@ in {
   xdg.configFile."yabai"      = { source = ../configs/yabai;      recursive = true; };
   xdg.configFile."yazi"       = { source = ../configs/yazi;       recursive = true; };
   xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
-  xdg.configFile."zsh/zsh-syntax-highlighting/themes" = { source = ../configs/zsh/zsh-syntax-highlighting/themes; recursive = true; };
 
   home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };
   home.file.".p10k.zsh"       = { source = ../configs/p10k/.p10k.zsh; };
   home.file.".tmux.conf"      = { source = ../configs/tmux/.tmux.conf; };
-  home.file.".zshrc"          = { source = ../configs/zsh/.zshrc; };
-  home.file.".oh-my-zsh/custom" = { source = ../configs/ohmyzsh/.oh-my-zsh/custom; recursive = true; };
 }

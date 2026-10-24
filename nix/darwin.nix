@@ -85,11 +85,9 @@
     brews = [
       "borders"
       "neofetch"
-      "powerlevel10k"
       "mole"
       "tailscale"
       "tty-clock"
-      "zsh-syntax-highlighting"
       "container"
       "podman"
       "zig"
