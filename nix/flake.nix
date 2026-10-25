@@ -1,5 +1,5 @@
 {
-  description = "Yahddyyp's nix darwin configuration";
+  description = "Yahddyyp's nix-darwin configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

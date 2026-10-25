@@ -5,7 +5,6 @@ in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."borders"    = { source = ../configs/borders;  recursive = true; };
   xdg.configFile."fastfetch"  = { source = ../configs/fastfetch; recursive = true; };
-  xdg.configFile."gh-dash"    = { source = ../configs/gh-dash;  recursive = true; };
   xdg.configFile."herdr"      = { source = ../configs/herdr;      recursive = true; };
   xdg.configFile."hunk"       = { source = ../configs/hunk;        recursive = true; };
   xdg.configFile."karabiner"  = { source = ../configs/karabiner; recursive = true; };

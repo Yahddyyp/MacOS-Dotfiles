@@ -42,7 +42,6 @@
     pi-coding-agent
     lua
     spicetify-cli
-    gh-dash
     television
     gum
     nushell

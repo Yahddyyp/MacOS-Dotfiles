@@ -7,6 +7,7 @@
     ./eza.nix
     ./fish.nix
     ./fzf.nix
+    ./gh-dash.nix
     ./gh.nix
     ./ghostty.nix
     ./git.nix
