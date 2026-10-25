@@ -14,7 +14,7 @@ in {
     serviceConfig.StandardErrorPath = "/tmp/yabai-sa.err.log";
   };
 
- # Disable Caps Lock so Karabiner can intercept it
+ # disable caps lock so karabiner can intercept it
   launchd.agents.capslock-disable = {
     command = ''
       /usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0}]}' > /dev/null 2>&1
@@ -59,7 +59,7 @@ in {
     serviceConfig.StandardErrorPath = "/tmp/yabai.err.log";
   };
 
-  #skhd plist
+  # skhd plist
   launchd.agents.skhd = {
     command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/skhd && exec ${pkgs.skhd}/bin/skhd -c /Users/${username}/.config/skhd/skhdrc'";
     serviceConfig.RunAtLoad = true;
@@ -74,7 +74,7 @@ in {
     serviceConfig.StandardErrorPath = "/tmp/skhd.err.log";
   };
 
-  #nix gc daemon
+  # nix gc daemon
   launchd.daemons.nix-gc-custom = {
     command = "${pkgs.bash}/bin/bash ${../scripts/gc.sh} /Users/${username}";
     serviceConfig.RunAtLoad = true;

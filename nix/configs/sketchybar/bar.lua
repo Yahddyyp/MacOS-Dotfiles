@@ -1,5 +1,6 @@
 local colors = require("colors")
 local settings = require("settings")
+local sbar = require("sketchybar")
 
 sbar.bar({
   position = "top",

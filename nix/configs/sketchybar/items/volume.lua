@@ -38,7 +38,7 @@ local volume_slider = sbar.add("slider", "volume_slider", 150, {
 		background = {
 			height = 4,
 			corner_radius = 2,
-			color = 0xff313244,
+			color = colors.surface0,
 		},
 
 		highlight_color = colors.mauve,
@@ -46,7 +46,7 @@ local volume_slider = sbar.add("slider", "volume_slider", 150, {
 		knob = {
 			string = "􀀁",
 			drawing = false,
-			font = "Maple Mono NF:15.0",
+			font = "Maple Mono NF:Regular:15.0",
 		},
 	},
 
