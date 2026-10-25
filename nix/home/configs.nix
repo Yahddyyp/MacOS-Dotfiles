@@ -22,6 +22,5 @@ in {
   xdg.configFile."yabai"      = { source = ../configs/yabai;      recursive = true; };
   xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
 
-  home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };
   home.file.".p10k.zsh"       = { source = ../configs/p10k/.p10k.zsh; };
 }

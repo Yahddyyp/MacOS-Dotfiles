@@ -13,6 +13,7 @@
     ./git.nix
     ./gpg.nix
     ./kitty.nix
+    ./man.nix
     ./sesh.nix
     ./sketchybar.nix
     ./television.nix

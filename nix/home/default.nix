@@ -55,5 +55,7 @@
     autoEnable = false;
   };
 
+  home.file.".hushlogin".text = "";
+
   programs.home-manager.enable = true;
 }
