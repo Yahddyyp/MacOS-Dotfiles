@@ -5,6 +5,7 @@
     ./bat.nix
     ./btop.nix
     ./eza.nix
+    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./ghostty.nix

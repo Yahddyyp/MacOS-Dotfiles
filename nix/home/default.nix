@@ -13,7 +13,6 @@
 
   # home packages
   home.packages = with pkgs; [
-    fish
     neovim
     starship
     bun
