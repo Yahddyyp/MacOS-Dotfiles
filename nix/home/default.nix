@@ -20,7 +20,6 @@
     nodejs
     bandwhich
     fastfetch
-    yazi
     fd
     ripgrep
     tree

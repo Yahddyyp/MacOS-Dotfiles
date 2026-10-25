@@ -24,7 +24,6 @@ in {
   xdg.configFile."television" = { source = ../configs/television; recursive = true; };
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };
   xdg.configFile."yabai"      = { source = ../configs/yabai;      recursive = true; };
-  xdg.configFile."yazi"       = { source = ../configs/yazi;       recursive = true; };
   xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
 
   home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };
