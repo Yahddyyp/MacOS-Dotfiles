@@ -37,7 +37,6 @@
       lT = "eza --icons --tree --group-directories-first --all";
       lt = "eza --icons --tree --group-directories-first";
       fix-tmux = "killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)";
-      start-yabai = "start-yabai";
       stop-yabai = "launchctl bootout \"gui/$UID/org.nixos.yabai\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.skhd\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.sketchybar\" 2>/dev/null";
       cat = "bat";
       gc = "git commit -m";
@@ -63,9 +62,7 @@
       GPG_TTY = "$TTY";
       EDITOR = "nvim";
       VISUAL = "nvim";
-      XDG_CONFIG_HOME = "$HOME/.config";
-      EZA_CONFIG_DIR = "$HOME/.config/eza";
-      ATUIN_CONFIG_DIR = "$HOME/.config/atuin";
+      ZVM_INIT_MODE = "sourcing";
     };
 
     initContent = lib.mkMerge [
@@ -74,6 +71,11 @@
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
+      '')
+
+      (lib.mkOrder 901 ''
+        # Powerlevel10k theme configuration (must be sourced immediately after the theme plugin)
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       '')
 
       (lib.mkAfter ''
@@ -90,27 +92,9 @@
           export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
         fi
 
-        # Spicetify PATH
-        export PATH="$PATH:$HOME/.spicetify"
-
         # Unset LS_COLORS so eza uses its own theme.yml
         unset LS_COLORS
-
-        # Powerlevel10k theme configuration
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-        # FZF configuration
-        source <(fzf --zsh)
-        export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
-        --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
-        --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
-        --color=selected-bg:#45475A \
-        --color=border:#6C7086,label:#CDD6F4"
-        export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude=.git --exclude=Documents --exclude=wallpapers --exclude=Application '
-
-        # Zoxide
-        eval "$(zoxide init zsh)"
+        export EZA_CONFIG_DIR="$HOME/.config/eza"
 
         # Atuin keybindings
         bindkey -M emacs '^R' atuin-search

@@ -1787,11 +1787,6 @@
   (( ! $+functions[p10k] )) || p10k reload
 }
 
-# Fix prompt connectors on terminal resize
-TRAPWINCH() {
-    zle && zle reset-prompt
-}
-
 # Tell `p10k configure` which file it should overwrite.
 typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 

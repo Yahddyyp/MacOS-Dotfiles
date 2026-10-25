@@ -1,19 +1,9 @@
 { pkgs, lib, username, ... }:
 {
   imports = [
-    ./modules/git.nix
-    ./modules/gh.nix
-    ./modules/gpg.nix
-    ./modules/activation.nix
-    ./modules/configs.nix
-    ./modules/sketchybar.nix
-    ./modules/bat.nix
-    ./modules/btop.nix
-    ./modules/eza.nix
-    ./modules/kitty.nix
-    ./modules/ghostty.nix
-    ./modules/atuin.nix
-    ./modules/zsh.nix
+    ./activation.nix
+    ./configs.nix
+    ./modules
   ];
 
   home.username = username;
@@ -24,7 +14,6 @@
   # home packages
   home.packages = with pkgs; [
     fish
-    tmux
     neovim
     starship
     bun
@@ -35,8 +24,6 @@
     fd
     ripgrep
     tree
-    zoxide
-    fzf
     lazygit
     stow
     delta

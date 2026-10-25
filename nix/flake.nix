@@ -33,7 +33,7 @@
       inherit system specialArgs;
       modules = [
         nix-homebrew.darwinModules.nix-homebrew
-        ./darwin.nix
+        ./darwin
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -41,7 +41,7 @@
             useUserPackages = true;
             backupFileExtension = "backup";
             sharedModules = [ catppuccin.homeModules.catppuccin ];
-            users.${username} = import ./home.nix;
+            users.${username} = import ./home;
             extraSpecialArgs = specialArgs;
           };
         }

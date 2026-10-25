@@ -29,5 +29,4 @@ in {
 
   home.file.".hushlogin"      = { source = ../configs/home/.hushlogin; };
   home.file.".p10k.zsh"       = { source = ../configs/p10k/.p10k.zsh; };
-  home.file.".tmux.conf"      = { source = ../configs/tmux/.tmux.conf; };
 }

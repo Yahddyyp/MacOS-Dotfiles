@@ -1,6 +1,6 @@
 { lib, pkgs, username, pass-tomb-osx, ... }:
 {
-  imports = [ ./modules/macos.nix ./modules/launchd.nix ];
+  imports = [ ./macos.nix ./launchd.nix ];
 
   nixpkgs.config = {
     allowUnfree = true;
