@@ -1,5 +1,0 @@
-#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
-blacklist = ["scratch"]
-
-[default_session]
-  dir_length = 1

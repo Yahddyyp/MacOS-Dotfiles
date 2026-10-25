@@ -38,7 +38,6 @@
     luarocks
     ngrok
     cbonsai
-    sesh
     pi-coding-agent
     lua
     spicetify-cli

@@ -13,6 +13,7 @@
     ./git.nix
     ./gpg.nix
     ./kitty.nix
+    ./sesh.nix
     ./sketchybar.nix
     ./tmux.nix
     ./yazi.nix
