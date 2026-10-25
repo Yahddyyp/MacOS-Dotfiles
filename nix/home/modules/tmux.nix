@@ -23,8 +23,6 @@ in
 
     plugins = with pkgs.tmuxPlugins; [
       sensible
-      cpu
-      battery
       {
         plugin = catppuccin;
         extraConfig = ''
