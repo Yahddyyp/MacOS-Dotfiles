@@ -15,6 +15,7 @@
     ./kitty.nix
     ./sesh.nix
     ./sketchybar.nix
+    ./television.nix
     ./tmux.nix
     ./yazi.nix
     ./zoxide.nix

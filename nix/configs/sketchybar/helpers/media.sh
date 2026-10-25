@@ -32,9 +32,11 @@ if [ -f "$ADAPTER" ] && [ -f "$PL_SCRIPT" ]; then
       LABEL="$TITLE"
     fi
 
-    if [ "${#LABEL}" -gt 50 ]; then
-      LABEL="$(printf '%s' "$LABEL" | cut -c1-47)..."
-    fi
+    LABEL="$(printf '%s' "$LABEL" | /usr/bin/perl -CS -Mutf8 -ne '
+      sub w { my $c=ord($_[0]); return 0 if $c>=0x300&&$c<=0x36f||$c>=0xfe00&&$c<=0xfe0f; return 2 if $c>=0x1100&&$c<=0x115f||$c>=0x2e80&&$c<=0xa4cf||$c>=0xac00&&$c<=0xd7a3||$c>=0xf900&&$c<=0xfaff||$c>=0xfe30&&$c<=0xfe6f||$c>=0xff01&&$c<=0xff60||$c>=0x1f300&&$c<=0x1faff||$c>=0x20000&&$c<=0x2fa1f; return 1; }
+      chomp; my $tot=0; $tot+=w($_) for split //; if ($tot<=50) { print; exit 0; }
+      my $acc=0; my $out=""; for (split //) { my $cw=w($_); last if $acc+$cw>47; $out.=$_; $acc+=$cw; } $out =~ s/\s+$//; print "$out...";
+    ')"
 
     DISPLAY_ID="$(printf '%s' "$JSON" | jq -r '.displayID // empty' 2>/dev/null)"
     PID="$(printf '%s' "$JSON" | jq -r '.pid // empty' 2>/dev/null)"

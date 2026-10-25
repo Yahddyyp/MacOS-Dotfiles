@@ -33,6 +33,89 @@ func function<T>(_ handle: UnsafeMutableRawPointer?, _ name: String, as type: T.
 
 private let emissionLock = NSLock()
 
+func findSketchybar() -> String {
+    let user = NSUserName()
+    let candidate = "/etc/profiles/per-user/\(user)/bin/sketchybar"
+    if FileManager.default.isExecutableFile(atPath: candidate) {
+        return candidate
+    }
+    let systemCandidate = "/run/current-system/sw/bin/sketchybar"
+    if FileManager.default.isExecutableFile(atPath: systemCandidate) {
+        return systemCandidate
+    }
+    return "sketchybar"
+}
+
+func charWidth(_ scalar: Unicode.Scalar) -> Int {
+    let cp = scalar.value
+    if (cp >= 0x0300 && cp <= 0x036F) || (cp >= 0x200B && cp <= 0x200F) || (cp >= 0xFE00 && cp <= 0xFE0F) { return 0 }
+    if (cp >= 0x1100 && cp <= 0x115F)
+        || (cp >= 0x2E80 && cp <= 0xA4CF)
+        || (cp >= 0xAC00 && cp <= 0xD7A3)
+        || (cp >= 0xF900 && cp <= 0xFAFF)
+        || (cp >= 0xFE10 && cp <= 0xFE19)
+        || (cp >= 0xFE30 && cp <= 0xFE6F)
+        || (cp >= 0xFF01 && cp <= 0xFF60)
+        || (cp >= 0xFFE0 && cp <= 0xFFE6)
+        || (cp >= 0x1F300 && cp <= 0x1FAFF)
+        || (cp >= 0x20000 && cp <= 0x2FA1F) { return 2 }
+    return 1
+}
+
+func truncateVisual(_ str: String, maxWidth: Int = 50) -> String {
+    var totalW = 0
+    for char in str {
+        for scalar in char.unicodeScalars { totalW += charWidth(scalar) }
+    }
+    if totalW <= maxWidth { return str }
+
+    let limit = maxWidth - 3
+    var res = ""
+    var curW = 0
+    for char in str {
+        var charW = 0
+        for scalar in char.unicodeScalars { charW += charWidth(scalar) }
+        if curW + charW > limit { break }
+        res.append(char)
+        curW += charW
+    }
+    while res.hasSuffix(" ") { res.removeLast() }
+    return res + "..."
+}
+
+private var lastDrawing: String = ""
+private var lastLabel: String = ""
+
+func updateSketchybar(drawing: Bool, label: String, displayID: String?, pid: Int32?) {
+    let sketchybar = findSketchybar()
+    let drawStr = drawing ? "on" : "off"
+
+    if drawing {
+        if let displayID, !displayID.isEmpty {
+            try? displayID.write(toFile: "/tmp/sketchybar_media_app", atomically: true, encoding: .utf8)
+        }
+        if let pid, pid > 0 {
+            try? "\(pid)".write(toFile: "/tmp/sketchybar_media_pid", atomically: true, encoding: .utf8)
+        }
+    } else {
+        try? FileManager.default.removeItem(atPath: "/tmp/sketchybar_media_app")
+        try? FileManager.default.removeItem(atPath: "/tmp/sketchybar_media_pid")
+    }
+
+    if drawStr != lastDrawing || label != lastLabel {
+        lastDrawing = drawStr
+        lastLabel = label
+        let task = Process()
+        task.executableURL = URL(fileURLWithPath: sketchybar)
+        if drawing {
+            task.arguments = ["--set", "media.cover", "drawing=on", "label=\(label)"]
+        } else {
+            task.arguments = ["--set", "media.cover", "drawing=off"]
+        }
+        try? task.run()
+    }
+}
+
 /// JSONSerialization raises an Objective-C exception on NaN or infinity,
 /// which `try?` cannot catch. A player can report either for a live stream,
 /// so such a number is left out; any other invalid value reads as an error.
@@ -99,7 +182,7 @@ public func sketchybarNowPlayingGet() {
     if watching, let release = NotchNativePlayback.pendingRelease { readAt?(release) }
     if watching, selected == nil {
         NotchNativePlayback.publish(nil)
-        emit(NotchNativePlayback.sourceReply.merging(["isPlaying": false]) { _, new in new })
+        updateSketchybar(drawing: false, label: "", displayID: nil, pid: nil)
         return
     }
     let queue = DispatchQueue(label: "sketchybar.nowplaying.adapter")
@@ -192,7 +275,26 @@ public func sketchybarNowPlayingGet() {
         revision = context.revision
     }
     if let position { settlePosition(&snapshot, sample: position, revision: revision) } else { lastPosition = nil }
-    emit(snapshot)
+    if watching {
+        let title = (snapshot["kMRMediaRemoteNowPlayingInfoTitle"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let artist = (snapshot["kMRMediaRemoteNowPlayingInfoArtist"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let displayID = snapshot["displayID"] as? String
+        let pid = (snapshot["pid"] as? NSNumber)?.int32Value
+
+        let drawing = !title.isEmpty
+        var label = ""
+        if drawing {
+            if !artist.isEmpty {
+                label = "\(artist) - \(title)"
+            } else {
+                label = title
+            }
+            label = truncateVisual(label, maxWidth: 50)
+        }
+        updateSketchybar(drawing: drawing, label: label, displayID: displayID, pid: pid)
+    } else {
+        emit(snapshot)
+    }
 }
 
 /// One adapter process while a music surface is subscribed. Native change

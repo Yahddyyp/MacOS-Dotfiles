@@ -41,7 +41,6 @@
     pi-coding-agent
     lua
     spicetify-cli
-    television
     gum
     nushell
     herdr
