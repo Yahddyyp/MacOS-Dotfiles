@@ -101,7 +101,6 @@
 
   launchd.user.agents.skhd.serviceConfig = {
     ProcessType = "Interactive";
-    Nice = -20;
     StandardOutPath = "/tmp/skhd.out.log";
     StandardErrorPath = "/tmp/skhd.err.log";
   };

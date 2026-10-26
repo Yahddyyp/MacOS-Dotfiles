@@ -13,6 +13,7 @@
     ./git.nix
     ./gpg.nix
     ./kitty.nix
+    ./lazygit.nix
     ./man.nix
     ./sesh.nix
     ./starship.nix

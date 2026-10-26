@@ -11,6 +11,8 @@
 
   home.stateVersion = "24.11";
 
+  xdg.enable = true;
+
   # home packages
   home.packages = with pkgs; [
     neovim
@@ -21,9 +23,7 @@
     fd
     ripgrep
     tree
-    lazygit
     stow
-    delta
     duf
     dust
     gdu
@@ -53,6 +53,7 @@
     clock-rs
     fetch
     tuios
+    delta
   ];
 
   catppuccin = {

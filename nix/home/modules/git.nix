@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   programs.gh.gitCredentialHelper.enable = false;
 
@@ -39,7 +39,7 @@
 
     includes = [
       {
-        path = "~/.config/lazygit/catppuccin-mocha-delta.gitconfig";
+        path = "${config.catppuccin.sources.delta}/catppuccin.gitconfig";
       }
     ];
   };

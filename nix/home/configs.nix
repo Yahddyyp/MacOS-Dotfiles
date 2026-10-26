@@ -5,7 +5,6 @@ in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
   xdg.configFile."fastfetch"  = { source = ../configs/fastfetch; recursive = true; };
   xdg.configFile."hunk"       = { source = ../configs/hunk;        recursive = true; };
-  xdg.configFile."lazygit"    = { source = ../configs/lazygit;  recursive = true; };
   xdg.configFile."neofetch"   = { source = ../configs/neofetch; recursive = true; };
   xdg.configFile."nushell"    = { source = ../configs/nushell;  recursive = true; };
   xdg.configFile."nvim"       = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/nvim"; };

@@ -86,7 +86,6 @@
 
   launchd.user.agents.yabai.serviceConfig = {
     ProcessType = "Interactive";
-    Nice = -20;
     StandardOutPath = "/tmp/yabai.out.log";
     StandardErrorPath = "/tmp/yabai.err.log";
   };

@@ -38,11 +38,10 @@ in
 
     launchd.user.agents.sketchybar.serviceConfig = lib.mkIf cfg.enable {
       ProcessType = "Interactive";
-      Nice = -20;
       StandardOutPath = "/tmp/sketchybar.out.log";
       StandardErrorPath = "/tmp/sketchybar.err.log";
       EnvironmentVariables = lib.mkIf (cfg.configType == "lua" && cfg.sbarLuaPackage != null) {
-        LUA_CPATH = "${cfg.sbarLuaPackage}/lib/lua/5.5/?.so;;";
+        LUA_CPATH = "${cfg.sbarLuaPackage}/lib/lua/${cfg.luaPackage.luaversion}/?.so;;";
       };
     };
   };
