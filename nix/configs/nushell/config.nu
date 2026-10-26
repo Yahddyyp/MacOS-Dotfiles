@@ -54,14 +54,20 @@ def stop-yabai [] {
     ^launchctl bootout $"gui/($uid)/org.nixos.yabai"
     ^launchctl bootout $"gui/($uid)/org.nixos.skhd"
     ^launchctl bootout $"gui/($uid)/org.nixos.sketchybar"
+    ^launchctl bootout $"gui/($uid)/org.nixos.jankyborders"
 }
 
 def start-yabai [] {
     let uid = (id -u | str trim)
-    for label in [org.nixos.yabai org.nixos.skhd org.nixos.sketchybar] {
+    for label in [org.nixos.yabai org.nixos.skhd org.nixos.sketchybar org.nixos.jankyborders] {
         ^launchctl bootout $"gui/($uid)/($label)" | ignore
     }
-    for f in [/Library/LaunchAgents/org.nixos.yabai.plist /Library/LaunchAgents/org.nixos.skhd.plist /Library/LaunchAgents/org.nixos.sketchybar.plist] {
+    for f in [
+        /Library/LaunchAgents/org.nixos.yabai.plist
+        /Library/LaunchAgents/org.nixos.skhd.plist
+        /Library/LaunchAgents/org.nixos.sketchybar.plist
+        $"($env.HOME)/Library/LaunchAgents/org.nixos.jankyborders.plist"
+    ] {
         ^launchctl bootstrap $"gui/($uid)" $f | ignore
     }
 }

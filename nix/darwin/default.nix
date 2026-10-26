@@ -1,6 +1,10 @@
 { lib, pkgs, username, pass-tomb-osx, ... }:
 {
-  imports = [ ./macos.nix ./launchd.nix ];
+  imports = [
+    ./borders.nix
+    ./launchd.nix
+    ./macos.nix
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -49,11 +53,6 @@
     fi
   '';
 
-  system.activationScripts.preActivation.text = lib.mkAfter ''
-    # Suppress launchctl LaunchAgent root warnings during activation
-    launchctl() { command launchctl "$@" 2>/dev/null; }
-    export -f launchctl
-  '';
 
   # Homebrew installation manager
   nix-homebrew = {
@@ -83,7 +82,6 @@
     ];
 
     brews = [
-      "borders"
       "neofetch"
       "mole"
       "tailscale"

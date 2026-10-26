@@ -37,7 +37,7 @@
       lT = "eza --icons --tree --group-directories-first --all";
       lt = "eza --icons --tree --group-directories-first";
       fix-tmux = "killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)";
-      stop-yabai = "launchctl bootout \"gui/$UID/org.nixos.yabai\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.skhd\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.sketchybar\" 2>/dev/null";
+      stop-yabai = "launchctl bootout \"gui/$UID/org.nixos.yabai\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.skhd\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.sketchybar\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.jankyborders\" 2>/dev/null";
       cat = "bat";
       gc = "git commit -m";
       gca = "git commit -a -m";
@@ -103,10 +103,10 @@
 
         # Service helpers
         function start-yabai() {
-          for label in org.nixos.{yabai,skhd,sketchybar}; do
+          for label in org.nixos.{yabai,skhd,sketchybar,jankyborders}; do
             launchctl bootout "gui/$UID/$label" 2>/dev/null
           done
-          for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist; do
+          for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist "$HOME/Library/LaunchAgents/org.nixos.jankyborders.plist"; do
             launchctl bootstrap "gui/$UID" "$f" 2>/dev/null
           done
         }

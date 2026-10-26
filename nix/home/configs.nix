@@ -3,7 +3,6 @@ let
   repoConfigsDir = "/etc/nix-darwin/configs";
 in {
   xdg.configFile."aerospace" = { source = ../configs/aerospace; recursive = true; };
-  xdg.configFile."borders"    = { source = ../configs/borders;  recursive = true; };
   xdg.configFile."fastfetch"  = { source = ../configs/fastfetch; recursive = true; };
   xdg.configFile."hunk"       = { source = ../configs/hunk;        recursive = true; };
   xdg.configFile."karabiner"  = { source = ../configs/karabiner; recursive = true; };

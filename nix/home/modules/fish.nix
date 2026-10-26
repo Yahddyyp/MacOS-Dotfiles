@@ -40,13 +40,14 @@
         launchctl bootout "gui/$uid/org.nixos.yabai" 2>/dev/null
         launchctl bootout "gui/$uid/org.nixos.skhd" 2>/dev/null
         launchctl bootout "gui/$uid/org.nixos.sketchybar" 2>/dev/null
+        launchctl bootout "gui/$uid/org.nixos.jankyborders" 2>/dev/null
       '';
       start-yabai = ''
         set uid (id -u)
-        for label in org.nixos.{yabai,skhd,sketchybar}
+        for label in org.nixos.{yabai,skhd,sketchybar,jankyborders}
             launchctl bootout "gui/$uid/$label" 2>/dev/null
         end
-        for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist
+        for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist "$HOME/Library/LaunchAgents/org.nixos.jankyborders.plist"
             launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
         end
       '';
