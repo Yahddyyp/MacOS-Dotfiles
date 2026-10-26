@@ -22,7 +22,7 @@ git clone https://github.com/Yahddyyp/MacOS-Dotfiles.git ~/dotfiles
 ```
 
 > [!NOTE] 
-> git username/email are hardcoded in `nix/modules/git.nix` (edit them there).
+> git username/email are hardcoded in `nix/home/modules/git.nix` (edit them there).
 
 Set up `/etc/nix-darwin`:
 ```bash
