@@ -14,7 +14,6 @@ in {
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
   xdg.configFile."spicetify"  = { source = ../configs/spicetify;    recursive = true; };
   xdg.configFile."spicetify/config-xpui.ini".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/spicetify-config-xpui.ini";
-  xdg.configFile."starship.toml".source = ../configs/starship.toml;
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };
   xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
 

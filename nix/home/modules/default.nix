@@ -15,7 +15,7 @@
     ./kitty.nix
     ./man.nix
     ./sesh.nix
-    ./sketchybar.nix
+    ./starship.nix
     ./television.nix
     ./tmux.nix
     ./yazi.nix

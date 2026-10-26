@@ -1,4 +1,3 @@
-$env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "nushell" "starship-nu.toml")
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 

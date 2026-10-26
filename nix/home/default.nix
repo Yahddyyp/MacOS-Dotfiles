@@ -14,7 +14,6 @@
   # home packages
   home.packages = with pkgs; [
     neovim
-    starship
     bun
     nodejs
     bandwhich
@@ -34,7 +33,6 @@
     imagemagick
     jq
     just
-    pinentry-curses
     luarocks
     ngrok
     cbonsai
@@ -54,6 +52,7 @@
     tailscale
     clock-rs
     fetch
+    tuios
   ];
 
   catppuccin = {

@@ -4,6 +4,7 @@
     ./borders.nix
     ./launchd.nix
     ./macos.nix
+    ./sketchybar.nix
     ./skhd.nix
     ./yabai.nix
   ];

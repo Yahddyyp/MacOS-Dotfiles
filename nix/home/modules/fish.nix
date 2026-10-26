@@ -69,9 +69,6 @@
       set -e LS_COLORS
       set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
 
-      # Starship prompt
-      starship init fish | source
-
       # Vi keybindings
       set -g fish_key_bindings fish_vi_key_bindings
 
