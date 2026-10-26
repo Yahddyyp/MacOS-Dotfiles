@@ -2,18 +2,6 @@
 let
   wmAgentPath = "/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/sbin:/sbin:/usr/bin:/bin";
 in {
-  # launchd daemon for yabai scripting addon
-  launchd.daemons.yabai-sa = {
-    command = "${pkgs.yabai}/bin/yabai --load-sa";
-    serviceConfig.RunAtLoad = true;
-    serviceConfig.KeepAlive = {
-      SuccessfulExit = false;
-      Crashed = true;
-    };
-    serviceConfig.StandardOutPath = "/tmp/yabai-sa.out.log";
-    serviceConfig.StandardErrorPath = "/tmp/yabai-sa.err.log";
-  };
-
  # disable caps lock so karabiner can intercept it
   launchd.agents.capslock-disable = {
     command = ''
@@ -39,24 +27,6 @@ in {
     };
     serviceConfig.StandardOutPath = "/tmp/sketchybar.out.log";
     serviceConfig.StandardErrorPath = "/tmp/sketchybar.err.log";
-  };
-
-  # yabai plist
-  launchd.agents.yabai = {
-    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/yabai && exec ${pkgs.yabai}/bin/yabai'";
-    serviceConfig.RunAtLoad = true;
-    serviceConfig.KeepAlive = {
-      SuccessfulExit = false;
-      Crashed = true;
-    };
-    serviceConfig.ProcessType = "Interactive";
-    serviceConfig.Nice = -20;
-    serviceConfig.EnvironmentVariables = {
-      PATH = wmAgentPath;
-      YABAI_CONFIG = "/Users/${username}/.config/yabai/yabairc";
-    };
-    serviceConfig.StandardOutPath = "/tmp/yabai.out.log";
-    serviceConfig.StandardErrorPath = "/tmp/yabai.err.log";
   };
 
   # skhd plist

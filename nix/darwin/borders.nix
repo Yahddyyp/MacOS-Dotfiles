@@ -13,4 +13,11 @@
       "Steam Helper"
     ];
   };
+
+  launchd.user.agents.jankyborders.serviceConfig = {
+    ProcessType = "Interactive";
+    Nice = -20;
+    StandardOutPath = "/tmp/borders.out.log";
+    StandardErrorPath = "/tmp/borders.err.log";
+  };
 }

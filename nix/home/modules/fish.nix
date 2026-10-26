@@ -47,8 +47,13 @@
         for label in org.nixos.{yabai,skhd,sketchybar,jankyborders}
             launchctl bootout "gui/$uid/$label" 2>/dev/null
         end
-        for f in /Library/LaunchAgents/org.nixos.{yabai,skhd,sketchybar}.plist "$HOME/Library/LaunchAgents/org.nixos.jankyborders.plist"
-            launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
+        for label in yabai skhd sketchybar jankyborders
+            for f in "/Library/LaunchAgents/org.nixos.$label.plist" "$HOME/Library/LaunchAgents/org.nixos.$label.plist"
+                if test -f "$f"
+                    launchctl bootstrap "gui/$uid" "$f" 2>/dev/null
+                    break
+                end
+            end
         end
       '';
     };

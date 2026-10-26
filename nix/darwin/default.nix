@@ -4,6 +4,7 @@
     ./borders.nix
     ./launchd.nix
     ./macos.nix
+    ./yabai.nix
   ];
 
   nixpkgs.config = {
@@ -44,6 +45,7 @@
     nerd-fonts.caskaydia-cove
     maple-mono.truetype
     maple-mono.NF-unhinted
+    sketchybar-app-font
   ];
 
   environment.loginShellInit = ''
@@ -107,7 +109,6 @@
       "kindavim"
       "vesktop"
       "protonvpn"
-      "font-sketchybar-app-font"
       "anki"
       "osu"
       "vorssaint"

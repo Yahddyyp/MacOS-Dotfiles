@@ -17,7 +17,6 @@ in {
   xdg.configFile."spicetify/config-xpui.ini".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/spicetify-config-xpui.ini";
   xdg.configFile."starship.toml".source = ../configs/starship.toml;
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };
-  xdg.configFile."yabai"      = { source = ../configs/yabai;      recursive = true; };
   xdg.configFile."zed" = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
 
   home.file.".p10k.zsh"       = { source = ../configs/p10k/.p10k.zsh; };
