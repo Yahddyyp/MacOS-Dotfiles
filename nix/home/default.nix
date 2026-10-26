@@ -47,6 +47,13 @@
     superfile
     tuicr
     hunk
+    container
+    podman
+    zig
+    rustup
+    tailscale
+    clock-rs
+    fetch
   ];
 
   catppuccin = {

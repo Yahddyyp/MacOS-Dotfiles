@@ -1,0 +1,108 @@
+{ pkgs, ... }:
+{
+  services.skhd = {
+    enable = true;
+    package = pkgs.skhd;
+
+    skhdConfig = ''
+      # Rotate layout along y axis
+      shift + alt - y : yabai -m space --mirror y-axis
+
+      # Rotate layout along x axis
+      shift + alt - r : yabai -m space --mirror x-axis
+
+      # Toggle window float
+      ctrl + alt - t : yabai -m window --toggle float
+      shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+      # Focus
+      alt - j : yabai -m window --focus south 
+      alt - k : yabai -m window --focus north
+      alt - h : yabai -m window --focus west 
+      alt - l : yabai -m window --focus east
+
+      # Open terminal
+      rcmd - return : open -n -a "Ghostty"
+
+      # move window
+      #ctrl + alt - h : yabai -m window --warp west
+      #ctrl + alt - j : yabai -m window --warp south
+      #ctrl + alt - k : yabai -m window --warp north
+      #ctrl + alt - l : yabai -m window --warp east
+      ctrl + alt - h : yabai -m window --swap west
+      ctrl + alt - j : yabai -m window --swap south
+      ctrl + alt - k : yabai -m window --swap north
+      ctrl + alt - l : yabai -m window --swap east
+      shift + alt - return : yabai -m space --balance
+
+      # Send window to a space 
+      shift + alt - 1 : yabai -m window --space 1
+      shift + alt - 2 : yabai -m window --space 2
+      shift + alt - 3 : yabai -m window --space 3
+      shift + alt - 4 : yabai -m window --space 4
+      shift + alt - 5 : yabai -m window --space 5
+      shift + alt - 6 : yabai -m window --space 6
+      shift + alt - 7 : yabai -m window --space 7
+      shift + alt - 8 : yabai -m window --space 8
+      shift + alt - 9 : yabai -m window --space 9
+      shift + alt - 0 : yabai -m window --space 0
+
+      # Open finder
+      # ctrl + alt - f : open -a "finder"
+
+      # Open spotify
+      # ctrl + alt - s : open -n -a "spotify"
+
+      # open zen
+      cmd + shift - return : open -n -a "zen"
+
+      # resize window
+      fn - h : yabai -m window --resize left:-50:0; \
+          yabai -m window --resize right:-50:0
+      fn - j : yabai -m window --resize bottom:0:50; \
+          yabai -m window --resize top:0:50
+      fn - k : yabai -m window --resize top:0:-50; \
+          yabai -m window --resize bottom:0:-50
+      fn - l : yabai -m window --resize right:50:0; \
+          yabai -m window --resize left:50:0
+
+      # Make window native fullscreen
+      ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
+      shift + alt - f : yabai -m window --toggle native-fullscreen
+
+      # Rotate layout
+      shift + alt - p : yabai -m space --rotate 270
+      ctrl + alt - r : yabai -m space --rotate 90
+
+      # Layout 
+      alt - f : yabai -m space --layout float
+      alt - g : yabai -m space --layout bsp
+
+      # Hyper + 1 2 3 4 to switch spaces
+      ctrl + alt + shift + cmd - 1 : yabai -m space --focus 1
+      ctrl + alt + shift + cmd - 2 : yabai -m space --focus 2
+      ctrl + alt + shift + cmd - 3 : yabai -m space --focus 3
+      ctrl + alt + shift + cmd - 4 : yabai -m space --focus 4
+      ctrl + alt + shift + cmd - 5 : yabai -m space --focus 5
+      ctrl + alt + shift + cmd - 6 : yabai -m space --focus 6
+      ctrl + alt + shift + cmd - 7 : yabai -m space --focus 7
+      ctrl + alt + shift + cmd - 8 : yabai -m space --focus 8
+      ctrl + alt + shift + cmd - 9 : yabai -m space --focus 9
+      ctrl + alt + shift + cmd - 0 : yabai -m space --focus 0
+
+      # Layers
+      ctrl + alt - o : yabai -m window --toggle layer
+      ctrl + alt + shift - o : yabai -m window --layer below
+
+      # Toggle sticky
+      ctrl + alt - s : yabai -m window --toggle sticky
+    '';
+  };
+
+  launchd.user.agents.skhd.serviceConfig = {
+    ProcessType = "Interactive";
+    Nice = -20;
+    StandardOutPath = "/tmp/skhd.out.log";
+    StandardErrorPath = "/tmp/skhd.err.log";
+  };
+}

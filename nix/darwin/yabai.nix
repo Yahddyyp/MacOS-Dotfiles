@@ -6,20 +6,15 @@
     enableScriptingAddition = true;
 
     config = {
-      # layout
       layout = "bsp";
-
-      # Window placement
       window_placement = "second_child";
 
-      # padding
       top_padding = 8;
       bottom_padding = 8;
       left_padding = 8;
       right_padding = 8;
       window_gap = 8;
 
-      # mouse settings
       focus_follows_mouse = "autoraise";
       mouse_modifier = "fn";
       mouse_action1 = "move";
@@ -31,15 +26,12 @@
       # active_window_opacity = 0.9;
       # normal_window_opacity = 0.8;
 
-      # sketchybar
       external_bar = "all:40:0";
-
-      # Window shadows
       window_shadow = "off";
     };
 
     extraConfig = ''
-      # disable specific apps
+      # Disable specific apps
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^Calculator$" manage=off
       yabai -m rule --add app="^Shottr$" manage=off
@@ -49,7 +41,7 @@
       yabai -m rule --add app="^WhatsApp$" manage=off
       yabai -m rule --add app="^Vorssaint$" manage=off
 
-      # mouse focus
+      # Mouse focus
       # yabai -m window --focus mouse
 
       # window opacity

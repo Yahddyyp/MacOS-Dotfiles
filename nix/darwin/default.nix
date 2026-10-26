@@ -4,6 +4,7 @@
     ./borders.nix
     ./launchd.nix
     ./macos.nix
+    ./skhd.nix
     ./yabai.nix
   ];
 
@@ -19,18 +20,14 @@
   };
 
   environment.systemPackages = with pkgs; [
-    yabai
-    skhd
     (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default ]))
     gnupg
     carapace
     duti
-    switchaudio-osx
   ];
 
   # Homebrew env variables
   environment.variables = {
-    HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
     HOMEBREW_NO_AUTO_UPDATE = "1";
     HOMEBREW_NO_ENV_HINTS = "1";
   };
@@ -61,6 +58,10 @@
     enable = true;
     user = username;
     autoMigrate = true;
+    trust.taps = [
+      "raine/workmux"
+      "nikitabobko/tap"
+    ];
   };
 
   # Homebrew settings
@@ -71,27 +72,18 @@
       upgrade = false;
       cleanup = "none";
       extraEnv = {
-        HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
         HOMEBREW_NO_AUTO_UPDATE = "1";
       };
     };
 
     taps = [
-      "FelixKratz/formulae"
-      "koekeishiya/formulae"
-      "nikitabobko/tap"
       "raine/workmux"
+      "nikitabobko/tap"
     ];
 
     brews = [
       "neofetch"
       "mole"
-      "tailscale"
-      "tty-clock"
-      "container"
-      "podman"
-      "zig"
-      "rustup"
       "workmux"
     ];
 

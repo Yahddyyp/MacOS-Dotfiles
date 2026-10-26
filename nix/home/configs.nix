@@ -12,7 +12,6 @@ in {
   xdg.configFile."nvim"       = { source = ../configs/nvim;        recursive = true; };
   xdg.configFile."nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/nvim-lazy-lock.json";
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
-  xdg.configFile."skhd"       = { source = ../configs/skhd;        recursive = true; };
   xdg.configFile."spicetify"  = { source = ../configs/spicetify;    recursive = true; };
   xdg.configFile."spicetify/config-xpui.ini".source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/spicetify-config-xpui.ini";
   xdg.configFile."starship.toml".source = ../configs/starship.toml;

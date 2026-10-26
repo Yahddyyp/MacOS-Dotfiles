@@ -29,21 +29,6 @@ in {
     serviceConfig.StandardErrorPath = "/tmp/sketchybar.err.log";
   };
 
-  # skhd plist
-  launchd.agents.skhd = {
-    command = "/bin/sh -c '/bin/wait4path /run/current-system/sw/bin/skhd && exec ${pkgs.skhd}/bin/skhd -c /Users/${username}/.config/skhd/skhdrc'";
-    serviceConfig.RunAtLoad = true;
-    serviceConfig.KeepAlive = {
-      SuccessfulExit = false;
-      Crashed = true;
-    };
-    serviceConfig.ProcessType = "Interactive";
-    serviceConfig.Nice = -20;
-    serviceConfig.EnvironmentVariables = { PATH = wmAgentPath; };
-    serviceConfig.StandardOutPath = "/tmp/skhd.out.log";
-    serviceConfig.StandardErrorPath = "/tmp/skhd.err.log";
-  };
-
   # nix gc daemon
   launchd.daemons.nix-gc-custom = {
     command = "${pkgs.bash}/bin/bash ${../scripts/gc.sh} /Users/${username}";
