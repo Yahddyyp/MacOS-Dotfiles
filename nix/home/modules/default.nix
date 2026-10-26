@@ -12,7 +12,6 @@
     ./ghostty.nix
     ./git.nix
     ./gpg.nix
-    ./karabiner.nix
     ./kitty.nix
     ./man.nix
     ./sesh.nix

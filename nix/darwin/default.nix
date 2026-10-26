@@ -2,6 +2,7 @@
 {
   imports = [
     ./borders.nix
+    ./karabiner.nix
     ./launchd.nix
     ./macos.nix
     ./sketchybar.nix
