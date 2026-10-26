@@ -43,7 +43,6 @@
     spicetify-cli
     gum
     nushell
-    herdr
     nmap
     superfile
     tuicr
