@@ -30,7 +30,7 @@ sudo ln -s "$HOME/dotfiles/nix" /etc/nix-darwin
 ```
 
 Apply the configuration
-First build only:
+(first build only):
 
 ```bash
 nix run nix-darwin -- switch --flake /etc/nix-darwin#$(whoami) --impure
