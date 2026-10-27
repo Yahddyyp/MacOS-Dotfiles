@@ -2,6 +2,9 @@
 {
   programs.television = {
     enable = true;
+    enableFishIntegration = false;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
 
     settings = {
       tick_rate = 50;

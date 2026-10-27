@@ -4,6 +4,7 @@
     ./atuin.nix
     ./bat.nix
     ./btop.nix
+    ./carapace.nix
     ./eza.nix
     ./fish.nix
     ./fzf.nix
@@ -15,6 +16,7 @@
     ./kitty.nix
     ./lazygit.nix
     ./man.nix
+    ./nushell.nix
     ./sesh.nix
     ./starship.nix
     ./television.nix

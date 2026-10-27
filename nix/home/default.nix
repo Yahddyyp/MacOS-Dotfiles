@@ -40,7 +40,6 @@
     lua
     spicetify-cli
     gum
-    nushell
     nmap
     superfile
     tuicr
