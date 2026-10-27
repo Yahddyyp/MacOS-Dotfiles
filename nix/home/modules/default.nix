@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./aerospace.nix
     ./atuin.nix
     ./bat.nix
     ./btop.nix
@@ -13,6 +14,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg.nix
+    ./karabiner.nix
     ./kitty.nix
     ./lazygit.nix
     ./man.nix

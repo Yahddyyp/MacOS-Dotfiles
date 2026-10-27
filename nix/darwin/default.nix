@@ -2,7 +2,6 @@
 {
   imports = [
     ./borders.nix
-    ./karabiner.nix
     ./launchd.nix
     ./macos.nix
     ./sketchybar.nix
@@ -24,7 +23,6 @@
   environment.systemPackages = with pkgs; [
     (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default ]))
     gnupg
-    carapace
     duti
   ];
 
