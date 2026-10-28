@@ -41,8 +41,6 @@
     gum
     nmap
     superfile
-    tuicr
-    hunk
     container
     podman
     zig

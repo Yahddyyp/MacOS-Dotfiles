@@ -1,0 +1,20 @@
+{ pkgs, ... }:
+let
+  toml = pkgs.formats.toml { };
+in
+{
+  home.packages = [ pkgs.hunk ];
+
+  xdg.configFile."hunk/config.toml".source = toml.generate "hunk-config.toml" {
+    theme = "catppuccin-mocha";
+    mode = "stack";
+    vcs = "git";
+    watch = false;
+    exclude_untracked = false;
+    line_numbers = true;
+    wrap_lines = false;
+    agent_notes = true;
+    transparent_background = false;
+    menu_bar = true;
+  };
+}

@@ -14,6 +14,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg.nix
+    ./hunk.nix
     ./karabiner.nix
     ./kitty.nix
     ./lazygit.nix
@@ -23,6 +24,7 @@
     ./starship.nix
     ./television.nix
     ./tmux.nix
+    ./tuicr.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
