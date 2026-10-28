@@ -5,11 +5,21 @@
   programs.git = {
     enable = true;
 
+    ignores = [
+      ".DS_Store"
+      ".env"
+      "*.local"
+      "*.key"
+      ".venv/"
+    ];
+
     settings = {
       user = {
         name = "Yahddyyp";
         email = "Yahddyyp@gmail.com";
       };
+
+      init.defaultBranch = "main";
 
       core = {
         editor = "nvim";
@@ -23,6 +33,8 @@
         line-numbers = true;
         features = "catppuccin-mocha";
       };
+
+      push.autoSetupRemote = true;
 
       credential.helper = "osxkeychain";
 
