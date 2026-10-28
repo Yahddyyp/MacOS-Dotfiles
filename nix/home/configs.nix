@@ -7,7 +7,6 @@ in {
   xdg.configFile."neofetch"   = { source = ../configs/neofetch; recursive = true; };
   xdg.configFile."nvim"       = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/nvim"; };
   xdg.configFile."sketchybar" = { source = ../configs/sketchybar; recursive = true; };
-  xdg.configFile."spicetify"  = { source = ../configs/spicetify;    recursive = true; };
   xdg.configFile."tuicr"      = { source = ../configs/tuicr;      recursive = true; };
   xdg.configFile."zed"        = { source = config.lib.file.mkOutOfStoreSymlink "${repoConfigsDir}/zed"; };
 

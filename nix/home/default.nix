@@ -1,7 +1,6 @@
 { pkgs, lib, username, ... }:
 {
   imports = [
-    ./activation.nix
     ./configs.nix
     ./modules
   ];
