@@ -71,9 +71,6 @@
       autoUpdate = false;
       upgrade = false;
       cleanup = "none";
-      extraEnv = {
-        HOMEBREW_NO_AUTO_UPDATE = "1";
-      };
     };
 
     taps = [
