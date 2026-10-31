@@ -3,7 +3,6 @@
   programs.kitty = {
     enable = true;
     package = null;
-    shellIntegration.enableZshIntegration = false;
 
     font = {
       name = "Maple Mono NF";

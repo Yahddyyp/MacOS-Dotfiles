@@ -2,7 +2,6 @@
 {
   programs.ghostty = {
     enable = true;
-    enableZshIntegration = false;
     package = null;
 
     settings = {

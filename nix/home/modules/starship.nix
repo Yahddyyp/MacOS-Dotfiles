@@ -2,11 +2,8 @@
 {
   programs.starship = {
     enable = true;
-    enableZshIntegration = false;
 
     settings = {
-      "$schema" = "https://starship.rs/config-schema.json";
-
       format = builtins.concatStringsSep "" [
         "[](sapphire)"
         "$os"
@@ -26,12 +23,13 @@
         "$kotlin"
         "$haskell"
         "$python"
+        "$docker_context"
         "[](fg:sky bg:lavender)"
         "$time"
         "[ ](fg:lavender)"
         "$cmd_duration"
         "$line_break"
-        "\n$character"
+        "$character"
       ];
 
       palette = "catppuccin_mocha";
@@ -39,6 +37,7 @@
       os = {
         disabled = false;
         style = "bg:sapphire fg:crust";
+        format = "[$symbol ]($style)";
         symbols = {
           AOSC = "";
           Alpine = "";
@@ -92,7 +91,17 @@
 
       git_status = {
         style = "bg:green";
-        format = "[[($all_status$ahead_behind )](fg:crust bg:green)]($style)";
+        format = "[[($ahead_behind$stashed$conflicted$staged$modified$deleted$renamed$untracked)](fg:crust bg:green)]($style)";
+        modified = "!\${count} ";
+        staged = "+\${count} ";
+        untracked = "?\${count} ";
+        deleted = "✘\${count} ";
+        renamed = "»\${count} ";
+        conflicted = "~\${count} ";
+        stashed = "*\${count} ";
+        ahead = "⇡\${count} ";
+        behind = "⇣\${count} ";
+        diverged = "⇣\${behind_count}⇡\${ahead_count} ";
       };
 
       nodejs = {
@@ -126,14 +135,14 @@
       };
 
       java = {
-        symbol = "sapphire";
-        style = "bg:green";
+        symbol = "";
+        style = "bg:sapphire";
         format = "[[ $symbol( $version) ](fg:crust bg:sky)]($style)";
       };
 
       kotlin = {
-        symbol = "sapphire";
-        style = "bg:green";
+        symbol = "";
+        style = "bg:sapphire";
         format = "[[ $symbol( $version) ](fg:crust bg:sky)]($style)";
       };
 
@@ -157,19 +166,15 @@
 
       time = {
         disabled = false;
-        time_format = "%I:%M";
+        time_format = "%I:%M %p";
         style = "bg:lavender";
         format = "[[  $time ](fg:crust bg:lavender)]($style)";
-      };
-
-      line_break = {
-        disabled = true;
       };
 
       character = {
         disabled = false;
         success_symbol = "[❯](bold fg:mauve)";
-        error_symbol = "[❯](bold fg:mauve)";
+        error_symbol = "[❯](bold fg:red)";
         vimcmd_symbol = "[❮](bold fg:mauve)";
         vimcmd_replace_one_symbol = "[❮](bold fg:mauve)";
         vimcmd_replace_symbol = "[❮](bold fg:mauve)";
@@ -177,10 +182,10 @@
       };
 
       cmd_duration = {
-        show_milliseconds = true;
-        format = " in $duration ";
-        style = "bg:lavender";
         disabled = false;
+        min_time = 3000;
+        show_milliseconds = false;
+        format = "[󱦟 $duration](fg:overlay1)";
         show_notifications = true;
         min_time_to_notify = 45000;
       };

@@ -14,11 +14,6 @@
 
     plugins = [
       {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
         name = "zsh-vi-mode";
         src = pkgs.zsh-vi-mode;
         file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
@@ -66,20 +61,7 @@
       ZVM_INIT_MODE = "sourcing";
     };
 
-    initContent = lib.mkMerge [
-      (lib.mkBefore ''
-        # Powerlevel10k instant prompt (must be at the very top of ~/.zshrc)
-        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        fi
-      '')
-
-      (lib.mkOrder 901 ''
-        # Powerlevel10k theme configuration (must be sourced immediately after the theme plugin)
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-      '')
-
-      (lib.mkAfter ''
+    initContent = lib.mkAfter ''
         # Homebrew PATH
         if [ -x /opt/homebrew/bin/brew ]; then
           eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -113,8 +95,7 @@
             done
           done
         }
-      '')
-    ];
+      '';
   };
 
   catppuccin.zsh-syntax-highlighting = {
