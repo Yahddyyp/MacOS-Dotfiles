@@ -50,6 +50,7 @@
     fetch
     tuios
     delta
+    curl
   ];
 
   catppuccin = {
