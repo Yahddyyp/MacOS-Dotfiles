@@ -173,12 +173,12 @@
 
       character = {
         disabled = false;
-        success_symbol = "[❯](bold fg:mauve)";
-        error_symbol = "[❯](bold fg:red)";
-        vimcmd_symbol = "[❮](bold fg:mauve)";
-        vimcmd_replace_one_symbol = "[❮](bold fg:mauve)";
-        vimcmd_replace_symbol = "[❮](bold fg:mauve)";
-        vimcmd_visual_symbol = "[V](bold fg:mauve)";
+        success_symbol = "[->](bold fg:mauve)";
+        error_symbol = "[->](bold fg:red)";
+        vimcmd_symbol = "[<-](bold fg:mauve)";
+        vimcmd_replace_one_symbol = "[<.](bold fg:mauve)";
+        vimcmd_replace_symbol = "[<=](bold fg:mauve)";
+        vimcmd_visual_symbol = "[<~](bold fg:mauve)";
       };
 
       cmd_duration = {
