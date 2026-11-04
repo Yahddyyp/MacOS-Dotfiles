@@ -106,6 +106,7 @@
       "helium-browser"
       "firefox"
       "macpacker"
+      "handy"
     ];
   };
 
