@@ -4,6 +4,7 @@
     enable = true;
     enableZshIntegration = false;
     enableFishIntegration = false;
+    enableNushellIntegration = false;
   };
 
   catppuccin.eza = {
