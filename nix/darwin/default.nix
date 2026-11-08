@@ -107,6 +107,7 @@
       "firefox"
       "macpacker"
       "handy"
+      "libreoffice"
     ];
   };
 
