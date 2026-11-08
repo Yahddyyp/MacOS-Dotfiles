@@ -61,6 +61,7 @@
     trust.taps = [
       "raine/workmux"
       "nikitabobko/tap"
+      "omlahore/tap"
     ];
   };
 
@@ -76,12 +77,14 @@
     taps = [
       "raine/workmux"
       "nikitabobko/tap"
+      "omlahore/tap"
     ];
 
     brews = [
       "neofetch"
       "mole"
       "workmux"
+      "removemacai"
     ];
 
     casks = [
