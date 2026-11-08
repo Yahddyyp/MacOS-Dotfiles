@@ -74,13 +74,6 @@
         format = "[ $path ]($style)";
         truncation_length = 3;
         truncation_symbol = "…/";
-        substitutions = {
-          "Documents" = "󰈙 ";
-          "Downloads" = " ";
-          "Music" = "󰝚 ";
-          "Pictures" = " ";
-          "Developer" = "󰲋 ";
-        };
       };
 
       git_branch = {
