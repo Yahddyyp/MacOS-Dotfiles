@@ -14,9 +14,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    pass-tomb-osx = {
+      url = "github:Yahddyyp/pass-tomb-osx";
+      inputs.nixpkgs.follows = "nixpkgs"; 
+    };
+
     catppuccin.url = "github:catppuccin/nix";
-    pass-tomb-osx.url = "github:Yahddyyp/pass-tomb-osx";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
   outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, catppuccin, pass-tomb-osx, ... }: let
