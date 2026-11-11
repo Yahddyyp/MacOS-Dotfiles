@@ -24,7 +24,6 @@
       "space f": "file_finder::Toggle",
       "space r n": "editor::Rename",
       "space e": "project_panel::Toggle",
-      "space h": "zed::ShowWelcome",
       "space c": "buffer_search::Dismiss",
       "space p": "workspace::ToggleRightDock",
       "space b d": "pane::CloseActiveItem",
@@ -32,8 +31,8 @@
       "ctrl-/": "terminal_panel::Toggle",
       "space t": "debug_panel::Toggle",
       "space g g": "git_panel::Toggle",
-      "Tab": "pane::ActivateNextItem",
-      "shift-Tab": "pane::ActivatePreviousItem",
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
       "escape": ["workspace::SendKeystrokes", ": n o h enter"],
       "n": ["workspace::SendKeystrokes", "n z z z"],
       "N": ["workspace::SendKeystrokes", "shift-n z z z"],
@@ -121,5 +120,5 @@
       "space o p": "markdown::OpenPreview",
       "space o P": "markdown::OpenPreviewToTheSide",
     },
-  }
+  },
 ]

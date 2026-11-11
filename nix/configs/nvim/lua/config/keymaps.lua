@@ -1,48 +1,44 @@
 -- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Default keymaps: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
-vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode" })
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape insert mode" })
+-- Insert mode
+vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+
+-- Files
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next match (centered)" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match (centered)" })
+-- Buffers
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
+
+for i = 1, 9 do
+  vim.keymap.set("n", "g" .. i, "<cmd>BufferLineGoToBuffer " .. i .. "<cr>", {
+    desc = "Go to buffer " .. i,
+  })
+end
+
+vim.keymap.set("n", "g0", "<cmd>BufferLineGoToBuffer 10<cr>", { desc = "Go to buffer 10" })
+
+-- Search and movement
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
+
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next match, centered" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match, centered" })
+
+vim.keymap.set({ "n", "o", "x" }, "H", "^", { desc = "Start of line" })
+vim.keymap.set({ "n", "o", "x" }, "L", "$", { desc = "End of line" })
+
+-- Editing
+vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
+vim.keymap.set("n", "x", '"_x', { desc = "Delete character without copying" })
+
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
-vim.keymap.set("n", "x", '"_x', { desc = "Delete character without copying" })
-vim.keymap.set(
-  "n",
-  "<leader>S",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Replace word under cursor" }
-)
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode", noremap = true })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
-vim.keymap.set("n", "<leader>h", function()
-  require("snacks").dashboard()
-end, { desc = "Open dashboard" })
 
--- Redo and line navigation alternatives
-vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
-vim.keymap.set({ "n", "o", "x" }, "L", "$", { desc = "Go to end of line" })
-vim.keymap.set({ "n", "o", "x" }, "H", "^", { desc = "Go to start of line" })
+vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
+  desc = "Replace word under cursor",
+})
 
-vim.keymap.set("n", "<C-q>", "<cmd>bdelete<CR>", { desc = "Close current tab" })
-vim.keymap.set("n", "g1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Go to buffer 1" })
-vim.keymap.set("n", "g2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Go to buffer 2" })
-vim.keymap.set("n", "g3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Go to buffer 3" })
-vim.keymap.set("n", "g4", "<cmd>BufferLineGoToBuffer 4<CR>", { desc = "Go to buffer 4" })
-vim.keymap.set("n", "g5", "<cmd>BufferLineGoToBuffer 5<CR>", { desc = "Go to buffer 5" })
-vim.keymap.set("n", "g6", "<cmd>BufferLineGoToBuffer 6<CR>", { desc = "Go to buffer 6" })
-vim.keymap.set("n", "g7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Go to buffer 7" })
-vim.keymap.set("n", "g8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Go to buffer 8" })
-vim.keymap.set("n", "g9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Go to buffer 9" })
-vim.keymap.set("n", "g0", "<cmd>BufferLineGoToBuffer 10<CR>", { desc = "Go to buffer 10" })
-vim.keymap.set("n", "<M-j>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Move to left buffer" })
-vim.keymap.set("n", "<M-k>", "<cmd>BufferLineCycleNext<CR>", { desc = "Move to right buffer" })
-vim.keymap.set("n", "<M-J>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer to the left" })
-vim.keymap.set("n", "<M-K>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer to the right" })
+-- LSP
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })

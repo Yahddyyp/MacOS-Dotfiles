@@ -1,7 +1,7 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.rust",
-    "lazyvim.plugins.extras.util.mini-hipatterns"
+    "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.lang.rust"
   ],
   "install_version": 8,
   "news": {
