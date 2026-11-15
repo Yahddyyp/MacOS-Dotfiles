@@ -51,6 +51,8 @@
     tuios
     delta
     curl
+    python3
+    uv
   ];
 
   catppuccin = {
