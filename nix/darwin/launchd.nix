@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 {
-  # Disable caps lock so karabiner can intercept it.
+  # Disable caps lock so karabiner can intercept it
   launchd.agents.capslock-disable = {
     command = ''
       /usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0}]}'

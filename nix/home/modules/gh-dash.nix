@@ -117,37 +117,6 @@
         ];
       };
 
-      repoPaths = {};
-
-      theme = {
-        colors = {
-          text = {
-            primary = "#cdd6f4";
-            secondary = "#cba6f7";
-            inverted = "#11111b";
-            faint = "#bac2de";
-            warning = "#f9e2af";
-            success = "#a6e3a1";
-            error = "#f38ba8";
-          };
-          background = {
-            selected = "#313244";
-          };
-          border = {
-            primary = "#cba6f7";
-            secondary = "#45475a";
-            faint = "#313244";
-          };
-          ui = {
-            sectionsShowCount = true;
-            table = {
-              showSeparator = true;
-              compact = false;
-            };
-          };
-        };
-      };
-
       pager = {
         diff = "";
       };
@@ -157,5 +126,11 @@
       smartFilteringAtLaunch = true;
       includeReadNotifications = true;
     };
+  };
+
+  catppuccin.gh-dash = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
   };
 }
