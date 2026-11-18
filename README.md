@@ -44,9 +44,7 @@ sudo darwin-rebuild switch --flake /etc/nix-darwin#$(whoami) --impure
 
 ## Post-Install 
 After installation, run these:
-1. Tmux plugins — Open tmux and press prefix + I (Ctrl+A, then I)
-2. Spicetify — Open Spotify once, then run `spicetify apply`
-3. Disable SIP for yabai (Apple Silicon only):
+- Disable SIP for yabai (Apple Silicon only):
    1. Reboot into recovery mode (hold power button while restarting)
    2. Open terminal and run:
 
@@ -58,19 +56,6 @@ After installation, run these:
       ```bash
       sudo nvram boot-args=-arm64e_preview_abi
       ```
-
-4. Load the scripting addon:
-
-   ```bash 
-   sudo yabai --load-sa
-   ```
-
-5. Start services:
-
-   ```bash 
-   source ~/.zshrc
-   start-yabai
-   ```
 
 ## First Login
 * Authenticate gh (git uses it as the credential helper):
