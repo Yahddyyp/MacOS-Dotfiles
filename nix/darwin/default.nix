@@ -39,7 +39,6 @@
 
   # font
   fonts.packages = with pkgs; [
-    nerd-fonts.caskaydia-cove
     maple-mono.truetype
     maple-mono.NF-unhinted
     sketchybar-app-font
