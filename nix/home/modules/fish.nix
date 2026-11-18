@@ -63,7 +63,6 @@
       fish_add_path /opt/homebrew/bin
 
       # Environment
-      set -x GPG_TTY (tty)
       set -gx EDITOR nvim
       set -gx VISUAL nvim
       set -e LS_COLORS

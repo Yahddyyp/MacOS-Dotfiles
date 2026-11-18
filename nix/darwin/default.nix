@@ -1,4 +1,4 @@
-{ lib, pkgs, username, pass-tomb-osx, ... }:
+{ lib, pkgs, username, ... }:
 {
   imports = [
     ./borders.nix
@@ -12,6 +12,7 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
+
   system.primaryUser = username;
 
   # Cloudflare DNS
@@ -21,8 +22,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (pass.withExtensions (exts: with exts; [ pass-otp pass-audit pass-update pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default ]))
-    gnupg
     duti
   ];
 

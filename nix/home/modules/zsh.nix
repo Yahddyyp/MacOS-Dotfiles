@@ -53,9 +53,6 @@
     };
 
     sessionVariables = {
-      PASSWORD_STORE_EXTENSIONS_DIR = "$HOME/.local/share/pass-extensions";
-      PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
-      GPG_TTY = "$TTY";
       EDITOR = "nvim";
       VISUAL = "nvim";
       ZVM_INIT_MODE = "sourcing";

@@ -20,6 +20,7 @@
     ./lazygit.nix
     ./man.nix
     ./nushell.nix
+    ./pass.nix
     ./sesh.nix
     ./starship.nix
     ./television.nix
