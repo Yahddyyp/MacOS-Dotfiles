@@ -48,7 +48,6 @@
     tailscale
     clock-rs
     fetch
-    tuios
     delta
     curl
     python3
