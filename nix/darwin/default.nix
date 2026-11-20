@@ -38,7 +38,6 @@
 
   # font
   fonts.packages = with pkgs; [
-    maple-mono.truetype
     maple-mono.NF-unhinted
     sketchybar-app-font
   ];
