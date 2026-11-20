@@ -53,6 +53,7 @@
           Macos = "󰀵";
           Manjaro = "";
           Mint = "󰣭";
+          NixOS = "";
           Raspbian = "󰐿";
           RedHatEnterprise = "󱄛";
           Redhat = "󱄛";
