@@ -16,7 +16,6 @@
   home.packages = with pkgs; [
     neovim
     bun
-    nodejs
     bandwhich
     fastfetch
     fd

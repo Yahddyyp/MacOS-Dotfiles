@@ -1,4 +1,4 @@
-{ lib, pkgs, username, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
     ./borders.nix
