@@ -126,6 +126,7 @@ in
 
   # system defaults
   system.defaults = {
+    loginwindow.GuestEnabled = false;
     LaunchServices.LSQuarantine = false;
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
     CustomUserPreferences = {
