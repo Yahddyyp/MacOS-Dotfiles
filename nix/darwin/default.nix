@@ -25,6 +25,10 @@
     duti
     iina
     kitty
+    obsidian
+    libreoffice-bin
+    ghostty-bin
+    handy
   ];
 
   # Homebrew env variables
@@ -89,9 +93,7 @@
     casks = [
       "zed"
       "aerospace"
-      "obsidian"
       "localsend"
-      "ghostty"
       "raycast"
       "spotify"
       "zen"
@@ -106,8 +108,6 @@
       "helium-browser"
       "firefox"
       "macpacker"
-      "handy"
-      "libreoffice"
     ];
   };
 
