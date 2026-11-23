@@ -29,6 +29,7 @@
     libreoffice-bin
     ghostty-bin
     handy
+    zed-editor
   ];
 
   # Homebrew env variables
@@ -91,7 +92,6 @@
     ];
 
     casks = [
-      "zed"
       "localsend"
       "raycast"
       "spotify"
