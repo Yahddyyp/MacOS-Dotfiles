@@ -30,6 +30,7 @@
     ghostty-bin
     handy
     zed-editor
+    osu-lazer-bin
   ];
 
   # Homebrew env variables
@@ -100,7 +101,6 @@
       "vesktop"
       "protonvpn"
       "anki"
-      "osu"
       "vorssaint"
       "steam"
       "karabiner-elements"

@@ -220,7 +220,7 @@ in
     fi
 
     # Register the apps
-    for app in /Applications/Zen.app "/Applications/Nix Apps/IINA.app" /Applications/Zed.app /Applications/MacPacker.app; do
+    for app in /Applications/Zen.app "/Applications/Nix Apps/IINA.app" "/Applications/Nix Apps/Zed.app" /Applications/MacPacker.app; do
       [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null || true
     done
 
