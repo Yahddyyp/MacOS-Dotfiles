@@ -28,6 +28,10 @@
 
       external_bar = "all:40:0";
       window_shadow = "off";
+
+      # Fork specific
+      mouse_bsp_live_resize = "on";
+      window_native_tabs = "on";
     };
 
     extraConfig = ''
