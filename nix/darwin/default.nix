@@ -23,6 +23,8 @@
 
   environment.systemPackages = with pkgs; [
     duti
+    iina
+    kitty
   ];
 
   # Homebrew env variables
@@ -85,11 +87,9 @@
     ];
 
     casks = [
-      "kitty"
       "zed"
       "aerospace"
       "obsidian"
-      "iina"
       "localsend"
       "ghostty"
       "raycast"

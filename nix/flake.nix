@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pass-tomb-osx = {
       url = "github:Yahddyyp/pass-tomb-osx";
       inputs.nixpkgs.follows = "nixpkgs"; 
@@ -23,7 +28,7 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, catppuccin, pass-tomb-osx, ... }: let
+  outputs = { nixpkgs, nix-darwin, home-manager, mac-app-util, pass-tomb-osx, catppuccin, nix-homebrew, ... }: let
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
@@ -36,6 +41,7 @@
     darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
+        mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
         ./darwin
         home-manager.darwinModules.home-manager
@@ -44,7 +50,10 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
-            sharedModules = [ catppuccin.homeModules.catppuccin ];
+            sharedModules = [ 
+              mac-app-util.homeManagerModules.default
+              catppuccin.homeModules.catppuccin
+            ];
             users.${username} = import ./home;
             extraSpecialArgs = specialArgs;
           };
