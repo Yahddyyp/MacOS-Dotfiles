@@ -85,7 +85,6 @@
 
       stats = {
         common_subcommands = [
-          "aerospace"
           "brew"
           "bun"
           "cargo"

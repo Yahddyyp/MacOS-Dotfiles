@@ -92,7 +92,6 @@
 
     casks = [
       "zed"
-      "aerospace"
       "localsend"
       "raycast"
       "spotify"

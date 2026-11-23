@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./aerospace.nix
     ./atuin.nix
     ./bat.nix
     ./btop.nix
