@@ -43,6 +43,12 @@
       modules = [
         mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
+        # Custom yabai version cause the nixpkgs version did not update
+        {
+          nixpkgs.overlays = [
+            (import ./packages/yabai.nix)
+          ];
+        }
         ./darwin
         home-manager.darwinModules.home-manager
         {
