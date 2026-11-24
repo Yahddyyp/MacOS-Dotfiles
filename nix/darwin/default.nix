@@ -33,6 +33,7 @@
     osu-lazer-bin
     firefox
     vesktop
+    localsend
   ];
 
   # Homebrew env variables
@@ -95,7 +96,6 @@
     ];
 
     casks = [
-      "localsend"
       "raycast"
       "zen"
       "kindavim"
