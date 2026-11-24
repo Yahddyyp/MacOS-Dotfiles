@@ -95,7 +95,6 @@
     casks = [
       "localsend"
       "raycast"
-      "spotify"
       "zen"
       "kindavim"
       "vesktop"

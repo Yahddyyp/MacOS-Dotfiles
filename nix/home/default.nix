@@ -36,7 +36,6 @@
     cbonsai
     pi-coding-agent
     lua
-    spicetify-cli
     gum
     nmap
     superfile
