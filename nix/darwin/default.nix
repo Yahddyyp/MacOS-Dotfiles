@@ -32,6 +32,7 @@
     zed-editor
     osu-lazer-bin
     firefox
+    vesktop
   ];
 
   # Homebrew env variables
@@ -98,7 +99,6 @@
       "raycast"
       "zen"
       "kindavim"
-      "vesktop"
       "protonvpn"
       "anki"
       "vorssaint"

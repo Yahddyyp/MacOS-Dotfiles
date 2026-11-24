@@ -2,7 +2,7 @@
 {
   programs.zsh = {
     enable = true;
-    dotDir = config.home.homeDirectory;
+    dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -32,7 +32,6 @@
       lT = "eza --icons --tree --group-directories-first --all";
       lt = "eza --icons --tree --group-directories-first";
       fix-tmux = "killall -9 tmux; pkill -f tmux; rm -rf /tmp/tmux-$(id -u)";
-      stop-yabai = "launchctl bootout \"gui/$UID/org.nixos.yabai\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.skhd\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.sketchybar\" 2>/dev/null; launchctl bootout \"gui/$UID/org.nixos.jankyborders\" 2>/dev/null";
       cat = "bat";
       gc = "git commit -m";
       gca = "git commit -a -m";
@@ -73,6 +72,12 @@
         bindkey -M vicmd '^R' atuin-search-vicmd
 
         # Service helpers
+        function stop-yabai() {
+          for label in org.nixos.{yabai,skhd,sketchybar,jankyborders}; do
+            launchctl bootout "gui/$UID/$label" 2>/dev/null
+          done
+        }
+
         function start-yabai() {
           for label in org.nixos.{yabai,skhd,sketchybar,jankyborders}; do
             launchctl bootout "gui/$UID/$label" 2>/dev/null

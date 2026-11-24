@@ -1,6 +1,6 @@
 return {
   "baggiponte/rex-navigator.nvim",
-  enabled = vim.env.REX_SESSION ~= nil and vim.env.REX_SESSION ~= "",
+  enabled = vim.env.REX_BLOCK ~= nil and vim.env.REX_BLOCK ~= "",
   cmd = {
     "RexNavigateLeft",
     "RexNavigateDown",
