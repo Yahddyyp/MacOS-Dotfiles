@@ -7,7 +7,6 @@
       vim = "nvim";
       vi = "nvim";
       ff = "fastfetch";
-      tvf = "nvim (tv files)";
       cd = "z";
       ls = "eza --icons --group-directories-first";
       l = "eza --icons --long --group-directories-first --header --git";
@@ -73,10 +72,6 @@
 
       # Atuin vi normal mode binding
       bind -M default k _atuin_bind_up
-
-      # External environment files if present
-      test -f "$HOME/.local/bin/env.fish"; and source "$HOME/.local/bin/env.fish"
-      test -f "$HOME/.cargo/env.fish"; and source "$HOME/.cargo/env.fish"
     '';
   };
 

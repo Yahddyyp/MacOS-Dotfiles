@@ -23,7 +23,6 @@
     ./sesh.nix
     ./starship.nix
     ./spicetify.nix
-    ./television.nix
     ./tmux.nix
     ./tuicr.nix
     ./yazi.nix

@@ -24,7 +24,6 @@
       vim = "nvim";
       vi = "nvim";
       ff = "fastfetch";
-      tvf = "nvim $(tv files)";
       cd = "z";
       ls = "eza --icons --group-directories-first";
       l = "eza --icons --long --group-directories-first --header --git";
@@ -64,11 +63,6 @@
           eval "$(/opt/homebrew/bin/brew shellenv)"
         fi
 
-        # Rustup
-        if [ -d /opt/homebrew/opt/rustup/bin ]; then
-          export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
-        fi
-
         # Unset LS_COLORS so eza uses its own theme.yml
         unset LS_COLORS
         export EZA_CONFIG_DIR="$HOME/.config/eza"
@@ -99,4 +93,6 @@
     enable = true;
     flavor = "mocha";
   };
+
+  home.sessionPath = [ "${config.home.homeDirectory}/.cargo/bin" ];
 }

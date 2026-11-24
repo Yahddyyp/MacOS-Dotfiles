@@ -16,30 +16,17 @@
   home.packages = with pkgs; [
     neovim
     bun
-    bandwhich
     fastfetch
     fd
     ripgrep
     tree
-    stow
-    duf
     dust
-    gdu
-    ouch
-    _7zz
-    ffmpeg
-    imagemagick
     jq
-    just
     luarocks
-    ngrok
     cbonsai
     pi-coding-agent
     lua
-    gum
     nmap
-    superfile
-    container
     podman
     zig
     rustup

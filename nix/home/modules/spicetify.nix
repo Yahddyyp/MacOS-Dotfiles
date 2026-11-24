@@ -20,15 +20,6 @@ in
       trashbin
       adblock
       spicyLyrics
-      ({
-        src = "${pkgs.fetchFromGitHub {
-          owner = "wSoltani";
-          repo = "syncify";
-          rev = "v1.16.0";
-          hash = "sha256-50vZFyQbCKIZSJbFYuBB3O/DNS5djZQSJoqv/NvEq4c=";
-        }}/dist";
-        name = "syncify.js";
-      })
     ];
 
     enabledCustomApps = with spicePkgs.apps; [
@@ -39,34 +30,9 @@ in
       })
     ];
 
-    enabledSnippets = (with spicePkgs.snippets; [
+    enabledSnippets = with spicePkgs.snippets; [
       removePopular
       declutterNowPlayingBar
-    ]) ++ [
-      ''
-        *,
-        *::before,
-        *::after {
-          backdrop-filter: none !important;
-          -webkit-backdrop-filter: none !important;
-          transition: none !important;
-          box-shadow: none !important;
-        }
-
-        .under-main-view,
-        [class*="background"],
-        [class*="blur"] {
-          filter: none !important;
-          -webkit-filter: none !important;
-        }
-
-        .Root__top-container,
-        .Root__main-view,
-        .Root__nav-bar,
-        .Root__right-sidebar {
-          contain: layout style !important;
-        }
-      ''
     ];
   };
 }

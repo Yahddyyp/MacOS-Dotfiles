@@ -25,8 +25,6 @@
         $env.PATH
         | split row (char esep)
         | prepend "/opt/homebrew/bin"
-        | prepend "/opt/homebrew/opt/rustup/bin"
-        | prepend ($env.HOME | path join ".cargo" "bin")
         | uniq
       )
     '';
@@ -70,10 +68,6 @@
           ]
         )
       )
-
-      def tvf [] {
-        nvim (tv files)
-      }
 
       def fix-tmux [] {
         do { ^killall -9 tmux } | complete

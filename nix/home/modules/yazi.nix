@@ -4,6 +4,10 @@
     enable = true;
     shellWrapperName = "y";
 
+    package = pkgs.yazi.override {
+      _7zz = pkgs._7zz-rar;
+    };
+
     settings = {
       mgr = {
         show_hidden = true;
@@ -23,6 +27,14 @@
         count_separator = " ",
       })
     '';
+
+    extraPackages = with pkgs; [
+      file
+      ffmpeg
+      poppler
+      resvg
+      imagemagick
+    ];
   };
 
   catppuccin.yazi = {
