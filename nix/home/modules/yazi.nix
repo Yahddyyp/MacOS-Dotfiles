@@ -30,7 +30,6 @@
 
     extraPackages = with pkgs; [
       file
-      ffmpeg
       poppler
       resvg
       imagemagick

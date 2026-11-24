@@ -31,6 +31,7 @@
     handy
     zed-editor
     osu-lazer-bin
+    firefox
   ];
 
   # Homebrew env variables
@@ -104,7 +105,6 @@
       "steam"
       "karabiner-elements"
       "helium-browser"
-      "firefox"
       "macpacker"
     ];
   };
