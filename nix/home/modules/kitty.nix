@@ -17,8 +17,8 @@
       macos_titlebar_color = "background";
       window_padding_width = 10;
       hide_window_decorations = "titlebar-only";
-      # hide_window_decorations = true;
-      # background_opacity = 0.9;
+      background_opacity = 0.9;
+      background_blur = 20;
     };
   };
 
