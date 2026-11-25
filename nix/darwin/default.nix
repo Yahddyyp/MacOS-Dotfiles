@@ -106,6 +106,7 @@
       "karabiner-elements"
       "helium-browser"
       "macpacker"
+      "sf-symbols"
     ];
   };
 
