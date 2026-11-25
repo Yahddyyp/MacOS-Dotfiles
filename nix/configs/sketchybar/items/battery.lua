@@ -3,6 +3,7 @@ local sbar = require("sketchybar")
 
 local show_time = false
 local is_charging = false
+local has_time = false
 
 local battery = sbar.add("item", "battery", {
 	position = "right",
@@ -14,39 +15,6 @@ local battery = sbar.add("item", "battery", {
 
 	label = {
 		color = colors.text,
-	},
-
-	popup = {
-		align = "center",
-		y_offset = -2,
-		background = {
-			color = colors.surface,
-			border_color = colors.surface_border,
-			border_width = 1,
-			corner_radius = 8,
-		},
-	},
-})
-
-local battery_info = sbar.add("item", "battery.info", {
-	position = "popup.battery",
-
-	icon = {
-		string = "􀋦",
-		color = colors.mauve,
-		padding_left = 10,
-	},
-
-	label = {
-		string = "Checking...",
-		color = colors.text,
-		font = "Maple Mono NF:Bold:13.0",
-		width = 130,
-		padding_right = 10,
-	},
-
-	background = {
-		drawing = false,
 	},
 })
 
@@ -86,10 +54,15 @@ local function update_battery()
 
 		local icon = get_battery_icon(percentage, is_charging)
 		local time_remaining = info:match("(%d+:%d+)")
+		has_time = time_remaining ~= nil and time_remaining ~= "0:00"
+
+		if not has_time then
+			show_time = false
+		end
 
 		local display = percentage .. "%"
 
-		if not is_charging and show_time and time_remaining and time_remaining ~= "0:00" then
+		if not is_charging and show_time and has_time then
 			display = time_remaining
 		end
 
@@ -103,36 +76,6 @@ local function update_battery()
 				},
 			})
 		end)
-
-		-- Popup
-		if is_charging then
-			battery_info:set({
-				icon = {
-					string = "􀋦",
-				},
-				label = {
-					string = "Charging",
-				},
-			})
-		elseif time_remaining and time_remaining ~= "0:00" then
-			battery_info:set({
-				icon = {
-					string = "􀐫",
-				},
-				label = {
-					string = time_remaining .. " remaining",
-				},
-			})
-		else
-			battery_info:set({
-				icon = {
-					string = icon,
-				},
-				label = {
-					string = "Calculating...",
-				},
-			})
-		end
 	end)
 end
 
@@ -141,7 +84,7 @@ battery:subscribe("system_woke", update_battery)
 battery:subscribe("power_source_change", update_battery)
 
 battery:subscribe("mouse.clicked", function()
-	if is_charging then
+	if is_charging or not has_time then
 		return
 	end
 
