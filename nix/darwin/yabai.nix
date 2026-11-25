@@ -35,6 +35,11 @@
     };
 
     extraConfig = ''
+      # Yabai Scripting Addon
+      sudo ${pkgs.yabai}/bin/yabai --load-sa
+      yabai -m signal --add event=dock_did_restart \
+        action="sudo ${pkgs.yabai}/bin/yabai --load-sa"
+
       # Disable specific apps
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^Calculator$" manage=off
@@ -44,14 +49,6 @@
       yabai -m rule --add app="^IINA$" manage=off
       yabai -m rule --add app="^WhatsApp$" manage=off
       yabai -m rule --add app="^Vorssaint$" manage=off
-
-      # Mouse focus
-      # yabai -m window --focus mouse
-
-      # window opacity
-      # yabai -m config window_opacity on
-      # yabai -m config active_window_opacity 0.9
-      # yabai -m config normal_window_opacity 0.8
 
       # Sketchybar integration
       # Front App
@@ -85,11 +82,6 @@
 
       yabai -m signal --add event=window_minimized \
         action="${pkgs.sketchybar}/bin/sketchybar --trigger space_windows_change"
-
-      # Yabai Scripting Addon
-      sudo ${pkgs.yabai}/bin/yabai --load-sa
-      yabai -m signal --add event=dock_did_restart \
-        action="sudo ${pkgs.yabai}/bin/yabai --load-sa"
     '';
   };
 
