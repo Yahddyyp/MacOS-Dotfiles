@@ -34,6 +34,7 @@
     firefox
     vesktop
     localsend
+    anki-bin
   ];
 
   # Homebrew env variables
@@ -100,7 +101,6 @@
       "zen"
       "kindavim"
       "protonvpn"
-      "anki"
       "vorssaint"
       "steam"
       "karabiner-elements"
