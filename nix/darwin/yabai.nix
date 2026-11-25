@@ -85,6 +85,11 @@
 
       yabai -m signal --add event=window_minimized \
         action="${pkgs.sketchybar}/bin/sketchybar --trigger space_windows_change"
+
+      # Yabai Scripting Addon
+      sudo ${pkgs.yabai}/bin/yabai --load-sa
+      yabai -m signal --add event=dock_did_restart \
+        action="sudo ${pkgs.yabai}/bin/yabai --load-sa"
     '';
   };
 
