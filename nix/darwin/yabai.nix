@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.yabai = {
     enable = true;
-    package = pkgs.yabai;
+    package = config.lib.appIdentity.mkAppBundle {
+      package = pkgs.yabai;
+      identifier = "com.koekeishiya.yabai";
+    };
     enableScriptingAddition = true;
 
     config = {
@@ -36,9 +39,9 @@
 
     extraConfig = ''
       # Yabai Scripting Addon
-      sudo ${pkgs.yabai}/bin/yabai --load-sa
+      sudo ${config.services.yabai.package}/bin/yabai --load-sa
       yabai -m signal --add event=dock_did_restart \
-        action="sudo ${pkgs.yabai}/bin/yabai --load-sa"
+        action="sudo ${config.services.yabai.package}/bin/yabai --load-sa"
 
       # Disable specific apps
       yabai -m rule --add app="^System Settings$" manage=off

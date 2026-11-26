@@ -214,6 +214,26 @@
         "type": "github"
       }
     },
+    "nix-mac-app-identity": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790004038,
+        "narHash": "sha256-c5eNvzqDaGHfH/NS0eNZnYPMxXAEVlMy3XIqyCLR5PY=",
+        "owner": "natsukium",
+        "repo": "nix-mac-app-identity",
+        "rev": "ef92c08e661250b481ec459405235f3756433ad5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "natsukium",
+        "repo": "nix-mac-app-identity",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1779796641,
@@ -321,6 +341,7 @@
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
+        "nix-mac-app-identity": "nix-mac-app-identity",
         "nixpkgs": "nixpkgs_4",
         "pass-tomb-osx": "pass-tomb-osx",
         "spicetify-nix": "spicetify-nix"

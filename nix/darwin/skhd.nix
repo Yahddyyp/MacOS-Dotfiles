@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.skhd = {
     enable = true;
-    package = pkgs.skhd;
+    package = config.lib.appIdentity.mkAppBundle {
+      package = pkgs.skhd;
+      identifier = "com.koekeishiya.skhd";
+    };
 
     skhdConfig = ''
       # Rotate layout along y axis

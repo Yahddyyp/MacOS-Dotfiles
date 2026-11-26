@@ -34,10 +34,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-mac-app-identity = {
+      url = "github:natsukium/nix-mac-app-identity";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, spicetify-nix, mac-app-util, pass-tomb-osx, catppuccin, nix-homebrew, ... }: let
+  outputs = { nixpkgs, nix-darwin, home-manager, spicetify-nix, mac-app-util, pass-tomb-osx, catppuccin, nix-mac-app-identity, nix-homebrew, ... }: let
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
@@ -50,6 +55,7 @@
     darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
+        nix-mac-app-identity.darwinModules.default  
         mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
         # Custom yabai version cause the nixpkgs version did not update
