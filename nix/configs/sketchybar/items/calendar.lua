@@ -1,7 +1,13 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
 
+local HOME = os.getenv("HOME")
+local WATCHER = HOME .. "/.config/sketchybar/helpers/network-watcher"
+
 local popup_open = false
+local uptime_token = 0
+
+sbar.add("event", "network_update")
 
 local date_item = sbar.add("item", "date", {
 	position = "right",
@@ -12,7 +18,6 @@ local date_item = sbar.add("item", "date", {
 	label = {
 		color = colors.text,
 	},
-	update_freq = 30,
 	popup = {
 		align = "center",
 		y_offset = -2,
@@ -50,27 +55,23 @@ local network_item = make_popup_item("date.network", "󰖩", "Checking...")
 local vpn_item = make_popup_item("date.vpn", "󰒝", "Checking...")
 local uptime_item = make_popup_item("date.uptime", "􀐫", "Checking...")
 
-local function update_network()
-	sbar.exec("route -n get default 2>/dev/null", function(output)
-		local iface = output and output:match("interface:%s*(%S+)")
-		if not iface then
-			date_item:set({ icon = { color = colors.red } })
-			network_item:set({ label = { string = "Disconnected" } })
-			vpn_item:set({ label = { string = "Disconnected" } })
-			return
-		end
+local function apply_network(connected, vpn)
+	if not connected then
+		date_item:set({ icon = { color = colors.red } })
+		network_item:set({ label = { string = "Disconnected" } })
+		vpn_item:set({ label = { string = "Disconnected" } })
+		return
+	end
 
-		local vpn = iface:match("^utun") ~= nil
-		date_item:set({
-			icon = { color = vpn and colors.green or colors.mauve },
-		})
-		network_item:set({
-			label = { string = "Connected" },
-		})
-		vpn_item:set({
-			label = { string = vpn and "VPN Connected" or "VPN Disconnected" },
-		})
-	end)
+	date_item:set({
+		icon = { color = vpn and colors.green or colors.mauve },
+	})
+	network_item:set({
+		label = { string = "Connected" },
+	})
+	vpn_item:set({
+		label = { string = vpn and "VPN Connected" or "VPN Disconnected" },
+	})
 end
 
 local function update_date()
@@ -108,11 +109,26 @@ local function update_uptime()
 	end)
 end
 
+local function schedule_uptime_while_open(token)
+	if not popup_open or token ~= uptime_token then
+		return
+	end
+	update_uptime()
+	local delay = (60 - os.date("*t").sec) + 0.05
+	sbar.delay(delay, function()
+		schedule_uptime_while_open(token)
+	end)
+end
+
 local function set_popup(open)
 	popup_open = open
+	uptime_token = uptime_token + 1
 	date_item:set({
 		popup = { drawing = open and "on" or "off" },
 	})
+	if open then
+		schedule_uptime_while_open(uptime_token)
+	end
 end
 
 local function schedule_clock()
@@ -122,12 +138,14 @@ local function schedule_clock()
 	sbar.delay(delay, schedule_clock)
 end
 
+date_item:subscribe("network_update", function(env)
+	apply_network(env.CONNECTED == "1", env.VPN == "1")
+end)
+
 date_item:subscribe("mouse.clicked", function()
 	local next_state = not popup_open
 	if next_state then
-		update_network()
 		update_date()
-		update_uptime()
 	end
 	set_popup(next_state)
 end)
@@ -138,19 +156,13 @@ date_item:subscribe("mouse.exited.global", function()
 	end
 end)
 
-date_item:subscribe("wifi_change", function()
-	update_network()
-end)
-
 date_item:subscribe("system_woke", function()
 	update_date()
-	update_network()
-end)
-
-date_item:subscribe("routine", function()
-	update_network()
 end)
 
 schedule_clock()
-update_network()
 update_uptime()
+
+sbar.delay(0.2, function()
+	sbar.exec(WATCHER .. " >/dev/null 2>&1 &")
+end)
