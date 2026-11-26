@@ -38,6 +38,9 @@
     python3
     uv
     ffmpeg
+    imagemagick
+    glow
+    direnv
   ];
 
   catppuccin = {

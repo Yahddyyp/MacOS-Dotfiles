@@ -32,7 +32,6 @@
       file
       poppler
       resvg
-      imagemagick
     ];
   };
 
