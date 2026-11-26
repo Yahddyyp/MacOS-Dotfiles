@@ -1,24 +1,21 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
 
+local popup_open = false
+
 local date_item = sbar.add("item", "date", {
 	position = "right",
-
 	icon = {
 		string = "􀧞",
 		color = colors.mauve,
 	},
-
 	label = {
 		color = colors.text,
 	},
-
-	update_freq = 5,
-
+	update_freq = 30,
 	popup = {
 		align = "center",
 		y_offset = -2,
-
 		background = {
 			color = colors.surface,
 			border_color = colors.surface_border,
@@ -31,13 +28,11 @@ local date_item = sbar.add("item", "date", {
 local function make_popup_item(name, icon, label)
 	return sbar.add("item", name, {
 		position = "popup.date",
-
 		icon = {
 			string = icon,
 			color = colors.mauve,
 			padding_left = 10,
 		},
-
 		label = {
 			string = label,
 			color = colors.text,
@@ -45,7 +40,6 @@ local function make_popup_item(name, icon, label)
 			width = 220,
 			padding_right = 10,
 		},
-
 		background = {
 			drawing = false,
 		},
@@ -53,134 +47,110 @@ local function make_popup_item(name, icon, label)
 end
 
 local network_item = make_popup_item("date.network", "󰖩", "Checking...")
-
 local vpn_item = make_popup_item("date.vpn", "󰒝", "Checking...")
-
 local uptime_item = make_popup_item("date.uptime", "􀐫", "Checking...")
 
 local function update_network()
-	sbar.exec("route get default 2>/dev/null | awk '/interface:/{print $2}'", function(iface)
-		if not iface or iface == "" then
-			date_item:set({
-				icon = {
-					color = colors.red,
-				},
-			})
-
-			network_item:set({
-				label = {
-					string = "Disconnected",
-				},
-			})
-
-			vpn_item:set({
-				label = {
-					string = "Disconnected",
-				},
-			})
-
+	sbar.exec("route -n get default 2>/dev/null", function(output)
+		local iface = output and output:match("interface:%s*(%S+)")
+		if not iface then
+			date_item:set({ icon = { color = colors.red } })
+			network_item:set({ label = { string = "Disconnected" } })
+			vpn_item:set({ label = { string = "Disconnected" } })
 			return
 		end
 
-		iface = iface:match("%S+")
-
 		local vpn = iface:match("^utun") ~= nil
-
 		date_item:set({
-			icon = {
-				color = vpn and colors.green or colors.mauve,
-			},
+			icon = { color = vpn and colors.green or colors.mauve },
 		})
-
 		network_item:set({
-			label = {
-				string = "Connected",
-			},
+			label = { string = "Connected" },
 		})
-
 		vpn_item:set({
-			label = {
-				string = vpn and "VPN Connected" or "VPN Disconnected",
-			},
+			label = { string = vpn and "VPN Connected" or "VPN Disconnected" },
 		})
 	end)
 end
 
 local function update_date()
-	local now = os.time()
-
 	date_item:set({
 		label = {
-			string = os.date("%a %d %b  -  %I:%M %p", now),
+			string = os.date("%a %d %b  -  %I:%M %p"),
 		},
 	})
 end
 
 local function update_uptime()
 	sbar.exec("sysctl -n kern.boottime", function(result)
-		if not result or result == "" then
-			return
-		end
-
-		local boot_time = result:match("sec = (%d+)")
-
-		if not boot_time then
-			return
-		end
-
-		boot_time = tonumber(boot_time)
-
+		local boot_time = result and tonumber(result:match("sec = (%d+)"))
 		if not boot_time then
 			return
 		end
 
 		local uptime_seconds = os.time() - boot_time
-
 		local days = math.floor(uptime_seconds / 86400)
 		local hours = math.floor((uptime_seconds % 86400) / 3600)
 		local minutes = math.floor((uptime_seconds % 3600) / 60)
 
 		local parts = {}
-
 		if days > 0 then
 			table.insert(parts, days .. "d")
 		end
-
 		if hours > 0 or days > 0 then
 			table.insert(parts, hours .. "h")
 		end
-
 		table.insert(parts, minutes .. "m")
 
 		uptime_item:set({
-			label = {
-				string = "Up: " .. table.concat(parts, " "),
-			},
+			label = { string = "Up: " .. table.concat(parts, " ") },
 		})
 	end)
 end
 
-date_item:subscribe("mouse.clicked", function()
-	update_network()
-	update_date()
-	update_uptime()
-
+local function set_popup(open)
+	popup_open = open
 	date_item:set({
-		popup = {
-			drawing = "toggle",
-		},
+		popup = { drawing = open and "on" or "off" },
 	})
+end
+
+local function schedule_clock()
+	update_date()
+	local sec = os.date("*t").sec
+	local delay = (60 - sec) + 0.05
+	sbar.delay(delay, schedule_clock)
+end
+
+date_item:subscribe("mouse.clicked", function()
+	local next_state = not popup_open
+	if next_state then
+		update_network()
+		update_date()
+		update_uptime()
+	end
+	set_popup(next_state)
 end)
 
-date_item:subscribe("routine", function()
-	update_date()
-	update_network()
-
-	if date_item:query().popup.drawing == "on" then
-		update_uptime()
+date_item:subscribe("mouse.exited.global", function()
+	if popup_open then
+		set_popup(false)
 	end
 end)
 
-update_date()
+date_item:subscribe("wifi_change", function()
+	update_network()
+end)
+
+date_item:subscribe("system_woke", function()
+	update_date()
+	update_network()
+end)
+
+date_item:subscribe("routine", function()
+	update_network()
+end)
+
+schedule_clock()
 update_network()
 update_uptime()
