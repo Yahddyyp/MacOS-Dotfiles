@@ -28,17 +28,17 @@
     kitty
     libreoffice-bin
     ghostty-bin
+    osu-lazer-bin
     firefox
     vesktop
     localsend
     anki-bin
   ];
 
-  # Apps with stable signing identities
+  # Apps that need stable signing identities
   system.appIdentity.apps = with pkgs; [
     obsidian
     zed-editor
-    osu-lazer-bin
     handy
   ];
 
