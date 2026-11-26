@@ -3,13 +3,17 @@ local settings = require("settings")
 local icons = require("icons")
 local sbar = require("sketchybar")
 
-local dark_bg = 0xaa2a273f
+local dark_bg = colors.space_bg
 local light_bg = colors.mauve
 
 local YABAI = "/run/current-system/sw/bin/yabai"
-local PATH_PREFIX = 'export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:$PATH"; '
 
 local spaces = {}
+local last_strips = {}
+
+local function get_icon(app)
+	return icons[app] or icons["Default"] or ":default:"
+end
 
 for _, sid in ipairs(settings.space_sids) do
 	local space = sbar.add("space", "space." .. sid, {
@@ -21,7 +25,8 @@ for _, sid in ipairs(settings.space_sids) do
 			padding_right = 4,
 		},
 		label = {
-			font = "sketchybar-app-font:Regular:18.0",
+			string = " —",
+			font = settings.icon_font .. ":Regular:18.0",
 			padding_right = 20,
 			y_offset = -2,
 			color = light_bg,
@@ -31,7 +36,6 @@ for _, sid in ipairs(settings.space_sids) do
 			border_color = colors.surface_border,
 			border_width = 1,
 		},
-
 		click_script = YABAI .. " -m space --focus " .. sid,
 	})
 
@@ -58,8 +62,8 @@ for _, sid in ipairs(settings.space_sids) do
 end
 
 local function update_space_windows()
-	sbar.exec(PATH_PREFIX .. YABAI .. " -m query --windows 2>/dev/null || echo '[]'", function(result)
-		if not result or type(result) ~= "table" then
+	sbar.exec(YABAI .. " -m query --windows 2>/dev/null", function(result)
+		if type(result) ~= "table" then
 			return
 		end
 
@@ -70,7 +74,7 @@ local function update_space_windows()
 				local sid = win.space
 				local app = win.app
 
-				if sid and app then
+				if sid and app and app ~= "" then
 					space_apps[sid] = space_apps[sid] or {}
 					space_apps[sid][app] = true
 				end
@@ -78,27 +82,29 @@ local function update_space_windows()
 		end
 
 		for _, sid in ipairs(settings.space_sids) do
-			local apps = space_apps[sid]
 			local item = spaces[sid]
-
 			if item then
+				local apps = space_apps[sid]
+				local strip = " —"
+
 				if apps then
-					local icon_strip = " "
-
+					local ordered = {}
 					for app in pairs(apps) do
-						icon_strip = icon_strip .. icons[app] .. " "
+						ordered[#ordered + 1] = app
 					end
+					table.sort(ordered)
 
+					local parts = {}
+					for _, app in ipairs(ordered) do
+						parts[#parts + 1] = get_icon(app)
+					end
+					strip = " " .. table.concat(parts, " ") .. " "
+				end
+
+				if last_strips[sid] ~= strip then
+					last_strips[sid] = strip
 					item:set({
-						label = {
-							string = icon_strip,
-						},
-					})
-				else
-					item:set({
-						label = {
-							string = " —",
-						},
+						label = { string = strip },
 					})
 				end
 			end
@@ -109,28 +115,24 @@ end
 sbar.add("event", "space_windows_change")
 
 local space_watcher = sbar.add("item", "space_watcher", {
-	position = "center",
-	background = {
-		drawing = false,
-	},
-	update_freq = 0,
+	drawing = false,
 })
 
 local windows_update_pending = false
 
-space_watcher:subscribe("space_windows_change", function()
+local function schedule_windows_update()
 	if windows_update_pending then
 		return
 	end
 
 	windows_update_pending = true
 
-	sbar.delay(0.3, function()
+	sbar.delay(0.15, function()
 		windows_update_pending = false
 		update_space_windows()
 	end)
-end)
+end
 
-sbar.delay(1.0, function()
-	update_space_windows()
-end)
+space_watcher:subscribe({ "space_windows_change", "front_app_switched" }, schedule_windows_update)
+
+sbar.delay(0.5, update_space_windows)

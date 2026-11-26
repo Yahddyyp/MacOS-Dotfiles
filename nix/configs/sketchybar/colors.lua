@@ -19,6 +19,7 @@ return {
 	flamingo = 0xfff2cdcd,
 	surface = 0xcc1e1e2e,
 	surface_border = 0x44cba6f7,
+	space_bg = 0xaa2a273f,
 	base_alpha = 0xcc313244,
 	base_border = 0x88cba6f7,
 	transparent = 0x00000000,

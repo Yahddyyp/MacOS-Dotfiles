@@ -9,7 +9,5 @@ return {
 	bar_height = 43,
 	item_height = 30,
 
-	animator_duration = 250,
-
 	space_sids = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
 }

@@ -1,5 +1,6 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
+local settings = require("settings")
 
 local HOME = os.getenv("HOME")
 local HELPERS = HOME .. "/.config/sketchybar/helpers"
@@ -8,7 +9,7 @@ local media_cover = sbar.add("item", "media.cover", {
 	position = "right",
 	icon = {
 		string = "􀑪 ",
-		font = "Maple Mono NF:16.0",
+		font = settings.font .. ":16.0",
 		color = colors.mauve,
 		padding_left = 10,
 		padding_right = 4,
@@ -17,7 +18,7 @@ local media_cover = sbar.add("item", "media.cover", {
 		padding_left = 6,
 		padding_right = 10,
 		color = colors.text,
-		font = "Maple Mono NF:Bold:14.0",
+		font = settings.font .. ":Bold:14.0",
 		max_chars = 50,
 	},
 	drawing = false,

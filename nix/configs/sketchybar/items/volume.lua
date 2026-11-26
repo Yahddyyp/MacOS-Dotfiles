@@ -1,5 +1,6 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
+local settings = require("settings")
 
 local VOLUME_HELPER = os.getenv("HOME") .. "/.config/sketchybar/helpers/sketchybar-volume"
 
@@ -7,12 +8,12 @@ local volume_icon = sbar.add("item", "volume_icon", {
 	position = "right",
 
 	icon = {
-		font = "Maple Mono NF:16.0",
+		font = settings.font .. ":16.0",
 		color = colors.mauve,
 	},
 
 	label = {
-		font = "Maple Mono NF:Bold:14.0",
+		font = settings.font .. ":Bold:14.0",
 		color = colors.text,
 	},
 
@@ -46,7 +47,7 @@ local volume_slider = sbar.add("slider", "volume_slider", 150, {
 		knob = {
 			string = "􀀁",
 			drawing = false,
-			font = "Maple Mono NF:Regular:15.0",
+			font = settings.font .. ":Regular:15.0",
 		},
 	},
 

@@ -1,6 +1,7 @@
 local colors = require("colors")
 local icons = require("icons")
 local sbar = require("sketchybar")
+local settings = require("settings")
 
 local current_app = "Finder"
 local update_token = 0
@@ -13,7 +14,7 @@ local front_app = sbar.add("item", "front_app", {
 	position = "left",
 	icon = {
 		string = get_icon("Finder"),
-		font = "sketchybar-app-font:Regular:18.0",
+		font = settings.icon_font .. ":Regular:18.0",
 		color = colors.mauve,
 	},
 	label = {

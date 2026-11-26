@@ -5,7 +5,7 @@ package.path = package.path .. ";" .. config_dir .. "/?.lua;" .. config_dir .. "
 
 package.cpath = package.cpath .. ";" .. os.getenv("HOME") .. "/.local/share/sketchybar_lua/?.so"
 
-sbar = require("sketchybar")
+local sbar = require("sketchybar")
 
 sbar.begin_config()
 require("init")

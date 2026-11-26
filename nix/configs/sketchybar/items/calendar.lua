@@ -1,5 +1,6 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
+local settings = require("settings")
 
 local HOME = os.getenv("HOME")
 local WATCHER = HOME .. "/.config/sketchybar/helpers/network-watcher"
@@ -41,7 +42,7 @@ local function make_popup_item(name, icon, label)
 		label = {
 			string = label,
 			color = colors.text,
-			font = "Maple Mono NF:Bold:13.0",
+			font = settings.font .. ":Bold:13.0",
 			width = 220,
 			padding_right = 10,
 		},
