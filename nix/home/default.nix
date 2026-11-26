@@ -40,7 +40,7 @@
     ffmpeg
     imagemagick
     glow
-    direnv
+    mise
   ];
 
   catppuccin = {
