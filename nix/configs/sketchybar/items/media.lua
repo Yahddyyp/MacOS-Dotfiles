@@ -1,6 +1,9 @@
 local colors = require("colors")
 local sbar = require("sketchybar")
 
+local HOME = os.getenv("HOME")
+local HELPERS = HOME .. "/.config/sketchybar/helpers"
+
 local media_cover = sbar.add("item", "media.cover", {
 	position = "right",
 	icon = {
@@ -27,12 +30,10 @@ local media_cover = sbar.add("item", "media.cover", {
 	},
 })
 
-local MEDIA_CLICK = os.getenv("HOME") .. "/.config/sketchybar/helpers/media-click.sh"
 media_cover:subscribe("mouse.clicked", function()
-	sbar.exec(MEDIA_CLICK)
+	sbar.exec(HELPERS .. "/media-click.sh")
 end)
 
 sbar.delay(0.2, function()
-	local WATCHER = os.getenv("HOME") .. "/.config/sketchybar/helpers/media-watcher.pl"
-	sbar.exec(WATCHER .. " >/dev/null 2>&1 &")
+	sbar.exec("/usr/bin/perl " .. HELPERS .. "/media-watcher.pl >/dev/null 2>&1 &")
 end)
