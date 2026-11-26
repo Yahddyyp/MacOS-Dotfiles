@@ -25,16 +25,20 @@
     duti
     iina
     kitty
-    obsidian
     libreoffice-bin
     ghostty-bin
-    handy
-    zed-editor
-    osu-lazer-bin
     firefox
     vesktop
     localsend
     anki-bin
+  ];
+
+  # Apps with stable signing identities
+  system.appIdentity.apps = with pkgs; [
+    obsidian
+    zed-editor
+    osu-lazer-bin
+    handy
   ];
 
   # Homebrew env variables
