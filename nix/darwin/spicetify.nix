@@ -24,15 +24,17 @@ in
 
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
-      ({
+      {
         src = listeningStatsSrc;
         name = "listening-stats";
-      })
+      }
     ];
 
     enabledSnippets = with spicePkgs.snippets; [
       removePopular
       declutterNowPlayingBar
+      hideDownloadButton
     ];
   };
 }
+

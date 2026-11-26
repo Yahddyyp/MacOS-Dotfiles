@@ -5,6 +5,7 @@
     ./launchd.nix
     ./macos.nix
     ./sketchybar.nix
+    ./spicetify.nix
     ./skhd.nix
     ./yabai.nix
   ];

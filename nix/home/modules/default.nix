@@ -22,7 +22,6 @@
     ./pass.nix
     ./sesh.nix
     ./starship.nix
-    ./spicetify.nix
     ./tmux.nix
     ./tuicr.nix
     ./yazi.nix

@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     pass-tomb-osx = {
       url = "github:Yahddyyp/pass-tomb-osx";
       inputs.nixpkgs.follows = "nixpkgs"; 
@@ -42,7 +37,7 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, spicetify-nix, mac-app-util, pass-tomb-osx, catppuccin, nix-mac-app-identity, nix-homebrew, ... }: let
+  outputs = { nixpkgs, nix-darwin, home-manager, spicetify-nix, pass-tomb-osx, catppuccin, nix-mac-app-identity, nix-homebrew, ... }: let
     usernameFromEnv = let
       su = builtins.getEnv "SUDO_USER";
       u  = builtins.getEnv "USER";
@@ -56,8 +51,8 @@
       inherit system specialArgs;
       modules = [
         nix-mac-app-identity.darwinModules.default  
-        mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
+        spicetify-nix.darwinModules.default
         # Custom yabai version cause the nixpkgs version did not update
         {
           nixpkgs.overlays = [
@@ -71,11 +66,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
-            sharedModules = [ 
-              spicetify-nix.homeManagerModules.default
-              mac-app-util.homeManagerModules.default
-              catppuccin.homeModules.catppuccin
-            ];
+            sharedModules = [ catppuccin.homeModules.catppuccin ];
             users.${username} = import ./home;
             extraSpecialArgs = specialArgs;
           };
