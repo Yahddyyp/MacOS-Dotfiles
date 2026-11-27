@@ -40,7 +40,6 @@
     ffmpeg
     imagemagick
     glow
-    mise
   ];
 
   catppuccin = {

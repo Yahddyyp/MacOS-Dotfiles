@@ -18,6 +18,7 @@
     ./kitty.nix
     ./lazygit.nix
     ./man.nix
+    ./mise.nix
     ./nushell.nix
     ./pass.nix
     ./sesh.nix
