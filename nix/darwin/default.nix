@@ -25,7 +25,6 @@
     ghostty-bin
     osu-lazer-bin
     firefox
-    vesktop
     localsend
     anki-bin
   ];

@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord = {
+      url = "github:4evy/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pass-tomb-osx = {
       url = "github:Yahddyyp/pass-tomb-osx";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,6 +81,7 @@
           inputs.nix-homebrew.darwinModules.nix-homebrew
           inputs.nix-mac-app-identity.darwinModules.default
           inputs.spicetify-nix.darwinModules.default
+          inputs.nixcord.darwinModules.nixcord
 
           # Use a custom fork of yabai as upstream is broken
           {
