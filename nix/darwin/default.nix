@@ -1,13 +1,8 @@
 { pkgs, username, ... }:
 {
   imports = [
-    ./borders.nix
-    ./launchd.nix
     ./macos.nix
-    ./sketchybar.nix
-    ./spicetify.nix
-    ./skhd.nix
-    ./yabai.nix
+    ./modules
   ];
 
   nixpkgs.config = {
