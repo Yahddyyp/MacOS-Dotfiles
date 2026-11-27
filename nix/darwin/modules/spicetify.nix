@@ -1,6 +1,6 @@
-{ pkgs, spicetify-nix, ... }:
+{ pkgs, inputs, ... }:
 let
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   listeningStatsSrc = pkgs.fetchzip {
     url = "https://github.com/Xndr2/listening-stats/releases/download/v3.1/listening-stats.zip";
     hash = "sha256-NLe9bkD6Xhft1yG+YE69ZMZ789IHam36AvXt9tMMf68=";
@@ -37,4 +37,3 @@ in
     ];
   };
 }
-

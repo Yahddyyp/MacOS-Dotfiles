@@ -5,12 +5,24 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    nix-mac-app-identity = {
+      url = "github:natsukium/nix-mac-app-identity";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -21,57 +33,71 @@
 
     pass-tomb-osx = {
       url = "github:Yahddyyp/pass-tomb-osx";
-      inputs.nixpkgs.follows = "nixpkgs"; 
-    };
-
-    catppuccin = { 
-      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-mac-app-identity = {
-      url = "github:natsukium/nix-mac-app-identity";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, spicetify-nix, pass-tomb-osx, catppuccin, nix-mac-app-identity, nix-homebrew, ... }: let
-    usernameFromEnv = let
-      su = builtins.getEnv "SUDO_USER";
-      u  = builtins.getEnv "USER";
-    in if su != "" then su else if u != "" then u else "nobody";
-    username = usernameFromEnv;
-    system = "aarch64-darwin";
-    specialArgs = { inherit username pass-tomb-osx spicetify-nix; };
-  in {
-    packages.aarch64-darwin.default = nixpkgs.legacyPackages.aarch64-darwin.nix;
-    darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
-      inherit system specialArgs;
-      modules = [
-        nix-mac-app-identity.darwinModules.default  
-        nix-homebrew.darwinModules.nix-homebrew
-        spicetify-nix.darwinModules.default
-        # Custom yabai version cause the nixpkgs version did not update
-        {
-          nixpkgs.overlays = [
-            (import ./overlays/yabai.nix)
-          ];
-        }
-        ./darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-            sharedModules = [ catppuccin.homeModules.catppuccin ];
-            users.${username} = import ./home;
-            extraSpecialArgs = specialArgs;
-          };
-        }
-      ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "aarch64-darwin";
+
+      username =
+        let
+          sudoUser = builtins.getEnv "SUDO_USER";
+          user = builtins.getEnv "USER";
+        in
+        if sudoUser != "" then
+          sudoUser
+        else if user != "" then
+          user
+        else
+          "nobody";
+
+      specialArgs = {
+        inherit inputs username;
+      };
+    in
+    {
+      packages.${system}.default = nixpkgs.legacyPackages.${system}.nix;
+
+      darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
+        inherit system specialArgs;
+
+        modules = [
+          ./darwin
+
+          inputs.nix-homebrew.darwinModules.nix-homebrew
+          inputs.nix-mac-app-identity.darwinModules.default
+          inputs.spicetify-nix.darwinModules.default
+
+          # Use a custom fork of yabai as upstream is broken
+          {
+            nixpkgs.overlays = [
+              (import ./overlays/yabai.nix)
+            ];
+          }
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              extraSpecialArgs = specialArgs;
+              sharedModules = [
+                inputs.catppuccin.homeModules.catppuccin
+              ];
+              users.${username} = import ./home;
+            };
+          }
+        ];
+      };
     };
-  };
 }

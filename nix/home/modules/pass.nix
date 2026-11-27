@@ -1,6 +1,6 @@
-{ pkgs, pass-tomb-osx, ... }:
+{ pkgs, inputs, ... }:
 let
-  pass-tomb = pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  pass-tomb = inputs.pass-tomb-osx.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   programs.password-store = {
@@ -127,7 +127,6 @@ in
       '';
     };
 
-    
     ".local/share/pass-extensions/alias.bash" = {
       executable = true;
       text = ''
