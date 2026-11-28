@@ -62,15 +62,17 @@ local function render_battery()
 		display = cached_time
 	end
 
-	battery:set({
-		icon = {
-			string = get_battery_icon(cached_pct, is_charging),
-			color = get_icon_color(cached_pct, is_charging),
-		},
-		label = {
-			string = display,
-		},
-	})
+	sbar.animate("tanh", 6, function()
+		battery:set({
+			icon = {
+				string = get_battery_icon(cached_pct, is_charging),
+				color = get_icon_color(cached_pct, is_charging),
+			},
+			label = {
+				string = display,
+			},
+		})
+	end)
 end
 
 battery:subscribe("battery_update", function(env)
