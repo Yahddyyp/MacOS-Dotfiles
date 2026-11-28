@@ -98,7 +98,6 @@
     casks = [
       "raycast"
       "zen"
-      "kindavim"
       "protonvpn"
       "vorssaint"
       "steam"
