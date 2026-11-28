@@ -1,6 +1,7 @@
 { pkgs, username, inputs, ... }:
 let
   zen = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
+  helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   imports = [
@@ -35,6 +36,7 @@ in
 
   # Apps that need stable signing identities
   system.appIdentity.apps = with pkgs; [
+    helium
     obsidian
     zed-editor
     handy
@@ -105,7 +107,6 @@ in
       "vorssaint"
       "steam"
       "karabiner-elements"
-      "helium-browser"
       "macpacker"
       "sf-symbols"
     ];

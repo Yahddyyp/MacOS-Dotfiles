@@ -48,6 +48,11 @@
       };
     };
 
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pass-tomb-osx = {
       url = "github:Yahddyyp/pass-tomb-osx";
       inputs.nixpkgs.follows = "nixpkgs";
