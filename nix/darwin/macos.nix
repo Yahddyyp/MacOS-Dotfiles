@@ -27,6 +27,7 @@ in
     launchanim = false;
     expose-animation-duration = 0.0;
     expose-group-apps = true;
+    wvous-br-corner = 13;
   };
 
   # finder settings
@@ -96,6 +97,9 @@ in
     NSAutomaticWindowAnimationsEnabled = false;
     NSNavPanelExpandedStateForSaveMode = true;
     NSNavPanelExpandedStateForSaveMode2 = true;
+    AppleInterfaceStyle = "Dark";
+    AppleShowScrollBars = "WhenScrolling";
+    AppleScrollerPagingBehavior = true;
   };
 
   # Make Fn key do nothing
@@ -107,40 +111,35 @@ in
     reduceTransparency = true;
   };
 
-  # screencapture settings
+  # Screencapture settings
   system.defaults.screencapture = {
     type = "jpg";
     disable-shadow = true;
     include-date = false;
   };
 
-  # controlcenter settings
+  # Controlcenter settings
   system.defaults.controlcenter = {
     BatteryShowPercentage = true;
   };
 
-  # clock settings
+  # Clock settings
   system.defaults.menuExtraClock = {
     ShowDayOfWeek = true;
   };
 
-  # system defaults
+  # System defaults
   system.defaults = {
-    loginwindow.GuestEnabled = false;
     LaunchServices.LSQuarantine = false;
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
     CustomUserPreferences = {
       "NSGlobalDomain" = {
         AppleAccentColor = 5;
-        AppleInterfaceStyle = "Dark";
-        AppleShowScrollBars = "WhenScrolling";
-        AppleScrollerPagingBehavior = true;
         AppleWidgetStyle = "automatic";
         NSQuitAlwaysKeepsWindows = false;
         AppleHighlightColor = "0.580000 0.530000 0.620000";
       };
       "com.apple.dock" = {
-        wvous-br-corner = 13;
         wvous-br-modifier = 1966080;
         size-immutable = true;
       };
@@ -168,16 +167,21 @@ in
         allowIdentifierForAdvertising = false;
       };
       "com.apple.screensaver" = {
-        idleTime = 600;  # 10 min
+        idleTime = 600; 
       };
       "com.apple.loginwindow" = {
         TALLogoutSavesState = false;
-        SHOWFULLNAME = true;
       };
       "com.apple.TextEdit" = {
         NSShowAppCentricOpenPanelInsteadOfUntitledFile = false;
       };
     };
+  };
+
+  system.defaults.loginwindow = {
+    GuestEnabled = false;
+    SHOWFULLNAME = true;
+    DisableConsoleAccess = true;
   };
 
   # Inactive time
@@ -201,13 +205,20 @@ in
   # Keep SSH open
   services.openssh.enable = true;
 
+  networking.applicationFirewall = {
+    enable = true;
+    enableStealthMode = true;
+    allowSigned = true;
+    allowSignedApp = true;
+  };
+
   system.activationScripts.postActivation.text = lib.mkAfter ''
     user_home="/Users/${username}"
     run_as_user() {
       sudo -u "${username}" HOME="$user_home" PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin" "$@"
     }
 
-    # Display sleep 15 min on battery
+    # Sleep after 15m on idle
     /usr/bin/pmset -b displaysleep 15
 
     # Disable ⌘Space
