@@ -6,7 +6,7 @@ let
     mk "app.zen-browser.zen" [ "public.html" "http" "https" ]
     + mk "com.colliderli.iina" (ext [ "mp4" "mkv" "mov" "avi" "webm" "wmv" ])
     + mk "com.sarensx.MacPacker" [ ".zip" ]
-    + mk "dev.zed.Zed" (ext [ "txt" "md" "json" "yaml" "yml" "toml" "xml" "csv" "env" "sh" "zsh" "fish" "py" "js" "ts" "jsx" "tsx" "css" "scss" "html" "nix" "lua" "rb" "rs" "go" "swift" ])
+    + mk "dev.zed.Zed" ([ "net.daringfireball.markdown" ] ++ ext [ "txt" "md" "markdown" "json" "yaml" "yml" "toml" "xml" "csv" "env" "sh" "zsh" "fish" "py" "js" "ts" "jsx" "tsx" "css" "scss" "html" "nix" "lua" "rb" "rs" "go" "swift" ])
   );
 in
 {
@@ -231,7 +231,7 @@ in
     fi
 
     # Register the apps
-    for app in /Applications/Zen.app "/Applications/Nix Apps/IINA.app" "/Applications/Nix Apps/Zed.app" /Applications/MacPacker.app; do
+    for app in "/Applications/Nix Apps/Zen Browser (Beta).app" "/Applications/Nix Apps/IINA.app" "/Applications/Nix Apps/Zed.app" /Applications/MacPacker.app; do
       [ -d "$app" ] && run_as_user /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$app" 2>/dev/null || true
     done
 
