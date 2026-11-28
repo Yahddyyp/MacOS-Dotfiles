@@ -118,7 +118,7 @@
       };
 
       pager = {
-        diff = "";
+        diff = "delta --color-only";
       };
 
       confirmQuit = false;
