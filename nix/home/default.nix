@@ -16,6 +16,7 @@
   home.packages = with pkgs; [
     neovim
     bun
+    nodejs
     fastfetch
     fd
     ripgrep
