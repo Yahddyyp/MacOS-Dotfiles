@@ -1,4 +1,7 @@
-{ pkgs, username, ... }:
+{ pkgs, username, inputs, ... }:
+let
+  zen = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
+in
 {
   imports = [
     ./macos.nix
@@ -18,6 +21,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    zen
     duti
     iina
     kitty
@@ -97,7 +101,6 @@
 
     casks = [
       "raycast"
-      "zen"
       "protonvpn"
       "vorssaint"
       "steam"
